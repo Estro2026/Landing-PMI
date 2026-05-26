@@ -347,6 +347,29 @@ footer{background:var(--K3);padding:48px var(--px) 22px;border-top:1px solid rgb
 .modal h3{font-family:var(--fd);font-size:20px;color:var(--C);margin-bottom:5px;letter-spacing:-.5px}
 .modal .msub{font-size:12px;color:var(--S);margin-bottom:20px}
 
+/* ─── LOGO SLOTS (griglia clienti) ─── */
+.logo-slot{background:rgba(255,255,255,.03);border:1.5px dashed rgba(255,255,255,.1);border-radius:var(--rm);height:88px;display:flex;align-items:center;justify-content:center;overflow:hidden;transition:all .25s;position:relative}
+.logo-slot:hover{border-color:rgba(224,24,92,.22);background:rgba(255,255,255,.05)}
+.logo-slot img{max-width:78%;max-height:52px;object-fit:contain;filter:brightness(0) invert(1);opacity:.55;transition:opacity .25s}
+.logo-slot:hover img{opacity:.82}
+.logo-slot-ph{display:flex;flex-direction:column;align-items:center;gap:7px;pointer-events:none}
+.logo-slot-ph svg{width:22px;height:22px;color:rgba(243,239,224,.18)}
+.logo-slot-ph span{font-family:var(--fm);font-size:8.5px;letter-spacing:2px;text-transform:uppercase;color:rgba(243,239,224,.18)}
+
+/* ─── CASE STUDY — logo + immagine ─── */
+.cc-logo-ph{width:52px;height:52px;border-radius:10px;background:rgba(255,255,255,.05);border:1.5px dashed rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden;transition:border-color .25s}
+.cc-logo-ph:hover{border-color:rgba(224,24,92,.3)}
+.cc-logo-ph img{width:100%;height:100%;object-fit:contain}
+.cc-logo-ph-inner{display:flex;flex-direction:column;align-items:center;gap:4px}
+.cc-logo-ph-inner svg{width:18px;height:18px;color:rgba(243,239,224,.22)}
+.cc-logo-ph-inner span{font-family:var(--fm);font-size:7px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,239,224,.2)}
+.cc-img-ph{width:100%;height:190px;border-radius:12px;background:rgba(255,255,255,.02);border:1.5px dashed rgba(255,255,255,.1);display:flex;flex-direction:column;align-items:center;justify-content:center;margin-bottom:22px;overflow:hidden;gap:10px;transition:border-color .25s;cursor:default}
+.cc-img-ph:hover{border-color:rgba(224,24,92,.2)}
+.cc-img-ph img{width:100%;height:100%;object-fit:cover}
+.cc-img-ph-inner{display:flex;flex-direction:column;align-items:center;gap:8px}
+.cc-img-ph-inner svg{width:30px;height:30px;color:rgba(243,239,224,.15)}
+.cc-img-ph-inner span{font-family:var(--fm);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(243,239,224,.15)}
+
 @media(max-width:1100px){
   .hero-inner,.target-inner,.sol-grid,.ben-grid{grid-template-columns:1fr;gap:40px}
   .ic-grid,.srv-grid{grid-template-columns:repeat(2,1fr)}
@@ -775,16 +798,40 @@ footer{background:var(--K3);padding:48px var(--px) 22px;border-top:1px solid rgb
       <div class="ind-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>Servizi Professionali</div>
     </div>
 
-    <!-- Logo showcase -->
+    <!-- Logo showcase — sostituire ogni logo-slot con <img src="logo-cliente.svg" alt="Nome cliente"> -->
     <div class="logo-grid rv">
-      <div class="lc"><div class="lc-mark">AS</div><div class="lc-info"><div class="lc-name">Atelier Sole</div><div class="lc-sector">Fashion · Milano</div></div></div>
-      <div class="lc"><div class="lc-mark">CM</div><div class="lc-info"><div class="lc-name">Centro Med+</div><div class="lc-sector">Medicale · Milano</div></div></div>
-      <div class="lc"><div class="lc-mark">LB</div><div class="lc-info"><div class="lc-name">La Breva</div><div class="lc-sector">Ristorazione · Como</div></div></div>
-      <div class="lc"><div class="lc-mark">VS</div><div class="lc-info"><div class="lc-name">Vibe Studio</div><div class="lc-sector">Beauty &amp; Wellness</div></div></div>
-      <div class="lc"><div class="lc-mark">IF</div><div class="lc-info"><div class="lc-name">IstitutoForm</div><div class="lc-sector">Formazione · Online</div></div></div>
-      <div class="lc"><div class="lc-mark">RV</div><div class="lc-info"><div class="lc-name">RetailVerde</div><div class="lc-sector">Retail · Milano</div></div></div>
-      <div class="lc"><div class="lc-mark">DB</div><div class="lc-info"><div class="lc-name">Design Bureau</div><div class="lc-sector">Servizi Professionali</div></div></div>
-      <div class="lc"><div class="lc-mark">NK</div><div class="lc-info"><div class="lc-name">Nek Store</div><div class="lc-sector">E-commerce</div></div></div>
+      <div class="logo-slot">
+        <!-- <img src="logo-cliente-1.svg" alt="Cliente 1"> -->
+        <div class="logo-slot-ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="2" y="7" width="20" height="10" rx="2"/><circle cx="12" cy="12" r="2"/></svg><span>Logo</span></div>
+      </div>
+      <div class="logo-slot">
+        <!-- <img src="logo-cliente-2.svg" alt="Cliente 2"> -->
+        <div class="logo-slot-ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="2" y="7" width="20" height="10" rx="2"/><circle cx="12" cy="12" r="2"/></svg><span>Logo</span></div>
+      </div>
+      <div class="logo-slot">
+        <!-- <img src="logo-cliente-3.svg" alt="Cliente 3"> -->
+        <div class="logo-slot-ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="2" y="7" width="20" height="10" rx="2"/><circle cx="12" cy="12" r="2"/></svg><span>Logo</span></div>
+      </div>
+      <div class="logo-slot">
+        <!-- <img src="logo-cliente-4.svg" alt="Cliente 4"> -->
+        <div class="logo-slot-ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="2" y="7" width="20" height="10" rx="2"/><circle cx="12" cy="12" r="2"/></svg><span>Logo</span></div>
+      </div>
+      <div class="logo-slot">
+        <!-- <img src="logo-cliente-5.svg" alt="Cliente 5"> -->
+        <div class="logo-slot-ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="2" y="7" width="20" height="10" rx="2"/><circle cx="12" cy="12" r="2"/></svg><span>Logo</span></div>
+      </div>
+      <div class="logo-slot">
+        <!-- <img src="logo-cliente-6.svg" alt="Cliente 6"> -->
+        <div class="logo-slot-ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="2" y="7" width="20" height="10" rx="2"/><circle cx="12" cy="12" r="2"/></svg><span>Logo</span></div>
+      </div>
+      <div class="logo-slot">
+        <!-- <img src="logo-cliente-7.svg" alt="Cliente 7"> -->
+        <div class="logo-slot-ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="2" y="7" width="20" height="10" rx="2"/><circle cx="12" cy="12" r="2"/></svg><span>Logo</span></div>
+      </div>
+      <div class="logo-slot">
+        <!-- <img src="logo-cliente-8.svg" alt="Cliente 8"> -->
+        <div class="logo-slot-ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="2" y="7" width="20" height="10" rx="2"/><circle cx="12" cy="12" r="2"/></svg><span>Logo</span></div>
+      </div>
     </div>
 
     <!-- Case Studies PMI -->
@@ -793,14 +840,24 @@ footer{background:var(--K3);padding:48px var(--px) 22px;border-top:1px solid rgb
     <!-- CASE 1: BEAUTY & WELLNESS -->
     <div class="client-case rv">
       <div class="cc-header">
-        <div>
-          <div class="cc-name">Vibe Studio</div>
-          <div class="cc-sector">Beauty &amp; Wellness · Centro benessere e estetica · Milano</div>
+        <div style="display:flex;align-items:center;gap:16px">
+          <div class="cc-logo-ph">
+            <!-- Logo: <img src="logo-vibe-studio.svg" alt="Vibe Studio"> -->
+            <div class="cc-logo-ph-inner"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="2" y="7" width="20" height="10" rx="2"/><circle cx="12" cy="12" r="2"/></svg><span>Logo</span></div>
+          </div>
+          <div>
+            <div class="cc-name">Vibe Studio</div>
+            <div class="cc-sector">Beauty &amp; Wellness · Centro benessere e estetica · Milano</div>
+          </div>
         </div>
         <span style="font-family:var(--fm);font-size:10px;color:var(--S)">2023–ongoing</span>
       </div>
       <div class="cc-body">
         <div class="cc-desc">
+          <div class="cc-img-ph">
+            <!-- Immagine case study: <img src="case-vibe-studio.jpg" alt="Vibe Studio — campagna digital"> -->
+            <div class="cc-img-ph-inner"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>Immagine progetto</span></div>
+          </div>
           <div class="cc-desc-label">Il progetto</div>
           <div class="cc-desc-title">Strategia digitale integrata per aumentare visibilità e prenotazioni online</div>
           <div class="cc-desc-text">Il centro gestiva i social in autonomia senza una strategia chiara e senza campagne ADV. Abbiamo costruito un piano di comunicazione completo: contenuti, campagne Meta e Google, gestione delle recensioni e newsletter. Un unico flusso coordinato, con un referente dedicato e report mensili chiari.</div>
@@ -832,14 +889,24 @@ footer{background:var(--K3);padding:48px var(--px) 22px;border-top:1px solid rgb
     <!-- CASE 2: FORMAZIONE -->
     <div class="client-case rv d1">
       <div class="cc-header">
-        <div>
-          <div class="cc-name">IstitutoForm</div>
-          <div class="cc-sector">Formazione professionale · Corsi e certificazioni · Milano</div>
+        <div style="display:flex;align-items:center;gap:16px">
+          <div class="cc-logo-ph">
+            <!-- Logo: <img src="logo-istitutoform.svg" alt="IstitutoForm"> -->
+            <div class="cc-logo-ph-inner"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="2" y="7" width="20" height="10" rx="2"/><circle cx="12" cy="12" r="2"/></svg><span>Logo</span></div>
+          </div>
+          <div>
+            <div class="cc-name">IstitutoForm</div>
+            <div class="cc-sector">Formazione professionale · Corsi e certificazioni · Milano</div>
+          </div>
         </div>
         <span style="font-family:var(--fm);font-size:10px;color:var(--S)">2022–2024</span>
       </div>
       <div class="cc-body">
         <div class="cc-desc">
+          <div class="cc-img-ph">
+            <!-- Immagine case study: <img src="case-istitutoform.jpg" alt="IstitutoForm — lead generation corsi"> -->
+            <div class="cc-img-ph-inner"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>Immagine progetto</span></div>
+          </div>
           <div class="cc-desc-label">Il progetto</div>
           <div class="cc-desc-title">Posizionamento digitale e generazione lead per corsi di formazione professionale</div>
           <div class="cc-desc-text">L'istituto voleva aumentare le iscrizioni ai corsi ma non aveva una presenza digitale strutturata. Abbiamo definito la strategia di posizionamento, lanciato campagne Google e Meta per ogni corso, prodotto contenuti che raccontano il valore formativo e ottimizzato il percorso dall'annuncio all'iscrizione.</div>
@@ -871,14 +938,24 @@ footer{background:var(--K3);padding:48px var(--px) 22px;border-top:1px solid rgb
     <!-- CASE 3: RISTORAZIONE -->
     <div class="client-case rv d2">
       <div class="cc-header">
-        <div>
-          <div class="cc-name">La Breva</div>
-          <div class="cc-sector">Ristorazione · Ristorante e catering · Como</div>
+        <div style="display:flex;align-items:center;gap:16px">
+          <div class="cc-logo-ph">
+            <!-- Logo: <img src="logo-la-breva.svg" alt="La Breva"> -->
+            <div class="cc-logo-ph-inner"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="2" y="7" width="20" height="10" rx="2"/><circle cx="12" cy="12" r="2"/></svg><span>Logo</span></div>
+          </div>
+          <div>
+            <div class="cc-name">La Breva</div>
+            <div class="cc-sector">Ristorazione · Ristorante e catering · Como</div>
+          </div>
         </div>
         <span style="font-family:var(--fm);font-size:10px;color:var(--S)">2023–ongoing</span>
       </div>
       <div class="cc-body">
         <div class="cc-desc">
+          <div class="cc-img-ph">
+            <!-- Immagine case study: <img src="case-la-breva.jpg" alt="La Breva — comunicazione ristorazione"> -->
+            <div class="cc-img-ph-inner"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>Immagine progetto</span></div>
+          </div>
           <div class="cc-desc-label">Il progetto</div>
           <div class="cc-desc-title">Brand identity digitale e comunicazione locale per aumentare coperti e catering</div>
           <div class="cc-desc-text">Il ristorante aveva un ottimo prodotto ma poca visibilità digitale. Abbiamo lavorato sulla brand identity online, costruito una presenza social coerente, lanciato campagne locali su Meta e Google, e integrato la comunicazione per il servizio catering. Tutto gestito da un unico team, con aggiornamenti settimanali al titolare.</div>
