@@ -420,21 +420,87 @@ body{font-family:var(--fb);background:var(--K);color:var(--C);overflow-x:hidden;
 .btn-light{background:#fff;color:var(--F);border:none}.btn-light:hover{background:var(--C);transform:translateY(-2px);box-shadow:0 14px 30px rgba(0,0,0,.25)}
 
 /* ═══ SERVIZI ═══ */
-.servizi{background:var(--K2);padding:96px 0}
+/* ── SERVIZI ── */
+.servizi{background:var(--K2);padding:96px 0;position:relative;overflow:hidden}
+/* dot grid */
+.servizi::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(243,239,224,.032) 1px,transparent 1px);background-size:36px 36px;pointer-events:none;z-index:0}
+/* vignetta angoli */
+.servizi::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 90% 80% at 50% 50%,transparent 50%,rgba(0,0,0,.25) 100%);pointer-events:none;z-index:0}
+/* glow fuchsia top-right */
+.srv-glow-a{position:absolute;top:-100px;right:-60px;width:520px;height:520px;background:radial-gradient(circle,rgba(224,24,92,.08),transparent 62%);pointer-events:none;z-index:0}
+/* glow fuchsia bottom-left */
+.srv-glow-b{position:absolute;bottom:-100px;left:-60px;width:420px;height:420px;background:radial-gradient(circle,rgba(224,24,92,.06),transparent 60%);pointer-events:none;z-index:0}
+/* ghost ESTRO */
+.srv-ghost{position:absolute;right:-2%;bottom:-5%;font-family:var(--fd);font-size:clamp(160px,26vw,420px);line-height:.85;letter-spacing:-12px;color:rgba(243,239,224,.022);pointer-events:none;user-select:none;white-space:nowrap;z-index:0}
+/* noise grain */
+.srv-grain{position:absolute;inset:0;pointer-events:none;z-index:0;opacity:.035;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");background-repeat:repeat;background-size:200px 200px}
+
 .srv-tag{font-size:10px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:rgba(243,239,224,.35);display:block;margin-bottom:14px}
 .srv-tag::before{content:'— '}
-.srv-tagline{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:48px}
+.srv-tagline{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:48px;position:relative;z-index:1}
 .srv h2{font-family:var(--fd);font-size:clamp(28px,3vw,42px);line-height:1.07;letter-spacing:-1.2px;color:var(--C)}
 .srv-side{font-size:14px;color:var(--S);max-width:320px;line-height:1.65;text-align:right}
-.srv-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-.srv-grid-2x2{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:12px}
-.sc{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:var(--rm);padding:24px 20px;transition:all .3s}
-.sc:hover{background:rgba(255,255,255,.06);border-color:rgba(224,24,92,.25);transform:translateY(-3px)}
-.sc-tag{display:inline-block;font-size:8px;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:4px 9px;border-radius:var(--rp);background:var(--Fa);border:1px solid var(--Fb);color:var(--F);margin-bottom:16px}
-.sc-ico{width:38px;height:38px;border-radius:10px;background:rgba(255,255,255,.05);display:flex;align-items:center;justify-content:center;margin-bottom:14px}
-.sc-ico svg{width:19px;height:19px;color:rgba(243,239,224,.5)}
-.sc-title{font-family:var(--fd);font-size:14px;color:var(--C);margin-bottom:10px;letter-spacing:-.3px;line-height:1.2}
-.sc-desc{font-size:12px;color:var(--S);line-height:1.6}
+
+/* ── layout editoriale: featured → pair → ribbon ── */
+.srv-eco{display:flex;flex-direction:column;gap:12px;position:relative;z-index:1}
+
+/* card base shared */
+.sc{border-radius:20px;transition:transform .4s cubic-bezier(.22,1,.36,1),box-shadow .4s,border-color .35s}
+
+/* ── featured card: Strategia Marketing ── */
+.sc-feat{
+  background:linear-gradient(130deg,#200A14 0%,#1C1C1C 55%,#240C18 100%);
+  border:1px solid rgba(224,24,92,.18);
+  padding:40px 44px;
+  display:flex;align-items:center;gap:52px;
+  box-shadow:0 2px 0 rgba(255,255,255,.04) inset,0 24px 56px -20px rgba(0,0,0,.6),0 0 0 1px rgba(224,24,92,.06) inset;
+  position:relative;overflow:hidden
+}
+/* alone fuchsia interno */
+.sc-feat::before{content:'';position:absolute;top:-60px;left:-40px;width:340px;height:340px;background:radial-gradient(circle,rgba(224,24,92,.12),transparent 65%);pointer-events:none}
+.sc-feat::after{content:'';position:absolute;bottom:0;right:0;width:200px;height:200px;background:radial-gradient(circle,rgba(224,24,92,.06),transparent 65%);pointer-events:none}
+.sc-feat:hover{transform:translateY(-4px);box-shadow:0 2px 0 rgba(255,255,255,.04) inset,0 36px 72px -24px rgba(224,24,92,.3),0 0 0 1px rgba(224,24,92,.1) inset;border-color:rgba(224,24,92,.3)}
+.sc-feat-ico{flex-shrink:0;width:72px;height:72px;border-radius:20px;background:linear-gradient(150deg,#E0185C,#8c163f);display:flex;align-items:center;justify-content:center;box-shadow:0 16px 40px -12px rgba(224,24,92,.7),inset 0 1px 0 rgba(255,255,255,.3);position:relative;z-index:2}
+.sc-feat-ico svg{width:32px;height:32px;color:#fff;stroke-linecap:round;stroke-linejoin:round}
+.sc-feat-body{flex:1;position:relative;z-index:2}
+.sc-feat-tag{display:inline-block;font-size:8px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;padding:4px 10px;border-radius:var(--rp);background:rgba(224,24,92,.12);border:1px solid rgba(224,24,92,.25);color:var(--F);margin-bottom:14px}
+.sc-feat-title{font-family:var(--fd);font-size:clamp(22px,2.4vw,30px);color:var(--C);letter-spacing:-.7px;margin-bottom:12px;line-height:1.1}
+.sc-feat-desc{font-size:14px;color:rgba(243,239,224,.6);line-height:1.7;max-width:520px}
+
+/* ── primary pair: Comunicazione Digitale + Advertising ── */
+.srv-pair{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.sc-primary{
+  background:linear-gradient(150deg,rgba(255,255,255,.06) 0%,rgba(255,255,255,.025) 100%);
+  border:1px solid rgba(255,255,255,.1);
+  padding:32px 30px;
+  box-shadow:0 2px 0 rgba(255,255,255,.06) inset,0 16px 40px -16px rgba(0,0,0,.5);
+  position:relative;overflow:hidden
+}
+.sc-primary::before{content:'';position:absolute;inset:0;background:radial-gradient(100% 80% at 0% 0%,rgba(224,24,92,.06),transparent 60%);pointer-events:none}
+.sc-primary:hover{transform:translateY(-4px);border-color:rgba(224,24,92,.28);box-shadow:0 2px 0 rgba(255,255,255,.06) inset,0 28px 56px -18px rgba(224,24,92,.22)}
+.sc-primary-ico{width:52px;height:52px;border-radius:16px;background:linear-gradient(150deg,#E0185C,#8c163f);display:flex;align-items:center;justify-content:center;margin-bottom:20px;box-shadow:0 10px 28px -8px rgba(224,24,92,.6),inset 0 1px 0 rgba(255,255,255,.3);position:relative;z-index:1}
+.sc-primary-ico svg{width:24px;height:24px;color:#fff;stroke-linecap:round;stroke-linejoin:round}
+.sc-primary-tag{display:inline-block;font-size:8px;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:3px 9px;border-radius:var(--rp);background:var(--Fa);border:1px solid var(--Fb);color:var(--F);margin-bottom:14px;position:relative;z-index:1}
+.sc-primary-title{font-family:var(--fd);font-size:18px;color:var(--C);letter-spacing:-.4px;margin-bottom:10px;line-height:1.2;position:relative;z-index:1}
+.sc-primary-desc{font-size:13px;color:rgba(243,239,224,.55);line-height:1.65;position:relative;z-index:1}
+
+/* ── ribbon secondari ── */
+.srv-ribbon{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.sc-sec{
+  background:rgba(255,255,255,.03);
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:16px;padding:22px 20px;
+  transition:transform .4s cubic-bezier(.22,1,.36,1),background .3s,border-color .3s;
+  position:relative;overflow:hidden
+}
+.sc-sec::before{content:'';position:absolute;inset:0;background:radial-gradient(80% 70% at 0% 0%,rgba(224,24,92,.04),transparent 55%);opacity:0;transition:opacity .35s;pointer-events:none}
+.sc-sec:hover{transform:translateY(-3px);background:rgba(255,255,255,.055);border-color:rgba(224,24,92,.2)}
+.sc-sec:hover::before{opacity:1}
+.sc-sec-ico{width:36px;height:36px;border-radius:10px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.09);display:flex;align-items:center;justify-content:center;margin-bottom:12px}
+.sc-sec-ico svg{width:17px;height:17px;color:rgba(224,24,92,.7);stroke-linecap:round;stroke-linejoin:round}
+.sc-sec-tag{font-size:8px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(243,239,224,.3);margin-bottom:8px;display:block}
+.sc-sec-title{font-family:var(--fd);font-size:13px;color:var(--C);margin-bottom:7px;letter-spacing:-.2px;line-height:1.2}
+.sc-sec-desc{font-size:11.5px;color:rgba(243,239,224,.42);line-height:1.6}
 
 /* ═══ PROCESSO ═══ */
 .proc{background:var(--K);padding:96px 0}
@@ -613,8 +679,9 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
   .hero-copy::before{display:none}
   .hero-img-col{order:3;min-height:320px;height:320px}
   .target-inner,.sol-grid,.ben-grid{grid-template-columns:1fr;gap:40px}
-  .ic-grid,.srv-grid{grid-template-columns:repeat(2,1fr)}
-  .srv-grid-2x2{grid-template-columns:repeat(3,1fr)}
+  .ic-grid{grid-template-columns:repeat(2,1fr)}
+  .sc-feat{flex-direction:column;align-items:flex-start;gap:24px;padding:30px 28px}
+  .srv-ribbon{grid-template-columns:repeat(3,1fr)}
   .steps{grid-template-columns:repeat(2,1fr);gap:24px}
   .steps::before{display:none}
   .cc-body{grid-template-columns:1fr}
@@ -622,8 +689,6 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
   .cc-results{flex-direction:row;flex-wrap:wrap}
   .cr{flex:1;min-width:140px}
   .ft-cols{grid-template-columns:1fr 1fr;gap:28px}
-  .srv-side{text-align:left;max-width:100%}
-  .srv-tagline{flex-direction:column;align-items:flex-start}
   .logo-grid{grid-template-columns:repeat(3,1fr)}
   .logo-grid-real{grid-template-columns:repeat(4,1fr)}
   .sp-grid{grid-template-columns:repeat(2,1fr)}
@@ -633,7 +698,11 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
   :root{--px:20px}
   .hero-img-col{min-height:240px;height:240px}
   .hero-copy{padding:90px var(--px) 48px}
-  .ic-grid,.srv-grid,.srv-grid-2x2,.ff-grid,.sp-grid{grid-template-columns:1fr}
+  .ic-grid,.ff-grid,.sp-grid{grid-template-columns:1fr}
+  .srv-pair{grid-template-columns:1fr}
+  .srv-ribbon{grid-template-columns:repeat(2,1fr)}
+  .srv-side{text-align:left;max-width:100%}
+  .srv-tagline{flex-direction:column;align-items:flex-start}
   .ff-grid .fg.full{grid-column:1}
   .steps{grid-template-columns:1fr}
   .logo-grid{grid-template-columns:repeat(2,1fr)}
@@ -1008,7 +1077,11 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
 
 <!-- ═══ SERVIZI ═══ -->
 <section class="servizi" id="servizi">
-  <div class="ctr">
+  <div class="srv-glow-a" aria-hidden="true"></div>
+  <div class="srv-glow-b" aria-hidden="true"></div>
+  <div class="srv-ghost" aria-hidden="true">ESTRO</div>
+  <div class="srv-grain" aria-hidden="true"></div>
+  <div class="ctr" style="position:relative;z-index:1">
     <div class="rv">
       <span class="srv-tag">Servizi</span>
       <div class="srv-tagline">
@@ -1016,71 +1089,90 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
         <p class="srv-side">Un sistema coordinato di competenze, pensato per le PMI che vogliono crescere senza moltiplicare i fornitori.</p>
       </div>
     </div>
-    <div class="srv-grid">
-      <div class="sc rv">
-        <span class="sc-tag">Core</span>
-        <div class="sc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
-        <div class="sc-title">Strategia Marketing</div>
-        <div class="sc-desc">Obiettivi, analisi del mercato e roadmap operativa con KPI condivisi. Partiamo sempre da dove sei davvero.</div>
+
+    <div class="srv-eco rv">
+
+      <!-- ① Featured: Strategia Marketing -->
+      <div class="sc sc-feat rv">
+        <div class="sc-feat-ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        </div>
+        <div class="sc-feat-body">
+          <span class="sc-feat-tag">Core — Servizio Primario</span>
+          <div class="sc-feat-title">Strategia Marketing</div>
+          <div class="sc-feat-desc">Obiettivi, analisi del mercato e roadmap operativa con KPI condivisi. La strategia è il punto di partenza di ogni attività: senza direzione, ogni azione rischia di essere energia sprecata.</div>
+        </div>
       </div>
-      <div class="sc rv d1">
-        <span class="sc-tag">ADV</span>
-        <div class="sc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
-        <div class="sc-title">Advertising</div>
-        <div class="sc-desc">Google Ads, Meta, LinkedIn. Campagne misurabili, ottimizzate nel tempo per massimizzare ogni euro investito.</div>
+
+      <!-- ② Primary pair -->
+      <div class="srv-pair">
+        <div class="sc sc-primary rv d1">
+          <div class="sc-primary-ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+          </div>
+          <span class="sc-primary-tag">Digital</span>
+          <div class="sc-primary-title">Comunicazione Digitale</div>
+          <div class="sc-primary-desc">Strategia e gestione dei canali digitali come sistema unico. Messaggi coerenti, presenza coordinata, risultati misurabili.</div>
+        </div>
+        <div class="sc sc-primary rv d2">
+          <div class="sc-primary-ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <span class="sc-primary-tag">ADV</span>
+          <div class="sc-primary-title">Advertising</div>
+          <div class="sc-primary-desc">Google Ads, Meta, LinkedIn. Campagne misurabili, ottimizzate nel tempo per massimizzare ogni euro investito.</div>
+        </div>
       </div>
-      <div class="sc rv d2">
-        <span class="sc-tag">Creative</span>
-        <div class="sc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/></svg></div>
-        <div class="sc-title">Content Creation</div>
-        <div class="sc-desc">Contenuti per tutti i canali — social, web, newsletter — con un'unica voce coerente per il tuo brand.</div>
+
+      <!-- ③ Ribbon secondario -->
+      <div class="srv-ribbon">
+        <div class="sc sc-sec rv d1">
+          <div class="sc-sec-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/></svg></div>
+          <span class="sc-sec-tag">Creative</span>
+          <div class="sc-sec-title">Content Creation</div>
+          <div class="sc-sec-desc">Social, web, newsletter — un'unica voce coerente per il tuo brand.</div>
+        </div>
+        <div class="sc sc-sec rv d2">
+          <div class="sc-sec-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32"/></svg></div>
+          <span class="sc-sec-tag">Brand</span>
+          <div class="sc-sec-title">Branding</div>
+          <div class="sc-sec-desc">Identità visiva, posizionamento e tono di voce riconoscibili su ogni canale.</div>
+        </div>
+        <div class="sc sc-sec rv d3">
+          <div class="sc-sec-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/></svg></div>
+          <span class="sc-sec-tag">Web</span>
+          <div class="sc-sec-title">Siti Web & Landing Page</div>
+          <div class="sc-sec-desc">Design e sviluppo orientati alla conversione, veloci e ottimizzati SEO.</div>
+        </div>
+        <div class="sc sc-sec rv d1">
+          <div class="sc-sec-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+          <span class="sc-sec-tag">SEO</span>
+          <div class="sc-sec-title">SEO</div>
+          <div class="sc-sec-desc">Visibilità organica costruita nel tempo. Ottimizzazione, contenuti e link building.</div>
+        </div>
+        <div class="sc sc-sec rv d2">
+          <div class="sc-sec-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <span class="sc-sec-tag">Social</span>
+          <div class="sc-sec-title">Social Media Management</div>
+          <div class="sc-sec-desc">Piano editoriale, produzione, pubblicazione e community management continuativi.</div>
+        </div>
+        <div class="sc sc-sec rv d3">
+          <div class="sc-sec-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+          <span class="sc-sec-tag">Auto</span>
+          <div class="sc-sec-title">Marketing Automation</div>
+          <div class="sc-sec-desc">Email flow, CRM e automazioni per nutrire i lead senza lavoro manuale ripetitivo.</div>
+        </div>
+        <div class="sc sc-sec rv d1">
+          <div class="sc-sec-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+          <span class="sc-sec-tag">Intelligence</span>
+          <div class="sc-sec-title">Analytics & Reporting</div>
+          <div class="sc-sec-desc">Dati chiari e interpretati. Sai sempre cosa funziona e dove investire.</div>
+        </div>
       </div>
-      <div class="sc rv d3">
-        <span class="sc-tag">Intelligence</span>
-        <div class="sc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
-        <div class="sc-title">Analytics & Reporting</div>
-        <div class="sc-desc">Dati chiari e interpretati. Sai sempre cosa funziona, dove investire e come stiamo crescendo insieme.</div>
-      </div>
+
     </div>
-    <div class="srv-grid-2x2">
-      <div class="sc rv d1">
-        <span class="sc-tag">Brand</span>
-        <div class="sc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32"/></svg></div>
-        <div class="sc-title">Branding</div>
-        <div class="sc-desc">Identità visiva, posizionamento e tono di voce coerenti. Il tuo brand riconoscibile su ogni canale.</div>
-      </div>
-      <div class="sc rv d2">
-        <span class="sc-tag">Web</span>
-        <div class="sc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/></svg></div>
-        <div class="sc-title">Siti Web & Landing Page</div>
-        <div class="sc-desc">Design e sviluppo orientati alla conversione. Pagine veloci, accessibili e ottimizzate per il SEO.</div>
-      </div>
-      <div class="sc rv d3">
-        <span class="sc-tag">SEO</span>
-        <div class="sc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
-        <div class="sc-title">SEO</div>
-        <div class="sc-desc">Visibilità organica costruita nel tempo. Ottimizzazione on-page, contenuti e link building per posizionarsi dove conta.</div>
-      </div>
-      <div class="sc rv d1">
-        <span class="sc-tag">Social</span>
-        <div class="sc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
-        <div class="sc-title">Social Media Management</div>
-        <div class="sc-desc">Gestione continuativa dei profili social. Piano editoriale, produzione, pubblicazione e community management.</div>
-      </div>
-      <div class="sc rv d2">
-        <span class="sc-tag">Auto</span>
-        <div class="sc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
-        <div class="sc-title">Marketing Automation</div>
-        <div class="sc-desc">Email flow, CRM e automazioni per nutrire i lead e fidelizzare i clienti — senza lavoro manuale ripetitivo.</div>
-      </div>
-      <div class="sc rv d3">
-        <span class="sc-tag">Digital</span>
-        <div class="sc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div>
-        <div class="sc-title">Comunicazione Digitale</div>
-        <div class="sc-desc">Strategia e gestione dei canali digitali come sistema unico. Messaggi coerenti, presenza coordinata, risultati misurabili.</div>
-      </div>
-    </div>
-    <div style="text-align:center;margin-top:36px" class="rv">
+
+    <div style="text-align:center;margin-top:40px" class="rv">
       <a href="#contatti" class="btn bf btn-lg">Parliamo del tuo progetto <span class="arr">›</span></a>
     </div>
   </div>
