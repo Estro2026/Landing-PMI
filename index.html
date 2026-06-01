@@ -154,27 +154,92 @@ body{font-family:var(--fb);background:var(--K);color:var(--C);overflow-x:hidden;
 /* elemento visivo decorativo */
 .target-deco{position:absolute;bottom:0;right:0;width:340px;opacity:.09;pointer-events:none;user-select:none;mix-blend-mode:multiply}
 
-/* ── ANIMAZIONE CAOS→ORDINE (colonna destra) ── */
-.chaos-wrap{position:relative;height:420px;width:100%}
-.chaos-stage{position:absolute;inset:0}
+/* ── ANIMAZIONE TARGET: complessità → chiarezza ── */
+.tgt-anim{
+  position:relative;height:440px;width:100%;
+  background:rgba(255,255,255,.55);
+  border:1px solid rgba(28,28,28,.08);
+  border-radius:20px;overflow:hidden;
+  box-shadow:0 8px 40px rgba(28,28,28,.07)
+}
+/* micro-grid di sfondo */
+.tgt-anim::before{
+  content:'';position:absolute;inset:0;z-index:0;
+  background-image:
+    linear-gradient(rgba(28,28,28,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(28,28,28,.04) 1px,transparent 1px);
+  background-size:32px 32px
+}
 
-/* cards volanti — stato caos */
-.ch-card{position:absolute;background:#fff;border-radius:10px;padding:10px 14px;box-shadow:0 4px 18px rgba(28,28,28,.1);display:flex;align-items:center;gap:8px;font-size:11px;font-weight:600;color:var(--K);letter-spacing:.2px;white-space:nowrap;border:1px solid rgba(28,28,28,.07);transition:all 1.4s cubic-bezier(.4,0,.2,1)}
-.ch-card svg{width:13px;height:13px;flex-shrink:0;color:var(--F)}
-.ch-card .ch-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;background:var(--F)}
+/* nodi attività — pill piccole */
+.ta-node{
+  position:absolute;z-index:2;
+  display:flex;align-items:center;gap:6px;
+  padding:7px 12px;border-radius:8px;
+  background:#fff;border:1px solid rgba(28,28,28,.1);
+  font-size:10.5px;font-weight:600;color:var(--K);
+  white-space:nowrap;
+  box-shadow:0 2px 10px rgba(28,28,28,.09);
+  transition:left 1.2s cubic-bezier(.4,0,.2,1),
+             top  1.2s cubic-bezier(.4,0,.2,1),
+             opacity .6s ease,
+             transform .9s cubic-bezier(.4,0,.2,1);
+  will-change:left,top,transform
+}
+.ta-node-dot{width:6px;height:6px;border-radius:50%;background:rgba(28,28,28,.18);flex-shrink:0}
+/* stato caos: nodi hanno dot color specifico per tipo */
+.ta-node.scattered .ta-node-dot{background:var(--F)}
 
-/* linee di connessione SVG */
-.chaos-svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
-.ch-line{stroke:var(--F);stroke-width:1;opacity:0;transition:opacity .8s ease,stroke-dashoffset 1s ease}
-.ch-line.visible{opacity:.25}
+/* SVG linee */
+.ta-svg{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
+.ta-line-chaos{stroke:rgba(28,28,28,.12);stroke-width:.8;stroke-dasharray:4 5;
+  transition:opacity .5s ease,stroke .8s ease,stroke-dasharray .8s ease}
+.ta-line-order{stroke:var(--F);stroke-width:1;stroke-dasharray:none;opacity:0;
+  transition:opacity .7s ease}
 
-/* hub centrale */
-.ch-hub{position:absolute;width:56px;height:56px;border-radius:50%;background:var(--F);display:flex;align-items:center;justify-content:center;box-shadow:0 8px 28px rgba(224,24,92,.3);opacity:0;transform:scale(.5);transition:all .8s cubic-bezier(.4,0,.2,1)}
-.ch-hub.visible{opacity:1;transform:scale(1)}
-.ch-hub svg{width:22px;height:22px;color:#fff}
+/* outcome cards — appaiono nella fase ordine */
+.ta-outcome{
+  position:absolute;z-index:3;
+  display:flex;align-items:center;gap:10px;
+  padding:11px 16px;border-radius:10px;
+  background:var(--K);border:1px solid rgba(255,255,255,.08);
+  font-size:11px;font-weight:600;color:var(--C);
+  white-space:nowrap;
+  box-shadow:0 6px 24px rgba(28,28,28,.22);
+  opacity:0;transform:translateY(8px);
+  transition:opacity .6s ease,transform .6s cubic-bezier(.4,0,.2,1)
+}
+.ta-outcome.show{opacity:1;transform:translateY(0)}
+.ta-outcome-icon{width:22px;height:22px;border-radius:6px;background:var(--F);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ta-outcome-icon svg{width:11px;height:11px;stroke:#fff;stroke-width:2.5;fill:none}
 
-/* label sotto hub */
-.ch-hub-label{position:absolute;font-family:var(--fd);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--F);opacity:0;text-align:center;transition:opacity .6s ease .4s}
+/* hub Estro centrale */
+.ta-hub{
+  position:absolute;z-index:4;
+  width:48px;height:48px;border-radius:50%;
+  background:var(--F);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 6px 24px rgba(224,24,92,.35);
+  opacity:0;transform:scale(.4);
+  transition:opacity .7s ease,transform .7s cubic-bezier(.34,1.56,.64,1);
+  font-family:var(--fd);font-size:12px;color:#fff;letter-spacing:.5px
+}
+.ta-hub.show{opacity:1;transform:scale(1)}
+
+/* label fase */
+.ta-phase-label{
+  position:absolute;bottom:16px;left:0;right:0;
+  text-align:center;z-index:4;
+  font-family:var(--fm);font-size:9px;letter-spacing:2px;text-transform:uppercase;
+  color:rgba(28,28,28,.3);
+  transition:opacity .4s ease
+}
+
+/* reduced-motion */
+@media(prefers-reduced-motion:reduce){
+  .ta-node,.ta-outcome,.ta-hub{transition:none!important}
+}
 
 /* ═══ SOLUTION ═══ */
 .sol{background:var(--K);padding:96px 0;position:relative;overflow:hidden}
@@ -605,33 +670,53 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
         <p class="target-italic">Non serve fare di più. Serve farlo meglio, con il supporto giusto.</p>
       </div>
 
-      <!-- colonna destra: animazione caos→ordine -->
+      <!-- colonna destra: animazione complessità → chiarezza -->
       <div class="rv d1">
-        <div class="chaos-wrap" id="chaosWrap" aria-hidden="true">
+        <div class="tgt-anim" id="tgtAnim" aria-hidden="true">
 
-          <!-- SVG linee di connessione -->
-          <svg class="chaos-svg" id="chaosSvg" viewBox="0 0 420 420" preserveAspectRatio="xMidYMid meet">
-            <line id="cl0" class="ch-line" stroke-dasharray="6 4"/>
-            <line id="cl1" class="ch-line" stroke-dasharray="6 4"/>
-            <line id="cl2" class="ch-line" stroke-dasharray="6 4"/>
-            <line id="cl3" class="ch-line" stroke-dasharray="6 4"/>
-            <line id="cl4" class="ch-line" stroke-dasharray="6 4"/>
-            <line id="cl5" class="ch-line" stroke-dasharray="6 4"/>
+          <!-- SVG: linee di connessione (caos + ordine) -->
+          <svg class="ta-svg" id="taSvg" viewBox="0 0 480 440" preserveAspectRatio="xMidYMid meet">
+            <!-- linee caos: random, tratteggiate -->
+            <line id="tl-c0" class="ta-line-chaos" x1="80"  y1="70"  x2="260" y2="130"/>
+            <line id="tl-c1" class="ta-line-chaos" x1="360" y1="60"  x2="180" y2="200"/>
+            <line id="tl-c2" class="ta-line-chaos" x1="60"  y1="260" x2="310" y2="180"/>
+            <line id="tl-c3" class="ta-line-chaos" x1="400" y1="280" x2="140" y2="340"/>
+            <line id="tl-c4" class="ta-line-chaos" x1="200" y1="380" x2="370" y2="200"/>
+            <!-- linee ordine: verso hub, fuchsia -->
+            <line id="tl-o0" class="ta-line-order" x1="240" y1="220" x2="240" y2="220"/>
+            <line id="tl-o1" class="ta-line-order" x1="240" y1="220" x2="240" y2="220"/>
+            <line id="tl-o2" class="ta-line-order" x1="240" y1="220" x2="240" y2="220"/>
           </svg>
 
-          <!-- hub centrale Estro -->
-          <div class="ch-hub" id="chHub" style="left:calc(50% - 28px);top:calc(50% - 28px)">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
-          </div>
-          <div class="ch-hub-label" id="chHubLabel" style="left:calc(50% - 40px);top:calc(50% + 36px);width:80px">UN UNICO<br>TEAM</div>
+          <!-- nodi attività (fase scatter) -->
+          <div class="ta-node" id="tn0"><span class="ta-node-dot"></span>Social Media</div>
+          <div class="ta-node" id="tn1"><span class="ta-node-dot"></span>Campagne ADV</div>
+          <div class="ta-node" id="tn2"><span class="ta-node-dot"></span>Newsletter</div>
+          <div class="ta-node" id="tn3"><span class="ta-node-dot"></span>Branding</div>
+          <div class="ta-node" id="tn4"><span class="ta-node-dot"></span>Analytics</div>
+          <div class="ta-node" id="tn5"><span class="ta-node-dot"></span>Fornitore A</div>
+          <div class="ta-node" id="tn6"><span class="ta-node-dot"></span>Fornitore B</div>
+          <div class="ta-node" id="tn7"><span class="ta-node-dot"></span>Report</div>
 
-          <!-- cards attività marketing -->
-          <div class="ch-card" id="cc0" data-i="0"><span class="ch-dot"></span>Social Media</div>
-          <div class="ch-card" id="cc1" data-i="1"><span class="ch-dot"></span>Campagne ADV</div>
-          <div class="ch-card" id="cc2" data-i="2"><span class="ch-dot"></span>SEO</div>
-          <div class="ch-card" id="cc3" data-i="3"><span class="ch-dot"></span>Content</div>
-          <div class="ch-card" id="cc4" data-i="4"><span class="ch-dot"></span>Analytics</div>
-          <div class="ch-card" id="cc5" data-i="5"><span class="ch-dot"></span>Branding</div>
+          <!-- hub Estro -->
+          <div class="ta-hub" id="taHub">E</div>
+
+          <!-- outcome cards (fase ordine) -->
+          <div class="ta-outcome" id="to0">
+            <div class="ta-outcome-icon"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+            Attività coordinate
+          </div>
+          <div class="ta-outcome" id="to1">
+            <div class="ta-outcome-icon"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+            Budget sotto controllo
+          </div>
+          <div class="ta-outcome" id="to2">
+            <div class="ta-outcome-icon"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+            Report chiari
+          </div>
+
+          <!-- label di fase -->
+          <div class="ta-phase-label" id="taPhaseLabel">Situazione attuale</div>
         </div>
       </div>
 
@@ -1238,80 +1323,171 @@ function quickSub(e){e.preventDefault();e.target.style.display='none';document.g
 function heroSub(e){e.preventDefault();document.getElementById('heroForm').style.display='none';document.getElementById('heroSuccess').style.display='block'}
 function mainSub(e){e.preventDefault();document.getElementById('mainForm').style.display='none';document.getElementById('msuccess').style.display='block';return false}
 
-/* ── ANIMAZIONE CAOS→ORDINE (sezione target) ── */
+/* ── ANIMAZIONE TARGET: complessità → chiarezza ── */
 (function(){
-  const wrap=document.getElementById('chaosWrap');
-  if(!wrap)return;
-  const cards=[0,1,2,3,4,5].map(i=>document.getElementById('cc'+i));
-  const hub=document.getElementById('chHub');
-  const label=document.getElementById('chHubLabel');
-  const lines=[0,1,2,3,4,5].map(i=>document.getElementById('cl'+i));
+  const wrap = document.getElementById('tgtAnim');
+  if(!wrap) return;
 
-  const chaosPos=[
-    {x:8, y:8},{x:62,y:4},{x:78,y:22},
-    {x:4, y:52},{x:68,y:58},{x:22,y:72}
+  /* reduced-motion: skip animation */
+  const noMotion = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+  const nodes   = [0,1,2,3,4,5,6,7].map(i=>document.getElementById('tn'+i));
+  const hub     = document.getElementById('taHub');
+  const outcomes= [0,1,2].map(i=>document.getElementById('to'+i));
+  const phLbl   = document.getElementById('taPhaseLabel');
+
+  /* chaos SVG lines (always visible as dashed) */
+  const cLines  = [0,1,2,3,4].map(i=>document.getElementById('tl-c'+i));
+  /* order lines (to hub) */
+  const oLines  = [0,1,2].map(i=>document.getElementById('tl-o'+i));
+
+  /* --- scattered positions (% of container) --- */
+  const scatterPos = [
+    {x:6,  y:8,  r:-8},
+    {x:64, y:5,  r: 6},
+    {x:74, y:28, r:-4},
+    {x:3,  y:48, r: 10},
+    {x:70, y:52, r:-6},
+    {x:16, y:72, r: 5},
+    {x:60, y:72, r:-9},
+    {x:38, y:82, r: 3},
   ];
 
-  function orbitPos(i,total){
-    const a=(i/total)*Math.PI*2-Math.PI/2;
-    return{x:50+34*Math.cos(a), y:50+30*Math.sin(a)};
+  /* --- waiting positions (converging, mid-state) --- */
+  const waitPos = [
+    {x:18, y:18, r:-3},
+    {x:56, y:14, r: 2},
+    {x:68, y:36, r:-2},
+    {x:12, y:56, r: 3},
+    {x:66, y:58, r:-2},
+    {x:22, y:74, r: 2},
+    {x:58, y:74, r:-3},
+    {x:38, y:84, r: 1},
+  ];
+
+  function place(el, xPct, yPct){
+    const W=wrap.offsetWidth, H=wrap.offsetHeight;
+    el.style.left = (xPct/100*W - el.offsetWidth/2)  + 'px';
+    el.style.top  = (yPct/100*H - el.offsetHeight/2) + 'px';
   }
 
-  function setPx(el,xP,yP){
-    const w=wrap.offsetWidth,h=wrap.offsetHeight;
-    el.style.left=(xP/100*w-el.offsetWidth/2)+'px';
-    el.style.top=(yP/100*h-el.offsetHeight/2)+'px';
+  function placeHub(){
+    const W=wrap.offsetWidth, H=wrap.offsetHeight;
+    hub.style.left = (W/2 - 24) + 'px';
+    hub.style.top  = (H/2 - 24) + 'px';
   }
 
-  function setLine(ln,x1,y1,x2,y2){
-    ln.setAttribute('x1',x1/100*420);
-    ln.setAttribute('y1',y1/100*420);
-    ln.setAttribute('x2',x2/100*420);
-    ln.setAttribute('y2',y2/100*420);
+  /* outcome card positions: stacked vertically, centered */
+  const outcomeY = [28, 47, 66]; /* % top */
+
+  function placeOutcomes(){
+    const W=wrap.offsetWidth, H=wrap.offsetHeight;
+    outcomes.forEach((o,i)=>{
+      o.style.left = (W/2 - o.offsetWidth/2) + 'px';
+      o.style.top  = (outcomeY[i]/100*H) + 'px';
+    });
   }
 
-  function applyState(state,animate){
-    if(!animate) cards.forEach(c=>{c.style.transition='none'});
-    if(state==='chaos'){
-      cards.forEach((c,i)=>{
-        setPx(c,chaosPos[i].x,chaosPos[i].y);
-        c.style.opacity='0.5';
-        c.style.transform='rotate('+(i%2===0?i*8:-i*7)+'deg)';
-      });
-      hub.classList.remove('visible');
-      label.style.opacity='0';
-      lines.forEach(l=>l.classList.remove('visible'));
-    } else {
-      cards.forEach((c,i)=>{
-        const o=orbitPos(i,cards.length);
-        setPx(c,o.x,o.y);
-        c.style.opacity='1';
-        c.style.transform='rotate(0deg)';
-        setLine(lines[i],50,50,o.x,o.y);
-        lines[i].classList.add('visible');
-      });
-      hub.classList.add('visible');
-      label.style.opacity='1';
-    }
-    if(!animate) setTimeout(()=>cards.forEach(c=>{c.style.transition=''}),30);
+  /* SVG order-line endpoints (outcome cards → hub) */
+  function updateOrderLines(){
+    const W=wrap.offsetWidth, H=wrap.offsetHeight;
+    const vb = {w:480, h:440};
+    const hx = W/2 / W * vb.w;
+    const hy = H/2 / H * vb.h;
+    outcomes.forEach((o,i)=>{
+      const ox = (W/2) / W * vb.w;
+      const oy = (outcomeY[i]/100*H + 16) / H * vb.h;
+      oLines[i].setAttribute('x1', ox);
+      oLines[i].setAttribute('y1', oy);
+      oLines[i].setAttribute('x2', hx);
+      oLines[i].setAttribute('y2', hy);
+    });
   }
 
-  applyState('chaos',false);
-  let fired=false;
-  const tObs=new IntersectionObserver(es=>{
-    es.forEach(e=>{
-      if(e.isIntersecting&&!fired){
-        fired=true;
-        setTimeout(()=>applyState('order',true),350);
-        setInterval(()=>{
-          applyState('chaos',true);
-          setTimeout(()=>applyState('order',true),2400);
-        },5600);
-        tObs.disconnect();
+  /* ── PHASES ── */
+  function goScatter(instant){
+    if(instant) nodes.forEach(n=>n.style.transition='none');
+
+    nodes.forEach((n,i)=>{
+      n.style.opacity='0.65';
+      n.style.transform='rotate('+scatterPos[i].r+'deg)';
+      place(n, scatterPos[i].x, scatterPos[i].y);
+    });
+    cLines.forEach(l=>{l.style.opacity='1'});
+    oLines.forEach(l=>{l.style.opacity='0'});
+    hub.classList.remove('show');
+    outcomes.forEach(o=>o.classList.remove('show'));
+    if(phLbl) phLbl.textContent = 'Situazione attuale';
+
+    if(instant) setTimeout(()=>nodes.forEach(n=>n.style.transition=''),20);
+  }
+
+  function goOrder(){
+    placeOutcomes();
+    updateOrderLines();
+
+    /* fade nodes out */
+    nodes.forEach(n=>{ n.style.opacity='0'; n.style.transform='scale(.8)'; });
+    cLines.forEach(l=>{l.style.opacity='0'});
+
+    setTimeout(()=>{
+      hub.classList.add('show');
+      placeHub();
+    }, 300);
+
+    setTimeout(()=>{
+      oLines.forEach(l=>{l.style.opacity='1'});
+    }, 600);
+
+    outcomes.forEach((o,i)=>{
+      setTimeout(()=>o.classList.add('show'), 700 + i*200);
+    });
+
+    if(phLbl) setTimeout(()=>{ phLbl.textContent='Con Estro'; },1200);
+  }
+
+  /* ── INIT ── */
+  placeHub();
+  goScatter(true);
+
+  if(noMotion){
+    /* static state: show order immediately */
+    goOrder();
+    return;
+  }
+
+  /* ── TRIGGER ON SCROLL ── */
+  let active=false, timer=null;
+
+  function runCycle(){
+    goOrder();
+    timer = setTimeout(()=>{
+      goScatter(false);
+      timer = setTimeout(runCycle, 2800);
+    }, 4200);
+  }
+
+  const io = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting && !active){
+        active=true;
+        setTimeout(runCycle, 500);
+      } else if(!e.isIntersecting && active){
+        active=false;
+        clearTimeout(timer);
+        goScatter(true);
       }
     });
   },{threshold:0.3});
-  tObs.observe(wrap);
+
+  io.observe(wrap);
+
+  /* reposition on resize */
+  let rTimer;
+  window.addEventListener('resize',()=>{
+    clearTimeout(rTimer);
+    rTimer=setTimeout(()=>{ placeHub(); placeOutcomes(); },120);
+  });
 })();
 </script>
 </body>
