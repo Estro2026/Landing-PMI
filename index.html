@@ -58,22 +58,69 @@ body{font-family:var(--fb);background:var(--K);color:var(--C);overflow-x:hidden;
 .js-ready .rv.vs{opacity:1;transform:translateY(0)}
 .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
 
-/* ═══ HERO ═══ */
-.hero{position:relative;min-height:100vh;display:flex;align-items:center;padding:120px var(--px) 80px;background:var(--K);overflow:hidden}
-.hero::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(243,239,224,.03) 1px,transparent 1px);background-size:52px 52px;pointer-events:none}
-.hero-glow{position:absolute;top:-10%;right:-5%;width:680px;height:680px;background:radial-gradient(circle,rgba(224,24,92,.12),transparent 60%);pointer-events:none;animation:glowpulse 9s ease-in-out infinite}
-.hero-glow2{position:absolute;bottom:10%;left:-8%;width:380px;height:380px;background:radial-gradient(circle,rgba(232,180,74,.05),transparent 65%);pointer-events:none}
-@keyframes glowpulse{0%,100%{opacity:.8;transform:scale(1)}50%{opacity:1;transform:scale(1.06)}}
-.hero-inner{position:relative;z-index:2;max-width:var(--mx);margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:7px 16px;border-radius:var(--rp);background:var(--Fa);border:1px solid var(--Fb);color:var(--F);font-size:10px;font-weight:600;letter-spacing:2.8px;text-transform:uppercase;margin-bottom:30px}
+/* ═══════════════════════════════════════════════════════
+   HERO — composizione visiva unificata
+   Ispirata a: Reference/band-ID.png (strips + neon ribbons + annotation callouts)
+   ═══════════════════════════════════════════════════════ */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;padding:0;background:var(--K);overflow:hidden}
+
+/* texture sottile */
+.hero::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(243,239,224,.022) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0}
+
+/* glow atmosferico */
+.hero-glow{position:absolute;top:-20%;right:20%;width:900px;height:900px;background:radial-gradient(circle,rgba(224,24,92,.09),transparent 56%);pointer-events:none;animation:glowpulse 10s ease-in-out infinite;z-index:0}
+.hero-glow2{position:absolute;bottom:0;left:-5%;width:600px;height:600px;background:radial-gradient(circle,rgba(232,180,74,.035),transparent 65%);pointer-events:none;z-index:0}
+@keyframes glowpulse{0%,100%{opacity:.7;transform:scale(1)}50%{opacity:1;transform:scale(1.06)}}
+
+/* ── COMPOSIZIONE VISIVA ── */
+/* Contenitore: destra del layout, dietro la card del form */
+.hero-visual{position:absolute;right:0;top:0;bottom:0;width:64%;pointer-events:none;z-index:1}
+
+/* Layer 1: pannelli inclinati (strips) — stile band-ID.png */
+.hv-panel{position:absolute;border-radius:18px;border:1px solid rgba(255,255,255,.05);background:rgba(255,255,255,.018)}
+.hv-p1{top:12%;right:4%;width:70%;height:22%;transform:rotate(-1.8deg);background:rgba(255,255,255,.022);border-color:rgba(243,239,224,.07)}
+.hv-p2{top:34%;right:-1%;width:78%;height:20%;transform:rotate(.8deg);background:rgba(224,24,92,.028);border-color:rgba(224,24,92,.12)}
+.hv-p3{top:56%;right:2%;width:68%;height:20%;transform:rotate(-1.2deg);background:rgba(255,255,255,.016);border-color:rgba(243,239,224,.05)}
+.hv-p4{top:22%;right:12%;width:50%;height:60%;border-radius:24px;border:1px solid rgba(255,255,255,.04);background:transparent}
+
+/* Layer 2: neon ribbons (taglio orizzontale — esattamente come band-ID) */
+.hv-ribbon{position:absolute;left:-8%;right:-2%;height:2px;pointer-events:none}
+.hv-r1{top:43%;background:linear-gradient(90deg,transparent 0%,rgba(224,24,92,.7) 25%,rgba(255,60,100,.5) 55%,rgba(232,100,50,.3) 80%,transparent 100%);transform:rotate(-.8deg);box-shadow:0 0 18px rgba(224,24,92,.4),0 0 40px rgba(224,24,92,.15);filter:blur(.3px)}
+.hv-r2{top:45.5%;background:linear-gradient(90deg,transparent 5%,rgba(224,24,92,.25) 30%,rgba(200,20,80,.2) 65%,transparent 100%);transform:rotate(-.8deg);filter:blur(.8px)}
+.hv-r3{top:36%;background:linear-gradient(90deg,transparent 10%,rgba(243,239,224,.08) 40%,transparent 100%);transform:rotate(-.4deg)}
+
+/* Layer 3: annotation callouts — stile MISSION/VISION da band-ID */
+.hv-annot{position:absolute;display:flex;align-items:center;gap:0;opacity:.85}
+.hv-annot-line{height:1px;background:rgba(224,24,92,.45);flex-shrink:0}
+.hv-annot-dot{width:5px;height:5px;border-radius:50%;background:var(--F);flex-shrink:0;box-shadow:0 0 6px rgba(224,24,92,.6)}
+.hv-annot-label{font-family:var(--fd);font-size:9px;color:rgba(243,239,224,.55);letter-spacing:1.8px;text-transform:uppercase;white-space:nowrap;padding-left:8px}
+/* ghost label */
+.hv-annot-ghost{position:absolute;font-family:var(--fd);font-size:10px;color:rgba(243,239,224,.18);letter-spacing:2px;text-transform:uppercase;white-space:nowrap}
+
+/* Layer 4: cerchi flottanti (come le sfere in band-ID) */
+.hv-sphere{position:absolute;border-radius:50%;background:radial-gradient(circle at 35% 35%,rgba(255,255,255,.08),rgba(255,255,255,.01));border:1px solid rgba(255,255,255,.08)}
+
+/* velo sfumato: dissolve visual nel dark a sinistra, testo leggibile */
+.hero-veil{position:absolute;inset:0;background:linear-gradient(90deg,var(--K) 0%,var(--K) 22%,rgba(28,28,28,.92) 40%,rgba(28,28,28,.5) 58%,rgba(28,28,28,.1) 78%,transparent 100%);pointer-events:none;z-index:2}
+
+/* griglia contenuto */
+.hero-inner{position:relative;z-index:4;max-width:var(--mx);margin:0 auto;width:100%;display:grid;grid-template-columns:1.08fr 1fr;gap:44px;align-items:center;padding:120px var(--px) 80px}
+
+/* colonna testo */
+.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:7px 16px;border-radius:var(--rp);background:var(--Fa);border:1px solid var(--Fb);color:var(--F);font-size:10px;font-weight:600;letter-spacing:2.8px;text-transform:uppercase;margin-bottom:26px}
 .hero-badge-dot{width:6px;height:6px;border-radius:50%;background:var(--F);animation:blink 2.4s ease-in-out infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
-.hero h1{font-family:var(--fd);font-size:clamp(34px,4vw,58px);line-height:1.04;letter-spacing:-1.6px;color:var(--C);margin-bottom:22px}
-.hero h1 em{font-style:normal;color:var(--F)}
-.hero-sub{font-size:15px;line-height:1.72;color:var(--C3);max-width:500px;margin-bottom:34px}
+.hero h1{font-family:var(--fd);font-size:clamp(36px,4vw,62px);line-height:1.02;letter-spacing:-2px;color:var(--C);margin-bottom:20px}
+.hero h1 em{font-style:normal;color:var(--F);display:block}
+.hero-sub{font-size:15px;line-height:1.74;color:var(--C3);max-width:480px;margin-bottom:32px}
 .hero-pills{display:flex;gap:8px;flex-wrap:wrap;margin-top:26px}
 .hp{display:flex;align-items:center;gap:7px;padding:8px 14px;border-radius:var(--rp);background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);font-size:12px;color:rgba(243,239,224,.6)}
 .hp-dot{width:5px;height:5px;border-radius:50%;background:var(--G);flex-shrink:0}
+
+/* colonna form — glass card sovrapposta alla visual (glassmorphism sul neon) */
+.hero-form-col{position:relative}
+.hero-form-col::before{content:'';position:absolute;inset:-1px;border-radius:26px;background:linear-gradient(155deg,rgba(224,24,92,.22) 0%,rgba(255,255,255,.05) 45%,transparent 100%);z-index:0;pointer-events:none}
+.hero-form-card{position:relative;z-index:1;background:rgba(14,14,14,.86);border:1px solid rgba(255,255,255,.11);border-radius:24px;padding:32px;backdrop-filter:blur(32px);-webkit-backdrop-filter:blur(32px);box-shadow:0 24px 72px rgba(0,0,0,.55),0 0 0 1px rgba(224,24,92,.06) inset,inset 0 1px 0 rgba(255,255,255,.09)}
 
 /* ─── FORM CARD ─── */
 .form-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:24px;padding:32px;backdrop-filter:blur(16px)}
@@ -379,6 +426,8 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
 .modal .msub{font-size:12px;color:var(--S);margin-bottom:20px}
 
 @media(max-width:1100px){
+  .hero-visual{width:100%;right:0;opacity:.35}
+  .hero-veil{background:linear-gradient(90deg,var(--K) 0%,var(--K) 10%,rgba(28,28,28,.96) 40%,rgba(28,28,28,.9) 100%)}
   .hero-inner,.target-inner,.sol-grid,.ben-grid{grid-template-columns:1fr;gap:40px}
   .ic-grid,.srv-grid{grid-template-columns:repeat(2,1fr)}
   .srv-grid-2x2{grid-template-columns:repeat(3,1fr)}
@@ -447,10 +496,82 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
 <section class="hero">
   <div class="hero-glow"></div>
   <div class="hero-glow2"></div>
+
+  <!-- ═══ COMPOSIZIONE VISIVA ═══
+       Ispirata a Reference/band-ID.png:
+       pannelli inclinati + neon ribbons + annotation callouts
+       Occupa il lato destro, bleed dietro la card del form -->
+  <div class="hero-visual" aria-hidden="true">
+
+    <!-- pannelli inclinati (strips stratificati) -->
+    <div class="hv-panel hv-p1"></div>
+    <div class="hv-panel hv-p2"></div>
+    <div class="hv-panel hv-p3"></div>
+    <div class="hv-panel hv-p4"></div>
+
+    <!-- neon ribbons: tagliano orizzontalmente la composizione -->
+    <div class="hv-ribbon hv-r1"></div>
+    <div class="hv-ribbon hv-r2"></div>
+    <div class="hv-ribbon hv-r3"></div>
+
+    <!-- sfere flottanti (come band-ID) -->
+    <div class="hv-sphere" style="width:90px;height:90px;top:14%;right:18%"></div>
+    <div class="hv-sphere" style="width:52px;height:52px;bottom:22%;right:8%;opacity:.6"></div>
+    <div class="hv-sphere" style="width:28px;height:28px;top:62%;right:52%;opacity:.4"></div>
+
+    <!-- annotation callouts: stile MISSION/VISION/TONE OF VOICE da band-ID -->
+    <!-- Strategia -->
+    <div class="hv-annot" style="top:19%;left:6%">
+      <div class="hv-annot-dot"></div>
+      <div class="hv-annot-line" style="width:32px"></div>
+      <div class="hv-annot-label">Strategia</div>
+    </div>
+    <!-- ADV & Digital -->
+    <div class="hv-annot" style="top:30%;left:46%">
+      <div class="hv-annot-dot"></div>
+      <div class="hv-annot-line" style="width:24px"></div>
+      <div class="hv-annot-label">ADV & Digital</div>
+    </div>
+    <!-- Content -->
+    <div class="hv-annot" style="top:55%;left:8%">
+      <div class="hv-annot-dot"></div>
+      <div class="hv-annot-line" style="width:28px"></div>
+      <div class="hv-annot-label">Content</div>
+    </div>
+    <!-- Analytics -->
+    <div class="hv-annot" style="top:66%;left:44%">
+      <div class="hv-annot-dot"></div>
+      <div class="hv-annot-line" style="width:20px"></div>
+      <div class="hv-annot-label">Analytics</div>
+    </div>
+    <!-- Brand -->
+    <div class="hv-annot" style="top:78%;left:18%">
+      <div class="hv-annot-dot"></div>
+      <div class="hv-annot-line" style="width:36px"></div>
+      <div class="hv-annot-label">Brand</div>
+    </div>
+    <!-- SEO -->
+    <div class="hv-annot" style="top:42%;left:62%">
+      <div class="hv-annot-dot"></div>
+      <div class="hv-annot-line" style="width:18px"></div>
+      <div class="hv-annot-label">SEO</div>
+    </div>
+
+    <!-- ghost text: evoca "team completo" nel background della visual -->
+    <div class="hv-annot-ghost" style="top:46%;left:16%;transform:rotate(-1.5deg);font-size:11px;letter-spacing:3px">UN UNICO TEAM</div>
+    <div class="hv-annot-ghost" style="top:51%;left:22%;transform:rotate(-1.5deg);font-size:9px;letter-spacing:2px;opacity:.12">STRATEGIA · ADV · CONTENT · SEO · BRAND</div>
+  </div>
+
+  <!-- velo sfumato: dissolve visual→dark a sinistra, testo leggibile -->
+  <div class="hero-veil"></div>
+
+  <!-- contenuto a griglia -->
   <div class="hero-inner">
+
+    <!-- ── colonna testo ── -->
     <div>
       <div class="hero-badge"><span class="hero-badge-dot"></span>Agenzia di comunicazione per PMI · Milano</div>
-      <h1>Un team completo di marketing, <em>a costi sostenibili.</em></h1>
+      <h1>Un team completo<em>a costi sostenibili.</em></h1>
       <p class="hero-sub">Non devi più gestire tutto da solo. Con Estro hai un unico partner per strategia, digital, contenuti e ADV — senza il costo di un team interno e senza coordinare più agenzie.</p>
       <a href="#contatti" class="btn bf btn-lg">Richiedi una consulenza gratuita <span class="arr">›</span></a>
       <div class="hero-pills">
@@ -459,8 +580,10 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
         <div class="hp"><span class="hp-dot"></span>Costi certi e accessibili</div>
       </div>
     </div>
-    <div>
-      <div class="form-card">
+
+    <!-- ── colonna form ── glassmorphism sovrapposta alla visual -->
+    <div class="hero-form-col">
+      <div class="hero-form-card">
         <div class="form-card-title">Parliamo del tuo progetto</div>
         <div class="form-card-sub">Nessun impegno · Una conversazione vera</div>
         <form id="heroForm" onsubmit="heroSub(event)">
