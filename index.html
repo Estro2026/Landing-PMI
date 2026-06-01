@@ -299,10 +299,12 @@ body{font-family:var(--fb);background:var(--K);color:var(--C);overflow-x:hidden;
 .icone{background:var(--C2);color:var(--K);padding:96px 0;position:relative;overflow:hidden}
 /* texture puntini */
 .icone::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(28,28,28,.045) 1px,transparent 1px);background-size:36px 36px;pointer-events:none;z-index:0}
-/* ghost "estro" come sfondo editoriale */
-.icone-ghost{position:absolute;left:50%;bottom:-8%;transform:translateX(-50%);font-family:var(--fd);font-size:clamp(120px,22vw,340px);line-height:.85;color:rgba(28,28,28,.035);letter-spacing:-8px;pointer-events:none;user-select:none;white-space:nowrap;z-index:0}
-/* vignetta radiale leggera */
-.icone::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 50%,transparent 50%,rgba(224,24,92,.025) 100%);pointer-events:none;z-index:0}
+/* ghost strip fuchsia in alto */
+.icone-accent{position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(224,24,92,.25) 30%,rgba(224,24,92,.25) 70%,transparent);pointer-events:none;z-index:0}
+/* alone luminoso in alto a sinistra */
+.icone-glow{position:absolute;top:-80px;left:-60px;width:480px;height:480px;background:radial-gradient(circle,rgba(224,24,92,.06),transparent 65%);pointer-events:none;z-index:0}
+/* gradiente verticale leggero: la sezione si schiarisce verso il basso, dando profondità */
+.icone::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(28,28,28,.045) 0%,transparent 40%,rgba(28,28,28,.03) 100%);pointer-events:none;z-index:0}
 .icone-tag{font-size:10px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:rgba(28,28,28,.4);display:block;margin-bottom:14px}
 .icone-tag::before{content:'— '}
 .icone h2{font-family:var(--fd);font-size:clamp(28px,3vw,42px);line-height:1.07;letter-spacing:-1.2px;color:var(--K);margin-bottom:46px;max-width:540px}
@@ -933,7 +935,8 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
 
 <!-- ═══ ICONE — I VANTAGGI ═══ -->
 <section class="icone">
-  <div class="icone-ghost" aria-hidden="true">ESTRO</div>
+  <div class="icone-accent" aria-hidden="true"></div>
+  <div class="icone-glow" aria-hidden="true"></div>
   <div class="ctr">
     <div class="rv">
       <span class="icone-tag">Perché sceglierci</span>
