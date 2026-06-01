@@ -603,12 +603,13 @@ body{font-family:var(--fb);background:var(--K);color:var(--C);overflow-x:hidden;
 .trust-tag::before{content:'— '}
 .trust h2{font-family:var(--fd);font-size:clamp(26px,2.8vw,38px);line-height:1.1;letter-spacing:-1px;color:var(--C);text-align:center;margin-bottom:44px}
 
-/* Logo grid con immagini reali */
-.logo-grid-real{display:grid;grid-template-columns:repeat(5,1fr);gap:2px;margin-bottom:56px}
-.lc-real{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:var(--rm);padding:18px 16px;display:flex;align-items:center;justify-content:center;transition:all .3s;aspect-ratio:2/1;overflow:hidden}
-.lc-real:hover{background:rgba(255,255,255,.07);border-color:rgba(224,24,92,.2)}
-.lc-real img{max-width:100%;max-height:36px;object-fit:contain;filter:brightness(0) invert(1);opacity:.45;transition:opacity .3s}
-.lc-real:hover img{opacity:.75}
+/* ─── Editorial logo wall ─── */
+.lw{display:flex;flex-wrap:wrap;gap:36px 52px;align-items:center;justify-content:center;padding:16px 0;margin-bottom:16px}
+.lw-logo{display:flex;align-items:center;justify-content:center;height:44px;flex-shrink:0}
+.lw-logo img{height:100%;width:auto;max-width:130px;object-fit:contain;
+  filter:brightness(0) invert(1);opacity:.38;
+  transition:opacity .35s}
+.lw-logo img:hover{opacity:.72}
 
 /* ═══ SOCIAL PROOF ═══ */
 .sproof{background:var(--K2);padding:96px 0;border-top:1px solid rgba(255,255,255,.04)}
@@ -632,39 +633,6 @@ body{font-family:var(--fb);background:var(--K);color:var(--C);overflow-x:hidden;
 .ind-pill{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:var(--rp);background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);font-size:12px;color:rgba(243,239,224,.6);transition:all .25s;cursor:default}
 .ind-pill:hover{border-color:rgba(224,24,92,.3);color:var(--C);background:rgba(224,24,92,.06)}
 .ind-pill svg{width:14px;height:14px;color:var(--F);flex-shrink:0}
-
-/* Logo grid */
-.logo-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:56px}
-.lc{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:var(--rm);padding:18px 20px;display:flex;align-items:center;gap:14px;transition:all .25s}
-.lc:hover{border-color:rgba(224,24,92,.2);background:rgba(255,255,255,.05)}
-.lc-mark{width:40px;height:40px;border-radius:10px;background:rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-size:13px;color:var(--C);flex-shrink:0;letter-spacing:-.5px}
-.lc-info{flex:1;min-width:0}
-.lc-name{font-size:12.5px;font-weight:500;color:rgba(243,239,224,.7);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.lc-sector{font-size:10px;color:var(--S);margin-top:2px}
-.trust-cases-title{font-family:var(--fd);font-size:18px;color:var(--C);letter-spacing:-.4px;margin-bottom:28px;text-align:center}
-
-/* Client cases */
-.client-case{margin-bottom:20px;border:1px solid rgba(255,255,255,.07);border-radius:var(--rl);overflow:hidden;transition:border-color .3s}
-.client-case:hover{border-color:rgba(224,24,92,.28)}
-.client-case:last-child{margin-bottom:0}
-.cc-header{display:flex;align-items:center;justify-content:space-between;padding:18px 28px;background:rgba(255,255,255,.03);border-bottom:1px solid rgba(255,255,255,.05)}
-.cc-name{font-family:var(--fd);font-size:20px;color:var(--C);letter-spacing:-.5px}
-.cc-sector{font-size:11px;color:var(--S);font-weight:500;letter-spacing:.3px}
-.cc-body{display:grid;grid-template-columns:1.1fr 1fr;gap:0}
-.cc-desc{padding:28px;border-right:1px solid rgba(255,255,255,.05)}
-.cc-desc-label{font-size:9px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--F);margin-bottom:12px}
-.cc-desc-title{font-family:var(--fd);font-size:16px;color:var(--C);margin-bottom:12px;letter-spacing:-.3px;line-height:1.2}
-.cc-desc-text{font-size:13px;color:rgba(243,239,224,.55);line-height:1.65}
-.cc-desc-tags{display:flex;gap:7px;flex-wrap:wrap;margin-top:18px}
-.cc-tag{font-size:10px;padding:4px 10px;border-radius:var(--rp);background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);color:rgba(243,239,224,.5)}
-.cc-results{padding:28px;display:flex;flex-direction:column;gap:12px;justify-content:center}
-.cr{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:var(--rm);padding:16px 20px;transition:all .25s}
-.cr:hover{border-color:rgba(224,24,92,.3);background:rgba(224,24,92,.05)}
-.cr-val{font-family:var(--fd);font-size:28px;color:var(--C);letter-spacing:-1px;line-height:1;margin-bottom:4px}
-.cr-val.pos{color:var(--G)}
-.cr-val.neg{color:var(--F)}
-.cr-val.mul{color:var(--Y)}
-.cr-lbl{font-size:11px;color:var(--S);line-height:1.4}
 
 /* ═══ FORM FINALE ═══ */
 .fform{background:var(--K2);padding:96px 0;border-top:1px solid rgba(255,255,255,.04)}
@@ -731,13 +699,8 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
   .ic-grid{grid-template-columns:repeat(2,1fr)}
   .srv-uni-grid{grid-template-columns:repeat(2,1fr)}
   .steps{grid-template-columns:repeat(2,1fr);gap:16px}
-  .cc-body{grid-template-columns:1fr}
-  .cc-desc{border-right:none;border-bottom:1px solid rgba(255,255,255,.05)}
-  .cc-results{flex-direction:row;flex-wrap:wrap}
-  .cr{flex:1;min-width:140px}
   .ft-cols{grid-template-columns:1fr 1fr;gap:28px}
-  .logo-grid{grid-template-columns:repeat(3,1fr)}
-  .logo-grid-real{grid-template-columns:repeat(4,1fr)}
+  .lw{gap:24px 36px}
   .sp-grid{grid-template-columns:repeat(2,1fr)}
   .hnav{display:none}
 }
@@ -750,8 +713,8 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
   .srv-side{max-width:100%}
   .ff-grid .fg.full{grid-column:1}
   .steps{grid-template-columns:1fr}
-  .logo-grid{grid-template-columns:repeat(2,1fr)}
-  .logo-grid-real{grid-template-columns:repeat(2,1fr)}
+  .lw{gap:20px 28px}
+  .lw-logo{height:36px}
   .cr-stage{height:340px}
 }
 
@@ -1371,155 +1334,59 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
       <h2>Lavoriamo con PMI in tanti settori diversi.</h2>
     </div>
 
-    <!-- Industries -->
+    <!-- Industry chips -->
     <div class="ind-grid rv">
-      <div class="ind-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>Beauty &amp; Wellness</div>
-      <div class="ind-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>Ristorazione</div>
-      <div class="ind-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>Medicale</div>
-      <div class="ind-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg>Fashion</div>
-      <div class="ind-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>Formazione</div>
-      <div class="ind-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>Retail</div>
-      <div class="ind-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>E-commerce</div>
-      <div class="ind-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>Servizi Professionali</div>
+      <div class="ind-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg>Fashion &amp; Luxury</div>
+      <div class="ind-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>Automotive &amp; Moto</div>
+      <div class="ind-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>Media &amp; Cultura</div>
+      <div class="ind-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>Healthcare</div>
+      <div class="ind-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>Sport &amp; Lifestyle</div>
+      <div class="ind-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>Retail &amp; Consumer</div>
+      <div class="ind-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>Tecnologia &amp; Industria</div>
+      <div class="ind-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>Formazione</div>
     </div>
 
-    <!-- Logo showcase con loghi reali -->
-    <div class="logo-grid-real rv">
-      <div class="lc-real"><img src="loghi/gucci.webp" alt="Gucci" loading="lazy"></div>
-      <div class="lc-real"><img src="loghi/Prada.webp" alt="Prada" loading="lazy"></div>
-      <div class="lc-real"><img src="loghi/lamborghini.webp" alt="Lamborghini" loading="lazy"></div>
-      <div class="lc-real"><img src="loghi/rai.webp" alt="RAI" loading="lazy"></div>
-      <div class="lc-real"><img src="loghi/spotify.webp" alt="Spotify" loading="lazy"></div>
-      <div class="lc-real"><img src="loghi/humanitas.webp" alt="Humanitas" loading="lazy"></div>
-      <div class="lc-real"><img src="loghi/bocconi.webp" alt="Università Bocconi" loading="lazy"></div>
-      <div class="lc-real"><img src="loghi/aprilia.webp" alt="Aprilia" loading="lazy"></div>
-      <div class="lc-real"><img src="loghi/redbull.png" alt="Red Bull" loading="lazy"></div>
-      <div class="lc-real"><img src="loghi/cupra.webp" alt="CUPRA" loading="lazy"></div>
-      <div class="lc-real"><img src="loghi/pandora.webp" alt="Pandora" loading="lazy"></div>
-      <div class="lc-real"><img src="loghi/ted.webp" alt="TED" loading="lazy"></div>
-      <div class="lc-real"><img src="loghi/patagonia.webp" alt="Patagonia" loading="lazy"></div>
-      <div class="lc-real"><img src="loghi/accenture.webp" alt="Accenture" loading="lazy"></div>
-      <div class="lc-real"><img src="loghi/kawasaki.webp" alt="Kawasaki" loading="lazy"></div>
-    </div>
-
-    <!-- Case Studies PMI -->
-    <div class="trust-cases-title rv">Risultati concreti per le PMI</div>
-
-    <!-- CASE 1: BEAUTY & WELLNESS -->
-    <div class="client-case rv">
-      <div class="cc-header">
-        <div>
-          <div class="cc-name">Vibe Studio</div>
-          <div class="cc-sector">Beauty &amp; Wellness · Centro benessere e estetica · Milano</div>
-        </div>
-        <span style="font-family:var(--fm);font-size:10px;color:var(--S)">2023–ongoing</span>
-      </div>
-      <div class="cc-body">
-        <div class="cc-desc">
-          <div class="cc-desc-label">Il progetto</div>
-          <div class="cc-desc-title">Strategia digitale integrata per aumentare visibilità e prenotazioni online</div>
-          <div class="cc-desc-text">Il centro gestiva i social in autonomia senza una strategia chiara e senza campagne ADV. Abbiamo costruito un piano di comunicazione completo: contenuti, campagne Meta e Google, gestione delle recensioni e newsletter. Un unico flusso coordinato, con un referente dedicato e report mensili chiari.</div>
-          <div class="cc-desc-tags">
-            <span class="cc-tag">Social Media</span>
-            <span class="cc-tag">Meta ADV</span>
-            <span class="cc-tag">Google Ads</span>
-            <span class="cc-tag">Content</span>
-            <span class="cc-tag">Email Marketing</span>
-          </div>
-        </div>
-        <div class="cc-results">
-          <div class="cr">
-            <div class="cr-val pos">+74%</div>
-            <div class="cr-lbl">Aumento delle prenotazioni online in 6 mesi</div>
-          </div>
-          <div class="cr">
-            <div class="cr-val neg">−42%</div>
-            <div class="cr-lbl">Riduzione del costo per acquisizione cliente</div>
-          </div>
-          <div class="cr">
-            <div class="cr-val mul">×3.2</div>
-            <div class="cr-lbl">Crescita dei follower qualificati sui social</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- CASE 2: FORMAZIONE -->
-    <div class="client-case rv d1">
-      <div class="cc-header">
-        <div>
-          <div class="cc-name">IstitutoForm</div>
-          <div class="cc-sector">Formazione professionale · Corsi e certificazioni · Milano</div>
-        </div>
-        <span style="font-family:var(--fm);font-size:10px;color:var(--S)">2022–2024</span>
-      </div>
-      <div class="cc-body">
-        <div class="cc-desc">
-          <div class="cc-desc-label">Il progetto</div>
-          <div class="cc-desc-title">Posizionamento digitale e generazione lead per corsi di formazione professionale</div>
-          <div class="cc-desc-text">L'istituto voleva aumentare le iscrizioni ai corsi ma non aveva una presenza digitale strutturata. Abbiamo definito la strategia di posizionamento, lanciato campagne Google e Meta per ogni corso, prodotto contenuti che raccontano il valore formativo e ottimizzato il percorso dall'annuncio all'iscrizione.</div>
-          <div class="cc-desc-tags">
-            <span class="cc-tag">Strategia</span>
-            <span class="cc-tag">Google Ads</span>
-            <span class="cc-tag">Lead Generation</span>
-            <span class="cc-tag">Content</span>
-            <span class="cc-tag">Landing Page</span>
-          </div>
-        </div>
-        <div class="cc-results">
-          <div class="cr">
-            <div class="cr-val pos">+91%</div>
-            <div class="cr-lbl">Incremento delle iscrizioni ai corsi in 12 mesi</div>
-          </div>
-          <div class="cr">
-            <div class="cr-val neg">−38%</div>
-            <div class="cr-lbl">Riduzione del costo per lead qualificato</div>
-          </div>
-          <div class="cr">
-            <div class="cr-val mul">×2.8</div>
-            <div class="cr-lbl">Aumento del traffico organico qualificato sul sito</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- CASE 3: RISTORAZIONE -->
-    <div class="client-case rv d2">
-      <div class="cc-header">
-        <div>
-          <div class="cc-name">La Breva</div>
-          <div class="cc-sector">Ristorazione · Ristorante e catering · Como</div>
-        </div>
-        <span style="font-family:var(--fm);font-size:10px;color:var(--S)">2023–ongoing</span>
-      </div>
-      <div class="cc-body">
-        <div class="cc-desc">
-          <div class="cc-desc-label">Il progetto</div>
-          <div class="cc-desc-title">Brand identity digitale e comunicazione locale per aumentare coperti e catering</div>
-          <div class="cc-desc-text">Il ristorante aveva un ottimo prodotto ma poca visibilità digitale. Abbiamo lavorato sulla brand identity online, costruito una presenza social coerente, lanciato campagne locali su Meta e Google, e integrato la comunicazione per il servizio catering. Tutto gestito da un unico team, con aggiornamenti settimanali al titolare.</div>
-          <div class="cc-desc-tags">
-            <span class="cc-tag">Brand Identity</span>
-            <span class="cc-tag">Social Media</span>
-            <span class="cc-tag">Local ADV</span>
-            <span class="cc-tag">Google Business</span>
-            <span class="cc-tag">Catering Promo</span>
-          </div>
-        </div>
-        <div class="cc-results">
-          <div class="cr">
-            <div class="cr-val pos">+58%</div>
-            <div class="cr-lbl">Aumento delle prenotazioni tavolo in 4 mesi</div>
-          </div>
-          <div class="cr">
-            <div class="cr-val pos">+120%</div>
-            <div class="cr-lbl">Crescita richieste catering anno su anno</div>
-          </div>
-          <div class="cr">
-            <div class="cr-val mul">4.7★</div>
-            <div class="cr-lbl">Rating Google Business al termine del progetto</div>
-          </div>
-        </div>
-      </div>
+    <!-- Logo wall — tutti i loghi da /loghi -->
+    <div class="lw rv">
+      <div class="lw-logo"><img src="loghi/gucci.webp" alt="Gucci" loading="lazy"></div>
+      <div class="lw-logo"><img src="loghi/lamborghini.webp" alt="Lamborghini" loading="lazy"></div>
+      <div class="lw-logo"><img src="loghi/cartier.webp" alt="Cartier" loading="lazy"></div>
+      <div class="lw-logo"><img src="loghi/pandora.webp" alt="Pandora" loading="lazy"></div>
+      <div class="lw-logo"><img src="loghi/rai.webp" alt="RAI" loading="lazy"></div>
+      <div class="lw-logo"><img src="loghi/spotify.webp" alt="Spotify" loading="lazy"></div>
+      <div class="lw-logo"><img src="loghi/redbull.png" alt="Red Bull" loading="lazy"></div>
+      <div class="lw-logo"><img src="loghi/ted.webp" alt="TED" loading="lazy"></div>
+      <div class="lw-logo"><img src="loghi/conde nast.webp" alt="Condé Nast" loading="lazy"></div>
+      <div class="lw-logo"><img src="loghi/aprilia.webp" alt="Aprilia" loading="lazy"></div>
+      <div class="lw-logo"><img src="loghi/cupra.webp" alt="CUPRA" loading="lazy"></div>
+      <div class="lw-logo"><img src="loghi/kawasaki.webp" alt="Kawasaki" loading="lazy"></div>
+      <div class="lw-logo"><img src="loghi/motoguzzi.webp" alt="Moto Guzzi" loading="lazy"></div>
+      <div class="lw-logo"><img src="loghi/seat.webp" alt="SEAT" loading="lazy"></div>
+      <div class="lw-logo"><img src="loghi/humanitas.webp" alt="Humanitas" loading="lazy"></div>
+      <div class="lw-logo"><img src="loghi/biorepair.webp" alt="Biorepair" loading="lazy"></div>
+      <div class="lw-logo"><img src="loghi/l'angelica.webp" alt="L'Angelica" loading="lazy"></div>
+      <div class="lw-logo"><img src="loghi/patagonia.webp" alt="Patagonia" loading="lazy"></div>
+      <div class="lw-logo"><img src="loghi/sector.webp" alt="Sector" loading="lazy"></div>
+      <div class="lw-logo"><img src="loghi/seven.webp" alt="Seven" loading="lazy"></div>
+      <div class="lw-logo"><img src="loghi/awlab.webp" alt="AWLAB" loading="lazy"></div>
+      <div class="lw-logo"><img src="loghi/terranova.webp" alt="Terranova" loading="lazy"></div>
+      <div class="lw-logo"><img src="loghi/leolandia.webp" alt="Leolandia" loading="lazy"></div>
+      <div class="lw-logo"><img src="loghi/bocconi.webp" alt="Università Bocconi" loading="lazy"></div>
+      <div class="lw-logo"><img src="loghi/accenture.webp" alt="Accenture" loading="lazy"></div>
+      <div class="lw-logo"><img src="loghi/elmec.webp" alt="Elmec" loading="lazy"></div>
+      <div class="lw-logo"><img src="loghi/fanuc.webp" alt="Fanuc" loading="lazy"></div>
+      <div class="lw-logo"><img src="loghi/elco.webp" alt="Elco" loading="lazy"></div>
+      <div class="lw-logo"><img src="loghi/plenitude.webp" alt="Plenitude" loading="lazy"></div>
+      <div class="lw-logo"><img src="loghi/ariston.webp" alt="Ariston" loading="lazy"></div>
+      <div class="lw-logo"><img src="loghi/wudy.webp" alt="Wudy" loading="lazy"></div>
+      <div class="lw-logo"><img src="loghi/star.webp" alt="Star" loading="lazy"></div>
+      <div class="lw-logo"><img src="loghi/pyrex.webp" alt="Pyrex" loading="lazy"></div>
+      <div class="lw-logo"><img src="loghi/coswell.webp" alt="Coswell" loading="lazy"></div>
+      <div class="lw-logo"><img src="loghi/remax.webp" alt="RE/MAX" loading="lazy"></div>
+      <div class="lw-logo"><img src="loghi/wolf.webp" alt="Wolf" loading="lazy"></div>
+      <div class="lw-logo"><img src="loghi/abctools.webp" alt="ABC Tools" loading="lazy"></div>
+      <div class="lw-logo"><img src="loghi/sj gang.webp" alt="SJ Gang" loading="lazy"></div>
+      <div class="lw-logo"><img src="loghi/disclaimer.webp" alt="Disclaimer" loading="lazy"></div>
     </div>
   </div>
 </section>
