@@ -32,10 +32,9 @@ body{font-family:var(--fb);background:var(--K);color:var(--C);overflow-x:hidden;
 /* ─── HEADER ─── */
 .hdr{position:fixed;top:0;left:0;right:0;z-index:300;padding:18px var(--px);display:flex;align-items:center;justify-content:space-between;transition:all .35s;border-bottom:1px solid transparent}
 .hdr.on{background:rgba(28,28,28,.94);backdrop-filter:blur(24px);border-color:rgba(255,255,255,.06)}
-.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--C)}
-.logo-mark{width:30px;height:30px}
-.logo-tx{font-family:var(--fd);font-size:18px;letter-spacing:-.5px;line-height:1;color:var(--C)}
-.logo-sub{font-size:8px;letter-spacing:2.5px;text-transform:uppercase;color:var(--S);margin-top:2px}
+.logo{display:flex;align-items:center;text-decoration:none;color:var(--C)}
+.logo-img{height:36px;width:auto;display:block}
+.logo-img-sm{height:34px;width:auto;display:block}
 .hnav{display:flex;gap:34px;align-items:center}
 .hnav a{font-size:13.5px;color:rgba(243,239,224,.6);text-decoration:none;letter-spacing:.2px;transition:color .2s}
 .hnav a:hover{color:var(--C)}
@@ -339,16 +338,31 @@ body{font-family:var(--fb);background:var(--K);color:var(--C);overflow-x:hidden;
 .fsuccess{display:none;background:rgba(76,180,80,.08);border:1px solid rgba(76,180,80,.25);border-radius:var(--rm);padding:26px;text-align:center;color:#4CB450;font-size:16px;font-weight:600;margin-top:12px}
 
 /* ─── FOOTER ─── */
-footer{background:var(--K3);padding:48px var(--px) 22px;border-top:1px solid rgba(255,255,255,.04)}
-.ft-in{max-width:var(--mx);margin:0 auto}
-.ft-top{display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:44px;margin-bottom:40px}
-.ft-tag{font-size:12px;color:var(--S);max-width:200px;line-height:1.65;margin-top:12px}
-.fcol h4{font-size:9px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--S);margin-bottom:14px}
-.fcol a{display:block;font-size:13px;color:rgba(243,239,224,.35);text-decoration:none;margin-bottom:8px;transition:color .2s}
-.fcol a:hover{color:var(--C)}
-.ft-bot{padding-top:20px;border-top:1px solid rgba(255,255,255,.05);display:flex;justify-content:space-between;align-items:center;font-size:11px;color:rgba(243,239,224,.22)}
-.ft-bot a{color:rgba(243,239,224,.22);text-decoration:none;transition:color .2s}
-.ft-bot a:hover{color:rgba(243,239,224,.5)}
+footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,255,255,.04);position:relative;overflow:hidden}
+.ft-ghost{position:absolute;left:50%;bottom:-12%;transform:translateX(-50%);font-family:var(--fd);font-size:clamp(180px,30vw,460px);line-height:.85;color:rgba(243,239,224,.035);letter-spacing:-10px;pointer-events:none;user-select:none;white-space:nowrap;z-index:0}
+.ft-in{max-width:var(--mx);margin:0 auto;padding:0 var(--px);position:relative;z-index:1}
+.ft-brandcol .logo{margin-bottom:0}
+.ft-cols{display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:44px;margin-bottom:40px;align-items:start}
+.fcol h4{font-size:11px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;color:var(--C);margin-bottom:18px}
+.fcol-list{display:flex;flex-direction:column;gap:11px}
+.fcol-list a{font-size:14px;color:rgba(243,239,224,.55);text-decoration:none;transition:color .2s;width:fit-content}
+.fcol-list a:hover{color:var(--C)}
+.fc-block{margin-bottom:16px}
+.fc-strong{font-size:14px;font-weight:700;color:var(--C);margin-bottom:4px}
+.fc-line{font-size:14px;color:rgba(243,239,224,.55);line-height:1.55}
+.fc-label{font-size:14px;font-weight:700;color:var(--C);margin-bottom:4px}
+.ft-social{display:grid;grid-template-columns:repeat(2,38px);gap:12px;width:fit-content}
+.ft-social a{width:38px;height:38px;border-radius:10px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);display:flex;align-items:center;justify-content:center;color:var(--C);transition:all .25s}
+.ft-social a:hover{background:var(--F);border-color:var(--F);transform:translateY(-2px)}
+.ft-social svg{width:18px;height:18px}
+.ft-legal{padding-top:30px;border-top:1px solid rgba(255,255,255,.06);display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center}
+.ft-legal-links{display:flex;align-items:center;gap:18px;font-size:13px}
+.ft-legal-links a{color:rgba(243,239,224,.55);text-decoration:none;font-style:italic;transition:color .2s}
+.ft-legal-links a:hover{color:var(--C)}
+.ft-legal-sep{width:1px;height:14px;background:rgba(243,239,224,.2)}
+.ft-copy{font-size:13px;color:var(--F)}
+@media(max-width:980px){.ft-cols{grid-template-columns:1fr 1fr;gap:36px}}
+@media(max-width:560px){.ft-cols{grid-template-columns:1fr;gap:32px}}
 
 /* ─── MODAL ─── */
 .mbg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.78);z-index:500;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(12px)}
@@ -370,7 +384,7 @@ footer{background:var(--K3);padding:48px var(--px) 22px;border-top:1px solid rgb
   .cc-desc{border-right:none;border-bottom:1px solid rgba(255,255,255,.05)}
   .cc-results{flex-direction:row;flex-wrap:wrap}
   .cr{flex:1;min-width:140px}
-  .ft-top{grid-template-columns:1fr 1fr;gap:28px}
+  .ft-cols{grid-template-columns:1fr 1fr;gap:28px}
   .srv-side{text-align:left;max-width:100%}
   .srv-tagline{flex-direction:column;align-items:flex-start}
   .logo-grid{grid-template-columns:repeat(3,1fr)}
@@ -385,7 +399,6 @@ footer{background:var(--K3);padding:48px var(--px) 22px;border-top:1px solid rgb
   .steps{grid-template-columns:1fr}
   .logo-grid{grid-template-columns:repeat(2,1fr)}
   .logo-grid-real{grid-template-columns:repeat(2,1fr)}
-  .ft-top{grid-template-columns:1fr 1fr}
   .tc-grid{grid-template-columns:1fr}
 }
 </style>
@@ -395,17 +408,7 @@ footer{background:var(--K3);padding:48px var(--px) 22px;border-top:1px solid rgb
 <!-- ─── HEADER ─── -->
 <header class="hdr" id="hdr">
   <a href="#" class="logo">
-    <svg class="logo-mark" viewBox="0 0 40 40" fill="none">
-      <path d="M30 6 L34 2 L34 10 Z" fill="#F3EFE0"/>
-      <rect x="4" y="10" width="32" height="24" rx="11" fill="#F3EFE0"/>
-      <ellipse cx="14" cy="22" rx="2.6" ry="3" fill="#1C1C1C"/>
-      <ellipse cx="26" cy="22" rx="2.6" ry="3" fill="#1C1C1C"/>
-      <ellipse cx="20" cy="28" rx="1.4" ry="1" fill="#1C1C1C"/>
-    </svg>
-    <div>
-      <div class="logo-tx">estro</div>
-      <div class="logo-sub">Agency</div>
-    </div>
+    <img src="Logo estro.png" alt="Estro Agency" class="logo-img">
   </a>
   <nav class="hnav">
     <a href="#soluzione">Soluzione</a>
@@ -1054,49 +1057,59 @@ footer{background:var(--K3);padding:48px var(--px) 22px;border-top:1px solid rgb
 
 <!-- ─── FOOTER ─── -->
 <footer>
+  <div class="ft-ghost" aria-hidden="true">ESTRO</div>
   <div class="ft-in">
-    <div class="ft-top">
-      <div>
+    <div class="ft-cols">
+      <div class="fcol ft-brandcol">
         <a href="#" class="logo">
-          <svg viewBox="0 0 40 40" fill="none" width="26" height="26">
-            <path d="M30 6 L34 2 L34 10 Z" fill="#F3EFE0"/>
-            <rect x="4" y="10" width="32" height="24" rx="11" fill="#F3EFE0"/>
-            <ellipse cx="14" cy="22" rx="2.6" ry="3" fill="#1C1C1C"/>
-            <ellipse cx="26" cy="22" rx="2.6" ry="3" fill="#1C1C1C"/>
-            <ellipse cx="20" cy="28" rx="1.4" ry="1" fill="#1C1C1C"/>
-          </svg>
-          <div>
-            <div class="logo-tx" style="font-size:16px">estro</div>
-            <div class="logo-sub">Agency</div>
-          </div>
+          <img src="Logo estro.png" alt="Estro Agency" class="logo-img-sm">
         </a>
-        <p class="ft-tag">Agenzia di marketing e comunicazione per PMI. Un team completo a costi sostenibili, con sede a Milano.</p>
-      </div>
-      <div class="fcol">
-        <h4>Pagina</h4>
-        <a href="#soluzione">La soluzione</a>
-        <a href="#servizi">Servizi</a>
-        <a href="#metodo">Metodo</a>
-        <a href="#clienti">Clienti</a>
-        <a href="#contatti">Contatti</a>
-      </div>
-      <div class="fcol">
-        <h4>Servizi</h4>
-        <a href="#">Consulenza strategica</a>
-        <a href="#">Campagne ADV</a>
-        <a href="#">Content &amp; Social</a>
-        <a href="#">Analytics &amp; Report</a>
       </div>
       <div class="fcol">
         <h4>Contatti</h4>
-        <a href="mailto:ciao@estro.agency">ciao@estro.agency</a>
-        <a href="#">Milano, Italia</a>
-        <a href="#">LinkedIn</a>
+        <div class="fc-block">
+          <div class="fc-strong">YUBA S.r.l.</div>
+          <div class="fc-line">C.F./P. IVA 09955650966</div>
+        </div>
+        <div class="fc-block">
+          <div class="fc-label">Sede legale</div>
+          <div class="fc-line">Via Vigevano n. 27</div>
+          <div class="fc-line">20144, Milano (MI)</div>
+        </div>
+        <div class="fc-block">
+          <div class="fc-line"><a href="mailto:ciao@estro.agency" style="color:rgba(243,239,224,.55);text-decoration:none;transition:color .2s">ciao@estro.agency</a></div>
+        </div>
+      </div>
+      <div class="fcol">
+        <h4>Vieni a trovarci</h4>
+        <div class="fc-block">
+          <div class="fc-label">Sede di Milano</div>
+          <div class="fc-line">Via Vigevano n.27</div>
+          <div class="fc-line">20144, Milano (MI)</div>
+        </div>
+        <div class="fc-block">
+          <div class="fc-label">Sede di Varese</div>
+          <div class="fc-line">Via Mazzini n.1</div>
+          <div class="fc-line">21013, Gallarate (VA)</div>
+        </div>
+      </div>
+      <div class="fcol">
+        <h4>Seguici</h4>
+        <div class="ft-social">
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5.5"></rect><circle cx="12" cy="12" r="4.2"></circle><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"></circle></svg></a>
+          <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.66H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"></path></svg></a>
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.69.24 2.69.24v2.97h-1.52c-1.49 0-1.96.93-1.96 1.89v2.25h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z"></path></svg></a>
+          <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.5a3 3 0 0 0-2.12-2.12C19.5 3.87 12 3.87 12 3.87s-7.5 0-9.38.51A3 3 0 0 0 .5 6.5C0 8.38 0 12 0 12s0 3.62.5 5.5a3 3 0 0 0 2.12 2.12c1.88.51 9.38.51 9.38.51s7.5 0 9.38-.51A3 3 0 0 0 23.5 17.5C24 15.62 24 12 24 12s0-3.62-.5-5.5zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"></path></svg></a>
+        </div>
       </div>
     </div>
-    <div class="ft-bot">
-      <span>© 2025 Estro Agency · Agenzia di marketing e comunicazione Milano</span>
-      <div style="display:flex;gap:16px"><a href="#">Privacy</a><a href="#">Cookie</a></div>
+    <div class="ft-legal">
+      <div class="ft-legal-links">
+        <a href="#">Privacy Policy</a>
+        <span class="ft-legal-sep"></span>
+        <a href="#">Cookie Policy</a>
+      </div>
+      <div class="ft-copy">Copyright @2026 Yuba S.r.l.</div>
     </div>
   </div>
 </footer>
