@@ -484,25 +484,93 @@ body{font-family:var(--fb);background:var(--K);color:var(--C);overflow-x:hidden;
 .sc-uni-desc{font-size:11.5px;color:rgba(243,239,224,.55);line-height:1.62}
 
 /* ═══ PROCESSO ═══ */
-.proc{background:var(--K);padding:96px 0}
-.proc-hdr{margin-bottom:58px;text-align:center}
+.proc{background:var(--K);padding:96px 0;position:relative;overflow:hidden}
+.proc::before{content:'';position:absolute;inset:0;
+  background-image:radial-gradient(circle,rgba(243,239,224,.028) 1px,transparent 1px);
+  background-size:34px 34px;pointer-events:none;z-index:0}
+.proc::after{content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 100% 100% at 50% 50%,transparent 45%,rgba(0,0,0,.35) 100%);
+  pointer-events:none;z-index:0}
+.proc-accent{position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(224,24,92,.22) 30%,rgba(224,24,92,.22) 70%,transparent);
+  pointer-events:none;z-index:1}
+.proc-glow-a{position:absolute;top:-120px;right:-80px;width:600px;height:600px;
+  background:radial-gradient(circle,rgba(224,24,92,.07),transparent 62%);pointer-events:none;z-index:0}
+.proc-glow-b{position:absolute;bottom:-100px;left:-60px;width:480px;height:480px;
+  background:radial-gradient(circle,rgba(224,24,92,.05),transparent 60%);pointer-events:none;z-index:0}
+.proc-grain{position:absolute;inset:0;pointer-events:none;z-index:0;opacity:.035;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  background-repeat:repeat;background-size:200px 200px}
+.proc-hdr{margin-bottom:64px;text-align:center;position:relative;z-index:1}
 .proc-tag{font-size:10px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:rgba(243,239,224,.35);display:block;margin-bottom:14px}
 .proc-tag::before{content:'— '}
 .proc h2{font-family:var(--fd);font-size:clamp(28px,3vw,42px);line-height:1.07;letter-spacing:-1.2px;color:var(--C);max-width:560px;margin:0 auto}
 .proc h2 em{font-style:normal;color:var(--F)}
-.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative}
-.steps::before{content:'';position:absolute;top:22px;left:12%;right:12%;height:1px;background:linear-gradient(90deg,transparent,rgba(224,24,92,.35) 20%,rgba(224,24,92,.35) 80%,transparent)}
-.step{display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 14px;position:relative}
-.step-num{width:44px;height:44px;border-radius:50%;border:1.5px solid rgba(224,24,92,.25);display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-size:13px;color:var(--F);background:var(--K);margin-bottom:18px;transition:all .35s;position:relative;z-index:1}
-.step:hover .step-num{background:var(--F);color:#fff;border-color:var(--F);box-shadow:0 0 24px rgba(224,24,92,.4)}
-.step-ico{margin-bottom:10px}
-.step-ico svg{width:24px;height:24px;color:rgba(224,24,92,.6);transition:color .35s}
-.step:hover .step-ico svg{color:var(--F)}
-.step h4{font-family:var(--fd);font-size:13px;color:var(--C);margin-bottom:8px;letter-spacing:-.2px;line-height:1.1}
-.step p{font-size:12px;color:var(--S);line-height:1.6}
-.proc-closer{text-align:center;margin-top:48px;padding:20px 32px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:var(--rm);max-width:640px;margin-left:auto;margin-right:auto}
-.proc-closer-t{font-family:var(--fd);font-size:15px;color:var(--C);margin-bottom:5px;letter-spacing:-.3px}
-.proc-closer-d{font-size:13px;color:var(--S)}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;position:relative;z-index:1}
+/* step card — dark variant of .ic */
+.step{
+  position:relative;overflow:hidden;
+  background:linear-gradient(165deg,rgba(255,255,255,.058) 0%,rgba(255,255,255,.018) 100%);
+  border:1px solid rgba(255,255,255,.08);border-radius:24px;
+  padding:30px 28px 32px;
+  display:flex;flex-direction:column;align-items:flex-start;text-align:left;
+  box-shadow:0 2px 0 rgba(255,255,255,.04) inset,0 16px 36px -20px rgba(0,0,0,.45),0 4px 12px -4px rgba(0,0,0,.2);
+  transition:transform .45s cubic-bezier(.22,1,.36,1),box-shadow .45s,border-color .4s
+}
+/* top accent bar */
+.step::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;z-index:3;
+  background:linear-gradient(90deg,var(--F),#ff5e8f);
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .55s cubic-bezier(.22,1,.36,1);pointer-events:none}
+.step:hover::before{transform:scaleX(1)}
+/* fuchsia hover wash */
+.step::after{content:'';position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(125% 92% at 12% -10%,rgba(224,24,92,.13),transparent 56%);
+  opacity:0;transition:opacity .45s}
+.step:hover::after{opacity:1}
+.step:hover{
+  transform:translateY(-6px);border-color:rgba(224,24,92,.28);
+  box-shadow:0 2px 0 rgba(255,255,255,.04) inset,0 36px 64px -24px rgba(224,24,92,.22),0 8px 20px -6px rgba(0,0,0,.4)
+}
+/* large watermark number */
+.step-nbg{position:absolute;top:14px;right:22px;
+  font-family:var(--fd);font-size:64px;line-height:1;letter-spacing:-2.5px;
+  color:rgba(224,24,92,.07);pointer-events:none;transition:color .45s;z-index:0;user-select:none}
+.step:hover .step-nbg{color:rgba(224,24,92,.13)}
+/* fuchsia icon tile — identical to .ic-ico */
+.step-ico{
+  position:relative;z-index:2;
+  width:56px;height:56px;border-radius:16px;
+  background:linear-gradient(150deg,#E0185C,#8c163f);
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:20px;
+  box-shadow:0 12px 26px -10px rgba(224,24,92,.6),inset 0 1px 0 rgba(255,255,255,.3);
+  transition:transform .35s cubic-bezier(.34,1.4,.64,1),box-shadow .35s
+}
+.step:hover .step-ico{transform:translateY(-3px);box-shadow:0 18px 34px -10px rgba(224,24,92,.7),inset 0 1px 0 rgba(255,255,255,.3)}
+.step-ico svg{width:25px;height:25px;color:#fff;stroke-linecap:round;stroke-linejoin:round}
+/* step number pill */
+.step-num{
+  display:inline-flex;align-items:center;
+  font-family:var(--fb);font-size:9px;font-weight:700;letter-spacing:2px;color:var(--F);
+  text-transform:uppercase;background:rgba(224,24,92,.1);border:1px solid rgba(224,24,92,.22);
+  border-radius:var(--rp);padding:4px 10px;margin-bottom:16px;
+  position:relative;z-index:2
+}
+.step h4{font-family:var(--fd);font-size:16px;color:var(--C);margin-bottom:10px;letter-spacing:-.3px;line-height:1.2;position:relative;z-index:2}
+.step p{font-size:13px;color:rgba(243,239,224,.52);line-height:1.7;position:relative;z-index:2}
+/* closer block */
+.proc-closer{
+  text-align:center;margin-top:52px;
+  padding:26px 40px;
+  background:linear-gradient(165deg,rgba(255,255,255,.055),rgba(255,255,255,.018));
+  border:1px solid rgba(255,255,255,.09);border-radius:var(--rm);
+  max-width:640px;margin-left:auto;margin-right:auto;
+  position:relative;z-index:1;
+  box-shadow:0 16px 40px -16px rgba(0,0,0,.45)
+}
+.proc-closer-t{font-family:var(--fd);font-size:15px;color:var(--C);margin-bottom:6px;letter-spacing:-.3px}
+.proc-closer-d{font-size:13px;color:rgba(243,239,224,.5);line-height:1.65}
 
 /* ═══ BENEFICI ═══ */
 .benefici{background:var(--YW);color:var(--K);padding:96px 0}
@@ -662,8 +730,7 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
   .target-inner,.sol-grid,.ben-grid{grid-template-columns:1fr;gap:40px}
   .ic-grid{grid-template-columns:repeat(2,1fr)}
   .srv-uni-grid{grid-template-columns:repeat(2,1fr)}
-  .steps{grid-template-columns:repeat(2,1fr);gap:24px}
-  .steps::before{display:none}
+  .steps{grid-template-columns:repeat(2,1fr);gap:16px}
   .cc-body{grid-template-columns:1fr}
   .cc-desc{border-right:none;border-bottom:1px solid rgba(255,255,255,.05)}
   .cc-results{flex-direction:row;flex-wrap:wrap}
@@ -1180,36 +1247,65 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
 
 <!-- ═══ PROCESSO ═══ -->
 <section class="proc" id="metodo">
-  <div class="ctr">
+  <div class="proc-accent" aria-hidden="true"></div>
+  <div class="proc-glow-a" aria-hidden="true"></div>
+  <div class="proc-glow-b" aria-hidden="true"></div>
+  <div class="proc-grain" aria-hidden="true"></div>
+  <div class="ctr" style="position:relative;z-index:1">
     <div class="proc-hdr rv">
       <span class="proc-tag">Come lavoriamo</span>
       <h2>Un metodo semplice e <em>strutturato.</em></h2>
     </div>
     <div class="steps">
+
       <div class="step rv">
+        <div class="step-nbg" aria-hidden="true">01</div>
+        <div class="step-ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+        </div>
         <div class="step-num">01</div>
-        <div class="step-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
         <h4>Analisi iniziale</h4>
         <p>Capiamo il tuo business, gli obiettivi e la situazione attuale. Nessuna attività senza una base solida.</p>
       </div>
+
       <div class="step rv d1">
+        <div class="step-nbg" aria-hidden="true">02</div>
+        <div class="step-ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/>
+          </svg>
+        </div>
         <div class="step-num">02</div>
-        <div class="step-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
         <h4>Pianificazione strategica</h4>
         <p>Piano di marketing, canali, budget e KPI condivisi. Sai esattamente cosa faremo e perché.</p>
       </div>
+
       <div class="step rv d2">
+        <div class="step-nbg" aria-hidden="true">03</div>
+        <div class="step-ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+          </svg>
+        </div>
         <div class="step-num">03</div>
-        <div class="step-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
         <h4>Attivazione operativa</h4>
         <p>Lanciamo campagne, contenuti e strumenti. Tutto coordinato, tutto con un obiettivo preciso.</p>
       </div>
+
       <div class="step rv d3">
+        <div class="step-nbg" aria-hidden="true">04</div>
+        <div class="step-ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+          </svg>
+        </div>
         <div class="step-num">04</div>
-        <div class="step-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
         <h4>Monitoraggio continuo</h4>
         <p>Report regolari e ottimizzazione costante. Il piano migliora nel tempo, i risultati crescono.</p>
       </div>
+
     </div>
     <div class="proc-closer rv">
       <div class="proc-closer-t">Sempre con un unico referente e aggiornamenti chiari</div>
