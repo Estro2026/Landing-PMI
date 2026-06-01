@@ -151,8 +151,21 @@ body{font-family:var(--fb);background:var(--K);color:var(--C);overflow-x:hidden;
 .tl-dot{width:7px;height:7px;border-radius:50%;background:var(--F);flex-shrink:0}
 .target-italic{font-family:var(--fh);font-size:16px;color:rgba(28,28,28,.42);margin-top:4px}
 
-/* elemento visivo decorativo */
-.target-deco{position:absolute;bottom:0;right:0;width:340px;opacity:.09;pointer-events:none;user-select:none;mix-blend-mode:multiply}
+/* elemento visivo — presenza architettonica, Option C editorial */
+.target-deco{
+  position:absolute;
+  bottom:-80px;
+  left:50%;
+  transform:translateX(-18%);
+  width:clamp(500px,70%,860px);
+  opacity:.22;
+  pointer-events:none;
+  user-select:none;
+  mix-blend-mode:multiply;
+  z-index:0
+}
+@media(max-width:1100px){.target-deco{width:clamp(380px,80vw,640px);bottom:-60px;left:40%;transform:translateX(-20%)}}
+@media(max-width:640px){.target-deco{width:clamp(280px,90vw,420px);bottom:-40px;left:50%;transform:translateX(-50%);opacity:.14}}
 
 /* ── ANIMAZIONE TARGET: workspace disperso → dashboard Estro ── */
 .ta-ws{position:relative;height:440px;width:100%;background:#F2F0E8;border:1px solid rgba(28,28,28,.09);border-radius:20px;overflow:hidden;box-shadow:0 8px 36px rgba(28,28,28,.08)}
