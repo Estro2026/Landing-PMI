@@ -179,6 +179,14 @@ body{font-family:var(--fb);background:var(--K);color:var(--C);overflow-x:hidden;
 .ic-desc{font-size:13px;color:rgba(28,28,28,.6);line-height:1.65}
 .icone-cta{text-align:center}
 
+/* ═══ CTA INTERMEDIA ═══ */
+.cta-mid{background:var(--F);padding:80px 0;text-align:center;position:relative;overflow:hidden}
+.cta-mid::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.06) 1px,transparent 1px);background-size:48px 48px;pointer-events:none}
+.cta-mid-inner{position:relative;z-index:2}
+.cta-mid h2{font-family:var(--fd);font-size:clamp(26px,3vw,40px);line-height:1.07;letter-spacing:-1px;color:#fff;margin-bottom:14px}
+.cta-mid-sub{font-size:15px;color:rgba(255,255,255,.78);margin-bottom:32px;max-width:520px;margin-left:auto;margin-right:auto;line-height:1.65}
+.btn-light{background:#fff;color:var(--F);border:none}.btn-light:hover{background:var(--C);transform:translateY(-2px);box-shadow:0 14px 30px rgba(0,0,0,.15)}
+
 /* ═══ SERVIZI ═══ */
 .servizi{background:var(--K2);padding:96px 0}
 .srv-tag{font-size:10px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:rgba(243,239,224,.35);display:block;margin-bottom:14px}
@@ -187,6 +195,7 @@ body{font-family:var(--fb);background:var(--K);color:var(--C);overflow-x:hidden;
 .srv h2{font-family:var(--fd);font-size:clamp(28px,3vw,42px);line-height:1.07;letter-spacing:-1.2px;color:var(--C)}
 .srv-side{font-size:14px;color:var(--S);max-width:320px;line-height:1.65;text-align:right}
 .srv-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.srv-grid-2x2{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:12px}
 .sc{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:var(--rm);padding:24px 20px;transition:all .3s}
 .sc:hover{background:rgba(255,255,255,.06);border-color:rgba(224,24,92,.25);transform:translateY(-3px)}
 .sc-tag{display:inline-block;font-size:8px;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:4px 9px;border-radius:var(--rp);background:var(--Fa);border:1px solid var(--Fb);color:var(--F);margin-bottom:16px}
@@ -246,6 +255,30 @@ body{font-family:var(--fb);background:var(--K);color:var(--C);overflow-x:hidden;
 .trust-tag{font-size:10px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:rgba(243,239,224,.35);display:block;margin-bottom:14px;text-align:center}
 .trust-tag::before{content:'— '}
 .trust h2{font-family:var(--fd);font-size:clamp(26px,2.8vw,38px);line-height:1.1;letter-spacing:-1px;color:var(--C);text-align:center;margin-bottom:44px}
+
+/* Logo grid con immagini reali */
+.logo-grid-real{display:grid;grid-template-columns:repeat(5,1fr);gap:2px;margin-bottom:56px}
+.lc-real{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:var(--rm);padding:18px 16px;display:flex;align-items:center;justify-content:center;transition:all .3s;aspect-ratio:2/1;overflow:hidden}
+.lc-real:hover{background:rgba(255,255,255,.07);border-color:rgba(224,24,92,.2)}
+.lc-real img{max-width:100%;max-height:36px;object-fit:contain;filter:brightness(0) invert(1);opacity:.45;transition:opacity .3s}
+.lc-real:hover img{opacity:.75}
+
+/* ═══ SOCIAL PROOF ═══ */
+.sproof{background:var(--K2);padding:96px 0;border-top:1px solid rgba(255,255,255,.04)}
+.sp-tag{font-size:10px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:rgba(243,239,224,.35);display:block;margin-bottom:14px;text-align:center}
+.sp-tag::before{content:'— '}
+.sproof h2{font-family:var(--fd);font-size:clamp(26px,2.8vw,38px);line-height:1.1;letter-spacing:-1px;color:var(--C);text-align:center;margin-bottom:44px}
+.sp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.sp-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:var(--rl);padding:28px;display:flex;flex-direction:column;gap:16px;transition:all .3s;position:relative}
+.sp-card:hover{border-color:rgba(224,24,92,.22);background:rgba(255,255,255,.05);transform:translateY(-3px)}
+.sp-stars{display:flex;gap:3px}
+.sp-star{color:var(--Y);font-size:15px}
+.sp-text{font-size:14px;color:rgba(243,239,224,.7);line-height:1.72;font-style:italic;flex:1}
+.sp-text::before{content:'\201C';font-family:var(--fh);font-size:32px;color:var(--F);line-height:.8;display:block;margin-bottom:8px}
+.sp-author{display:flex;align-items:center;gap:12px;padding-top:14px;border-top:1px solid rgba(255,255,255,.07)}
+.sp-av{width:38px;height:38px;border-radius:50%;background:var(--Fa);border:1px solid var(--Fb);display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-size:12px;color:var(--F);flex-shrink:0}
+.sp-name{font-size:13px;font-weight:600;color:var(--C)}
+.sp-role{font-size:11px;color:var(--S);margin-top:2px}
 
 /* Industry pills */
 .ind-grid{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:52px;justify-content:center}
@@ -330,6 +363,7 @@ footer{background:var(--K3);padding:48px var(--px) 22px;border-top:1px solid rgb
 @media(max-width:1100px){
   .hero-inner,.target-inner,.sol-grid,.ben-grid{grid-template-columns:1fr;gap:40px}
   .ic-grid,.srv-grid{grid-template-columns:repeat(2,1fr)}
+  .srv-grid-2x2{grid-template-columns:repeat(3,1fr)}
   .steps{grid-template-columns:repeat(2,1fr);gap:24px}
   .steps::before{display:none}
   .cc-body{grid-template-columns:1fr}
@@ -340,14 +374,17 @@ footer{background:var(--K3);padding:48px var(--px) 22px;border-top:1px solid rgb
   .srv-side{text-align:left;max-width:100%}
   .srv-tagline{flex-direction:column;align-items:flex-start}
   .logo-grid{grid-template-columns:repeat(3,1fr)}
+  .logo-grid-real{grid-template-columns:repeat(4,1fr)}
+  .sp-grid{grid-template-columns:repeat(2,1fr)}
   .hnav{display:none}
 }
 @media(max-width:640px){
   :root{--px:20px}
-  .ic-grid,.srv-grid,.ff-grid{grid-template-columns:1fr}
+  .ic-grid,.srv-grid,.srv-grid-2x2,.ff-grid,.sp-grid{grid-template-columns:1fr}
   .ff-grid .fg.full{grid-column:1}
   .steps{grid-template-columns:1fr}
   .logo-grid{grid-template-columns:repeat(2,1fr)}
+  .logo-grid-real{grid-template-columns:repeat(2,1fr)}
   .ft-top{grid-template-columns:1fr 1fr}
   .tc-grid{grid-template-columns:1fr}
 }
@@ -607,6 +644,17 @@ footer{background:var(--K3);padding:48px var(--px) 22px;border-top:1px solid rgb
   </div>
 </section>
 
+<!-- ═══ CTA INTERMEDIA ═══ -->
+<section class="cta-mid">
+  <div class="ctr">
+    <div class="cta-mid-inner rv">
+      <h2>Costruiamo insieme il prossimo passo della tua crescita.</h2>
+      <p class="cta-mid-sub">Un incontro conoscitivo, senza impegno. Parliamo del tuo business e capiamo insieme come possiamo supportarti.</p>
+      <a href="#contatti" class="btn btn-light btn-lg">Richiedi una consulenza <span class="arr arr-k">›</span></a>
+    </div>
+  </div>
+</section>
+
 <!-- ═══ SERVIZI ═══ -->
 <section class="servizi" id="servizi">
   <div class="ctr">
@@ -621,27 +669,68 @@ footer{background:var(--K3);padding:48px var(--px) 22px;border-top:1px solid rgb
       <div class="sc rv">
         <span class="sc-tag">Core</span>
         <div class="sc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
-        <div class="sc-title">Consulenza Strategica</div>
-        <div class="sc-desc">Obiettivi di business, analisi del mercato e costruzione di una roadmap operativa con KPI chiari. Partiamo sempre da dove sei davvero.</div>
+        <div class="sc-title">Strategia Marketing</div>
+        <div class="sc-desc">Obiettivi, analisi del mercato e roadmap operativa con KPI condivisi. Partiamo sempre da dove sei davvero.</div>
       </div>
       <div class="sc rv d1">
         <span class="sc-tag">ADV</span>
         <div class="sc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
-        <div class="sc-title">Campagne ADV</div>
-        <div class="sc-desc">Google Ads, Meta, LinkedIn. Campagne che portano risultati misurabili, ottimizzate nel tempo per massimizzare ogni euro investito.</div>
+        <div class="sc-title">Advertising</div>
+        <div class="sc-desc">Google Ads, Meta, LinkedIn. Campagne misurabili, ottimizzate nel tempo per massimizzare ogni euro investito.</div>
       </div>
       <div class="sc rv d2">
         <span class="sc-tag">Creative</span>
         <div class="sc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/></svg></div>
-        <div class="sc-title">Content & Social</div>
-        <div class="sc-desc">Contenuti coerenti per tutti i canali: social, web, newsletter. Un'unica voce, un'unica storia per il tuo brand.</div>
+        <div class="sc-title">Content Creation</div>
+        <div class="sc-desc">Contenuti per tutti i canali — social, web, newsletter — con un'unica voce coerente per il tuo brand.</div>
       </div>
       <div class="sc rv d3">
         <span class="sc-tag">Intelligence</span>
         <div class="sc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
-        <div class="sc-title">Analytics & Report</div>
-        <div class="sc-desc">Dati chiari, aggiornati e interpretati. Sai sempre cosa funziona, dove investire e come stiamo crescendo insieme.</div>
+        <div class="sc-title">Analytics & Reporting</div>
+        <div class="sc-desc">Dati chiari e interpretati. Sai sempre cosa funziona, dove investire e come stiamo crescendo insieme.</div>
       </div>
+    </div>
+    <div class="srv-grid-2x2">
+      <div class="sc rv d1">
+        <span class="sc-tag">Brand</span>
+        <div class="sc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32"/></svg></div>
+        <div class="sc-title">Branding</div>
+        <div class="sc-desc">Identità visiva, posizionamento e tono di voce coerenti. Il tuo brand riconoscibile su ogni canale.</div>
+      </div>
+      <div class="sc rv d2">
+        <span class="sc-tag">Web</span>
+        <div class="sc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/></svg></div>
+        <div class="sc-title">Siti Web & Landing Page</div>
+        <div class="sc-desc">Design e sviluppo orientati alla conversione. Pagine veloci, accessibili e ottimizzate per il SEO.</div>
+      </div>
+      <div class="sc rv d3">
+        <span class="sc-tag">SEO</span>
+        <div class="sc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+        <div class="sc-title">SEO</div>
+        <div class="sc-desc">Visibilità organica costruita nel tempo. Ottimizzazione on-page, contenuti e link building per posizionarsi dove conta.</div>
+      </div>
+      <div class="sc rv d1">
+        <span class="sc-tag">Social</span>
+        <div class="sc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <div class="sc-title">Social Media Management</div>
+        <div class="sc-desc">Gestione continuativa dei profili social. Piano editoriale, produzione, pubblicazione e community management.</div>
+      </div>
+      <div class="sc rv d2">
+        <span class="sc-tag">Auto</span>
+        <div class="sc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+        <div class="sc-title">Marketing Automation</div>
+        <div class="sc-desc">Email flow, CRM e automazioni per nutrire i lead e fidelizzare i clienti — senza lavoro manuale ripetitivo.</div>
+      </div>
+      <div class="sc rv d3">
+        <span class="sc-tag">Digital</span>
+        <div class="sc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div>
+        <div class="sc-title">Comunicazione Digitale</div>
+        <div class="sc-desc">Strategia e gestione dei canali digitali come sistema unico. Messaggi coerenti, presenza coordinata, risultati misurabili.</div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:36px" class="rv">
+      <a href="#contatti" class="btn bf btn-lg">Parliamo del tuo progetto <span class="arr">›</span></a>
     </div>
   </div>
 </section>
@@ -755,16 +844,23 @@ footer{background:var(--K3);padding:48px var(--px) 22px;border-top:1px solid rgb
       <div class="ind-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>Servizi Professionali</div>
     </div>
 
-    <!-- Logo showcase -->
-    <div class="logo-grid rv">
-      <div class="lc"><div class="lc-mark">AS</div><div class="lc-info"><div class="lc-name">Atelier Sole</div><div class="lc-sector">Fashion · Milano</div></div></div>
-      <div class="lc"><div class="lc-mark">CM</div><div class="lc-info"><div class="lc-name">Centro Med+</div><div class="lc-sector">Medicale · Milano</div></div></div>
-      <div class="lc"><div class="lc-mark">LB</div><div class="lc-info"><div class="lc-name">La Breva</div><div class="lc-sector">Ristorazione · Como</div></div></div>
-      <div class="lc"><div class="lc-mark">VS</div><div class="lc-info"><div class="lc-name">Vibe Studio</div><div class="lc-sector">Beauty &amp; Wellness</div></div></div>
-      <div class="lc"><div class="lc-mark">IF</div><div class="lc-info"><div class="lc-name">IstitutoForm</div><div class="lc-sector">Formazione · Online</div></div></div>
-      <div class="lc"><div class="lc-mark">RV</div><div class="lc-info"><div class="lc-name">RetailVerde</div><div class="lc-sector">Retail · Milano</div></div></div>
-      <div class="lc"><div class="lc-mark">DB</div><div class="lc-info"><div class="lc-name">Design Bureau</div><div class="lc-sector">Servizi Professionali</div></div></div>
-      <div class="lc"><div class="lc-mark">NK</div><div class="lc-info"><div class="lc-name">Nek Store</div><div class="lc-sector">E-commerce</div></div></div>
+    <!-- Logo showcase con loghi reali -->
+    <div class="logo-grid-real rv">
+      <div class="lc-real"><img src="loghi/gucci.webp" alt="Gucci" loading="lazy"></div>
+      <div class="lc-real"><img src="loghi/Prada.webp" alt="Prada" loading="lazy"></div>
+      <div class="lc-real"><img src="loghi/lamborghini.webp" alt="Lamborghini" loading="lazy"></div>
+      <div class="lc-real"><img src="loghi/rai.webp" alt="RAI" loading="lazy"></div>
+      <div class="lc-real"><img src="loghi/spotify.webp" alt="Spotify" loading="lazy"></div>
+      <div class="lc-real"><img src="loghi/humanitas.webp" alt="Humanitas" loading="lazy"></div>
+      <div class="lc-real"><img src="loghi/bocconi.webp" alt="Università Bocconi" loading="lazy"></div>
+      <div class="lc-real"><img src="loghi/aprilia.webp" alt="Aprilia" loading="lazy"></div>
+      <div class="lc-real"><img src="loghi/redbull.png" alt="Red Bull" loading="lazy"></div>
+      <div class="lc-real"><img src="loghi/cupra.webp" alt="CUPRA" loading="lazy"></div>
+      <div class="lc-real"><img src="loghi/pandora.webp" alt="Pandora" loading="lazy"></div>
+      <div class="lc-real"><img src="loghi/ted.webp" alt="TED" loading="lazy"></div>
+      <div class="lc-real"><img src="loghi/patagonia.webp" alt="Patagonia" loading="lazy"></div>
+      <div class="lc-real"><img src="loghi/accenture.webp" alt="Accenture" loading="lazy"></div>
+      <div class="lc-real"><img src="loghi/kawasaki.webp" alt="Kawasaki" loading="lazy"></div>
     </div>
 
     <!-- Case Studies PMI -->
@@ -882,6 +978,51 @@ footer{background:var(--K3);padding:48px var(--px) 22px;border-top:1px solid rgb
           <div class="cr">
             <div class="cr-val mul">4.7★</div>
             <div class="cr-lbl">Rating Google Business al termine del progetto</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SOCIAL PROOF ═══ -->
+<section class="sproof">
+  <div class="ctr">
+    <div class="rv">
+      <span class="sp-tag">Cosa dicono di noi</span>
+      <h2>La voce dei nostri clienti.</h2>
+    </div>
+    <div class="sp-grid">
+      <div class="sp-card rv">
+        <div class="sp-stars"><span class="sp-star">★</span><span class="sp-star">★</span><span class="sp-star">★</span><span class="sp-star">★</span><span class="sp-star">★</span></div>
+        <p class="sp-text">Da quando lavoriamo con Estro non dobbiamo più preoccuparci di niente. Un unico referente che conosce il nostro business, risponde in tempi rapidi e porta risultati concreti. Il fatturato legato al canale digitale è cresciuto del 60% in un anno.</p>
+        <div class="sp-author">
+          <div class="sp-av">MR</div>
+          <div>
+            <div class="sp-name">Marco Rossetti</div>
+            <div class="sp-role">CEO · Studio Medico Rossetti · Milano</div>
+          </div>
+        </div>
+      </div>
+      <div class="sp-card rv d1">
+        <div class="sp-stars"><span class="sp-star">★</span><span class="sp-star">★</span><span class="sp-star">★</span><span class="sp-star">★</span><span class="sp-star">★</span></div>
+        <p class="sp-text">Avevamo provato con freelance diversi e ognuno faceva la sua cosa. Con Estro è completamente diverso: tutto coordinato, tutto coerente. Finalmente il nostro brand comunica in modo professionale e le campagne portano clienti reali.</p>
+        <div class="sp-author">
+          <div class="sp-av">LC</div>
+          <div>
+            <div class="sp-name">Laura Conti</div>
+            <div class="sp-role">Titolare · Boutique Le Forme · Como</div>
+          </div>
+        </div>
+      </div>
+      <div class="sp-card rv d2">
+        <div class="sp-stars"><span class="sp-star">★</span><span class="sp-star">★</span><span class="sp-star">★</span><span class="sp-star">★</span><span class="sp-star">★</span></div>
+        <p class="sp-text">Il valore di Estro non è solo la competenza tecnica — che c'è eccome — ma l'approccio. Capiscono il tuo business, non ti bombardano di tecnicismi e ti aggiornano con regolarità. Per noi sono diventati una parte essenziale del team.</p>
+        <div class="sp-author">
+          <div class="sp-av">AF</div>
+          <div>
+            <div class="sp-name">Andrea Ferretti</div>
+            <div class="sp-role">Direttore Commerciale · Elmec Srl · Varese</div>
           </div>
         </div>
       </div>
