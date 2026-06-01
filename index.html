@@ -292,11 +292,8 @@ body{font-family:var(--fb);background:var(--K);color:var(--C);overflow-x:hidden;
 .cr-stage.is-done #cr2{top:44%;left:2%;width:50%;height:50%;z-index:2;transform:rotate(1.5deg)!important;animation:none!important;opacity:1}
 .cr-stage.is-done #cr3{top:46%;left:46%;width:50%;height:50%;z-index:1;transform:rotate(-1deg)!important;animation:none!important;opacity:1}
 /* label Estro centrale in done */
-.cr-lbl{position:absolute;z-index:10;left:50%;top:50%;transform:translate(-50%,-50%) scale(.85);background:var(--F);color:#fff;font-family:var(--fd);font-size:11px;letter-spacing:2.5px;text-transform:uppercase;padding:9px 20px;border-radius:40px;white-space:nowrap;opacity:0;transition:opacity .5s ease .3s,transform .5s cubic-bezier(.34,1.4,.64,1) .3s;pointer-events:none;box-shadow:0 8px 28px rgba(224,24,92,.45)}
-.cr-stage.is-done .cr-lbl{opacity:1;transform:translate(-50%,-50%) scale(1)}
-/* label di stato fase scatter */
-.cr-phase{position:absolute;bottom:14px;left:0;right:0;text-align:center;z-index:8;font-family:var(--fm);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(243,239,224,.25);transition:opacity .4s}
-.cr-stage.is-resolving .cr-phase,.cr-stage.is-done .cr-phase{opacity:0}
+.cr-badge{position:absolute;z-index:10;left:50%;top:50%;transform:translate(-50%,-50%) scale(.85);background:var(--K);color:var(--C);font-family:var(--fb);font-size:10px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;padding:10px 22px;border-radius:40px;white-space:nowrap;opacity:0;border:1px solid rgba(224,24,92,.35);transition:opacity .5s ease .3s,transform .5s cubic-bezier(.34,1.4,.64,1) .3s;pointer-events:none;box-shadow:0 8px 28px rgba(0,0,0,.5),0 0 0 1px rgba(224,24,92,.12) inset}
+.cr-stage.is-done .cr-badge{opacity:1;transform:translate(-50%,-50%) scale(1)}
 
 /* ═══ ICONE ═══ */
 .icone{background:var(--C2);color:var(--K);padding:96px 0}
@@ -835,8 +832,7 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
           <div class="cr-img" id="cr1"><img src="Creatività/POST_Combo-perfetta.webp" alt="" loading="lazy"></div>
           <div class="cr-img" id="cr2"><img src="Creatività/fantabody-9.webp" alt="" loading="lazy"></div>
           <div class="cr-img" id="cr3"><img src="Creatività/DRESSO_1_0434.webp" alt="" loading="lazy"></div>
-          <div class="cr-lbl">Un unico partner</div>
-          <div class="cr-phase">Progetti indipendenti</div>
+          <div class="cr-badge">Un unico partner</div>
         </div>
       </div>
 
