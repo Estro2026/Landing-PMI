@@ -296,22 +296,52 @@ body{font-family:var(--fb);background:var(--K);color:var(--C);overflow-x:hidden;
 .cr-stage.is-done .cr-badge{opacity:1;transform:translate(-50%,-50%) scale(1)}
 
 /* ═══ ICONE ═══ */
-.icone{background:var(--C2);color:var(--K);padding:96px 0}
+.icone{background:var(--C2);color:var(--K);padding:96px 0;position:relative;overflow:hidden}
+/* texture puntini */
+.icone::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(28,28,28,.045) 1px,transparent 1px);background-size:36px 36px;pointer-events:none;z-index:0}
+/* ghost "estro" come sfondo editoriale */
+.icone-ghost{position:absolute;left:50%;bottom:-8%;transform:translateX(-50%);font-family:var(--fd);font-size:clamp(120px,22vw,340px);line-height:.85;color:rgba(28,28,28,.035);letter-spacing:-8px;pointer-events:none;user-select:none;white-space:nowrap;z-index:0}
+/* vignetta radiale leggera */
+.icone::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 50%,transparent 50%,rgba(224,24,92,.025) 100%);pointer-events:none;z-index:0}
 .icone-tag{font-size:10px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:rgba(28,28,28,.4);display:block;margin-bottom:14px}
 .icone-tag::before{content:'— '}
 .icone h2{font-family:var(--fd);font-size:clamp(28px,3vw,42px);line-height:1.07;letter-spacing:-1.2px;color:var(--K);margin-bottom:46px;max-width:540px}
-.ic-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:36px}
-.ic{background:#fff;border:1px solid rgba(28,28,28,.08);border-radius:var(--rl);padding:30px 26px;transition:all .3s;position:relative;overflow:hidden}
-.ic::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(224,24,92,.04),transparent 55%);opacity:0;transition:opacity .3s}
+.ic-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:36px;position:relative;z-index:1}
+.icone .rv{position:relative;z-index:1}
+.ic{position:relative;overflow:hidden;
+  background:linear-gradient(165deg,#FFFFFF 0%,#FAF5ED 100%);
+  border:1px solid rgba(28,28,28,.07);border-radius:24px;padding:30px 28px 30px;
+  box-shadow:0 2px 0 rgba(255,255,255,.9) inset,0 16px 36px -20px rgba(28,28,28,.22),0 4px 12px -4px rgba(28,28,28,.08);
+  transition:transform .45s cubic-bezier(.22,1,.36,1),box-shadow .45s,border-color .4s}
+/* top accent bar */
+.ic::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;z-index:3;
+  background:linear-gradient(90deg,var(--F),#ff5e8f);transform:scaleX(0);transform-origin:left;
+  transition:transform .55s cubic-bezier(.22,1,.36,1)}
+.ic:hover::before{transform:scaleX(1)}
+/* soft pink wash on hover */
+.ic::after{content:'';position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(125% 92% at 12% -10%,rgba(224,24,92,.09),transparent 56%);
+  opacity:0;transition:opacity .45s}
 .ic:hover::after{opacity:1}
-.ic:hover{border-color:var(--Fb);transform:translateY(-4px);box-shadow:0 22px 56px rgba(28,28,28,.1)}
-.ic-num{font-family:var(--fm);font-size:10px;color:var(--F);letter-spacing:2px;margin-bottom:16px}
-.ic-ico{width:44px;height:44px;border-radius:12px;background:var(--Fa);border:1px solid var(--Fb);display:flex;align-items:center;justify-content:center;margin-bottom:16px}
-.ic-ico svg{width:21px;height:21px;color:var(--F)}
-.ic-title{font-family:var(--fd);font-size:17px;color:var(--K);margin-bottom:5px;letter-spacing:-.3px}
-.ic-strength{font-size:10px;font-weight:600;color:var(--F);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px}
-.ic-desc{font-size:13px;color:rgba(28,28,28,.6);line-height:1.65}
-.icone-cta{text-align:center}
+.ic:hover{transform:translateY(-6px);border-color:var(--Fb);
+  box-shadow:0 2px 0 rgba(255,255,255,.9) inset,0 34px 60px -24px rgba(224,24,92,.32),0 8px 20px -6px rgba(28,28,28,.1)}
+/* numero watermark grande */
+.ic-num{position:absolute;top:20px;right:26px;font-family:var(--fd);font-size:60px;line-height:1;
+  letter-spacing:-2.5px;color:rgba(224,24,92,.07);pointer-events:none;transition:color .45s;z-index:0}
+.ic:hover .ic-num{color:rgba(224,24,92,.13)}
+/* icona tile gradiente fuchsia */
+.ic-ico{position:relative;z-index:2;width:56px;height:56px;border-radius:16px;
+  background:linear-gradient(150deg,#E0185C,#8c163f);display:flex;align-items:center;justify-content:center;
+  margin-bottom:22px;box-shadow:0 12px 26px -10px rgba(224,24,92,.6),inset 0 1px 0 rgba(255,255,255,.3)}
+.ic-ico svg{width:25px;height:25px;color:#fff;stroke-linecap:round;stroke-linejoin:round}
+.ic-title{font-family:var(--fd);font-size:18px;color:var(--K);margin-bottom:10px;letter-spacing:-.4px;position:relative;z-index:2}
+.ic-strength{display:inline-flex;align-items:center;gap:7px;font-size:10px;font-weight:600;
+  color:var(--F);letter-spacing:1.2px;text-transform:uppercase;
+  background:var(--Fa);border:1px solid var(--Fb);border-radius:var(--rp);white-space:nowrap;
+  padding:5px 12px;margin-bottom:16px;position:relative;z-index:2}
+.ic-strength::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--F);flex-shrink:0}
+.ic-desc{font-size:13px;color:rgba(28,28,28,.62);line-height:1.7;position:relative;z-index:2}
+.icone-cta{text-align:center;position:relative;z-index:1}
 
 /* ═══ CTA INTERMEDIA ═══ */
 .cta-mid{background:var(--F);padding:80px 0;text-align:center;position:relative;overflow:hidden}
@@ -856,6 +886,7 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
 
 <!-- ═══ ICONE — I VANTAGGI ═══ -->
 <section class="icone">
+  <div class="icone-ghost" aria-hidden="true">estro</div>
   <div class="ctr">
     <div class="rv">
       <span class="icone-tag">Perché sceglierci</span>
@@ -864,21 +895,21 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
     <div class="ic-grid">
       <div class="ic rv d1">
         <div class="ic-num">01</div>
-        <div class="ic-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <div class="ic-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
         <div class="ic-title">Semplificazione totale</div>
         <div class="ic-strength">Partner unico</div>
         <div class="ic-desc">Un solo referente, un unico flusso di lavoro. Niente coordinamenti complessi tra agenzie diverse, niente dispersione di energie e budget.</div>
       </div>
       <div class="ic rv d2">
         <div class="ic-num">02</div>
-        <div class="ic-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M13 6h3a2 2 0 0 1 2 2v7"/><line x1="6" y1="9" x2="6" y2="21"/></svg></div>
+        <div class="ic-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></div>
         <div class="ic-title">Continuità e strategia</div>
         <div class="ic-strength">Orientamento al risultato</div>
         <div class="ic-desc">Non lavoriamo a singole attività. Costruiamo un percorso continuo, con obiettivi chiari e monitorati nel tempo. Ogni azione ha una direzione.</div>
       </div>
       <div class="ic rv d3">
         <div class="ic-num">03</div>
-        <div class="ic-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+        <div class="ic-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
         <div class="ic-title">Efficienza dei costi</div>
         <div class="ic-strength">Pricing accessibile</div>
         <div class="ic-desc">Accedi a un team completo — strategia, ADV, contenuti — con un investimento più sostenibile rispetto a una struttura interna o a gestire più agenzie.</div>
