@@ -439,8 +439,6 @@ body{font-family:var(--fb);background:var(--K);color:var(--C);overflow-x:hidden;
 /* card image-background */
 .sc-uni{
   background-color:#12060C;
-  background-size:110%;
-  background-position:center;
   border:1px solid rgba(255,255,255,.08);
   border-radius:18px;
   display:flex;flex-direction:column;justify-content:flex-end;
@@ -449,15 +447,24 @@ body{font-family:var(--fb);background:var(--K);color:var(--C);overflow-x:hidden;
   position:relative;
   transition:transform .5s cubic-bezier(.22,1,.36,1),box-shadow .5s,border-color .4s
 }
+/* immagine di sfondo — inset negativo per zoom permanente cover+scale */
+.sc-bg{
+  position:absolute;
+  inset:-10px;
+  background-size:cover;
+  background-position:center;
+  z-index:0;
+  pointer-events:none
+}
 /* dark gradient overlay — sempre presente */
 .sc-uni::after{
-  content:'';position:absolute;inset:0;z-index:0;
-  background:linear-gradient(175deg,rgba(10,3,7,.28) 0%,rgba(10,3,7,.68) 44%,rgba(10,3,7,.97) 100%);
-  transition:background .5s;pointer-events:none
+  content:'';position:absolute;inset:0;z-index:1;
+  background:linear-gradient(175deg,rgba(10,3,7,.25) 0%,rgba(10,3,7,.65) 44%,rgba(10,3,7,.97) 100%);
+  pointer-events:none
 }
 /* fuchsia wash + overlay intensification on hover */
 .sc-uni::before{
-  content:'';position:absolute;inset:0;z-index:1;
+  content:'';position:absolute;inset:0;z-index:2;
   background:
     radial-gradient(75% 50% at 50% 100%,rgba(224,24,92,.32),transparent 68%),
     linear-gradient(175deg,rgba(10,3,7,.14) 0%,rgba(10,3,7,.3) 100%);
@@ -470,7 +477,7 @@ body{font-family:var(--fb);background:var(--K);color:var(--C);overflow-x:hidden;
   box-shadow:0 32px 64px -20px rgba(0,0,0,.8),0 0 0 1px rgba(224,24,92,.14) inset,0 1px 0 rgba(255,255,255,.04) inset
 }
 /* corpo testo — sopra tutti i layer */
-.sc-uni-body{position:relative;z-index:2;padding:22px 20px 24px}
+.sc-uni-body{position:relative;z-index:3;padding:22px 20px 24px}
 /* testo */
 .sc-uni-tag{font-size:8px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(224,24,92,.8);margin-bottom:8px;display:block}
 .sc-uni-title{font-family:var(--fd);font-size:13.5px;color:var(--C);margin-bottom:8px;letter-spacing:-.2px;line-height:1.2}
@@ -1064,8 +1071,9 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
 
     <div class="srv-uni-grid rv">
 
-      <!-- 1. Strategia Marketing — 1604 planning mood -->
-      <div class="sc-uni" style="background-image:url('img servizi/1604-1-1024x1024-1.webp');background-position:center 30%">
+      <!-- 1. Strategia Marketing -->
+      <div class="sc-uni">
+        <div class="sc-bg" style="background-image:url('img servizi/1604-1-1024x1024-1.webp');background-position:center 30%"></div>
         <div class="sc-uni-body">
           <span class="sc-uni-tag">Core</span>
           <div class="sc-uni-title">Strategia Marketing</div>
@@ -1073,8 +1081,9 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
         </div>
       </div>
 
-      <!-- 2. Comunicazione Digitale — 02 editorial -->
-      <div class="sc-uni" style="background-image:url('img servizi/02.webp');background-position:center 40%">
+      <!-- 2. Comunicazione Digitale -->
+      <div class="sc-uni">
+        <div class="sc-bg" style="background-image:url('img servizi/02.webp');background-position:center 40%"></div>
         <div class="sc-uni-body">
           <span class="sc-uni-tag">Digital</span>
           <div class="sc-uni-title">Comunicazione Digitale</div>
@@ -1082,8 +1091,9 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
         </div>
       </div>
 
-      <!-- 3. Advertising — Kasanova product ad -->
-      <div class="sc-uni" style="background-image:url('img servizi/Kasanova-friggitrice-ad-aria1.webp');background-position:center center">
+      <!-- 3. Advertising -->
+      <div class="sc-uni">
+        <div class="sc-bg" style="background-image:url('img servizi/Kasanova-friggitrice-ad-aria1.webp');background-position:center center"></div>
         <div class="sc-uni-body">
           <span class="sc-uni-tag">ADV</span>
           <div class="sc-uni-title">Advertising</div>
@@ -1091,8 +1101,9 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
         </div>
       </div>
 
-      <!-- 4. Content Creation — 1-c-1 creative -->
-      <div class="sc-uni" style="background-image:url('img servizi/1-c-1.webp');background-position:center 35%">
+      <!-- 4. Content Creation -->
+      <div class="sc-uni">
+        <div class="sc-bg" style="background-image:url('img servizi/1-c-1.webp');background-position:center 35%"></div>
         <div class="sc-uni-body">
           <span class="sc-uni-tag">Creative</span>
           <div class="sc-uni-title">Content Creation</div>
@@ -1100,8 +1111,9 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
         </div>
       </div>
 
-      <!-- 5. Branding — 7SEVEN fashion editorial -->
-      <div class="sc-uni" style="background-image:url('img servizi/7SEVEN_SHOOTING_ELISAHASSERT_DEF_15.webp');background-position:center 25%">
+      <!-- 5. Branding -->
+      <div class="sc-uni">
+        <div class="sc-bg" style="background-image:url('img servizi/7SEVEN_SHOOTING_ELISAHASSERT_DEF_15.webp');background-position:center 25%"></div>
         <div class="sc-uni-body">
           <span class="sc-uni-tag">Brand</span>
           <div class="sc-uni-title">Branding</div>
@@ -1109,8 +1121,9 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
         </div>
       </div>
 
-      <!-- 6. Siti Web — 3a layout/design -->
-      <div class="sc-uni" style="background-image:url('img servizi/3a.webp');background-position:center 45%">
+      <!-- 6. Siti Web -->
+      <div class="sc-uni">
+        <div class="sc-bg" style="background-image:url('img servizi/3a.webp');background-position:center 45%"></div>
         <div class="sc-uni-body">
           <span class="sc-uni-tag">Web</span>
           <div class="sc-uni-title">Siti Web & Landing Page</div>
@@ -1118,8 +1131,9 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
         </div>
       </div>
 
-      <!-- 7. SEO — shooting1 strategic/organic -->
-      <div class="sc-uni" style="background-image:url('img servizi/shooting1.webp');background-position:center 30%">
+      <!-- 7. SEO -->
+      <div class="sc-uni">
+        <div class="sc-bg" style="background-image:url('img servizi/shooting1.webp');background-position:center 30%"></div>
         <div class="sc-uni-body">
           <span class="sc-uni-tag">SEO</span>
           <div class="sc-uni-title">SEO</div>
@@ -1127,8 +1141,9 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
         </div>
       </div>
 
-      <!-- 8. Social Media — fantabody social content -->
-      <div class="sc-uni" style="background-image:url('img servizi/fantabody-9.webp');background-position:center 20%">
+      <!-- 8. Social Media -->
+      <div class="sc-uni">
+        <div class="sc-bg" style="background-image:url('img servizi/fantabody-9.webp');background-position:center 20%"></div>
         <div class="sc-uni-body">
           <span class="sc-uni-tag">Social</span>
           <div class="sc-uni-title">Social Media Management</div>
@@ -1136,8 +1151,9 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
         </div>
       </div>
 
-      <!-- 9. Marketing Automation — ChatGPT AI/tech visual -->
-      <div class="sc-uni" style="background-image:url('img servizi/ChatGPT Image 1 giu 2026, 16_32_51.webp');background-position:center center">
+      <!-- 9. Marketing Automation -->
+      <div class="sc-uni">
+        <div class="sc-bg" style="background-image:url('img servizi/ChatGPT Image 1 giu 2026, 16_32_51.webp');background-position:center center"></div>
         <div class="sc-uni-body">
           <span class="sc-uni-tag">Auto</span>
           <div class="sc-uni-title">Marketing Automation</div>
@@ -1145,8 +1161,9 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
         </div>
       </div>
 
-      <!-- 10. Analytics — WhatsApp data/insight visual -->
-      <div class="sc-uni" style="background-image:url('img servizi/WhatsApp Image 2026-06-01 at 16.14.46.webp');background-position:center 35%">
+      <!-- 10. Analytics — DSC00288 -->
+      <div class="sc-uni">
+        <div class="sc-bg" style="background-image:url('img servizi/DSC00288-1024x683-1_11zon.webp');background-position:center 40%"></div>
         <div class="sc-uni-body">
           <span class="sc-uni-tag">Intelligence</span>
           <div class="sc-uni-title">Analytics & Reporting</div>
