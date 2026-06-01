@@ -75,21 +75,25 @@ body{font-family:var(--fb);background:var(--K);color:var(--C);overflow-x:hidden;
 .hp{display:flex;align-items:center;gap:7px;padding:8px 14px;border-radius:var(--rp);background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);font-size:12px;color:rgba(243,239,224,.6)}
 .hp-dot{width:5px;height:5px;border-radius:50%;background:var(--G);flex-shrink:0}
 
-/* Hero Form */
-.hform-wrap{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.09);border-radius:var(--rl);padding:32px;backdrop-filter:blur(12px)}
-.hform-title{font-family:var(--fd);font-size:17px;color:var(--C);letter-spacing:-.4px;margin-bottom:4px}
-.hform-sub{font-size:12px;color:var(--S);margin-bottom:20px}
-.fg{display:flex;flex-direction:column;gap:5px;margin-bottom:10px}
-.fg-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+/* ─── FORM CARD ─── */
+.form-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:24px;padding:32px;backdrop-filter:blur(16px)}
+.form-card-title{font-family:var(--fd);font-size:20px;color:var(--C);letter-spacing:-.5px;margin-bottom:4px;line-height:1.1}
+.form-card-sub{font-size:13px;color:var(--S);margin-bottom:24px}
+.fg{display:flex;flex-direction:column;gap:6px;margin-bottom:12px}
+.fg-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .fg label{font-size:11px;font-weight:500;color:rgba(243,239,224,.45);letter-spacing:.3px}
 .fg label .req{color:var(--F)}
-.fg input,.fg textarea,.fg select{width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:11px 14px;color:var(--C);font-family:var(--fb);font-size:13.5px;transition:border-color .2s;outline:none;-webkit-appearance:none}
-.fg input::placeholder,.fg textarea::placeholder{color:rgba(243,239,224,.22)}
-.fg input:focus,.fg textarea:focus,.fg select:focus{border-color:var(--F);background:rgba(224,24,92,.04)}
+.fg input,.fg textarea,.fg select{width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:13px 16px;color:var(--C);font-family:var(--fb);font-size:14px;transition:border-color .2s,background .2s;outline:none;-webkit-appearance:none}
+.fg input::placeholder,.fg textarea::placeholder{color:rgba(243,239,224,.2)}
+.fg input:focus,.fg textarea:focus,.fg select:focus{border-color:var(--F);background:rgba(224,24,92,.05)}
 .fg select option{background:var(--K2);color:var(--C)}
-.fg textarea{resize:vertical;min-height:68px}
-.f-submit-hero{width:100%;background:var(--F);color:#fff;border:none;padding:14px 24px;border-radius:var(--rp);font-family:var(--fb);font-weight:600;font-size:14.5px;cursor:pointer;margin-top:6px;transition:all .25s;display:flex;align-items:center;justify-content:center;gap:9px}
-.f-submit-hero:hover{background:#c91250;transform:translateY(-2px);box-shadow:0 14px 30px rgba(224,24,92,.3)}
+.fg textarea{resize:vertical;min-height:90px}
+.f-submit{width:100%;background:var(--F);color:#fff;border:none;padding:16px 24px;border-radius:var(--rp);font-family:var(--fb);font-weight:600;font-size:15px;cursor:pointer;margin-top:4px;transition:all .25s;display:flex;align-items:center;justify-content:center;gap:10px;position:relative}
+.f-submit:hover{background:#c91250;transform:translateY(-2px);box-shadow:0 16px 36px rgba(224,24,92,.35)}
+.f-submit-arr{width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.form-note{font-size:10px;color:rgba(243,239,224,.28);text-align:center;margin-top:10px}
+/* legacy aliases */
+.hform-wrap{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:24px;padding:32px;backdrop-filter:blur(16px)}
 .hform-note{font-size:10px;color:rgba(243,239,224,.28);text-align:center;margin-top:10px}
 
 /* ─── STRIP ─── */
@@ -456,22 +460,22 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
       </div>
     </div>
     <div>
-      <div class="hform-wrap">
-        <div class="hform-title">Parliamo del tuo business</div>
-        <div class="hform-sub">Risposta entro 24 ore · Nessun impegno</div>
+      <div class="form-card">
+        <div class="form-card-title">Parliamo del tuo progetto</div>
+        <div class="form-card-sub">Nessun impegno · Una conversazione vera</div>
         <form id="heroForm" onsubmit="heroSub(event)">
           <div class="fg-row">
             <div class="fg"><label>Nome e cognome <span class="req">*</span></label><input type="text" placeholder="Mario Rossi" required></div>
-            <div class="fg"><label>Azienda <span class="req">*</span></label><input type="text" placeholder="Nome azienda" required></div>
+            <div class="fg"><label>Email <span class="req">*</span></label><input type="email" placeholder="mario@azienda.it" required></div>
           </div>
-          <div class="fg"><label>Email <span class="req">*</span></label><input type="email" placeholder="mario@azienda.it" required></div>
           <div class="fg"><label>Numero di telefono</label><input type="tel" placeholder="+39 02 ..."></div>
-          <div class="fg"><label>Qual è la tua sfida principale?</label><textarea placeholder="Marketing, comunicazione, social media, campagne ADV..."></textarea></div>
-          <div class="fg"><label>Sito web (facoltativo)</label><input type="url" placeholder="www.tuodominio.it"></div>
-          <button type="submit" class="f-submit-hero">Invia la richiesta <span class="arr">›</span></button>
+          <div class="fg"><label>Azienda <span class="req">*</span></label><input type="text" placeholder="Nome azienda" required></div>
+          <div class="fg"><label>Sito web (facoltativo)</label><input type="url" placeholder="www.acme.it"></div>
+          <div class="fg"><label>Messaggio</label><textarea placeholder="Descrivici la situazione attuale e cosa vorreste risolvere."></textarea></div>
+          <button type="submit" class="f-submit">Invia la richiesta <span class="f-submit-arr">›</span></button>
         </form>
-        <div id="heroSuccess" style="display:none;background:rgba(76,180,80,.08);border:1px solid rgba(76,180,80,.25);border-radius:var(--rm);padding:16px;text-align:center;color:#4CB450;font-weight:600;margin-top:8px">✓ Ricevuto. Vi contatteremo presto.</div>
-        <div class="hform-note">* Campi obbligatori · Privacy Policy</div>
+        <div id="heroSuccess" style="display:none;background:rgba(76,180,80,.08);border:1px solid rgba(76,180,80,.25);border-radius:12px;padding:16px;text-align:center;color:#4CB450;font-weight:600;margin-top:8px">✓ Ricevuto. Vi contatteremo presto.</div>
+        <div class="form-note">* Campi obbligatori · <a href="#" style="color:rgba(224,24,92,.6);text-decoration:none">Privacy Policy</a></div>
       </div>
     </div>
   </div>
@@ -1041,17 +1045,23 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
       <h2>La consulenza è gratuita. <em>Il primo passo è il più semplice.</em></h2>
       <p class="ff-sub">Raccontaci la tua azienda e la sfida che vuoi risolvere. Vi risponderemo entro 24 ore lavorative, senza impegno e senza preventivi al primo contatto.</p>
     </div>
-    <form class="ff-grid rv" id="mainForm" onsubmit="mainSub(event)">
-      <div class="fg"><label>Nome e cognome <span class="req">*</span></label><input type="text" placeholder="Mario Rossi" required></div>
-      <div class="fg"><label>Email <span class="req">*</span></label><input type="email" placeholder="mario@azienda.it" required></div>
-      <div class="fg"><label>Numero di telefono</label><input type="tel" placeholder="+39 02 ..."></div>
-      <div class="fg"><label>Azienda <span class="req">*</span></label><input type="text" placeholder="Nome azienda" required></div>
-      <div class="fg full"><label>Sito web (facoltativo)</label><input type="url" placeholder="www.tuodominio.it"></div>
-      <div class="fg full"><label>Messaggio</label><textarea placeholder="Raccontaci il tuo business e cosa vorresti migliorare: comunicazione, social, campagne, visibilità..." style="min-height:100px"></textarea></div>
-      <div class="fg full"><button type="submit" class="f-submit-main">Invia la richiesta <span class="arr">›</span></button></div>
-    </form>
-    <div class="fsuccess" id="msuccess">✓ Ricevuto. Vi contatteremo entro 24 ore lavorative.</div>
-    <div class="ff-note rv">* Campi obbligatori · Risposta entro 24 ore lavorative · <a href="#">Privacy Policy</a></div>
+    <div class="form-card rv">
+      <div class="form-card-title">Parliamo del tuo progetto</div>
+      <div class="form-card-sub">Nessun impegno · Una conversazione vera</div>
+      <form id="mainForm" onsubmit="mainSub(event)">
+        <div class="fg-row">
+          <div class="fg"><label>Nome e cognome <span class="req">*</span></label><input type="text" placeholder="Mario Rossi" required></div>
+          <div class="fg"><label>Email <span class="req">*</span></label><input type="email" placeholder="mario@azienda.it" required></div>
+        </div>
+        <div class="fg"><label>Numero di telefono</label><input type="tel" placeholder="+39 02 ..."></div>
+        <div class="fg"><label>Azienda <span class="req">*</span></label><input type="text" placeholder="Nome azienda" required></div>
+        <div class="fg"><label>Sito web (facoltativo)</label><input type="url" placeholder="www.acme.it"></div>
+        <div class="fg"><label>Messaggio</label><textarea placeholder="Descrivici la situazione attuale e cosa vorreste risolvere."></textarea></div>
+        <button type="submit" class="f-submit">Invia la richiesta <span class="f-submit-arr">›</span></button>
+      </form>
+      <div class="fsuccess" id="msuccess">✓ Ricevuto. Vi contatteremo entro 24 ore lavorative.</div>
+      <div class="form-note">* Campi obbligatori · Risposta entro 24 ore lavorative · <a href="#" style="color:rgba(224,24,92,.6);text-decoration:none">Privacy Policy</a></div>
+    </div>
   </div>
 </section>
 
