@@ -139,34 +139,42 @@ body{font-family:var(--fb);background:var(--K);color:var(--C);overflow-x:hidden;
 @keyframes stripsz{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
 /* ═══ TARGET ═══ */
-.target{background:var(--YW);color:var(--K);padding:96px 0;overflow:hidden}
-.target-inner{display:grid;grid-template-columns:1fr 1.15fr;gap:60px;align-items:center}
+.target{background:var(--YW);color:var(--K);padding:96px 0;overflow:hidden;position:relative}
+.target-inner{display:grid;grid-template-columns:1fr 1.1fr;gap:72px;align-items:center}
 .target-tag{font-size:10px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:rgba(28,28,28,.4);display:inline-block;margin-bottom:18px}
 .target-tag::before{content:'— '}
-.target h2{font-family:var(--fd);font-size:clamp(32px,3.8vw,54px);line-height:1.04;letter-spacing:-1.5px;color:var(--K);margin-bottom:26px}
+.target h2{font-family:var(--fd);font-size:clamp(28px,3.2vw,46px);line-height:1.06;letter-spacing:-1.5px;color:var(--K);margin-bottom:20px}
 .target h2 em{font-style:normal;color:var(--F)}
-.target-body{font-size:14px;line-height:1.72;color:rgba(28,28,28,.6);margin-bottom:14px;max-width:460px}
-.target-list{list-style:none;display:flex;flex-direction:column;gap:10px;margin:20px 0 24px}
-.target-list li{display:flex;align-items:center;gap:10px;font-size:14px;color:rgba(28,28,28,.7)}
+.target-body{font-size:15px;line-height:1.72;color:rgba(28,28,28,.62);margin-bottom:20px;max-width:440px}
+.target-list{list-style:none;display:flex;flex-direction:column;gap:9px;margin:0 0 22px}
+.target-list li{display:flex;align-items:center;gap:10px;font-size:13.5px;color:rgba(28,28,28,.7)}
 .tl-dot{width:7px;height:7px;border-radius:50%;background:var(--F);flex-shrink:0}
-.target-italic{font-family:var(--fh);font-size:16px;color:rgba(28,28,28,.45);margin-top:6px}
+.target-italic{font-family:var(--fh);font-size:16px;color:rgba(28,28,28,.42);margin-top:4px}
 
-/* Prima/Dopo visual */
-.pd-wrap{display:flex;flex-direction:column;gap:14px}
-.pd-card{background:#fff;border:1px solid rgba(28,28,28,.1);border-radius:var(--rl);padding:22px 24px;box-shadow:0 8px 28px rgba(28,28,28,.07)}
-.pd-label{font-size:9px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:14px}
-.pd-label.before{color:rgba(28,28,28,.4)}
-.pd-label.after{color:var(--F)}
-.pd-items{display:flex;flex-direction:column;gap:8px}
-.pd-item{display:flex;align-items:center;gap:10px;font-size:12.5px}
-.pd-item-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
-.pd-item-dot.red{background:#E0185C}
-.pd-item-dot.green{background:var(--G)}
-.pd-item.muted{color:rgba(28,28,28,.5)}
-.pd-item.ok{color:rgba(28,28,28,.75);font-weight:500}
-.pd-divider{display:flex;align-items:center;gap:12px;padding:0 4px}
-.pd-divider-line{flex:1;height:1px;background:rgba(28,28,28,.1)}
-.pd-divider-tx{font-family:var(--fh);font-size:15px;color:rgba(28,28,28,.4)}
+/* elemento visivo decorativo */
+.target-deco{position:absolute;bottom:-40px;left:-60px;width:280px;opacity:.08;pointer-events:none;user-select:none}
+
+/* ── ANIMAZIONE CAOS→ORDINE (colonna destra) ── */
+.chaos-wrap{position:relative;height:420px;width:100%}
+.chaos-stage{position:absolute;inset:0}
+
+/* cards volanti — stato caos */
+.ch-card{position:absolute;background:#fff;border-radius:10px;padding:10px 14px;box-shadow:0 4px 18px rgba(28,28,28,.1);display:flex;align-items:center;gap:8px;font-size:11px;font-weight:600;color:var(--K);letter-spacing:.2px;white-space:nowrap;border:1px solid rgba(28,28,28,.07);transition:all 1.4s cubic-bezier(.4,0,.2,1)}
+.ch-card svg{width:13px;height:13px;flex-shrink:0;color:var(--F)}
+.ch-card .ch-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;background:var(--F)}
+
+/* linee di connessione SVG */
+.chaos-svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.ch-line{stroke:var(--F);stroke-width:1;opacity:0;transition:opacity .8s ease,stroke-dashoffset 1s ease}
+.ch-line.visible{opacity:.25}
+
+/* hub centrale */
+.ch-hub{position:absolute;width:56px;height:56px;border-radius:50%;background:var(--F);display:flex;align-items:center;justify-content:center;box-shadow:0 8px 28px rgba(224,24,92,.3);opacity:0;transform:scale(.5);transition:all .8s cubic-bezier(.4,0,.2,1)}
+.ch-hub.visible{opacity:1;transform:scale(1)}
+.ch-hub svg{width:22px;height:22px;color:#fff}
+
+/* label sotto hub */
+.ch-hub-label{position:absolute;font-family:var(--fd);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--F);opacity:0;text-align:center;transition:opacity .6s ease .4s}
 
 /* ═══ SOLUTION ═══ */
 .sol{background:var(--K);padding:96px 0;position:relative;overflow:hidden}
@@ -580,52 +588,57 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
 </div>
 
 <!-- ═══ TARGET ═══ -->
-<section class="target">
+<section class="target" id="target">
+
+  <!-- elemento visivo decorativo in basso a sinistra -->
+  <img src="elemento visivo 1.png" class="target-deco" alt="" aria-hidden="true">
+
   <div class="ctr">
     <div class="target-inner">
+
+      <!-- colonna sinistra: copy ridotta -->
       <div class="rv">
-        <span class="target-tag">Sezione Target</span>
-        <h2>Hai una PMI? E probabilmente sei arrivato fin qui <em>facendo da solo.</em></h2>
-        <p class="target-body">Hai fatto crescere il tuo business con le tue forze, gestendo anche marketing e comunicazione quando serviva. Questo approccio ti ha portato fin qui.</p>
-        <p class="target-body">Ma per fare un salto di qualità servono strategia, continuità e competenze che lavorano insieme. E gestirle internamente diventa complesso e costoso.</p>
+        <span class="target-tag">Per le PMI</span>
+        <h2>Sei arrivato fin qui <em>facendo da solo.</em></h2>
+        <p class="target-body">Hai fatto crescere la tua azienda gestendo marketing e comunicazione quando serviva. Ora, per fare il salto di qualità, servono strategia, continuità e competenze coordinate.</p>
         <ul class="target-list">
-          <li><span class="tl-dot"></span>Troppo tempo speso su social e campagne</li>
-          <li><span class="tl-dot"></span>Messaggi non coerenti tra i canali</li>
-          <li><span class="tl-dot"></span>Difficile capire cosa sta funzionando davvero</li>
-          <li><span class="tl-dot"></span>Budget disperso tra più fornitori senza coordinamento</li>
+          <li><span class="tl-dot"></span>Attività disperse, senza una regia unica</li>
+          <li><span class="tl-dot"></span>Budget frammentato tra fornitori diversi</li>
+          <li><span class="tl-dot"></span>Nessun report chiaro su cosa funziona</li>
         </ul>
-        <p class="target-italic">Non serve fare di più. Serve farlo meglio, con il supporto giusto.</p>
+        <p class="target-italic">Gestirlo da soli, oltre un certo punto, costa di più.</p>
       </div>
 
+      <!-- colonna destra: animazione caos→ordine -->
       <div class="rv d1">
-        <div class="pd-wrap">
-          <div class="pd-card">
-            <div class="pd-label before">Prima — da solo</div>
-            <div class="pd-items">
-              <div class="pd-item muted"><span class="pd-item-dot red"></span>Social media fatti in autonomia</div>
-              <div class="pd-item muted"><span class="pd-item-dot red"></span>Campagne ADV gestite senza strategia</div>
-              <div class="pd-item muted"><span class="pd-item-dot red"></span>3 agenzie diverse che non comunicano</div>
-              <div class="pd-item muted"><span class="pd-item-dot red"></span>Nessun report chiaro sui risultati</div>
-              <div class="pd-item muted"><span class="pd-item-dot red"></span>Budget frammentato e difficile da controllare</div>
-            </div>
+        <div class="chaos-wrap" id="chaosWrap" aria-hidden="true">
+
+          <!-- SVG linee di connessione -->
+          <svg class="chaos-svg" id="chaosSvg" viewBox="0 0 420 420" preserveAspectRatio="xMidYMid meet">
+            <line id="cl0" class="ch-line" stroke-dasharray="6 4"/>
+            <line id="cl1" class="ch-line" stroke-dasharray="6 4"/>
+            <line id="cl2" class="ch-line" stroke-dasharray="6 4"/>
+            <line id="cl3" class="ch-line" stroke-dasharray="6 4"/>
+            <line id="cl4" class="ch-line" stroke-dasharray="6 4"/>
+            <line id="cl5" class="ch-line" stroke-dasharray="6 4"/>
+          </svg>
+
+          <!-- hub centrale Estro -->
+          <div class="ch-hub" id="chHub" style="left:calc(50% - 28px);top:calc(50% - 28px)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
           </div>
-          <div class="pd-divider">
-            <div class="pd-divider-line"></div>
-            <div class="pd-divider-tx">con Estro</div>
-            <div class="pd-divider-line"></div>
-          </div>
-          <div class="pd-card">
-            <div class="pd-label after">Dopo — con Estro</div>
-            <div class="pd-items">
-              <div class="pd-item ok"><span class="pd-item-dot green"></span>Un unico team che gestisce tutto</div>
-              <div class="pd-item ok"><span class="pd-item-dot green"></span>Strategia, contenuti e ADV coordinati</div>
-              <div class="pd-item ok"><span class="pd-item-dot green"></span>Un solo referente per ogni esigenza</div>
-              <div class="pd-item ok"><span class="pd-item-dot green"></span>Report mensile chiaro e leggibile</div>
-              <div class="pd-item ok"><span class="pd-item-dot green"></span>Budget ottimizzato sui canali che funzionano</div>
-            </div>
-          </div>
+          <div class="ch-hub-label" id="chHubLabel" style="left:calc(50% - 40px);top:calc(50% + 36px);width:80px">UN UNICO<br>TEAM</div>
+
+          <!-- cards attività marketing -->
+          <div class="ch-card" id="cc0" data-i="0"><span class="ch-dot"></span>Social Media</div>
+          <div class="ch-card" id="cc1" data-i="1"><span class="ch-dot"></span>Campagne ADV</div>
+          <div class="ch-card" id="cc2" data-i="2"><span class="ch-dot"></span>SEO</div>
+          <div class="ch-card" id="cc3" data-i="3"><span class="ch-dot"></span>Content</div>
+          <div class="ch-card" id="cc4" data-i="4"><span class="ch-dot"></span>Analytics</div>
+          <div class="ch-card" id="cc5" data-i="5"><span class="ch-dot"></span>Branding</div>
         </div>
       </div>
+
     </div>
   </div>
 </section>
@@ -1228,6 +1241,82 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
 function quickSub(e){e.preventDefault();e.target.style.display='none';document.getElementById('qsuccess').style.display='block'}
 function heroSub(e){e.preventDefault();document.getElementById('heroForm').style.display='none';document.getElementById('heroSuccess').style.display='block'}
 function mainSub(e){e.preventDefault();document.getElementById('mainForm').style.display='none';document.getElementById('msuccess').style.display='block';return false}
+
+/* ── ANIMAZIONE CAOS→ORDINE (sezione target) ── */
+(function(){
+  const wrap=document.getElementById('chaosWrap');
+  if(!wrap)return;
+  const cards=[0,1,2,3,4,5].map(i=>document.getElementById('cc'+i));
+  const hub=document.getElementById('chHub');
+  const label=document.getElementById('chHubLabel');
+  const lines=[0,1,2,3,4,5].map(i=>document.getElementById('cl'+i));
+
+  const chaosPos=[
+    {x:8, y:8},{x:62,y:4},{x:78,y:22},
+    {x:4, y:52},{x:68,y:58},{x:22,y:72}
+  ];
+
+  function orbitPos(i,total){
+    const a=(i/total)*Math.PI*2-Math.PI/2;
+    return{x:50+34*Math.cos(a), y:50+30*Math.sin(a)};
+  }
+
+  function setPx(el,xP,yP){
+    const w=wrap.offsetWidth,h=wrap.offsetHeight;
+    el.style.left=(xP/100*w-el.offsetWidth/2)+'px';
+    el.style.top=(yP/100*h-el.offsetHeight/2)+'px';
+  }
+
+  function setLine(ln,x1,y1,x2,y2){
+    ln.setAttribute('x1',x1/100*420);
+    ln.setAttribute('y1',y1/100*420);
+    ln.setAttribute('x2',x2/100*420);
+    ln.setAttribute('y2',y2/100*420);
+  }
+
+  function applyState(state,animate){
+    if(!animate) cards.forEach(c=>{c.style.transition='none'});
+    if(state==='chaos'){
+      cards.forEach((c,i)=>{
+        setPx(c,chaosPos[i].x,chaosPos[i].y);
+        c.style.opacity='0.5';
+        c.style.transform='rotate('+(i%2===0?i*8:-i*7)+'deg)';
+      });
+      hub.classList.remove('visible');
+      label.style.opacity='0';
+      lines.forEach(l=>l.classList.remove('visible'));
+    } else {
+      cards.forEach((c,i)=>{
+        const o=orbitPos(i,cards.length);
+        setPx(c,o.x,o.y);
+        c.style.opacity='1';
+        c.style.transform='rotate(0deg)';
+        setLine(lines[i],50,50,o.x,o.y);
+        lines[i].classList.add('visible');
+      });
+      hub.classList.add('visible');
+      label.style.opacity='1';
+    }
+    if(!animate) setTimeout(()=>cards.forEach(c=>{c.style.transition=''}),30);
+  }
+
+  applyState('chaos',false);
+  let fired=false;
+  const tObs=new IntersectionObserver(es=>{
+    es.forEach(e=>{
+      if(e.isIntersecting&&!fired){
+        fired=true;
+        setTimeout(()=>applyState('order',true),350);
+        setInterval(()=>{
+          applyState('chaos',true);
+          setTimeout(()=>applyState('order',true),2400);
+        },5600);
+        tObs.disconnect();
+      }
+    });
+  },{threshold:0.3});
+  tObs.observe(wrap);
+})();
 </script>
 </body>
 </html>
