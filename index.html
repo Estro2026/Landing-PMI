@@ -255,7 +255,7 @@ body{font-family:var(--fb);background:var(--K);color:var(--C);overflow-x:hidden;
 .sol{background:var(--K);padding:96px 0;position:relative;overflow:hidden}
 .sol::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(224,24,92,.022) 1px,transparent 1px);background-size:40px 40px;pointer-events:none}
 .sol-glow{position:absolute;left:-120px;top:50%;transform:translateY(-50%);width:560px;height:560px;background:radial-gradient(circle,rgba(224,24,92,.07),transparent 60%);pointer-events:none}
-.sol-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:64px;align-items:center;position:relative;z-index:2}
+.sol-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:64px;align-items:center;position:relative;z-index:2}
 .sol-tag{font-size:10px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--F);display:inline-block;margin-bottom:16px}
 .sol-tag::before{content:'— '}
 .sol h2{font-family:var(--fd);font-size:clamp(28px,3.2vw,44px);line-height:1.07;letter-spacing:-1.2px;color:var(--C);margin-bottom:20px}
@@ -265,21 +265,38 @@ body{font-family:var(--fb);background:var(--K);color:var(--C);overflow-x:hidden;
 .sol-bullets li{display:flex;align-items:center;gap:10px;font-size:13.5px;color:rgba(243,239,224,.7)}
 .sb-dot{width:5px;height:5px;border-radius:50%;background:var(--G);flex-shrink:0}
 
-/* Team card */
-.team-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:24px;overflow:hidden}
-.tc-header{background:linear-gradient(135deg,#2A0A1A,#1A0810,#200A14);padding:20px 24px;border-bottom:1px solid rgba(255,255,255,.08)}
-.tc-label{font-size:9px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:rgba(224,24,92,.7);margin-bottom:8px}
-.tc-title{font-family:var(--fd);font-size:20px;color:var(--C);letter-spacing:-.5px}
-.tc-body{padding:24px}
-.tc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
-.tc-role{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:16px;transition:all .3s}
-.tc-role:hover{border-color:rgba(224,24,92,.3);background:rgba(224,24,92,.04)}
-.tc-ico{width:32px;height:32px;border-radius:9px;background:var(--Fa);border:1px solid var(--Fb);display:flex;align-items:center;justify-content:center;margin-bottom:10px}
-.tc-ico svg{width:15px;height:15px;color:var(--F)}
-.tc-role-name{font-family:var(--fd);font-size:12px;color:var(--C);margin-bottom:4px;letter-spacing:-.2px}
-.tc-role-desc{font-size:10.5px;color:var(--S);line-height:1.5}
-.tc-footer{border-top:1px solid rgba(255,255,255,.06);padding:14px 24px;text-align:center}
-.tc-footer p{font-family:var(--fh);font-size:15px;color:rgba(243,239,224,.45)}
+/* ── ANIMAZIONE SOL: moodboard creativo disperso → sistema coordinato ── */
+.cr-stage{position:relative;height:480px;width:100%;overflow:hidden;border-radius:20px;background:#111}
+/* float keyframes per 4 card, ognuna indipendente */
+@keyframes crF0{0%,100%{transform:rotate(-6deg) translate(0,0) scale(1)}45%{transform:rotate(-4.5deg) translate(-6px,-8px) scale(1.02)}}
+@keyframes crF1{0%,100%{transform:rotate(4deg) translate(0,0) scale(1)}60%{transform:rotate(5.5deg) translate(7px,-5px) scale(.98)}}
+@keyframes crF2{0%,100%{transform:rotate(-2deg) translate(0,0) scale(1)}50%{transform:rotate(-3.5deg) translate(-4px,7px) scale(1.01)}}
+@keyframes crF3{0%,100%{transform:rotate(7deg) translate(0,0) scale(1)}55%{transform:rotate(5deg) translate(5px,6px) scale(1.015)}}
+.cr-img{position:absolute;overflow:hidden;border-radius:12px;box-shadow:0 12px 40px rgba(0,0,0,.55);transition:opacity .5s ease,transform .6s cubic-bezier(.4,0,.2,1),top .6s cubic-bezier(.4,0,.2,1),left .6s cubic-bezier(.4,0,.2,1),width .6s cubic-bezier(.4,0,.2,1),height .6s cubic-bezier(.4,0,.2,1),border-radius .6s ease}
+.cr-img img{width:100%;height:100%;object-fit:cover;display:block}
+/* scatter positions */
+#cr0{width:48%;height:52%;top:4%;left:2%;z-index:4}
+#cr1{width:44%;height:48%;top:6%;left:52%;z-index:3}
+#cr2{width:46%;height:46%;top:46%;left:6%;z-index:2}
+#cr3{width:42%;height:44%;top:48%;left:54%;z-index:1}
+/* float animations in scatter */
+.cr-stage.is-scatter #cr0{animation:crF0 4.1s ease-in-out infinite}
+.cr-stage.is-scatter #cr1{animation:crF1 3.7s ease-in-out infinite .6s}
+.cr-stage.is-scatter #cr2{animation:crF2 4.5s ease-in-out infinite 1.1s}
+.cr-stage.is-scatter #cr3{animation:crF3 3.9s ease-in-out infinite .3s}
+/* resolving: convergono al centro, si rimpiccioliscono */
+.cr-stage.is-resolving .cr-img{animation:none!important;opacity:.7;transform:scale(.82)!important}
+/* done: moodboard editoriale sovrapposto */
+.cr-stage.is-done #cr0{top:5%;left:3%;width:54%;height:54%;z-index:4;transform:rotate(-2.5deg)!important;animation:none!important;opacity:1}
+.cr-stage.is-done #cr1{top:2%;left:44%;width:52%;height:48%;z-index:3;transform:rotate(2deg)!important;animation:none!important;opacity:1}
+.cr-stage.is-done #cr2{top:44%;left:2%;width:50%;height:50%;z-index:2;transform:rotate(1.5deg)!important;animation:none!important;opacity:1}
+.cr-stage.is-done #cr3{top:46%;left:46%;width:50%;height:50%;z-index:1;transform:rotate(-1deg)!important;animation:none!important;opacity:1}
+/* label Estro centrale in done */
+.cr-lbl{position:absolute;z-index:10;left:50%;top:50%;transform:translate(-50%,-50%) scale(.85);background:var(--F);color:#fff;font-family:var(--fd);font-size:11px;letter-spacing:2.5px;text-transform:uppercase;padding:9px 20px;border-radius:40px;white-space:nowrap;opacity:0;transition:opacity .5s ease .3s,transform .5s cubic-bezier(.34,1.4,.64,1) .3s;pointer-events:none;box-shadow:0 8px 28px rgba(224,24,92,.45)}
+.cr-stage.is-done .cr-lbl{opacity:1;transform:translate(-50%,-50%) scale(1)}
+/* label di stato fase scatter */
+.cr-phase{position:absolute;bottom:14px;left:0;right:0;text-align:center;z-index:8;font-family:var(--fm);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(243,239,224,.25);transition:opacity .4s}
+.cr-stage.is-resolving .cr-phase,.cr-stage.is-done .cr-phase{opacity:0}
 
 /* ═══ ICONE ═══ */
 .icone{background:var(--C2);color:var(--K);padding:96px 0}
@@ -526,8 +543,9 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
   .steps{grid-template-columns:1fr}
   .logo-grid{grid-template-columns:repeat(2,1fr)}
   .logo-grid-real{grid-template-columns:repeat(2,1fr)}
-  .tc-grid{grid-template-columns:1fr}
+  .cr-stage{height:340px}
 }
+
 </style>
 </head>
 <body>
@@ -809,10 +827,24 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
   <div class="sol-glow"></div>
   <div class="ctr">
     <div class="sol-grid">
+
+      <!-- colonna sinistra: ecosistema creativo animato -->
+      <div class="rv d1">
+        <div class="cr-stage" id="crStage" aria-hidden="true">
+          <div class="cr-img" id="cr0"><img src="Creatività/Selvatica-piano-creativo-4_Pagina_09.webp" alt="" loading="lazy"></div>
+          <div class="cr-img" id="cr1"><img src="Creatività/POST_Combo-perfetta.webp" alt="" loading="lazy"></div>
+          <div class="cr-img" id="cr2"><img src="Creatività/fantabody-9.webp" alt="" loading="lazy"></div>
+          <div class="cr-img" id="cr3"><img src="Creatività/DRESSO_1_0434.webp" alt="" loading="lazy"></div>
+          <div class="cr-lbl">Un unico partner</div>
+          <div class="cr-phase">Progetti indipendenti</div>
+        </div>
+      </div>
+
+      <!-- colonna destra: copy -->
       <div class="rv">
         <span class="sol-tag">La Soluzione</span>
-        <h2>"Un unico partner per gestire tutta la tua <em>comunicazione."</em></h2>
-        <p class="sol-desc">Non siamo un fornitore in più da coordinare. Siamo il tuo team di marketing esterno: gestiamo strategia, esecuzione e ottimizzazione come un sistema unico, liberandoti dal peso di seguire tutto da solo.</p>
+        <h2>Un unico partner per gestire tutta la tua <em>comunicazione.</em></h2>
+        <p class="sol-desc">Con Estro hai un team multidisciplinare che lavora come un'estensione della tua azienda. Strategia, contenuti, advertising e supporto operativo coordinati da un unico referente.</p>
         <ul class="sol-bullets">
           <li><span class="sb-dot"></span>Strategia costruita intorno ai tuoi obiettivi di business</li>
           <li><span class="sb-dot"></span>Gestione continuativa, non a progetto isolato</li>
@@ -822,41 +854,6 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
         <a href="#contatti" class="btn bo btn-lg">Sentiamoci <span class="arr">›</span></a>
       </div>
 
-      <div class="rv d1">
-        <div class="team-card">
-          <div class="tc-header">
-            <div class="tc-label">Il tuo team Estro</div>
-            <div class="tc-title">Tutte le competenze, un unico partner</div>
-          </div>
-          <div class="tc-body">
-            <div class="tc-grid">
-              <div class="tc-role">
-                <div class="tc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 3"/></svg></div>
-                <div class="tc-role-name">Strategia</div>
-                <div class="tc-role-desc">Obiettivi, roadmap e KPI condivisi con te</div>
-              </div>
-              <div class="tc-role">
-                <div class="tc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
-                <div class="tc-role-name">ADV & Digital</div>
-                <div class="tc-role-desc">Google, Meta, LinkedIn ottimizzati per risultati</div>
-              </div>
-              <div class="tc-role">
-                <div class="tc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/></svg></div>
-                <div class="tc-role-name">Contenuti</div>
-                <div class="tc-role-desc">Social, web, email con un'unica voce</div>
-              </div>
-              <div class="tc-role">
-                <div class="tc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
-                <div class="tc-role-name">Analytics</div>
-                <div class="tc-role-desc">Dati, report e ottimizzazione continua</div>
-              </div>
-            </div>
-          </div>
-          <div class="tc-footer">
-            <p>Un team coordinato da un unico referente.</p>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </section>
@@ -1591,6 +1588,33 @@ function mainSub(e){e.preventDefault();document.getElementById('mainForm').style
   },{threshold:0.3});
 
   } /* end if(false) */
+})();
+
+/* ── Animazione Soluzione: ecosistema creativo disperso → sistema coordinato ── */
+(function(){
+  const stage=document.getElementById('crStage');
+  if(!stage)return;
+  const noMotion=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  let t,running=false;
+  function goScatter(){stage.className='cr-stage is-scatter'}
+  function goResolving(){stage.className='cr-stage is-resolving'}
+  function goDone(){stage.className='cr-stage is-done'}
+  function cycle(){
+    goScatter();
+    t=setTimeout(()=>{
+      goResolving();
+      t=setTimeout(()=>{goDone();t=setTimeout(cycle,4000);},650);
+    },4200);
+  }
+  if(noMotion){goDone();return;}
+  goScatter();
+  const io=new IntersectionObserver(es=>{
+    es.forEach(e=>{
+      if(e.isIntersecting&&!running){running=true;cycle();}
+      else if(!e.isIntersecting&&running){running=false;clearTimeout(t);goScatter();}
+    });
+  },{threshold:0.25});
+  io.observe(stage);
 })();
 </script>
 </body>
