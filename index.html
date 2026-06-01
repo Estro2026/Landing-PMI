@@ -296,15 +296,34 @@ body{font-family:var(--fb);background:var(--K);color:var(--C);overflow-x:hidden;
 .cr-stage.is-done .cr-badge{opacity:1;transform:translate(-50%,-50%) scale(1)}
 
 /* ═══ ICONE ═══ */
-.icone{background:var(--C2);color:var(--K);padding:96px 0;position:relative;overflow:hidden}
-/* texture puntini */
-.icone::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(28,28,28,.045) 1px,transparent 1px);background-size:36px 36px;pointer-events:none;z-index:0}
-/* ghost strip fuchsia in alto */
-.icone-accent{position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(224,24,92,.25) 30%,rgba(224,24,92,.25) 70%,transparent);pointer-events:none;z-index:0}
-/* alone luminoso in alto a sinistra */
-.icone-glow{position:absolute;top:-80px;left:-60px;width:480px;height:480px;background:radial-gradient(circle,rgba(224,24,92,.06),transparent 65%);pointer-events:none;z-index:0}
-/* gradiente verticale leggero: la sezione si schiarisce verso il basso, dando profondità */
-.icone::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(28,28,28,.045) 0%,transparent 40%,rgba(28,28,28,.03) 100%);pointer-events:none;z-index:0}
+.icone{
+  background:linear-gradient(160deg,#EDE8DC 0%,var(--C2) 45%,#E8E2D4 100%);
+  color:var(--K);padding:96px 0;position:relative;overflow:hidden
+}
+/* dot grid */
+.icone::before{
+  content:'';position:absolute;inset:0;
+  background-image:radial-gradient(circle,rgba(28,28,28,.05) 1px,transparent 1px);
+  background-size:32px 32px;pointer-events:none;z-index:0
+}
+/* vignetta perimetrale — isola la sezione */
+.icone::after{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 90% 90% at 50% 50%,transparent 50%,rgba(28,28,28,.06) 100%);
+  pointer-events:none;z-index:0
+}
+/* accent line superiore fuchsia */
+.icone-accent{position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(224,24,92,.28) 30%,rgba(224,24,92,.28) 70%,transparent);pointer-events:none;z-index:1}
+/* glow fuchsia top-left */
+.icone-glow{position:absolute;top:-100px;left:-80px;width:560px;height:560px;background:radial-gradient(circle,rgba(224,24,92,.07),transparent 62%);pointer-events:none;z-index:0}
+/* secondo glow bottom-right — simmetria morbida */
+.icone-glow2{position:absolute;bottom:-120px;right:-80px;width:480px;height:480px;background:radial-gradient(circle,rgba(224,24,92,.05),transparent 60%);pointer-events:none;z-index:0}
+/* noise grain */
+.icone-grain{
+  position:absolute;inset:0;pointer-events:none;z-index:0;opacity:.04;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  background-repeat:repeat;background-size:200px 200px
+}
 .icone-tag{font-size:10px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:rgba(28,28,28,.4);display:block;margin-bottom:14px}
 .icone-tag::before{content:'— '}
 .icone h2{font-family:var(--fd);font-size:clamp(28px,3vw,42px);line-height:1.07;letter-spacing:-1.2px;color:var(--K);margin-bottom:46px;max-width:540px}
@@ -937,6 +956,8 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
 <section class="icone">
   <div class="icone-accent" aria-hidden="true"></div>
   <div class="icone-glow" aria-hidden="true"></div>
+  <div class="icone-glow2" aria-hidden="true"></div>
+  <div class="icone-grain" aria-hidden="true"></div>
   <div class="ctr">
     <div class="rv">
       <span class="icone-tag">Perché sceglierci</span>
