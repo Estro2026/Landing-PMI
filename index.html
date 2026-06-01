@@ -59,48 +59,40 @@ body{font-family:var(--fb);background:var(--K);color:var(--C);overflow-x:hidden;
 .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
 
 /* ═══════════════════════════════════════════════════════
-   HERO — layout a due zone chiare
-   Sinistra: sfondo solido scuro, copy ad alto contrasto
-   Destra: immagine decorativa contenuta + form opaco
+   HERO — conversione-first
+   Sinistra: H1 → copy → form (above the fold su desktop)
+   Destra: immagine dominante full-height
    ═══════════════════════════════════════════════════════ */
-.hero{position:relative;min-height:100vh;display:flex;align-items:stretch;background:var(--K);overflow:hidden}
+.hero{position:relative;min-height:100vh;display:grid;grid-template-columns:1fr 1fr;background:var(--K);overflow:hidden}
 
-/* glow rosa — solo sul lato destro, non interferisce col testo */
-.hero-glow{position:absolute;top:-10%;right:-5%;width:700px;height:700px;background:radial-gradient(circle,rgba(224,24,92,.11),transparent 58%);pointer-events:none;z-index:0}
-.hero-glow2{position:absolute;bottom:-10%;right:10%;width:500px;height:500px;background:radial-gradient(circle,rgba(224,24,92,.06),transparent 65%);pointer-events:none;z-index:0}
-@keyframes glowpulse{0%,100%{opacity:.7;transform:scale(1)}50%{opacity:1;transform:scale(1.06)}}
+/* ── COLONNA SINISTRA: contenuto + form ── */
+.hero-copy{display:flex;flex-direction:column;justify-content:center;padding:120px var(--px) 80px;position:relative;z-index:2;background:var(--K)}
 
-/* griglia principale: due colonne simmetriche */
-.hero-inner{position:relative;z-index:2;max-width:var(--mx);margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:0;align-items:stretch;padding:0 var(--px)}
-
-/* ── COLONNA SINISTRA: copy su sfondo solido ── */
-.hero-copy{display:flex;flex-direction:column;justify-content:center;padding:120px 56px 80px 0;position:relative;z-index:2}
-/* separatore verticale sottile tra le due colonne */
-.hero-copy::after{content:'';position:absolute;right:0;top:15%;bottom:15%;width:1px;background:linear-gradient(to bottom,transparent,rgba(255,255,255,.08) 30%,rgba(255,255,255,.08) 70%,transparent)}
+/* sottile accent line rossa a sinistra della colonna */
+.hero-copy::before{content:'';position:absolute;left:0;top:20%;bottom:20%;width:3px;background:linear-gradient(to bottom,transparent,var(--F) 30%,var(--F) 70%,transparent);border-radius:3px}
 
 /* badge */
 .hero-badge{display:inline-flex;align-items:center;gap:8px;padding:7px 16px;border-radius:var(--rp);background:var(--Fa);border:1px solid var(--Fb);color:var(--F);font-size:10px;font-weight:600;letter-spacing:2.8px;text-transform:uppercase;margin-bottom:28px;width:fit-content}
 .hero-badge-dot{width:6px;height:6px;border-radius:50%;background:var(--F);animation:blink 2.4s ease-in-out infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
 
-/* headline — sfondo solido, contrasto massimo */
-.hero h1{font-family:var(--fd);font-size:clamp(36px,3.8vw,60px);line-height:1.02;letter-spacing:-2px;color:var(--C);margin-bottom:22px}
+/* headline */
+.hero h1{font-family:var(--fd);font-size:clamp(34px,3.4vw,56px);line-height:1.04;letter-spacing:-2px;color:var(--C);margin-bottom:18px}
 .hero h1 em{font-style:normal;color:var(--F);display:block}
-.hero-sub{font-size:15px;line-height:1.74;color:var(--C3);max-width:440px;margin-bottom:36px}
-.hero-pills{display:flex;gap:8px;flex-wrap:wrap;margin-top:28px}
-.hp{display:flex;align-items:center;gap:7px;padding:8px 14px;border-radius:var(--rp);background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);font-size:12px;color:rgba(243,239,224,.6)}
-.hp-dot{width:5px;height:5px;border-radius:50%;background:var(--G);flex-shrink:0}
 
-/* ── COLONNA DESTRA: immagine decorativa + form ── */
-.hero-form-col{display:flex;flex-direction:column;justify-content:center;padding:100px 0 80px 56px;position:relative;z-index:2}
+/* body copy — max 2 righe */
+.hero-sub{font-size:15px;line-height:1.65;color:var(--C3);max-width:420px;margin-bottom:32px}
 
-/* immagine decorativa: contenuta sopra il form, non dietro il testo */
-.hero-img-wrap{position:relative;margin-bottom:28px;border-radius:var(--rl);overflow:hidden;height:180px}
-.hero-img-wrap img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;filter:brightness(.85) saturate(1.1)}
-.hero-img-wrap::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(28,28,28,.7) 100%)}
+/* form card integrata nella colonna — sfondo solido, nessun glassmorphism */
+.hero-form-card{background:#0F0F0F;border:1px solid rgba(255,255,255,.11);border-radius:20px;padding:28px 28px 24px;box-shadow:0 20px 50px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.07),0 0 0 1px rgba(224,24,92,.06) inset}
 
-/* form card: sfondo opaco, nessun glassmorphism */
-.hero-form-card{background:#111111;border:1px solid rgba(255,255,255,.12);border-radius:24px;padding:32px;box-shadow:0 24px 60px rgba(0,0,0,.45),0 0 0 1px rgba(224,24,92,.07) inset}
+/* ── COLONNA DESTRA: immagine full-height dominante ── */
+.hero-img-col{position:relative;overflow:hidden;min-height:100vh}
+.hero-img-col img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center center;display:block}
+/* gradiente sottile sul bordo sinistro: raccorda con il colore della colonna sinistra */
+.hero-img-col::before{content:'';position:absolute;inset:0;background:linear-gradient(to right,rgba(28,28,28,.35) 0%,transparent 22%);z-index:1;pointer-events:none}
+/* overlay bassissimo per aumentare profondità senza coprire l'immagine */
+.hero-img-col::after{content:'';position:absolute;inset:0;background:rgba(0,0,0,.08);z-index:1;pointer-events:none}
 
 /* ─── FORM CARD ─── */
 .form-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:24px;padding:32px;backdrop-filter:blur(16px)}
@@ -406,11 +398,11 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
 .modal .msub{font-size:12px;color:var(--S);margin-bottom:20px}
 
 @media(max-width:1100px){
-  .hero-inner,.target-inner,.sol-grid,.ben-grid{grid-template-columns:1fr;gap:40px}
-  .hero-copy{padding:120px 0 40px;border-right:none}
-  .hero-copy::after{display:none}
-  .hero-form-col{padding:0 0 80px}
-  .hero-img-wrap{height:140px}
+  .hero{grid-template-columns:1fr;grid-template-rows:auto auto}
+  .hero-copy{padding:100px var(--px) 56px;order:1}
+  .hero-copy::before{display:none}
+  .hero-img-col{order:3;min-height:320px;height:320px}
+  .target-inner,.sol-grid,.ben-grid{grid-template-columns:1fr;gap:40px}
   .ic-grid,.srv-grid{grid-template-columns:repeat(2,1fr)}
   .srv-grid-2x2{grid-template-columns:repeat(3,1fr)}
   .steps{grid-template-columns:repeat(2,1fr);gap:24px}
@@ -429,6 +421,8 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
 }
 @media(max-width:640px){
   :root{--px:20px}
+  .hero-img-col{min-height:240px;height:240px}
+  .hero-copy{padding:90px var(--px) 48px}
   .ic-grid,.srv-grid,.srv-grid-2x2,.ff-grid,.sp-grid{grid-template-columns:1fr}
   .ff-grid .fg.full{grid-column:1}
   .steps{grid-template-columns:1fr}
@@ -476,53 +470,40 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
 
 <!-- ═══ HERO ═══ -->
 <section class="hero">
-  <div class="hero-glow" aria-hidden="true"></div>
-  <div class="hero-glow2" aria-hidden="true"></div>
 
-  <div class="hero-inner">
+  <!-- ── COLONNA SINISTRA: H1 → copy (2 righe) → form ── -->
+  <div class="hero-copy">
+    <div class="hero-badge"><span class="hero-badge-dot"></span>Agenzia di comunicazione per PMI · Milano</div>
+    <h1>Un team completo<em>a costi sostenibili.</em></h1>
+    <p class="hero-sub">Un unico partner per strategia, digital, contenuti e ADV — senza il costo di un team interno.</p>
 
-    <!-- ── COLONNA SINISTRA: copy su sfondo solido, contrasto massimo ── -->
-    <div class="hero-copy">
-      <div class="hero-badge"><span class="hero-badge-dot"></span>Agenzia di comunicazione per PMI · Milano</div>
-      <h1>Un team completo<em>a costi sostenibili.</em></h1>
-      <p class="hero-sub">Non devi più gestire tutto da solo. Con Estro hai un unico partner per strategia, digital, contenuti e ADV — senza il costo di un team interno e senza coordinare più agenzie.</p>
-      <a href="#contatti" class="btn bf btn-lg">Richiedi una consulenza gratuita <span class="arr">›</span></a>
-      <div class="hero-pills">
-        <div class="hp"><span class="hp-dot"></span>Team completo</div>
-        <div class="hp"><span class="hp-dot"></span>Un unico referente</div>
-        <div class="hp"><span class="hp-dot"></span>Costi certi e accessibili</div>
-      </div>
-    </div>
-
-    <!-- ── COLONNA DESTRA: immagine + form opaco ── -->
-    <div class="hero-form-col">
-
-      <!-- immagine decorativa: contenuta, non sotto il testo -->
-      <div class="hero-img-wrap">
-        <img src="Reference/band-ID.png" alt="Estro — comunicazione e marketing per PMI" loading="eager">
-      </div>
-
-      <!-- form card: sfondo opaco solid, nessun glassmorphism -->
-      <div class="hero-form-card">
-        <div class="form-card-title">Parliamo del tuo progetto</div>
-        <div class="form-card-sub">Nessun impegno · Una conversazione vera</div>
-        <form id="heroForm" onsubmit="heroSub(event)">
-          <div class="fg-row">
-            <div class="fg"><label>Nome e cognome <span class="req">*</span></label><input type="text" placeholder="Mario Rossi" required></div>
-            <div class="fg"><label>Email <span class="req">*</span></label><input type="email" placeholder="mario@azienda.it" required></div>
-          </div>
-          <div class="fg"><label>Numero di telefono</label><input type="tel" placeholder="+39 02 ..."></div>
+    <!-- form direttamente sotto il copy, above the fold -->
+    <div class="hero-form-card">
+      <div class="form-card-title">Richiedi una consulenza gratuita</div>
+      <div class="form-card-sub">Nessun impegno · Risposta entro 24 ore</div>
+      <form id="heroForm" onsubmit="heroSub(event)">
+        <div class="fg-row">
+          <div class="fg"><label>Nome e cognome <span class="req">*</span></label><input type="text" placeholder="Mario Rossi" required></div>
+          <div class="fg"><label>Email <span class="req">*</span></label><input type="email" placeholder="mario@azienda.it" required></div>
+        </div>
+        <div class="fg-row">
+          <div class="fg"><label>Telefono</label><input type="tel" placeholder="+39 02 ..."></div>
           <div class="fg"><label>Azienda <span class="req">*</span></label><input type="text" placeholder="Nome azienda" required></div>
-          <div class="fg"><label>Sito web (facoltativo)</label><input type="url" placeholder="www.acme.it"></div>
-          <div class="fg"><label>Messaggio</label><textarea placeholder="Descrivici la situazione attuale e cosa vorreste risolvere."></textarea></div>
-          <button type="submit" class="f-submit">Invia la richiesta <span class="f-submit-arr">›</span></button>
-        </form>
-        <div id="heroSuccess" style="display:none;background:rgba(76,180,80,.08);border:1px solid rgba(76,180,80,.25);border-radius:12px;padding:16px;text-align:center;color:#4CB450;font-weight:600;margin-top:8px">✓ Ricevuto. Vi contatteremo presto.</div>
-        <div class="form-note">* Campi obbligatori · <a href="#" style="color:rgba(224,24,92,.6);text-decoration:none">Privacy Policy</a></div>
-      </div>
+        </div>
+        <div class="fg"><label>Sito web (facoltativo)</label><input type="url" placeholder="www.acme.it"></div>
+        <div class="fg"><label>Messaggio</label><textarea placeholder="Descrivici la situazione attuale e cosa vorreste risolvere."></textarea></div>
+        <button type="submit" class="f-submit">Invia la richiesta <span class="f-submit-arr">›</span></button>
+      </form>
+      <div id="heroSuccess" style="display:none;background:rgba(76,180,80,.08);border:1px solid rgba(76,180,80,.25);border-radius:12px;padding:16px;text-align:center;color:#4CB450;font-weight:600;margin-top:8px">✓ Ricevuto. Vi contatteremo presto.</div>
+      <div class="form-note">* Campi obbligatori · <a href="#" style="color:rgba(224,24,92,.6);text-decoration:none">Privacy Policy</a></div>
     </div>
-
   </div>
+
+  <!-- ── COLONNA DESTRA: immagine dominante full-height ── -->
+  <div class="hero-img-col">
+    <img src="ChatGPT Image 1 giu 2026, 11_10_00.png" alt="Team Estro — strategia e marketing per PMI" loading="eager" fetchpriority="high">
+  </div>
+
 </section>
 
 <!-- ─── STRIP ─── -->
