@@ -30,7 +30,11 @@ body{font-family:var(--fb);background:var(--K);color:var(--C);overflow-x:hidden;
 .ctr{max-width:var(--mx);margin:0 auto;padding:0 var(--px)}
 
 /* ─── HEADER ─── */
-.hdr{position:fixed;top:0;left:0;right:0;z-index:300;padding:18px var(--px);display:flex;align-items:center;justify-content:space-between;transition:all .35s;border-bottom:1px solid transparent}
+/* scroll progress bar */
+.spb{position:fixed;top:0;left:0;right:0;z-index:301;height:2px;pointer-events:none}
+.spb-track{height:100%;background:rgba(255,255,255,.07)}
+.spb-fill{height:100%;width:0%;background:var(--F);transition:width .1s linear;will-change:width;box-shadow:0 0 8px rgba(224,24,92,.6)}
+.hdr{position:fixed;top:2px;left:0;right:0;z-index:300;padding:18px var(--px);display:flex;align-items:center;justify-content:space-between;transition:all .35s;border-bottom:1px solid transparent}
 .hdr.on{background:rgba(28,28,28,.94);backdrop-filter:blur(24px);border-color:rgba(255,255,255,.06)}
 .logo{display:flex;align-items:center;text-decoration:none;color:var(--C)}
 .logo-img{height:36px;width:auto;display:block}
@@ -908,6 +912,7 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
 <body>
 
 <!-- ─── HEADER ─── -->
+<div class="spb" role="progressbar" aria-label="Progresso lettura pagina"><div class="spb-track"><div class="spb-fill" id="spbFill"></div></div></div>
 <header class="hdr" id="hdr">
   <a href="#" class="logo">
     <img src="Logo-estro.webp" alt="Estro Agency Logo" class="logo-img">
@@ -920,7 +925,6 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
     <a href="#contatti">Contatti</a>
   </nav>
   <div class="hright">
-    <button class="hghost" onclick="openModal()">Parliamone</button>
     <a href="#contatti" class="btn bf">Consulenza gratuita <span class="arr">›</span></a>
   </div>
 </header>
@@ -2134,6 +2138,18 @@ function mainSub(e){e.preventDefault();document.getElementById('mainForm').style
     });
   },{threshold:0.25});
   io.observe(stage);
+})();
+// ── Scroll progress bar ───────────────────────────────────────────────────
+(function(){
+  const fill=document.getElementById('spbFill');
+  if(!fill)return;
+  function update(){
+    const s=document.documentElement;
+    const pct=(s.scrollTop||document.body.scrollTop)/Math.max(1,s.scrollHeight-s.clientHeight)*100;
+    fill.style.width=Math.min(pct,100)+'%';
+  }
+  window.addEventListener('scroll',update,{passive:true});
+  update();
 })();
 </script>
 </body>
