@@ -143,7 +143,34 @@ body{font-family:var(--fb);background:var(--K);color:var(--C);overflow-x:hidden;
 @keyframes stripsz{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
 /* ═══ TARGET ═══ */
-.target{background:var(--YW);color:var(--K);padding:96px 0;overflow:visible;position:relative}
+/* ── Shared light-surface depth system ───────────────────────────────── */
+.ls-grain{position:absolute;inset:0;pointer-events:none;z-index:0;opacity:.038;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");background-repeat:repeat;background-size:200px 200px}
+.ls-glow{position:absolute;pointer-events:none;z-index:0;border-radius:50%;
+  background:radial-gradient(circle,rgba(224,24,92,.07),transparent 65%)}
+.ls-glow-sm{position:absolute;pointer-events:none;z-index:0;border-radius:50%;
+  background:radial-gradient(circle,rgba(224,24,92,.045),transparent 65%)}
+.ls-accent{position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(224,24,92,.22) 30%,rgba(224,24,92,.22) 70%,transparent);
+  pointer-events:none;z-index:1}
+/* per-section glow positions */
+.target .ls-glow{top:-120px;right:-80px;width:540px;height:540px}
+.target .ls-glow-sm{bottom:-100px;left:-60px;width:420px;height:420px}
+.benefici .ls-glow{top:-80px;left:-60px;width:500px;height:500px}
+.benefici .ls-glow-sm{bottom:-80px;right:-60px;width:380px;height:380px}
+.sproof .ls-glow{bottom:-110px;right:-70px;width:520px;height:520px}
+.sproof .ls-glow-sm{top:-80px;left:-60px;width:400px;height:400px}
+
+.target{
+  background:linear-gradient(148deg,#F0E4C4 0%,#EAD8B4 55%,#F0E4C4 100%);
+  color:var(--K);padding:96px 0;overflow:visible;position:relative
+}
+.target::before{content:'';position:absolute;inset:0;
+  background-image:radial-gradient(circle,rgba(28,28,28,.048) 1px,transparent 1px);
+  background-size:32px 32px;pointer-events:none;z-index:0}
+.target::after{content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 88% 88% at 50% 50%,transparent 52%,rgba(28,28,28,.055) 100%);
+  pointer-events:none;z-index:0}
 .target-inner{display:grid;grid-template-columns:1fr 1.1fr;gap:72px;align-items:center}
 .target-tag{font-size:10px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:rgba(28,28,28,.4);display:inline-block;margin-bottom:18px}
 .target-tag::before{content:'— '}
@@ -425,7 +452,10 @@ body{font-family:var(--fb);background:var(--K);color:var(--C);overflow-x:hidden;
 
 /* ═══ SERVIZI ═══ */
 /* ── SERVIZI ── */
-.servizi{background:#F0E4C4;padding:96px 0;position:relative;overflow:hidden}
+.servizi{
+  background:linear-gradient(162deg,#F0E4C4 0%,#E8D6B8 48%,#EDE3D4 100%);
+  padding:96px 0;position:relative;overflow:hidden
+}
 .servizi::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(28,28,28,.06) 1px,transparent 1px);background-size:36px 36px;pointer-events:none;z-index:0}
 .servizi::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 90% 80% at 50% 50%,transparent 50%,rgba(0,0,0,.07) 100%);pointer-events:none;z-index:0}
 .srv-glow-a{position:absolute;top:-100px;right:-60px;width:520px;height:520px;background:radial-gradient(circle,rgba(224,24,92,.08),transparent 62%);pointer-events:none;z-index:0}
@@ -584,7 +614,16 @@ h2.srv{font-family:var(--fd);font-size:clamp(28px,3vw,42px);line-height:1.07;let
 .proc-closer-d{font-size:13px;color:rgba(243,239,224,.5);line-height:1.65}
 
 /* ═══ BENEFICI ═══ */
-.benefici{background:var(--YW);color:var(--K);padding:72px 0;overflow:visible;position:relative}
+.benefici{
+  background:linear-gradient(172deg,#EDE9DC 0%,#F0E4C4 45%,#E8D9B4 100%);
+  color:var(--K);padding:72px 0;overflow:visible;position:relative
+}
+.benefici::before{content:'';position:absolute;inset:0;
+  background-image:radial-gradient(circle,rgba(28,28,28,.048) 1px,transparent 1px);
+  background-size:32px 32px;pointer-events:none;z-index:0}
+.benefici::after{content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 88% 88% at 50% 50%,transparent 52%,rgba(28,28,28,.05) 100%);
+  pointer-events:none;z-index:0}
 .ben-grid{display:grid;grid-template-columns:5fr 7fr;gap:28px;align-items:center}
 .ben-tag{font-size:10px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:rgba(28,28,28,.4);display:block;margin-bottom:14px}
 .ben-tag::before{content:'— '}
@@ -806,7 +845,16 @@ h2.srv{font-family:var(--fd);font-size:clamp(28px,3vw,42px);line-height:1.07;let
 .lw-logo:hover img{opacity:1;filter:brightness(0) invert(1) drop-shadow(0 0 18px rgba(224,24,92,.45))}
 
 /* ═══ SOCIAL PROOF ═══ */
-.sproof{background:var(--YW);padding:96px 0;border-top:1px solid rgba(28,28,28,.06)}
+.sproof{
+  background:linear-gradient(155deg,#F0E4C4 0%,#E8DDB8 48%,#F2E9D4 100%);
+  padding:96px 0;border-top:1px solid rgba(28,28,28,.06);position:relative;overflow:hidden
+}
+.sproof::before{content:'';position:absolute;inset:0;
+  background-image:radial-gradient(circle,rgba(28,28,28,.048) 1px,transparent 1px);
+  background-size:32px 32px;pointer-events:none;z-index:0}
+.sproof::after{content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 88% 88% at 50% 50%,transparent 52%,rgba(28,28,28,.055) 100%);
+  pointer-events:none;z-index:0}
 .sp-tag{font-size:10px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:rgba(28,28,28,.45);display:block;margin-bottom:14px;text-align:center}
 .sp-tag::before{content:'— '}
 .sproof h2{font-family:var(--fd);font-size:clamp(26px,2.8vw,38px);line-height:1.1;letter-spacing:-1px;color:var(--K);text-align:center;margin-bottom:44px}
@@ -1043,6 +1091,10 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
 
 <!-- ═══ TARGET ═══ -->
 <section class="target" id="target">
+  <div class="ls-accent" aria-hidden="true"></div>
+  <div class="ls-glow" aria-hidden="true"></div>
+  <div class="ls-glow-sm" aria-hidden="true"></div>
+  <div class="ls-grain" aria-hidden="true"></div>
 
   <img src="elemento visivo 1.png" class="target-deco" alt="" aria-hidden="true">
   <div class="ctr">
@@ -1492,6 +1544,10 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
 
 <!-- ═══ BENEFICI ═══ -->
 <section class="benefici">
+  <div class="ls-accent" aria-hidden="true"></div>
+  <div class="ls-glow" aria-hidden="true"></div>
+  <div class="ls-glow-sm" aria-hidden="true"></div>
+  <div class="ls-grain" aria-hidden="true"></div>
   <div class="ctr">
     <div class="ben-grid">
       <div class="rv">
@@ -1588,6 +1644,10 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
 
 <!-- ═══ SOCIAL PROOF ═══ -->
 <section class="sproof">
+  <div class="ls-accent" aria-hidden="true"></div>
+  <div class="ls-glow" aria-hidden="true"></div>
+  <div class="ls-glow-sm" aria-hidden="true"></div>
+  <div class="ls-grain" aria-hidden="true"></div>
   <div class="ctr">
     <div class="rv">
       <span class="sp-tag">Cosa dicono di noi</span>
