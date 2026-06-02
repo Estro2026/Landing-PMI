@@ -605,37 +605,122 @@ h2.srv{font-family:var(--fd);font-size:clamp(28px,3vw,42px);line-height:1.07;let
 .bc-leg-dot{width:9px;height:9px;border-radius:50%}
 
 
-/* ─── Benefici canvas particle visual ─── */
-.bfx-stage{position:relative;height:480px;display:flex;align-items:center;justify-content:center;overflow:visible}
-.bfx-cvs{position:absolute;inset:-24px;width:calc(100% + 48px);height:calc(100% + 48px);pointer-events:none;z-index:1}
-.bfx-glow{position:absolute;width:280px;height:280px;border-radius:50%;
-  background:radial-gradient(circle,rgba(224,24,92,.11) 0%,transparent 68%);
+/* ─── Benefici canvas visual ─── */
+.bfx-stage{position:relative;min-height:560px;display:flex;align-items:center;justify-content:center;overflow:visible}
+.bfx-cvs{position:absolute;inset:-28px;width:calc(100% + 56px);height:calc(100% + 56px);pointer-events:none;z-index:1}
+.bfx-glow{position:absolute;width:340px;height:340px;border-radius:50%;
+  background:radial-gradient(circle,rgba(224,24,92,.1) 0%,transparent 68%);
   top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;z-index:0}
 @keyframes bfxFloat{
   0%,100%{transform:translateY(0) rotate(0deg)}
-  33%{transform:translateY(-10px) rotate(.4deg)}
-  66%{transform:translateY(-6px) rotate(-.3deg)}
+  33%{transform:translateY(-11px) rotate(.35deg)}
+  66%{transform:translateY(-5px) rotate(-.28deg)}
 }
 .bfx-img{
-  position:relative;z-index:2;width:310px;height:auto;
+  position:relative;z-index:2;
+  width:clamp(320px,88%,480px);height:auto;
   mix-blend-mode:multiply;
-  opacity:0;transform:scale(.86) translateY(20px);
-  transition:opacity .9s cubic-bezier(.22,1,.36,1), transform .9s cubic-bezier(.22,1,.36,1)
+  opacity:0;transform:scale(.84) translateY(22px);
+  transition:opacity .95s cubic-bezier(.22,1,.36,1), transform .95s cubic-bezier(.22,1,.36,1)
 }
 .bfx-stage.bfx-vis .bfx-img{
   opacity:1;transform:none;
-  animation:bfxFloat 5.5s ease-in-out 1.3s infinite
+  animation:bfxFloat 5.5s ease-in-out 1.4s infinite
 }
+
+/* ── Keyword system ── */
+.bkw-sys{position:absolute;inset:0;z-index:5;pointer-events:none}
+.bkw{
+  position:absolute;
+  display:flex;align-items:center;gap:9px;
+  pointer-events:auto;
+  opacity:0;
+  transition:opacity .7s cubic-bezier(.22,1,.36,1), transform .85s cubic-bezier(.22,1,.36,1)
+}
+/* initial emerge positions — start inward toward center */
+.bkw-0{top:9%;left:1%;transform:translate(32px,24px)}
+.bkw-1{top:9%;right:1%;transform:translate(-32px,24px);flex-direction:row-reverse}
+.bkw-2{bottom:10%;left:1%;transform:translate(32px,-24px)}
+.bkw-3{bottom:10%;right:1%;transform:translate(-32px,-24px);flex-direction:row-reverse}
+/* settled positions after trigger */
+.bfx-stage.bfx-vis .bkw{opacity:1;transform:translate(0,0)}
+.bfx-stage.bfx-vis .bkw-0{transition-delay:.65s}
+.bfx-stage.bfx-vis .bkw-1{transition-delay:.85s}
+.bfx-stage.bfx-vis .bkw-2{transition-delay:1.05s}
+.bfx-stage.bfx-vis .bkw-3{transition-delay:1.25s}
+
+/* pulsing dot */
+@keyframes dotPulse{
+  0%,100%{box-shadow:0 0 5px rgba(224,24,92,.45);transform:scale(1)}
+  50%{box-shadow:0 0 13px rgba(224,24,92,.78);transform:scale(1.22)}
+}
+.bkw-dot{
+  width:9px;height:9px;border-radius:50%;flex-shrink:0;
+  background:var(--F);
+  box-shadow:0 0 6px rgba(224,24,92,.55);
+  animation:dotPulse 2.6s ease-in-out infinite;
+  position:relative;
+}
+/* trail line from dot toward image */
+.bkw-0 .bkw-dot::after,.bkw-2 .bkw-dot::after{
+  content:'';position:absolute;top:50%;left:100%;
+  transform:translateY(-50%);
+  width:36px;height:1px;
+  background:linear-gradient(90deg,rgba(224,24,92,.45),transparent)
+}
+.bkw-1 .bkw-dot::after,.bkw-3 .bkw-dot::after{
+  content:'';position:absolute;top:50%;right:100%;
+  transform:translateY(-50%);
+  width:36px;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(224,24,92,.45))
+}
+
+/* keyword label chip */
+.bkw-label{
+  font-family:var(--fd);font-size:9.5px;font-weight:700;letter-spacing:2.6px;
+  text-transform:uppercase;color:var(--K);
+  padding:5px 11px;
+  background:rgba(255,255,255,.86);
+  border:1px solid rgba(224,24,92,.18);border-radius:6px;
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  white-space:nowrap;
+  transition:background .35s,border-color .35s,box-shadow .35s,color .35s
+}
+.bkw:hover .bkw-label,
+.bkw.bkw-active .bkw-label{
+  background:rgba(224,24,92,.1);
+  border-color:rgba(224,24,92,.48);
+  box-shadow:0 0 18px rgba(224,24,92,.18);
+  color:var(--F)
+}
+.bkw.bkw-active .bkw-dot{
+  animation:none;
+  box-shadow:0 0 22px rgba(224,24,92,.85);
+  transform:scale(1.38)
+}
+
 /* benefit list hover */
 .ben-list li{transition:transform .4s cubic-bezier(.22,1,.36,1),color .3s;cursor:default}
-.ben-list li:hover{transform:translateX(6px)}
-.ben-list li:hover .ben-check{box-shadow:0 0 16px rgba(224,24,92,.45);border-color:var(--Fb)}
+.ben-list li:hover,.ben-list li.ben-hl{transform:translateX(6px)}
+.ben-list li:hover .ben-check,
+.ben-list li.ben-hl .ben-check{box-shadow:0 0 16px rgba(224,24,92,.45);border-color:var(--Fb)}
+
 @media(prefers-reduced-motion:reduce){
   .bfx-img{opacity:1!important;transform:none!important;animation:none!important}
   .bfx-cvs{display:none}
+  .bkw{opacity:1!important;transform:none!important}
+  .bkw-dot{animation:none}
 }
-@media(max-width:1100px){.bfx-stage{height:420px}.bfx-img{width:260px}}
-@media(max-width:640px){.bfx-stage{height:300px}.bfx-img{width:190px}}
+@media(max-width:1100px){.bfx-stage{min-height:460px}.bfx-img{width:clamp(260px,85%,380px)}}
+@media(max-width:640px){
+  .bfx-stage{min-height:0;padding-bottom:60px}
+  .bfx-img{width:clamp(220px,80%,320px)}
+  .bkw-0,.bkw-1{top:auto;bottom:12px}
+  .bkw-0{left:0;transform:none}
+  .bkw-1{right:0;transform:none}
+  .bkw-2,.bkw-3{display:none}
+  .bfx-stage.bfx-vis .bkw-0,.bfx-stage.bfx-vis .bkw-1{transform:none}
+}
 /* ═══ TRUST ═══ */
 .trust{
   background:#1C1C1C;
@@ -1391,6 +1476,13 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
           <div class="bfx-glow" aria-hidden="true"></div>
           <canvas class="bfx-cvs" id="bfxCvs" aria-hidden="true"></canvas>
           <img class="bfx-img" src="Grafica benefici.png" alt="" aria-hidden="true">
+          <!-- Emerging keywords -->
+          <div class="bkw-sys" aria-hidden="true">
+            <div class="bkw bkw-0" data-idx="0"><div class="bkw-dot"></div><span class="bkw-label">TEMPO</span></div>
+            <div class="bkw bkw-1" data-idx="1"><div class="bkw-dot"></div><span class="bkw-label">CONTROLLO</span></div>
+            <div class="bkw bkw-2" data-idx="2"><div class="bkw-dot"></div><span class="bkw-label">COERENZA</span></div>
+            <div class="bkw bkw-3" data-idx="3"><div class="bkw-dot"></div><span class="bkw-label">CRESCITA</span></div>
+          </div>
         </div>
       </div>
     </div>
@@ -1740,9 +1832,27 @@ const obs=new IntersectionObserver(es=>{
   },{threshold:.26});
   obs.observe(stage);
 
-  // Benefit hover → pulse on matching cluster
+  // Benefit hover → pulse on matching cluster + cross-highlight keywords
   document.querySelectorAll('.ben-list li').forEach((li,i)=>{
-    li.addEventListener('mouseenter',()=>{activePulse=i;pulseT=0;});
+    li.addEventListener('mouseenter',()=>{
+      activePulse=i;pulseT=0;
+      document.querySelectorAll('.bkw')[i]?.classList.add('bkw-active');
+    });
+    li.addEventListener('mouseleave',()=>{
+      document.querySelectorAll('.bkw')[i]?.classList.remove('bkw-active');
+    });
+  });
+  // Keyword hover → cross-highlight benefit item
+  document.querySelectorAll('.bkw').forEach((kw,i)=>{
+    kw.addEventListener('mouseenter',()=>{
+      activePulse=i;pulseT=0;
+      kw.classList.add('bkw-active');
+      document.querySelectorAll('.ben-list li')[i]?.classList.add('ben-hl');
+    });
+    kw.addEventListener('mouseleave',()=>{
+      kw.classList.remove('bkw-active');
+      document.querySelectorAll('.ben-list li')[i]?.classList.remove('ben-hl');
+    });
   });
 
   window.addEventListener('resize',resize);
