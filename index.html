@@ -788,18 +788,18 @@ h2.srv{font-family:var(--fd);font-size:clamp(28px,3vw,42px);line-height:1.07;let
 
 /* ─── Editorial logo wall ─── */
 /* ─── Marquee logo wall ─── */
-.lw-wrap{overflow:hidden;position:relative;padding:12px 0;mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.lw-wrap{overflow:hidden;position:relative;padding:20px 0;mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
 .lw-track{display:flex;align-items:center;gap:0;will-change:transform}
 @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 .lw-track{animation:marquee 18s linear infinite}
 .lw-wrap:hover .lw-track{animation-play-state:paused}
-@media(prefers-reduced-motion:reduce){.lw-track{animation:none;flex-wrap:wrap;justify-content:center;gap:36px 56px}}
-.lw-logo{display:flex;align-items:center;justify-content:center;height:68px;flex-shrink:0;padding:0 44px;transition:transform .35s cubic-bezier(.22,1,.36,1)}
-.lw-logo:hover{transform:translateY(-3px)}
-.lw-logo img{height:100%;width:auto;max-width:180px;object-fit:contain;
-  filter:brightness(0) invert(1);opacity:.5;
-  transition:opacity .4s,filter .4s}
-.lw-logo:hover img{opacity:.92;filter:brightness(0) invert(1) drop-shadow(0 0 14px rgba(224,24,92,.35))}
+@media(prefers-reduced-motion:reduce){.lw-track{animation:none;flex-wrap:wrap;justify-content:center;gap:40px 52px}}
+.lw-logo{display:flex;align-items:center;justify-content:center;height:96px;flex-shrink:0;padding:0 52px;transition:transform .4s cubic-bezier(.22,1,.36,1)}
+.lw-logo:hover{transform:translateY(-4px)}
+.lw-logo img{height:100%;width:auto;max-width:220px;object-fit:contain;
+  filter:brightness(0) invert(1);opacity:.78;
+  transition:opacity .35s,filter .35s}
+.lw-logo:hover img{opacity:1;filter:brightness(0) invert(1) drop-shadow(0 0 18px rgba(224,24,92,.45))}
 
 /* ═══ SOCIAL PROOF ═══ */
 .sproof{background:var(--YW);padding:96px 0;border-top:1px solid rgba(28,28,28,.06)}
@@ -886,7 +886,7 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
   .srv-uni-grid{grid-template-columns:repeat(2,1fr)}
   .tl-card{margin-bottom:32px}
   .ft-cols{grid-template-columns:1fr 1fr;gap:28px}
-  .lw-logo{height:56px;padding:0 32px}
+  .lw-logo{height:80px;padding:0 40px}
   .sp-grid{grid-template-columns:repeat(2,1fr)}
   .hnav{display:none}
 }
@@ -899,7 +899,7 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
   .srv-side{max-width:100%}
   .ff-grid .fg.full{grid-column:1}
   .tl{padding-left:0}
-  .lw-logo{height:48px;padding:0 24px}
+  .lw-logo{height:64px;padding:0 28px}
   .cr-stage{height:340px}
 }
 
