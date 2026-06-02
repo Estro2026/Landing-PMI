@@ -580,8 +580,8 @@ h2.srv{font-family:var(--fd);font-size:clamp(28px,3vw,42px);line-height:1.07;let
 .proc-closer-d{font-size:13px;color:rgba(243,239,224,.5);line-height:1.65}
 
 /* ═══ BENEFICI ═══ */
-.benefici{background:var(--YW);color:var(--K);padding:96px 0;overflow:visible;position:relative}
-.ben-grid{display:grid;grid-template-columns:5fr 7fr;gap:48px;align-items:center}
+.benefici{background:var(--YW);color:var(--K);padding:72px 0;overflow:visible;position:relative}
+.ben-grid{display:grid;grid-template-columns:5fr 7fr;gap:28px;align-items:center}
 .ben-tag{font-size:10px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:rgba(28,28,28,.4);display:block;margin-bottom:14px}
 .ben-tag::before{content:'— '}
 .benefici h2{font-family:var(--fd);font-size:clamp(28px,3vw,42px);line-height:1.07;letter-spacing:-1.2px;color:var(--K);margin-bottom:30px}
@@ -609,16 +609,16 @@ h2.srv{font-family:var(--fd);font-size:clamp(28px,3vw,42px);line-height:1.07;let
 /* Stage: negative right margin breaks out of grid, extends toward viewport edge */
 .bfx-stage{
   position:relative;
-  min-height:700px;
-  margin-right:-80px; /* intentional grid-break to the right */
+  min-height:0;
+  margin-right:-56px;
   display:flex;align-items:center;justify-content:center;
   overflow:visible;
   z-index:2
 }
 .bfx-cvs{
   position:absolute;
-  inset:-40px;
-  width:calc(100% + 80px);height:calc(100% + 80px);
+  inset:-32px;
+  width:calc(100% + 64px);height:calc(100% + 64px);
   pointer-events:none;z-index:1
 }
 .bfx-glow{
@@ -635,7 +635,7 @@ h2.srv{font-family:var(--fd);font-size:clamp(28px,3vw,42px);line-height:1.07;let
 .bfx-img{
   position:relative;z-index:2;
   /* hero-scale: wider than the column so it dominates the section */
-  width:clamp(480px, 120%, 720px);
+  width:clamp(360px, 100%, 540px);
   height:auto;
   mix-blend-mode:multiply;
   opacity:0;transform:scale(.82) translateY(28px);
@@ -656,10 +656,10 @@ h2.srv{font-family:var(--fd);font-size:clamp(28px,3vw,42px);line-height:1.07;let
   transition:opacity .7s cubic-bezier(.22,1,.36,1), transform .9s cubic-bezier(.22,1,.36,1)
 }
 /* initial emerge — start closer to center, travel outward */
-.bkw-0{top:6%;left:-2%;transform:translate(52px,36px)}
-.bkw-1{top:6%;right:-6%;transform:translate(-52px,36px);flex-direction:row-reverse}
-.bkw-2{bottom:8%;left:-2%;transform:translate(52px,-36px)}
-.bkw-3{bottom:8%;right:-6%;transform:translate(-52px,-36px);flex-direction:row-reverse}
+.bkw-0{top:5%;left:-1%;transform:translate(50px,32px)}
+.bkw-1{top:5%;right:-5%;transform:translate(-50px,32px);flex-direction:row-reverse}
+.bkw-2{bottom:5%;left:-1%;transform:translate(50px,-32px)}
+.bkw-3{bottom:5%;right:-5%;transform:translate(-50px,-32px);flex-direction:row-reverse}
 /* settled positions */
 .bfx-stage.bfx-vis .bkw{opacity:1;transform:translate(0,0)}
 .bfx-stage.bfx-vis .bkw-0{transition-delay:.7s}
@@ -731,12 +731,12 @@ h2.srv{font-family:var(--fd);font-size:clamp(28px,3vw,42px);line-height:1.07;let
 }
 /* Tablet */
 @media(max-width:1100px){
-  .bfx-stage{min-height:580px;margin-right:-40px}
-  .bfx-img{width:clamp(400px,115%,580px)}
-  .bkw-0{top:5%;left:-1%}
-  .bkw-1{top:5%;right:-4%}
-  .bkw-2{bottom:7%;left:-1%}
-  .bkw-3{bottom:7%;right:-4%}
+  .bfx-stage{min-height:0;margin-right:-28px}
+  .bfx-img{width:clamp(300px,100%,460px)}
+  .bkw-0{top:4%;left:-1%}
+  .bkw-1{top:4%;right:-3%}
+  .bkw-2{bottom:4%;left:-1%}
+  .bkw-3{bottom:4%;right:-3%}
 }
 /* Mobile */
 @media(max-width:640px){
@@ -1504,7 +1504,7 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
         <div class="bfx-stage" id="bfxStage">
           <div class="bfx-glow" aria-hidden="true"></div>
           <canvas class="bfx-cvs" id="bfxCvs" aria-hidden="true"></canvas>
-          <img class="bfx-img" src="Grafica benefici.png" alt="" aria-hidden="true">
+          <img class="bfx-img" src="benefici grafica1.png" alt="" aria-hidden="true">
           <!-- Emerging keywords -->
           <div class="bkw-sys" aria-hidden="true">
             <div class="bkw bkw-0" data-idx="0"><div class="bkw-dot"></div><span class="bkw-label">TEMPO</span></div>
