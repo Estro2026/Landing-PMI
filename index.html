@@ -24,8 +24,8 @@
   --rp:999px;--rl:28px;--rm:18px;--rs:12px;
   --mx:1320px;--px:48px;
 }
-html{scroll-behavior:smooth}
-body{font-family:var(--fb);background:var(--K);color:var(--C);overflow-x:hidden;-webkit-font-smoothing:antialiased;max-width:100vw}
+html{scroll-behavior:smooth;overflow-x:clip}
+body{font-family:var(--fb);background:var(--K);color:var(--C);overflow-x:hidden;-webkit-font-smoothing:antialiased;max-width:100%}
 ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--K)}::-webkit-scrollbar-thumb{background:var(--F);border-radius:3px}
 .ctr{max-width:var(--mx);margin:0 auto;padding:0 var(--px)}
 
@@ -981,8 +981,10 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
   .target,.sol,.icone,.cta-mid,.servizi,.proc,.benefici,.trust,.sproof,.fform{padding:72px 0}
   .proc-hdr{margin-bottom:48px}
   .ic-grid{margin-bottom:28px}
-  /* benefici */
-  .bfx-stage{min-height:0;margin-right:-28px}
+  /* benefici — remove negative margin to prevent horizontal overflow */
+  .bfx-stage{min-height:0;margin-right:0}
+  /* contain large absolute glow elements that extend outside their sections */
+  .target,.benefici{overflow:hidden}
   .bfx-img{width:clamp(240px,82%,365px)}
 }
 
@@ -1002,7 +1004,7 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
   :root{--px:20px}
 
   /* ── HEADER ── */
-  .hdr{padding:12px var(--px)}
+  .hdr{padding:12px var(--px);width:100%;box-sizing:border-box}
   .logo-img{height:28px}
   .ft-ghost{display:none}
 
@@ -1028,7 +1030,8 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
     letter-spacing:-1px;line-height:1.07;
     margin-bottom:10px
   }
-  .hero h1 em{display:inline}
+  /* Keep em as block: forces line break after "completo", shows "a costi sostenibili." on its own line */
+  .hero h1 em{display:block}
   .hero-sub{
     font-size:13.5px;line-height:1.6;
     margin-bottom:18px;max-width:100%
@@ -1265,6 +1268,14 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
    All rules here override the block above via cascade.
    ═══════════════════════════════════════════════════ */
 @media(max-width:640px){
+
+  /* ── Global: prevent horizontal overflow on mobile ── */
+  /* Structural containers: never wider than viewport */
+  .ctr,.ff-wrap,.ft-in{width:100%;box-sizing:border-box}
+  /* Sections: contain all absolute-positioned decorative glows/graphics */
+  .target,.benefici{overflow:hidden}
+  /* bfx canvas inset: clip at stage boundary */
+  .bfx-stage{overflow:hidden}
 
   /* ── Hero: hide optional fields so form fits above fold ── */
   .hero-opt{display:none!important}
