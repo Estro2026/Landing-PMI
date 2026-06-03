@@ -874,7 +874,7 @@ h2.srv{font-family:var(--fd);font-size:clamp(28px,3vw,42px);line-height:1.07;let
 
 /* ═══ FORM FINALE ═══ */
 .fform{background:var(--K2);padding:96px 0;border-top:1px solid rgba(255,255,255,.04)}
-.ff-wrap{max-width:820px;margin:0 auto;padding:0 var(--px)}
+.ff-wrap{max-width:820px;margin:0 auto;padding:0 var(--px);width:100%}
 .ff-tag{font-size:10px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:rgba(243,239,224,.35);display:block;margin-bottom:14px;text-align:center}
 .ff-tag::before{content:'— '}
 .fform h2{font-family:var(--fd);font-size:clamp(28px,3vw,42px);line-height:1.07;letter-spacing:-1.2px;color:var(--C);text-align:center;margin-bottom:10px}
@@ -941,19 +941,102 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
   .lw-logo{height:80px;padding:0 40px}
   .sp-grid{grid-template-columns:repeat(2,1fr)}
   .hnav{display:none}
+  .hburger{display:flex}
+  /* reduce vertical rhythm on tablet */
+  .target,.sol,.icone,.cta-mid,.servizi,.proc,.benefici,.trust,.sproof,.fform{padding:72px 0}
+  .proc-hdr{margin-bottom:48px}
+  .ic-grid{margin-bottom:28px}
+}
+@media(max-width:768px){
+  .sp-grid{grid-template-columns:1fr}
+  .sol-grid{gap:28px}
+  .cr-stage{height:380px}
+  .ta-ws{height:380px}
 }
 @media(max-width:640px){
   :root{--px:20px}
-  .hero-img-col{min-height:240px;height:240px}
-  .hero-copy{padding:90px var(--px) 48px}
+  /* section vertical padding */
+  .target,.sol,.icone,.cta-mid,.servizi,.proc,.benefici,.trust,.sproof,.fform{padding:56px 0}
+  .proc-hdr{margin-bottom:36px}
+  /* hero */
+  .hero-img-col{min-height:220px;height:220px}
+  .hero-copy{padding:80px var(--px) 40px}
+  .fg-row{grid-template-columns:1fr}
+  /* form final */
   .ic-grid,.ff-grid,.sp-grid{grid-template-columns:1fr}
+  .ff-grid .fg.full{grid-column:1}
+  /* servizi */
   .srv-uni-grid{grid-template-columns:1fr}
   .srv-side{max-width:100%}
-  .ff-grid .fg.full{grid-column:1}
+  .sc-uni{min-height:200px}
+  /* proc / timeline */
   .tl{padding-left:0}
-  .lw-logo{height:64px;padding:0 28px}
-  .cr-stage{height:340px}
+  .tl-card{padding:18px 16px 20px}
+  .proc-closer{padding:20px 20px}
+  /* trust logos */
+  .lw-logo{height:58px;padding:0 24px}
+  /* creative stage */
+  .cr-stage{height:300px}
+  /* CTA mid ghost clamped */
+  .cta-mid-ghost{font-size:clamp(72px,20vw,200px)}
+  /* footer */
+  .ft-cols{grid-template-columns:1fr;gap:28px}
+  /* modal full-width */
+  .modal{padding:28px 20px}
+  /* heading size bump-down */
+  .cta-mid h2{font-size:clamp(22px,6.5vw,32px)}
+  /* icone cards */
+  .ic-grid{grid-template-columns:1fr}
+  /* target animation */
+  .ta-ws{height:320px}
+  .tac{width:112px}
+  .tac-val{font-size:13px}
 }
+
+/* ═══ HAMBURGER BUTTON ═══ */
+.hburger{
+  display:none;flex-direction:column;justify-content:center;align-items:center;
+  gap:5px;width:40px;height:40px;background:none;border:none;cursor:pointer;
+  padding:0;border-radius:8px;transition:background .2s;z-index:302;flex-shrink:0
+}
+.hburger:hover{background:rgba(255,255,255,.06)}
+.hburger span{
+  display:block;width:22px;height:2px;background:var(--C);border-radius:2px;
+  transition:transform .32s cubic-bezier(.4,0,.2,1),opacity .22s,width .22s;
+  transform-origin:center
+}
+.hburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.hburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* ═══ MOBILE NAV OVERLAY ═══ */
+.mnav{
+  display:none;position:fixed;inset:0;z-index:298;
+  background:rgba(20,20,20,.98);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+  flex-direction:column;align-items:center;justify-content:center;
+  gap:4px;padding:100px 32px 48px;overflow-y:auto
+}
+.mnav.open{display:flex}
+.mnav-links{display:flex;flex-direction:column;align-items:center;gap:4px;width:100%}
+.mnav a{
+  font-family:var(--fd);font-size:clamp(26px,7.5vw,38px);color:rgba(243,239,224,.82);
+  text-decoration:none;letter-spacing:-.3px;padding:14px 28px;
+  border-radius:14px;transition:color .2s,background .2s;width:100%;text-align:center;
+  border-bottom:1px solid rgba(255,255,255,.04)
+}
+.mnav a:last-child{border-bottom:none}
+.mnav a:hover,.mnav a:active{color:var(--C);background:rgba(255,255,255,.04)}
+.mnav-bottom{margin-top:28px;width:100%;display:flex;flex-direction:column;align-items:center;gap:12px}
+.mnav-bottom .btn{width:100%;justify-content:center;font-size:15px;padding:16px 24px}
+.mnav-divider{width:48px;height:1px;background:rgba(255,255,255,.1);margin:8px auto 0}
+.mnav-close{
+  position:absolute;top:16px;right:16px;
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.09);
+  color:var(--C);width:40px;height:40px;border-radius:50%;cursor:pointer;font-size:20px;
+  display:flex;align-items:center;justify-content:center;transition:background .2s;
+  line-height:1
+}
+.mnav-close:hover{background:rgba(255,255,255,.12)}
 
 </style>
 </head>
@@ -975,7 +1058,26 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
   <div class="hright">
     <a href="#contatti" class="btn bf">Consulenza gratuita <span class="arr">›</span></a>
   </div>
+  <button class="hburger" id="hburger" aria-label="Apri menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
 </header>
+
+<!-- ─── MOBILE NAV ─── -->
+<div class="mnav" id="mnav" aria-hidden="true">
+  <button class="mnav-close" onclick="closeMnav()" aria-label="Chiudi menu">×</button>
+  <div class="mnav-links">
+    <a href="#soluzione" onclick="closeMnav()">Soluzione</a>
+    <a href="#servizi" onclick="closeMnav()">Servizi</a>
+    <a href="#metodo" onclick="closeMnav()">Metodo</a>
+    <a href="#clienti" onclick="closeMnav()">Clienti</a>
+    <a href="#contatti" onclick="closeMnav()">Contatti</a>
+  </div>
+  <div class="mnav-bottom">
+    <div class="mnav-divider"></div>
+    <a href="#contatti" class="btn bf btn-lg" onclick="closeMnav()">Consulenza gratuita <span class="arr">›</span></a>
+  </div>
+</div>
 
 <!-- ─── MODAL ─── -->
 <div class="mbg" id="mbg" onclick="if(event.target===this)closeModal()">
@@ -1975,6 +2077,29 @@ const barObs=new IntersectionObserver(es=>{
 const bc=document.getElementById('bcBars');
 if(bc)barObs.observe(bc);
 
+/* ── Hamburger / mobile nav ── */
+(function(){
+  const btn=document.getElementById('hburger');
+  const nav=document.getElementById('mnav');
+  if(!btn||!nav)return;
+  btn.addEventListener('click',()=>{
+    const open=nav.classList.toggle('open');
+    btn.classList.toggle('open',open);
+    btn.setAttribute('aria-expanded',open);
+    nav.setAttribute('aria-hidden',!open);
+    document.body.style.overflow=open?'hidden':'';
+  });
+})();
+function closeMnav(){
+  const btn=document.getElementById('hburger');
+  const nav=document.getElementById('mnav');
+  if(!nav)return;
+  nav.classList.remove('open');
+  btn?.classList.remove('open');
+  btn?.setAttribute('aria-expanded','false');
+  nav.setAttribute('aria-hidden','true');
+  document.body.style.overflow='';
+}
 function openModal(){document.getElementById('mbg').classList.add('open')}
 function closeModal(){document.getElementById('mbg').classList.remove('open')}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
