@@ -1093,7 +1093,7 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
 
   /* ── SOLUTION ── */
   .sol-grid{gap:20px}
-  .cr-stage{height:240px;border-radius:14px}
+  .cr-stage{height:300px;border-radius:14px}
   .sol-bullets{gap:7px;margin-bottom:20px}
   .sol-bullets li{font-size:13px}
 
@@ -2605,7 +2605,8 @@ function mainSub(e){e.preventDefault();document.getElementById('mainForm').style
       t=setTimeout(()=>{goDone();t=setTimeout(cycle,4000);},650);
     },4200);
   }
-  if(noMotion){goDone();return;}
+  /* On mobile: skip scatter animation — show the connected collage immediately */
+  if(noMotion||window.innerWidth<=640){goDone();return;}
   goScatter();
   const io=new IntersectionObserver(es=>{
     es.forEach(e=>{
