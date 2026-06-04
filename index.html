@@ -546,13 +546,10 @@ h2.srv{font-family:var(--fd);font-size:clamp(36px,4.5vw,60px);line-height:1.01;l
   background:var(--K);
   border:1px solid rgba(255,255,255,.07);
   border-radius:16px;
-  padding:14px 44px 14px 14px; /* right pad = room for expand button */
+  padding:9px 38px 9px 12px;
   position:relative;overflow:hidden;
-  display:flex;flex-direction:column;
-  width:max-content;    /* shrink to content */
-  min-width:130px;      /* floor for short titles like "SEO" */
-  aspect-ratio:1;       /* square */
-  justify-content:space-between;
+  display:flex;flex-direction:row;align-items:center;gap:10px;
+  width:max-content;
   cursor:pointer;
   will-change:transform;
   transition:transform .42s cubic-bezier(.22,1,.36,1),border-color .3s,box-shadow .42s,opacity .55s ease;
@@ -627,11 +624,10 @@ h2.srv{font-family:var(--fd);font-size:clamp(36px,4.5vw,60px);line-height:1.01;l
   background:rgba(224,24,92,.08)
 }
 
-/* ── card top: icon row ── */
-.sc-top{display:flex;align-items:center;padding-bottom:12px;position:relative;z-index:2}
-
-/* ── card bottom cluster ── */
-.sc-bot{position:relative;z-index:2;flex:1}
+/* ── card: icon + title in one row ── */
+.sc-top{display:contents} /* icon participates directly in row */
+.sc-bot{position:relative;z-index:2;white-space:nowrap}
+.sc-tag{display:none} /* hidden in compact mode */
 .sc-tag{font-size:8px;font-weight:700;letter-spacing:3.5px;text-transform:uppercase;color:rgba(224,24,92,.7);display:block;margin-bottom:6px}
 
 .sc-name{font-family:var(--fd);font-size:15px;color:var(--C);letter-spacing:-.4px;line-height:1.2;margin-bottom:0}
@@ -1339,7 +1335,7 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
   .srv-nucleus-hub{display:none}
   #srvNexus{display:none}
   .srv-col-l,.srv-col-r{align-items:stretch}
-  .sc{width:auto;padding:14px 40px 14px 14px}
+  .sc{width:auto}
   .sc-name{font-size:14px}
   .sc-ico{width:40px;height:40px;border-radius:10px}
   .sc-ico svg{width:20px;height:20px}
