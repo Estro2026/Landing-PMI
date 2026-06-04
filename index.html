@@ -496,48 +496,32 @@ body{font-family:var(--fb);background:var(--K);color:var(--C);overflow-x:hidden;
 h2.srv{font-family:var(--fd);font-size:clamp(36px,4.5vw,60px);line-height:1.01;letter-spacing:-2.5px;color:var(--K)}
 .srv-side{font-size:15.5px;color:rgba(28,28,28,.82);max-width:640px;line-height:1.8;text-align:left;border-left:2px solid rgba(224,24,92,.55);padding-left:18px;margin-top:0}
 
-/* ── Servizi: vertical scatter flow ── */
-.srv-flow{position:relative;padding-left:60px}
+/* ── Servizi: horizontal spine + card grid ── */
+.srv-flow{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px
+}
 .srv-spine{
-  position:absolute;left:20px;top:20px;bottom:20px;
-  width:2px;background:rgba(224,24,92,.1);
-  border-radius:2px;overflow:hidden
+  grid-column:1/-1;
+  position:relative;
+  height:2px;background:rgba(224,24,92,.1);
+  border-radius:2px;overflow:hidden;
+  margin-bottom:8px
 }
 .srv-spine-fill{
-  position:absolute;top:0;left:0;right:0;height:0%;
-  background:linear-gradient(180deg,rgba(224,24,92,.65),rgba(224,24,92,.22));
-  transition:height .12s linear;border-radius:2px
+  position:absolute;top:0;left:0;bottom:0;width:0%;
+  background:linear-gradient(90deg,rgba(224,24,92,.65),rgba(224,24,92,.22));
+  transition:width .12s linear;border-radius:2px
 }
 .srv-item{
   position:relative;
-  margin-left:var(--indent,0px);
-  width:clamp(280px,60%,560px);
-  margin-bottom:48px
+  margin-left:0;
+  width:auto;
 }
-/* dot on the spine */
-.srv-item-dot{
-  position:absolute;
-  left:calc(-35px - var(--indent,0px));
-  top:28px;width:10px;height:10px;
-  border-radius:50%;background:var(--F);
-  box-shadow:0 0 14px rgba(224,24,92,.55);
-  transform:scale(0);
-  transition:transform .45s cubic-bezier(.34,1.4,.64,1) .1s;
-  z-index:2
-}
-.srv-item.vs .srv-item-dot{transform:scale(1)}
-/* connector from spine to card */
-.srv-item::before{
-  content:'';position:absolute;
-  left:calc(-35px - var(--indent,0px));
-  top:32px;
-  width:calc(35px + var(--indent,0px));
-  height:1px;
-  background:linear-gradient(90deg,rgba(224,24,92,.5),rgba(224,24,92,.1));
-  transform:scaleX(0);transform-origin:left center;
-  transition:transform .5s cubic-bezier(.22,1,.36,1) .06s
-}
-.srv-item.vs::before{transform:scaleX(1)}
+/* hide per-item dot and connector — not meaningful in grid layout */
+.srv-item-dot{display:none}
+.srv-item::before{display:none}
 
 /* ── card base ── */
 .sc{
@@ -1161,8 +1145,7 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
   .target-inner,.sol-grid{grid-template-columns:1fr;gap:40px}
   .ben-grid{grid-template-columns:1fr;gap:36px}
   .ic-grid{grid-template-columns:repeat(2,1fr)}
-  .srv-flow{padding-left:44px}
-  .srv-item{width:clamp(260px,70%,520px)}
+  .srv-flow{grid-template-columns:1fr 1fr}
   /* tl horizontal: slightly reduce font at mid breakpoint */
   .tl-h4{font-size:15px}
   .tl-p{font-size:12.5px}
@@ -1189,10 +1172,7 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
   .sol-grid{gap:24px}
   .cr-stage{height:320px}
   .ta-ws{height:420px}
-  .srv-flow{padding-left:36px}
-  .srv-item{width:clamp(240px,80%,480px)}
-  .srv-item-dot{left:calc(-30px - var(--indent,0px))}
-  .srv-item::before{left:calc(-30px - var(--indent,0px));width:calc(30px + var(--indent,0px))}
+  .srv-flow{grid-template-columns:1fr 1fr}
   .sc-ico svg{width:22px;height:22px}
   .sc-name{font-size:16px}
   .sc-desc{font-size:12px}
@@ -1324,11 +1304,7 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
   /* ── SERVIZI ── */
   .servizi{padding:48px 0}
   .srv-tagline{gap:14px;margin-bottom:36px;padding-bottom:36px}
-  .srv-flow{padding-left:28px}
-  .srv-item{--indent:0px!important;width:100%;margin-bottom:32px}
-  .srv-item-dot{left:-18px}
-  .srv-item::before{display:none}
-  .srv-spine{left:12px}
+  .srv-flow{grid-template-columns:1fr}
   .sc{padding:12px 40px 12px 12px}
   .sc-name{font-size:14px}
   .sc-ico{width:40px;height:40px;border-radius:10px}
@@ -1453,8 +1429,7 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
   :root{--px:16px}
   .hero h1{font-size:24px}
   .hero-form-card{padding:14px 14px 12px}
-  .srv-flow{padding-left:24px}
-  .srv-item{--indent:0px!important;width:100%;margin-bottom:24px}
+  .srv-flow{grid-template-columns:1fr}
   .sc-name{font-size:13.5px}
 }
 
@@ -2384,7 +2359,7 @@ const obs=new IntersectionObserver(es=>{
     const r=flow.getBoundingClientRect();
     const vh=window.innerHeight;
     const p=Math.max(0,Math.min(1,(vh-r.top)/(r.height+vh*0.6)));
-    fill.style.height=(p*100)+'%';
+    fill.style.width=(p*100)+'%';
   }
   window.addEventListener('scroll',update,{passive:true});
   update();
