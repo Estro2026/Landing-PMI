@@ -496,13 +496,14 @@ body{font-family:var(--fb);background:var(--K);color:var(--C);overflow-x:hidden;
 h2.srv{font-family:var(--fd);font-size:clamp(36px,4.5vw,60px);line-height:1.01;letter-spacing:-2.5px;color:var(--K)}
 .srv-side{font-size:15.5px;color:rgba(28,28,28,.82);max-width:640px;line-height:1.8;text-align:left;border-left:2px solid rgba(224,24,92,.55);padding-left:18px;margin-top:0}
 
-/* ── Servizi: nucleus + radial lines layout ── */
+/* ── Servizi: nucleus + net layout ── */
 .srv-flow{
   position:relative;
   display:grid;
-  grid-template-columns:1fr 88px 1fr;
-  gap:16px;
-  align-items:center
+  grid-template-columns:minmax(0,300px) 84px minmax(0,300px);
+  gap:20px;
+  align-items:center;
+  justify-content:center
 }
 #srvNexus{
   position:absolute;inset:0;
@@ -519,15 +520,25 @@ h2.srv{font-family:var(--fd);font-size:clamp(36px,4.5vw,60px);line-height:1.01;l
   position:relative;z-index:1;
   pointer-events:none
 }
+/* rotating cat logo */
 .srv-nucleus-core{
-  width:52px;height:52px;border-radius:50%;
-  background:radial-gradient(circle at 38% 32%,rgba(224,24,92,.95),rgba(120,8,38,.65));
-  box-shadow:0 0 0 8px rgba(224,24,92,.1),0 0 28px rgba(224,24,92,.5),0 0 60px rgba(224,24,92,.18);
-  animation:nucleus-pulse 2.6s ease-in-out infinite
+  width:72px;height:72px;border-radius:50%;
+  overflow:hidden;
+  background:#fff;
+  box-shadow:0 0 0 3px rgba(224,24,92,.3),0 0 24px rgba(224,24,92,.55),0 0 52px rgba(224,24,92,.18);
+  animation:nucleus-spin 9s linear infinite;
+  flex-shrink:0
 }
-@keyframes nucleus-pulse{
-  0%,100%{box-shadow:0 0 0 8px rgba(224,24,92,.1),0 0 28px rgba(224,24,92,.5),0 0 60px rgba(224,24,92,.18);transform:scale(1)}
-  50%{box-shadow:0 0 0 14px rgba(224,24,92,.07),0 0 44px rgba(224,24,92,.65),0 0 80px rgba(224,24,92,.24);transform:scale(1.07)}
+.srv-nucleus-core img{
+  position:relative;
+  height:52px;
+  width:auto;
+  top:10px;
+  left:3px
+}
+@keyframes nucleus-spin{
+  from{transform:rotate(0deg)}
+  to{transform:rotate(360deg)}
 }
 .srv-item{position:relative}
 
@@ -1891,9 +1902,11 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
         </div>
       </div>
 
-      <!-- central nucleus -->
+      <!-- central nucleus: rotating cat -->
       <div class="srv-nucleus-hub" aria-hidden="true">
-        <div class="srv-nucleus-core"></div>
+        <div class="srv-nucleus-core">
+          <img src="Logo-estro.webp" alt="">
+        </div>
       </div>
 
       <!-- right column: cards 6–10 -->
@@ -2281,7 +2294,7 @@ const obs=new IntersectionObserver(es=>{
   });
 })();
 
-// ── Servizi: nucleus canvas ───────────────────────────────────────────────
+// ── Servizi: nucleus + net canvas ────────────────────────────────────────
 (function(){
   const cvs=document.getElementById('srvNexus');
   if(!cvs)return;
@@ -2289,8 +2302,25 @@ const obs=new IntersectionObserver(es=>{
   const ctx=cvs.getContext('2d');
   const flow=cvs.closest('.srv-flow');
   const hub=flow.querySelector('.srv-nucleus-hub');
-  const items=[...flow.querySelectorAll('.srv-item')];
-  let W=0,H=0,dpr=1,t=0,activeIdx=-1,raf=null;
+  const colL=[...flow.querySelectorAll('.srv-col-l .srv-item')];
+  const colR=[...flow.querySelectorAll('.srv-col-r .srv-item')];
+  const items=[...colL,...colR]; // 0-4 left, 5-9 right
+  let W=0,H=0,dpr=1,t=0,activeIdx=-1;
+
+  // net edges: [from, to] where -1 = nucleus, 0-9 = items
+  // spokes + column threads + cross-links
+  const EDGES=[
+    // spokes nucleus→each card
+    [-1,0],[-1,1],[-1,2],[-1,3],[-1,4],
+    [-1,5],[-1,6],[-1,7],[-1,8],[-1,9],
+    // left column threads
+    [0,1],[1,2],[2,3],[3,4],
+    // right column threads
+    [5,6],[6,7],[7,8],[8,9],
+    // cross-links left→right (staggered for net feel)
+    [0,5],[1,6],[2,7],[3,8],[4,9],
+    [0,6],[1,7],[2,8],[3,9],
+  ];
 
   function resize(){
     dpr=window.devicePixelRatio||1;
@@ -2301,62 +2331,63 @@ const obs=new IntersectionObserver(es=>{
     ctx.scale(dpr,dpr);
   }
 
-  function rel(el){
+  function pt(idx){
     const fr=flow.getBoundingClientRect();
+    const el=idx===-1?hub:items[idx];
     const er=el.getBoundingClientRect();
     return{x:er.left+er.width/2-fr.left,y:er.top+er.height/2-fr.top};
   }
 
+  function isActive(a,b){
+    return a===activeIdx||b===activeIdx;
+  }
+
   function draw(){
-    raf=requestAnimationFrame(draw);
+    requestAnimationFrame(draw);
     ctx.clearRect(0,0,W,H);
-    t+=0.007;
-    const nc=rel(hub);
+    t+=0.006;
 
-    items.forEach((item,i)=>{
-      const cc=rel(item);
-      const active=i===activeIdx;
+    EDGES.forEach(([a,b],ei)=>{
+      const pa=pt(a),pb=pt(b);
+      const hot=isActive(a,b);
+      const spoke=a===-1||b===-1;
 
-      // line
-      const lineA=active?0.72:0.14;
+      // edge line
       ctx.beginPath();
-      ctx.moveTo(nc.x,nc.y);
-      ctx.lineTo(cc.x,cc.y);
-      ctx.strokeStyle=`rgba(224,24,92,${lineA})`;
-      ctx.lineWidth=active?1.4:0.7;
+      ctx.moveTo(pa.x,pa.y);
+      ctx.lineTo(pb.x,pb.y);
+      ctx.strokeStyle=hot?'rgba(224,24,92,.65)':
+        spoke?'rgba(224,24,92,.18)':'rgba(224,24,92,.09)';
+      ctx.lineWidth=hot?1.4:spoke?0.8:0.5;
       ctx.stroke();
 
-      // traveling dot (nucleus → card)
-      const phase=((t*0.45+i*0.11)%1);
-      const dx=nc.x+(cc.x-nc.x)*phase;
-      const dy=nc.y+(cc.y-nc.y)*phase;
-      const dotR=active?2.8:1.6;
-      const dotA=active?1:0.5;
+      // traveling dot on this edge
+      const speed=spoke?0.42:0.28;
+      const phase=((t*speed+ei*0.13)%1);
+      const dx=pa.x+(pb.x-pa.x)*phase;
+      const dy=pa.y+(pb.y-pa.y)*phase;
+      const r=hot?3:spoke?1.8:1.2;
+      const alpha=hot?1:spoke?0.55:0.3;
       ctx.beginPath();
-      ctx.arc(dx,dy,dotR,0,Math.PI*2);
-      ctx.fillStyle=`rgba(224,24,92,${dotA})`;
+      ctx.arc(dx,dy,r,0,Math.PI*2);
+      ctx.fillStyle=`rgba(224,24,92,${alpha})`;
       ctx.fill();
 
-      // dot glow on active
-      if(active){
-        const g=ctx.createRadialGradient(dx,dy,0,dx,dy,dotR*5);
-        g.addColorStop(0,'rgba(224,24,92,.35)');
+      if(hot){
+        const g=ctx.createRadialGradient(dx,dy,0,dx,dy,r*6);
+        g.addColorStop(0,'rgba(224,24,92,.3)');
         g.addColorStop(1,'rgba(224,24,92,0)');
-        ctx.beginPath();
-        ctx.arc(dx,dy,dotR*5,0,Math.PI*2);
-        ctx.fillStyle=g;
-        ctx.fill();
+        ctx.beginPath();ctx.arc(dx,dy,r*6,0,Math.PI*2);
+        ctx.fillStyle=g;ctx.fill();
       }
     });
   }
 
-  // card hover
   items.forEach((item,i)=>{
     item.addEventListener('mouseenter',()=>activeIdx=i,{passive:true});
     item.addEventListener('mouseleave',()=>activeIdx=-1,{passive:true});
   });
 
-  // start on section visible
   const io=new IntersectionObserver(([e])=>{
     if(e.isIntersecting){io.disconnect();resize();draw();}
   },{threshold:.05});
