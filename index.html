@@ -1043,6 +1043,94 @@ h2.srv{font-family:var(--fd);font-size:clamp(36px,4.5vw,60px);line-height:1.01;l
   transition:opacity .35s,filter .35s}
 .lw-logo:hover img{opacity:1;filter:brightness(0) invert(1) drop-shadow(0 0 18px rgba(224,24,92,.45))}
 
+/* ── Casi Studio ── */
+.cs-block{margin-top:80px;border-top:1px solid rgba(255,255,255,.06);padding-top:72px}
+.cs-header{display:flex;flex-direction:column;align-items:flex-start;gap:10px;margin-bottom:48px}
+.cs-label{font-size:10px;font-weight:600;letter-spacing:3.5px;text-transform:uppercase;color:var(--F)}
+.cs-title{font-family:var(--fd);font-size:clamp(28px,3vw,44px);line-height:1.04;letter-spacing:-1.6px;color:var(--C);margin:0;max-width:520px}
+.cs-sub{font-size:15px;color:rgba(243,239,224,.52);margin:0;max-width:440px;line-height:1.7}
+
+/* grid: 3 col, 2 rows */
+.cs-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  grid-template-rows:auto auto;
+  gap:16px;
+}
+/* large card spans 2 rows, 1 col */
+.cs-card--lg{grid-row:span 2}
+/* right column: stacks 2 small cards */
+.cs-col-r{display:contents}
+/* wide card spans all 3 cols bottom */
+.cs-card--wide{grid-column:1/-1}
+
+/* card base */
+.cs-card{
+  position:relative;
+  background:rgba(255,255,255,.03);
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:20px;
+  overflow:hidden;
+  cursor:pointer;
+  transition:border-color .35s,background .35s,transform .4s cubic-bezier(.22,1,.36,1);
+}
+.cs-card:hover{
+  background:rgba(255,255,255,.055);
+  border-color:rgba(224,24,92,.3);
+  transform:translateY(-4px);
+}
+.cs-card-inner{
+  padding:32px 28px 28px;
+  display:flex;flex-direction:column;gap:18px;height:100%;box-sizing:border-box
+}
+/* fuchsia accent bar — slides in on hover */
+.cs-accent-bar{
+  position:absolute;bottom:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--F),#ff4d8a,var(--F));
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .45s cubic-bezier(.22,1,.36,1)
+}
+.cs-card:hover .cs-accent-bar{transform:scaleX(1)}
+
+/* number */
+.cs-num{
+  font-family:var(--fm);font-size:11px;color:var(--F);letter-spacing:2px;
+  padding:4px 10px;background:rgba(224,24,92,.1);border:1px solid rgba(224,24,92,.18);
+  border-radius:6px;width:fit-content;line-height:1
+}
+/* sector tag */
+.cs-sector{font-size:10px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:rgba(243,239,224,.38)}
+
+/* kpi row */
+.cs-meta{display:flex;flex-direction:column;gap:12px}
+.cs-kpi-row{display:flex;gap:20px;flex-wrap:wrap}
+.cs-kpi{display:flex;flex-direction:column;gap:2px}
+.cs-kpi-val{font-family:var(--fm);font-size:22px;font-weight:700;color:var(--C);letter-spacing:-0.5px;line-height:1}
+.cs-kpi-lbl{font-size:10px;color:rgba(243,239,224,.42);letter-spacing:.5px}
+
+/* content */
+.cs-content{flex:1}
+.cs-name{font-family:var(--fd);font-size:clamp(17px,1.5vw,22px);line-height:1.1;letter-spacing:-.6px;color:var(--C);margin:0 0 10px}
+.cs-desc{font-size:13.5px;line-height:1.72;color:rgba(243,239,224,.58);margin:0}
+
+/* footer */
+.cs-foot{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-top:auto}
+.cs-tags{display:flex;flex-wrap:wrap;gap:6px}
+.cs-tags span{font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;
+  color:rgba(243,239,224,.5);background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.08);border-radius:5px;padding:4px 9px;line-height:1}
+.cs-arr{font-size:20px;color:var(--F);opacity:.6;transition:opacity .2s,transform .2s;flex-shrink:0;line-height:1}
+.cs-card:hover .cs-arr{opacity:1;transform:translateX(4px)}
+
+/* wide card: lay kpi horizontally */
+.cs-card--wide .cs-card-inner{flex-direction:row;align-items:center;gap:40px;padding:28px 32px}
+.cs-card--wide .cs-meta{flex-shrink:0}
+.cs-card--wide .cs-kpi-row{gap:28px;flex-wrap:nowrap}
+.cs-card--wide .cs-kpi-val{font-size:26px}
+.cs-card--wide .cs-content{flex:1;border-left:1px solid rgba(255,255,255,.07);padding-left:40px}
+.cs-card--wide .cs-name{font-size:clamp(16px,1.4vw,20px);margin-bottom:8px}
+.cs-card--wide .cs-foot{display:none}
+
 /* ═══ SOCIAL PROOF ═══ */
 .sproof{
   background:linear-gradient(155deg,#F0E4C4 0%,#E8DDB8 48%,#F2E9D4 100%);
@@ -1203,6 +1291,12 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
   /* contain large absolute glow elements that extend outside their sections */
   .target,.benefici{overflow:hidden}
   .bfx-img{width:clamp(240px,82%,365px)}
+  /* casi studio — 2 col su tablet */
+  .cs-grid{grid-template-columns:1fr 1fr}
+  .cs-card--lg{grid-row:auto}
+  .cs-card--wide .cs-card-inner{flex-direction:column;gap:20px}
+  .cs-card--wide .cs-content{border-left:none;padding-left:0;border-top:1px solid rgba(255,255,255,.07);padding-top:20px}
+  .cs-card--wide .cs-foot{display:flex}
 }
 
 @media(max-width:768px){
@@ -1222,6 +1316,12 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
    ═══════════════════════════════════════════════════ */
 @media(max-width:640px){
   :root{--px:20px}
+  /* casi studio — 1 col su mobile */
+  .cs-grid{grid-template-columns:1fr}
+  .cs-card--wide .cs-card-inner{flex-direction:column;gap:16px}
+  .cs-card--wide .cs-content{border-left:none;padding-left:0;border-top:1px solid rgba(255,255,255,.07);padding-top:16px}
+  .cs-card--wide .cs-foot{display:flex}
+  .cs-card--wide .cs-kpi-row{flex-wrap:wrap;gap:16px}
 
   /* ── HEADER ── */
   .hdr{padding:12px var(--px);width:100%;box-sizing:border-box}
@@ -2150,6 +2250,114 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
       <div class="lw-logo"><img src="loghi/disclaimer.webp" alt="Disclaimer" loading="lazy"></div>
       </div>
     </div>
+
+    <!-- ── Casi Studio ── -->
+    <div class="cs-block rv">
+      <div class="cs-header">
+        <span class="cs-label">— Casi Studio</span>
+        <h3 class="cs-title">Risultati concreti,<br>non promesse.</h3>
+        <p class="cs-sub">Quattro progetti, quattro sfide diverse. Ecco cosa abbiamo costruito insieme.</p>
+      </div>
+
+      <div class="cs-grid">
+
+        <!-- Card 1 — large, left -->
+        <article class="cs-card cs-card--lg rv d1">
+          <div class="cs-card-inner">
+            <div class="cs-num">01</div>
+            <div class="cs-meta">
+              <span class="cs-sector">E-commerce · Fashion</span>
+              <div class="cs-kpi-row">
+                <div class="cs-kpi"><span class="cs-kpi-val">+340%</span><span class="cs-kpi-lbl">Revenue organico</span></div>
+                <div class="cs-kpi"><span class="cs-kpi-val">×2.8</span><span class="cs-kpi-lbl">ROAS medio</span></div>
+              </div>
+            </div>
+            <div class="cs-content">
+              <h4 class="cs-name">Da 0 a 1.2M€<br>in 14 mesi</h4>
+              <p class="cs-desc">Brand fashion direct-to-consumer. Strategia integrata: SEO, Meta Ads e content system. Da startup a leader di categoria nella nicchia.</p>
+            </div>
+            <div class="cs-foot">
+              <div class="cs-tags"><span>Strategia</span><span>ADV</span><span>SEO</span><span>Content</span></div>
+              <div class="cs-arr">→</div>
+            </div>
+          </div>
+          <div class="cs-accent-bar"></div>
+        </article>
+
+        <!-- Cards 2+3 — small stack, right -->
+        <div class="cs-col-r">
+
+          <article class="cs-card rv d2">
+            <div class="cs-card-inner">
+              <div class="cs-num">02</div>
+              <div class="cs-meta">
+                <span class="cs-sector">B2B · Industriale</span>
+                <div class="cs-kpi-row">
+                  <div class="cs-kpi"><span class="cs-kpi-val">+180%</span><span class="cs-kpi-lbl">Lead qualificati</span></div>
+                </div>
+              </div>
+              <div class="cs-content">
+                <h4 class="cs-name">Lead generation<br>per azienda manifatturiera</h4>
+                <p class="cs-desc">Funnel LinkedIn Ads + sito web ottimizzato per conversione. Pipeline commerciale da zero a 40+ prospect al mese.</p>
+              </div>
+              <div class="cs-foot">
+                <div class="cs-tags"><span>LinkedIn Ads</span><span>Web</span><span>Automation</span></div>
+                <div class="cs-arr">→</div>
+              </div>
+            </div>
+            <div class="cs-accent-bar"></div>
+          </article>
+
+          <article class="cs-card rv d3">
+            <div class="cs-card-inner">
+              <div class="cs-num">03</div>
+              <div class="cs-meta">
+                <span class="cs-sector">Retail · Food</span>
+                <div class="cs-kpi-row">
+                  <div class="cs-kpi"><span class="cs-kpi-val">+92%</span><span class="cs-kpi-lbl">Fatturato PDV</span></div>
+                </div>
+              </div>
+              <div class="cs-content">
+                <h4 class="cs-name">Rebranding e<br>lancio prodotto</h4>
+                <p class="cs-desc">Nuova identità visiva, packaging e campagna di lancio su Meta. Sell-out esaurito in 3 settimane.</p>
+              </div>
+              <div class="cs-foot">
+                <div class="cs-tags"><span>Branding</span><span>Meta Ads</span><span>Content</span></div>
+                <div class="cs-arr">→</div>
+              </div>
+            </div>
+            <div class="cs-accent-bar"></div>
+          </article>
+
+        </div><!-- /cs-col-r -->
+
+        <!-- Card 4 — wide, bottom -->
+        <article class="cs-card cs-card--wide rv d4">
+          <div class="cs-card-inner">
+            <div class="cs-num">04</div>
+            <div class="cs-meta">
+              <span class="cs-sector">Professional Services · Consulenza</span>
+              <div class="cs-kpi-row">
+                <div class="cs-kpi"><span class="cs-kpi-val">+610%</span><span class="cs-kpi-lbl">Traffico organico</span></div>
+                <div class="cs-kpi"><span class="cs-kpi-val">–64%</span><span class="cs-kpi-lbl">Costo per acquisizione</span></div>
+                <div class="cs-kpi"><span class="cs-kpi-val">14 mesi</span><span class="cs-kpi-lbl">Time to market</span></div>
+              </div>
+            </div>
+            <div class="cs-content">
+              <h4 class="cs-name">Autorità digitale per studio di consulenza fiscale</h4>
+              <p class="cs-desc">Da totale assenza online a media company di settore. Piano editoriale, SEO tecnico e newsletter da 0 a 8.400 iscritti attivi.</p>
+            </div>
+            <div class="cs-foot">
+              <div class="cs-tags"><span>SEO</span><span>Content</span><span>Newsletter</span><span>Strategia</span></div>
+              <div class="cs-arr">→</div>
+            </div>
+          </div>
+          <div class="cs-accent-bar"></div>
+        </article>
+
+      </div><!-- /cs-grid -->
+    </div><!-- /cs-block -->
+
   </div>
 </section>
 
