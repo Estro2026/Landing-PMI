@@ -496,19 +496,26 @@ body{font-family:var(--fb);background:var(--K);color:var(--C);overflow-x:hidden;
 h2.srv{font-family:var(--fd);font-size:clamp(36px,4.5vw,60px);line-height:1.01;letter-spacing:-2.5px;color:var(--K)}
 .srv-side{font-size:15.5px;color:rgba(28,28,28,.82);max-width:640px;line-height:1.8;text-align:left;border-left:2px solid rgba(224,24,92,.55);padding-left:18px;margin-top:0}
 
-/* ── Griglia 2 colonne ── */
-.srv-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;position:relative;z-index:1}
+/* ── Layout affiancato: cards | canvas ── */
+.srv-layout{
+  display:grid;
+  grid-template-columns:3fr 2fr;
+  gap:48px;
+  align-items:start
+}
+/* ── Griglia card: 2 colonne strette ── */
+.srv-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;position:relative;z-index:1}
 
-/* ── Orb animato ── */
-.srv-orb{
-  position:absolute;
-  width:520px;height:520px;
-  border-radius:50%;
-  background:radial-gradient(circle,rgba(224,24,92,.16) 0%,rgba(224,24,92,.07) 38%,transparent 70%);
-  pointer-events:none;z-index:0;
-  top:0;left:0;
-  will-change:transform;
-  mix-blend-mode:screen
+/* ── Colonna canvas: sticky ── */
+.srv-anim-col{
+  position:sticky;
+  top:108px;
+  height:600px;
+  pointer-events:none
+}
+#srvCanvas{
+  width:100%;height:100%;
+  display:block
 }
 
 /* ── card base ── */
@@ -1148,6 +1155,8 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
   .target-inner,.sol-grid{grid-template-columns:1fr;gap:40px}
   .ben-grid{grid-template-columns:1fr;gap:36px}
   .ic-grid{grid-template-columns:repeat(2,1fr)}
+  .srv-layout{grid-template-columns:1fr;gap:0}
+  .srv-anim-col{display:none}
   .srv-grid{grid-template-columns:1fr 1fr}
   /* tl horizontal: slightly reduce font at mid breakpoint */
   .tl-h4{font-size:15px}
@@ -1175,6 +1184,8 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
   .sol-grid{gap:24px}
   .cr-stage{height:320px}
   .ta-ws{height:420px}
+  .srv-layout{grid-template-columns:1fr;gap:0}
+  .srv-anim-col{display:none}
   .srv-grid{grid-template-columns:1fr 1fr}
   .sc-ico{width:44px;height:44px;border-radius:12px}
   .sc-ico svg{width:22px;height:22px}
@@ -1841,160 +1852,147 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
       </div>
     </div>
 
-    <div class="srv-grid rv">
-      <div class="srv-orb" aria-hidden="true"></div>
+    <div class="srv-layout">
 
-      <!-- 01 Strategia -->
-      <div class="sc">
-        <div class="sc-top">
-          <div class="sc-ico">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1" fill="currentColor" stroke="none"/></svg>
+      <!-- cards column -->
+      <div class="srv-grid rv">
+        <!-- 01 Strategia -->
+        <div class="sc" data-srv-idx="0">
+          <div class="sc-top">
+            <div class="sc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1" fill="currentColor" stroke="none"/></svg></div>
+            <div class="sc-expand" aria-label="espandi">+</div>
           </div>
-          <div class="sc-expand" aria-label="espandi">+</div>
+          <div class="sc-bot">
+            <span class="sc-tag">Core</span>
+            <div class="sc-name">Strategia Marketing</div>
+            <div class="sc-desc-wrap"><p class="sc-desc">Obiettivi, analisi del mercato e roadmap operativa con KPI condivisi.</p></div>
+          </div>
         </div>
-        <div class="sc-bot">
-          <span class="sc-tag">Core</span>
-          <div class="sc-name">Strategia Marketing</div>
-          <div class="sc-desc-wrap"><p class="sc-desc">Obiettivi, analisi del mercato e roadmap operativa con KPI condivisi.</p></div>
+
+        <!-- 02 Advertising -->
+        <div class="sc" data-srv-idx="1">
+          <div class="sc-top">
+            <div class="sc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19"/><path d="M11 5v14M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg></div>
+            <div class="sc-expand" aria-label="espandi">+</div>
+          </div>
+          <div class="sc-bot">
+            <span class="sc-tag">ADV</span>
+            <div class="sc-name">Advertising</div>
+            <div class="sc-desc-wrap"><p class="sc-desc">Google Ads, Meta, LinkedIn. Campagne misurabili, ottimizzate per massimizzare il ROI.</p></div>
+          </div>
         </div>
+
+        <!-- 03 Comunicazione -->
+        <div class="sc" data-srv-idx="2">
+          <div class="sc-top">
+            <div class="sc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><circle cx="12" cy="20" r="1" fill="currentColor" stroke="none"/></svg></div>
+            <div class="sc-expand" aria-label="espandi">+</div>
+          </div>
+          <div class="sc-bot">
+            <span class="sc-tag">Digital</span>
+            <div class="sc-name">Comunicazione Digitale</div>
+            <div class="sc-desc-wrap"><p class="sc-desc">Canali digitali gestiti come sistema unico. Presenza coordinata e risultati misurabili.</p></div>
+          </div>
+        </div>
+
+        <!-- 04 Content -->
+        <div class="sc" data-srv-idx="3">
+          <div class="sc-top">
+            <div class="sc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></div>
+            <div class="sc-expand" aria-label="espandi">+</div>
+          </div>
+          <div class="sc-bot">
+            <span class="sc-tag">Creative</span>
+            <div class="sc-name">Content Creation</div>
+            <div class="sc-desc-wrap"><p class="sc-desc">Social, web, newsletter con un'unica voce coerente per il tuo brand.</p></div>
+          </div>
+        </div>
+
+        <!-- 05 Branding -->
+        <div class="sc" data-srv-idx="4">
+          <div class="sc-top">
+            <div class="sc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+            <div class="sc-expand" aria-label="espandi">+</div>
+          </div>
+          <div class="sc-bot">
+            <span class="sc-tag">Brand</span>
+            <div class="sc-name">Branding</div>
+            <div class="sc-desc-wrap"><p class="sc-desc">Identità visiva, posizionamento e tono di voce coerenti su ogni canale.</p></div>
+          </div>
+        </div>
+
+        <!-- 06 SEO -->
+        <div class="sc" data-srv-idx="5">
+          <div class="sc-top">
+            <div class="sc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/><polyline points="8 14 10 11 12 13 15 9"/></svg></div>
+            <div class="sc-expand" aria-label="espandi">+</div>
+          </div>
+          <div class="sc-bot">
+            <span class="sc-tag">SEO</span>
+            <div class="sc-name">SEO</div>
+            <div class="sc-desc-wrap"><p class="sc-desc">Visibilità organica costruita nel tempo. On-page, contenuti e link building.</p></div>
+          </div>
+        </div>
+
+        <!-- 07 Siti Web -->
+        <div class="sc" data-srv-idx="6">
+          <div class="sc-top">
+            <div class="sc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="2" y1="7" x2="22" y2="7"/><circle cx="6" cy="5" r=".8" fill="currentColor" stroke="none"/><circle cx="9" cy="5" r=".8" fill="currentColor" stroke="none"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+            <div class="sc-expand" aria-label="espandi">+</div>
+          </div>
+          <div class="sc-bot">
+            <span class="sc-tag">Web</span>
+            <div class="sc-name">Siti Web &amp; Landing Page</div>
+            <div class="sc-desc-wrap"><p class="sc-desc">Design e sviluppo orientati alla conversione. Veloci, accessibili, ottimizzati SEO.</p></div>
+          </div>
+        </div>
+
+        <!-- 08 Social -->
+        <div class="sc" data-srv-idx="7">
+          <div class="sc-top">
+            <div class="sc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2.5"/><circle cx="19.5" cy="16" r="2.5"/><circle cx="4.5" cy="16" r="2.5"/><line x1="12" y1="7.5" x2="19.5" y2="13.5"/><line x1="12" y1="7.5" x2="4.5" y2="13.5"/><line x1="4.5" y1="16" x2="19.5" y2="16"/></svg></div>
+            <div class="sc-expand" aria-label="espandi">+</div>
+          </div>
+          <div class="sc-bot">
+            <span class="sc-tag">Social</span>
+            <div class="sc-name">Social Media Management</div>
+            <div class="sc-desc-wrap"><p class="sc-desc">Piano editoriale, produzione e community management continuativi.</p></div>
+          </div>
+        </div>
+
+        <!-- 09 Automation -->
+        <div class="sc" data-srv-idx="8">
+          <div class="sc-top">
+            <div class="sc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></div>
+            <div class="sc-expand" aria-label="espandi">+</div>
+          </div>
+          <div class="sc-bot">
+            <span class="sc-tag">Auto</span>
+            <div class="sc-name">Marketing Automation</div>
+            <div class="sc-desc-wrap"><p class="sc-desc">Email flow, CRM e automazioni per nutrire i lead senza lavoro manuale.</p></div>
+          </div>
+        </div>
+
+        <!-- 10 Analytics -->
+        <div class="sc" data-srv-idx="9">
+          <div class="sc-top">
+            <div class="sc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="3" y1="20" x2="21" y2="20"/></svg></div>
+            <div class="sc-expand" aria-label="espandi">+</div>
+          </div>
+          <div class="sc-bot">
+            <span class="sc-tag">Intelligence</span>
+            <div class="sc-name">Analytics &amp; Reporting</div>
+            <div class="sc-desc-wrap"><p class="sc-desc">Dati chiari e interpretati. Sai sempre cosa funziona e dove investire.</p></div>
+          </div>
+        </div>
+      </div><!-- /srv-grid -->
+
+      <!-- animation column -->
+      <div class="srv-anim-col" aria-hidden="true">
+        <canvas id="srvCanvas"></canvas>
       </div>
 
-      <!-- 02 Advertising -->
-      <div class="sc">
-        <div class="sc-top">
-          <div class="sc-ico">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19"/><path d="M11 5v14M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
-          </div>
-          <div class="sc-expand" aria-label="espandi">+</div>
-        </div>
-        <div class="sc-bot">
-          <span class="sc-tag">ADV</span>
-          <div class="sc-name">Advertising</div>
-          <div class="sc-desc-wrap"><p class="sc-desc">Google Ads, Meta, LinkedIn. Campagne misurabili, ottimizzate per massimizzare il ROI.</p></div>
-        </div>
-      </div>
-
-      <!-- 03 Comunicazione -->
-      <div class="sc">
-        <div class="sc-top">
-          <div class="sc-ico">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><circle cx="12" cy="20" r="1" fill="currentColor" stroke="none"/></svg>
-          </div>
-          <div class="sc-expand" aria-label="espandi">+</div>
-        </div>
-        <div class="sc-bot">
-          <span class="sc-tag">Digital</span>
-          <div class="sc-name">Comunicazione Digitale</div>
-          <div class="sc-desc-wrap"><p class="sc-desc">Canali digitali gestiti come sistema unico. Presenza coordinata e risultati misurabili.</p></div>
-        </div>
-      </div>
-
-      <!-- 04 Content -->
-      <div class="sc">
-        <div class="sc-top">
-          <div class="sc-ico">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
-          </div>
-          <div class="sc-expand" aria-label="espandi">+</div>
-        </div>
-        <div class="sc-bot">
-          <span class="sc-tag">Creative</span>
-          <div class="sc-name">Content Creation</div>
-          <div class="sc-desc-wrap"><p class="sc-desc">Social, web, newsletter con un'unica voce coerente per il tuo brand.</p></div>
-        </div>
-      </div>
-
-      <!-- 05 Branding -->
-      <div class="sc">
-        <div class="sc-top">
-          <div class="sc-ico">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          </div>
-          <div class="sc-expand" aria-label="espandi">+</div>
-        </div>
-        <div class="sc-bot">
-          <span class="sc-tag">Brand</span>
-          <div class="sc-name">Branding</div>
-          <div class="sc-desc-wrap"><p class="sc-desc">Identità visiva, posizionamento e tono di voce coerenti su ogni canale.</p></div>
-        </div>
-      </div>
-
-      <!-- 06 SEO -->
-      <div class="sc">
-        <div class="sc-top">
-          <div class="sc-ico">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/><polyline points="8 14 10 11 12 13 15 9"/></svg>
-          </div>
-          <div class="sc-expand" aria-label="espandi">+</div>
-        </div>
-        <div class="sc-bot">
-          <span class="sc-tag">SEO</span>
-          <div class="sc-name">SEO</div>
-          <div class="sc-desc-wrap"><p class="sc-desc">Visibilità organica costruita nel tempo. On-page, contenuti e link building.</p></div>
-        </div>
-      </div>
-
-      <!-- 07 Siti Web -->
-      <div class="sc">
-        <div class="sc-top">
-          <div class="sc-ico">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="2" y1="7" x2="22" y2="7"/><circle cx="6" cy="5" r=".8" fill="currentColor" stroke="none"/><circle cx="9" cy="5" r=".8" fill="currentColor" stroke="none"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-          </div>
-          <div class="sc-expand" aria-label="espandi">+</div>
-        </div>
-        <div class="sc-bot">
-          <span class="sc-tag">Web</span>
-          <div class="sc-name">Siti Web &amp; Landing Page</div>
-          <div class="sc-desc-wrap"><p class="sc-desc">Design e sviluppo orientati alla conversione. Veloci, accessibili, ottimizzati SEO.</p></div>
-        </div>
-      </div>
-
-      <!-- 08 Social -->
-      <div class="sc">
-        <div class="sc-top">
-          <div class="sc-ico">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2.5"/><circle cx="19.5" cy="16" r="2.5"/><circle cx="4.5" cy="16" r="2.5"/><line x1="12" y1="7.5" x2="19.5" y2="13.5"/><line x1="12" y1="7.5" x2="4.5" y2="13.5"/><line x1="4.5" y1="16" x2="19.5" y2="16"/></svg>
-          </div>
-          <div class="sc-expand" aria-label="espandi">+</div>
-        </div>
-        <div class="sc-bot">
-          <span class="sc-tag">Social</span>
-          <div class="sc-name">Social Media Management</div>
-          <div class="sc-desc-wrap"><p class="sc-desc">Piano editoriale, produzione e community management continuativi.</p></div>
-        </div>
-      </div>
-
-      <!-- 09 Automation -->
-      <div class="sc">
-        <div class="sc-top">
-          <div class="sc-ico">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
-          </div>
-          <div class="sc-expand" aria-label="espandi">+</div>
-        </div>
-        <div class="sc-bot">
-          <span class="sc-tag">Auto</span>
-          <div class="sc-name">Marketing Automation</div>
-          <div class="sc-desc-wrap"><p class="sc-desc">Email flow, CRM e automazioni per nutrire i lead senza lavoro manuale.</p></div>
-        </div>
-      </div>
-
-      <!-- 10 Analytics -->
-      <div class="sc">
-        <div class="sc-top">
-          <div class="sc-ico">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="3" y1="20" x2="21" y2="20"/></svg>
-          </div>
-          <div class="sc-expand" aria-label="espandi">+</div>
-        </div>
-        <div class="sc-bot">
-          <span class="sc-tag">Intelligence</span>
-          <div class="sc-name">Analytics &amp; Reporting</div>
-          <div class="sc-desc-wrap"><p class="sc-desc">Dati chiari e interpretati. Sai sempre cosa funziona e dove investire.</p></div>
-        </div>
-      </div>
-
-    </div>
+    </div><!-- /srv-layout -->
 
     <div class="rv srv-cta" style="text-align:center;margin-top:40px">
       <a href="#contatti" class="btn bf btn-lg">Parliamo del tuo progetto <span class="arr">›</span></a>
@@ -2332,12 +2330,10 @@ window.addEventListener('scroll',()=>hdr.classList.toggle('on',scrollY>40),{pass
 const obs=new IntersectionObserver(es=>{
   es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vs')});
 
-// ── Servizi: card expand + orb interaction ───────────────────────────────
+// ── Servizi: card expand ─────────────────────────────────────────────────
 (function(){
   const grid=document.querySelector('.srv-grid');
   if(!grid)return;
-
-  // expand toggle
   grid.addEventListener('click',e=>{
     const card=e.target.closest('.sc');
     if(!card)return;
@@ -2345,68 +2341,138 @@ const obs=new IntersectionObserver(es=>{
     grid.querySelectorAll('.sc.sc-open').forEach(c=>c.classList.remove('sc-open'));
     if(!isOpen)card.classList.add('sc-open');
   });
+})();
 
-  // orb animation
-  const noMotion=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
-  const orb=grid.querySelector('.srv-orb');
-  if(!orb||noMotion)return;
+// ── Servizi: constellation canvas ────────────────────────────────────────
+(function(){
+  const cvs=document.getElementById('srvCanvas');
+  if(!cvs)return;
+  if(window.matchMedia('(prefers-reduced-motion:reduce)').matches)return;
 
-  const cards=[...grid.querySelectorAll('.sc')];
-  const ORB_R=260; // half orb width
-  let ox=0,oy=0,tx=0,ty=0;
-  let idleT=0,isHover=false,raf=null;
+  const ctx=cvs.getContext('2d');
+  const col=document.querySelector('.srv-anim-col');
+  const cards=[...document.querySelectorAll('.sc[data-srv-idx]')];
 
-  function lerp(a,b,t){return a+(b-a)*t}
+  // 10 node positions (normalised 0-1 within canvas)
+  const POS=[
+    {x:.28,y:.05},{x:.72,y:.10},
+    {x:.18,y:.22},{x:.68,y:.28},
+    {x:.42,y:.40},{x:.80,y:.46},
+    {x:.22,y:.58},{x:.70,y:.64},
+    {x:.38,y:.78},{x:.76,y:.86}
+  ];
+  // edges connecting nearby nodes
+  const EDGES=[[0,1],[0,2],[1,3],[2,3],[2,4],[3,5],[4,5],[4,6],[5,7],[6,7],[6,8],[7,9],[8,9],[3,4]];
 
-  // idle: slow lissajous across the grid
-  function idleTarget(){
-    const w=grid.offsetWidth, h=grid.offsetHeight;
-    idleT+=0.008;
-    tx=w*(0.15+0.7*(0.5+0.5*Math.sin(idleT)));
-    ty=h*(0.1 +0.8*(0.5+0.5*Math.sin(idleT*0.61+1.2)));
+  let W=0,H=0,dpr=1;
+  let active=-1,t=0;
+  // per-node float offsets (random phases)
+  const PH=POS.map(()=>({a:Math.random()*Math.PI*2,b:Math.random()*Math.PI*2,s:3+Math.random()*4}));
+  // reveal progress per node (0→1)
+  const reveal=POS.map(()=>0);
+  let revealed=false;
+
+  function resize(){
+    dpr=window.devicePixelRatio||1;
+    W=col.offsetWidth; H=col.offsetHeight;
+    cvs.width=W*dpr; cvs.height=H*dpr;
+    cvs.style.width=W+'px'; cvs.style.height=H+'px';
+    ctx.scale(dpr,dpr);
   }
 
-  function applyToCards(){
-    cards.forEach(card=>{
-      const gr=grid.getBoundingClientRect();
-      const cr=card.getBoundingClientRect();
-      const cx=cr.left-gr.left+cr.width/2;
-      const cy=cr.top -gr.top +cr.height/2;
-      const dist=Math.hypot(cx-ox,cy-oy);
-      const t=Math.max(0,1-dist/(ORB_R*1.6));
-      const g=t*t;
-      if(g>0.015){
-        card.style.setProperty('--orb-border',`rgba(224,24,92,${(0.07+g*0.38).toFixed(3)})`);
-        card.style.setProperty('--orb-shadow',`0 0 ${(g*56).toFixed(0)}px ${(g*-8).toFixed(0)}px rgba(224,24,92,${(g*0.32).toFixed(3)})`);
-      } else {
-        card.style.removeProperty('--orb-border');
-        card.style.removeProperty('--orb-shadow');
+  function nodeXY(i){
+    const p=POS[i], ph=PH[i];
+    const ox=Math.sin(t*0.6+ph.a)*ph.s;
+    const oy=Math.cos(t*0.45+ph.b)*ph.s;
+    return{x:p.x*W+ox, y:p.y*H+oy};
+  }
+
+  const F='#E0185C';
+  function hexA(hex,a){
+    const r=parseInt(hex.slice(1,3),16),g=parseInt(hex.slice(3,5),16),b=parseInt(hex.slice(5,7),16);
+    return`rgba(${r},${g},${b},${a})`;
+  }
+
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    t+=0.012;
+
+    // update reveal
+    if(revealed){
+      POS.forEach((_,i)=>{reveal[i]=Math.min(1,reveal[i]+0.04)});
+    }
+
+    // edges
+    EDGES.forEach(([a,b])=>{
+      const rv=Math.min(reveal[a],reveal[b]);
+      if(rv<0.01)return;
+      const pa=nodeXY(a), pb=nodeXY(b);
+      const isActive=(a===active||b===active);
+      ctx.beginPath();
+      ctx.moveTo(pa.x,pa.y);
+      ctx.lineTo(pb.x,pb.y);
+      ctx.strokeStyle=isActive?hexA(F,0.55*rv):hexA('#F3EFE0',0.10*rv);
+      ctx.lineWidth=isActive?1.5:0.8;
+      ctx.stroke();
+    });
+
+    // nodes
+    POS.forEach((_,i)=>{
+      const rv=reveal[i]; if(rv<0.01)return;
+      const {x,y}=nodeXY(i);
+      const isAct=i===active;
+      const R=isAct?8:5;
+
+      // pulse rings on active
+      if(isAct){
+        [1,2].forEach(k=>{
+          const pr=(t%2)/2; // 0→1
+          const pr2=(t%2+k*0.4)%1;
+          ctx.beginPath();
+          ctx.arc(x,y,R+pr2*28,0,Math.PI*2);
+          ctx.strokeStyle=hexA(F,(1-pr2)*0.35);
+          ctx.lineWidth=1;
+          ctx.stroke();
+        });
+      }
+
+      // node fill
+      ctx.beginPath();
+      ctx.arc(x,y,R*rv,0,Math.PI*2);
+      ctx.fillStyle=isAct?F:hexA('#F3EFE0',0.55*rv);
+      ctx.fill();
+
+      // glow on active
+      if(isAct){
+        ctx.beginPath();
+        ctx.arc(x,y,R,0,Math.PI*2);
+        const g=ctx.createRadialGradient(x,y,0,x,y,R*3);
+        g.addColorStop(0,hexA(F,0.4));
+        g.addColorStop(1,hexA(F,0));
+        ctx.fillStyle=g;
+        ctx.fill();
       }
     });
   }
 
-  function tick(){
-    if(!isHover)idleTarget();
-    ox=lerp(ox,tx,isHover?0.10:0.04);
-    oy=lerp(oy,ty,isHover?0.10:0.04);
-    orb.style.transform=`translate(${(ox-ORB_R).toFixed(1)}px,${(oy-ORB_R).toFixed(1)}px)`;
-    applyToCards();
-    raf=requestAnimationFrame(tick);
-  }
+  function loop(){requestAnimationFrame(loop);draw();}
 
-  grid.addEventListener('mousemove',e=>{
-    isHover=true;
-    const r=grid.getBoundingClientRect();
-    tx=e.clientX-r.left;
-    ty=e.clientY-r.top;
-  },{passive:true});
+  // card hover wires
+  cards.forEach(card=>{
+    const idx=+card.dataset.srvIdx;
+    card.addEventListener('mouseenter',()=>active=idx,{passive:true});
+    card.addEventListener('mouseleave',()=>active=-1,{passive:true});
+  });
 
-  grid.addEventListener('mouseleave',()=>{isHover=false;},{passive:true});
+  // reveal on section scroll into view
+  const io=new IntersectionObserver(([e])=>{
+    if(e.isIntersecting){revealed=true;io.disconnect();}
+  },{threshold:.1});
+  io.observe(col.closest('section')||col);
 
-  // init orb position
-  ox=tx=grid.offsetWidth/2;
-  oy=ty=grid.offsetHeight/2;
-  raf=requestAnimationFrame(tick);
+  new ResizeObserver(()=>{ctx.resetTransform();resize();}).observe(col);
+  resize();
+  loop();
 })();
 // ── Benefici particle canvas ──────────────────────────────────────────────
 (function(){
