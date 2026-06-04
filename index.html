@@ -546,9 +546,9 @@ h2.srv{font-family:var(--fd);font-size:clamp(36px,4.5vw,60px);line-height:1.01;l
   background:var(--K);
   border:1px solid rgba(255,255,255,.07);
   border-radius:16px;
-  padding:9px 38px 9px 12px;
+  padding:7px 30px 7px 12px;
   position:relative;overflow:hidden;
-  display:flex;flex-direction:row;align-items:center;gap:10px;
+  display:flex;flex-direction:row;align-items:center;
   width:max-content;
   cursor:pointer;
   will-change:transform;
@@ -610,11 +610,11 @@ h2.srv{font-family:var(--fd);font-size:clamp(36px,4.5vw,60px);line-height:1.01;l
 
 /* ── expand toggle ── */
 .sc-expand{
-  width:22px;height:22px;border-radius:50%;
-  border:1.5px solid rgba(255,255,255,.18);
+  width:16px;height:16px;border-radius:50%;
+  border:1px solid rgba(255,255,255,.22);
   display:flex;align-items:center;justify-content:center;
-  position:absolute;top:14px;right:14px;z-index:2;
-  font-size:14px;line-height:1;color:rgba(255,255,255,.35);
+  position:absolute;top:50%;right:8px;transform:translateY(-50%);z-index:2;
+  font-size:11px;line-height:1;color:rgba(255,255,255,.35);
   transition:transform .4s cubic-bezier(.34,1.4,.64,1),border-color .3s,color .3s,background .3s
 }
 .sc.sc-open .sc-expand{
@@ -624,13 +624,13 @@ h2.srv{font-family:var(--fd);font-size:clamp(36px,4.5vw,60px);line-height:1.01;l
   background:rgba(224,24,92,.08)
 }
 
-/* ── card: icon + title in one row ── */
-.sc-top{display:contents} /* icon participates directly in row */
+/* ── card: title only, no icon ── */
+.sc-top{display:none}
 .sc-bot{position:relative;z-index:2;white-space:nowrap}
-.sc-tag{display:none} /* hidden in compact mode */
+.sc-tag{display:none}
 .sc-tag{font-size:8px;font-weight:700;letter-spacing:3.5px;text-transform:uppercase;color:rgba(224,24,92,.7);display:block;margin-bottom:6px}
 
-.sc-name{font-family:var(--fd);font-size:15px;color:var(--C);letter-spacing:-.4px;line-height:1.2;margin-bottom:0}
+.sc-name{font-family:var(--fd);font-size:13px;color:var(--C);letter-spacing:-.3px;line-height:1.2;margin-bottom:0;white-space:nowrap}
 
 /* ── collapsible description ── */
 .sc-desc-wrap{
