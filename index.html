@@ -206,8 +206,7 @@ body{font-family:var(--fb);background:var(--K);color:var(--C);overflow-x:hidden;
 @media(max-width:640px){.target-deco{display:none}}
 
 /* ── ANIMAZIONE TARGET: workspace disperso → dashboard Estro ── */
-.ta-ws{position:relative;height:440px;width:100%;background:#F2F0E8;border:1px solid rgba(28,28,28,.09);border-radius:20px;overflow:hidden;box-shadow:0 8px 36px rgba(28,28,28,.08)}
-.ta-ws::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(28,28,28,.065) 1px,transparent 1px);background-size:28px 28px;z-index:0;pointer-events:none}
+.ta-ws{position:relative;height:480px;width:100%;background:transparent;border:none;border-radius:0;overflow:visible;box-shadow:none}
 
 /* float keyframes — ogni card ha un'animazione diversa */
 @keyframes taF0{0%,100%{transform:rotate(-3.5deg) translateY(0)}55%{transform:rotate(-2.5deg) translateY(-5px)}}
@@ -218,16 +217,16 @@ body{font-family:var(--fb);background:var(--K);color:var(--C);overflow-x:hidden;
 @keyframes taF5{0%,100%{transform:rotate(3deg) translateY(0)}55%{transform:rotate(2deg) translateY(-4px)}}
 
 /* cards attività — stile SaaS mini-widget */
-.tac{position:absolute;z-index:2;width:132px;background:#fff;border:1px solid rgba(28,28,28,.09);border-radius:12px;padding:11px 12px;box-shadow:0 3px 12px rgba(28,28,28,.09),0 1px 3px rgba(28,28,28,.05)}
-/* posizioni scatter */
-#tac0{left:4%;top:5%}
-#tac1{left:56%;top:4%}
-#tac2{left:29%;top:10%}
-#tac3{left:2%;top:43%}
-#tac4{left:61%;top:36%}
-#tac5{left:30%;top:52%}
-#tac6{left:3%;top:68%}
-#tac7{left:58%;top:65%}
+.tac{position:absolute;z-index:2;width:132px;background:#fff;border:1px solid rgba(28,28,28,.11);border-radius:12px;padding:11px 12px;box-shadow:0 6px 20px rgba(28,28,28,.11),0 2px 6px rgba(28,28,28,.07)}
+/* posizioni scatter — distribuite liberamente nello spazio */
+#tac0{left:0%;top:2%}
+#tac1{left:52%;top:0%}
+#tac2{left:26%;top:14%}
+#tac3{left:-2%;top:40%}
+#tac4{left:58%;top:32%}
+#tac5{left:28%;top:54%}
+#tac6{left:-1%;top:68%}
+#tac7{left:55%;top:63%}
 /* float animation attive solo in scatter */
 .ta-ws.is-scatter #tac0{animation:taF0 3.2s ease-in-out infinite}
 .ta-ws.is-scatter #tac1{animation:taF1 3.7s ease-in-out infinite}
@@ -263,7 +262,7 @@ body{font-family:var(--fb);background:var(--K);color:var(--C);overflow-x:hidden;
 .ta-ws.is-resolving .tac-badge,.ta-ws.is-done .tac-badge{animation:none;opacity:0}
 
 /* dashboard unificato */
-.ta-dash{position:absolute;z-index:5;left:50%;top:50%;transform:translate(-50%,-50%) scale(.88);width:240px;background:var(--K);border:1px solid rgba(255,255,255,.08);border-radius:16px;overflow:hidden;opacity:0;box-shadow:0 24px 64px rgba(28,28,28,.28);transition:opacity .55s ease,transform .55s cubic-bezier(.34,1.4,.64,1);pointer-events:none}
+.ta-dash{position:absolute;z-index:5;left:50%;top:50%;transform:translate(-50%,-50%) scale(.88);width:240px;background:var(--K);border:1px solid rgba(28,28,28,.14);border-radius:16px;overflow:hidden;opacity:0;box-shadow:0 24px 64px rgba(28,28,28,.22),0 4px 16px rgba(28,28,28,.12);transition:opacity .55s ease,transform .55s cubic-bezier(.34,1.4,.64,1);pointer-events:none}
 .ta-ws.is-done .ta-dash{opacity:1;transform:translate(-50%,-50%) scale(1)}
 .ta-dash-hd{padding:13px 14px 11px;border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:center;gap:8px}
 .ta-dash-logo{width:22px;height:22px;border-radius:6px;background:var(--F);display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-size:10px;color:#fff;letter-spacing:.5px}
@@ -280,7 +279,7 @@ body{font-family:var(--fb);background:var(--K);color:var(--C);overflow-x:hidden;
 .ta-dash-ft{padding:9px 14px 12px;border-top:1px solid rgba(255,255,255,.05);font-size:8.5px;font-family:var(--fm);color:rgba(243,239,224,.22);letter-spacing:1.8px;text-transform:uppercase}
 
 /* phase label */
-.ta-phase-lbl{position:absolute;bottom:14px;left:0;right:0;text-align:center;z-index:6;font-family:var(--fm);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(28,28,28,.25);transition:opacity .4s ease}
+.ta-phase-lbl{position:absolute;bottom:0;left:0;right:0;text-align:center;z-index:6;font-family:var(--fm);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(28,28,28,.32);transition:opacity .4s ease}
 .ta-ws.is-resolving .ta-phase-lbl,.ta-ws.is-done .ta-phase-lbl{opacity:0}
 
 /* responsive — overridden by main mobile block below */
