@@ -500,10 +500,9 @@ h2.srv{font-family:var(--fd);font-size:clamp(36px,4.5vw,60px);line-height:1.01;l
 .srv-flow{
   position:relative;
   display:grid;
-  grid-template-columns:minmax(0,300px) 84px minmax(0,300px);
-  gap:20px;
-  align-items:center;
-  justify-content:center
+  grid-template-columns:1fr 96px 1fr;
+  gap:28px;
+  align-items:start
 }
 #srvNexus{
   position:absolute;inset:0;
@@ -512,29 +511,26 @@ h2.srv{font-family:var(--fd);font-size:clamp(36px,4.5vw,60px);line-height:1.01;l
   display:block
 }
 .srv-col-l,.srv-col-r{
-  display:flex;flex-direction:column;gap:8px;
+  display:flex;flex-direction:column;gap:12px;
   position:relative;z-index:1
 }
 .srv-nucleus-hub{
-  display:flex;align-items:center;justify-content:center;
+  display:flex;align-items:flex-start;justify-content:center;
+  position:sticky;top:140px;
   position:relative;z-index:1;
-  pointer-events:none
+  pointer-events:none;
+  padding-top:20px
 }
-/* rotating cat logo */
+/* rotating cat face — crop to leftmost portion of the logo */
 .srv-nucleus-core{
-  width:72px;height:72px;border-radius:50%;
+  width:90px;height:90px;border-radius:50%;
   overflow:hidden;
-  background:#fff;
-  box-shadow:0 0 0 3px rgba(224,24,92,.3),0 0 24px rgba(224,24,92,.55),0 0 52px rgba(224,24,92,.18);
-  animation:nucleus-spin 9s linear infinite;
+  background:#fff url('Logo-estro.webp') no-repeat;
+  background-size:auto 78px;
+  background-position:2px 6px;
+  box-shadow:0 0 0 4px rgba(224,24,92,.25),0 0 28px rgba(224,24,92,.55),0 0 60px rgba(224,24,92,.18);
+  animation:nucleus-spin 10s linear infinite;
   flex-shrink:0
-}
-.srv-nucleus-core img{
-  position:relative;
-  height:52px;
-  width:auto;
-  top:10px;
-  left:3px
 }
 @keyframes nucleus-spin{
   from{transform:rotate(0deg)}
@@ -542,19 +538,20 @@ h2.srv{font-family:var(--fd);font-size:clamp(36px,4.5vw,60px);line-height:1.01;l
 }
 .srv-item{position:relative}
 
-/* ── card base ── */
+/* ── card base — quasi square ── */
 .sc{
   background:var(--K);
   border:1px solid rgba(255,255,255,.07);
-  border-radius:14px;
-  padding:10px 36px 10px 10px;
+  border-radius:18px;
+  padding:20px 20px 18px;
   position:relative;overflow:hidden;
-  display:flex;flex-direction:row;align-items:flex-start;gap:10px;
+  display:flex;flex-direction:column;gap:0;
   cursor:pointer;
-  min-height:auto;
+  min-height:clamp(160px,22vw,260px);
+  justify-content:space-between;
   will-change:transform;
   transition:transform .42s cubic-bezier(.22,1,.36,1),border-color .3s,box-shadow .42s,opacity .55s ease;
-  opacity:0;transform:translateY(12px)
+  opacity:0;transform:translateY(14px)
 }
 /* entrance: triggered when .srv-flow gets .vs */
 .srv-flow.vs .sc{opacity:1;transform:none}
@@ -599,23 +596,23 @@ h2.srv{font-family:var(--fd);font-size:clamp(36px,4.5vw,60px);line-height:1.01;l
 
 /* ── icon container ── */
 .sc-ico{
-  width:34px;height:34px;border-radius:10px;
+  width:46px;height:46px;border-radius:13px;
   background:rgba(224,24,92,.1);
   display:flex;align-items:center;justify-content:center;
   flex-shrink:0;position:relative;z-index:2;
   transition:transform .44s cubic-bezier(.34,1.4,.64,1),background .3s,box-shadow .3s
 }
 .sc.sc-open .sc-ico{background:rgba(224,24,92,.2);box-shadow:0 8px 22px rgba(224,24,92,.28)}
-.sc-ico svg{width:17px;height:17px;color:var(--F);transition:filter .3s}
+.sc-ico svg{width:22px;height:22px;color:var(--F);transition:filter .3s}
 .sc.sc-open .sc-ico svg{filter:drop-shadow(0 2px 9px rgba(224,24,92,.55))}
 
 /* ── expand toggle ── */
 .sc-expand{
-  width:20px;height:20px;border-radius:50%;
+  width:22px;height:22px;border-radius:50%;
   border:1.5px solid rgba(255,255,255,.18);
   display:flex;align-items:center;justify-content:center;
-  position:absolute;top:8px;right:8px;z-index:2;
-  font-size:13px;line-height:1;color:rgba(255,255,255,.35);
+  position:absolute;top:14px;right:14px;z-index:2;
+  font-size:14px;line-height:1;color:rgba(255,255,255,.35);
   transition:transform .4s cubic-bezier(.34,1.4,.64,1),border-color .3s,color .3s,background .3s
 }
 .sc.sc-open .sc-expand{
@@ -625,14 +622,14 @@ h2.srv{font-family:var(--fd);font-size:clamp(36px,4.5vw,60px);line-height:1.01;l
   background:rgba(224,24,92,.08)
 }
 
-/* ── card top row: icon only, expand is absolute ── */
-.sc-top{display:contents}
+/* ── card top: icon row ── */
+.sc-top{display:flex;align-items:center;padding-bottom:0;position:relative;z-index:2}
 
-/* ── card content cluster ── */
-.sc-bot{position:relative;z-index:2;flex:1;min-width:0;padding-top:2px}
-.sc-tag{font-size:8px;font-weight:700;letter-spacing:3.5px;text-transform:uppercase;color:rgba(224,24,92,.7);display:block;margin-bottom:5px}
+/* ── card bottom cluster ── */
+.sc-bot{position:relative;z-index:2}
+.sc-tag{font-size:8px;font-weight:700;letter-spacing:3.5px;text-transform:uppercase;color:rgba(224,24,92,.7);display:block;margin-bottom:6px}
 
-.sc-name{font-family:var(--fd);font-size:13.5px;color:var(--C);letter-spacing:-.3px;line-height:1.22;margin-bottom:0}
+.sc-name{font-family:var(--fd);font-size:15px;color:var(--C);letter-spacing:-.4px;line-height:1.2;margin-bottom:0}
 
 /* ── collapsible description ── */
 .sc-desc-wrap{
@@ -1174,7 +1171,7 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
   .target-inner,.sol-grid{grid-template-columns:1fr;gap:40px}
   .ben-grid{grid-template-columns:1fr;gap:36px}
   .ic-grid{grid-template-columns:repeat(2,1fr)}
-  .srv-flow{grid-template-columns:1fr 64px 1fr}
+  .srv-flow{grid-template-columns:1fr 76px 1fr;gap:16px}
   /* tl horizontal: slightly reduce font at mid breakpoint */
   .tl-h4{font-size:15px}
   .tl-p{font-size:12.5px}
@@ -1201,7 +1198,8 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
   .sol-grid{gap:24px}
   .cr-stage{height:320px}
   .ta-ws{height:420px}
-  .srv-flow{grid-template-columns:1fr 56px 1fr}
+  .srv-flow{grid-template-columns:1fr 60px 1fr;gap:12px}
+  .srv-nucleus-core{width:60px;height:60px;background-size:auto 52px;background-position:2px 4px}
   .sc-name{font-size:16px}
   .sc-desc{font-size:12px}
 }
@@ -1335,7 +1333,8 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
   .srv-flow{grid-template-columns:1fr;gap:8px}
   .srv-nucleus-hub{display:none}
   #srvNexus{display:none}
-  .sc{padding:10px 36px 10px 10px}
+  .sc{min-height:auto;padding:16px 44px 16px 16px}
+  .sc-top{padding-bottom:10px}
   .sc-name{font-size:14px}
   .sc-ico{width:40px;height:40px;border-radius:10px}
   .sc-ico svg{width:20px;height:20px}
@@ -1902,11 +1901,9 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
         </div>
       </div>
 
-      <!-- central nucleus: rotating cat -->
+      <!-- central nucleus: rotating cat face -->
       <div class="srv-nucleus-hub" aria-hidden="true">
-        <div class="srv-nucleus-core">
-          <img src="Logo-estro.webp" alt="">
-        </div>
+        <div class="srv-nucleus-core"></div>
       </div>
 
       <!-- right column: cards 6–10 -->
