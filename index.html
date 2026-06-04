@@ -205,86 +205,111 @@ body{font-family:var(--fb);background:var(--K);color:var(--C);overflow-x:hidden;
 @media(max-width:1100px){.target-deco{width:120%;left:50%;transform:translate(-50%,-46%);opacity:.09}}
 @media(max-width:640px){.target-deco{display:none}}
 
-/* ── ANIMAZIONE TARGET: workspace disperso → dashboard Estro ── */
-.ta-ws{position:relative;height:480px;width:100%;background:transparent;border:none;border-radius:0;overflow:visible;box-shadow:none}
+/* ── ANIMAZIONE TARGET: workspace frammentato → Estro ── */
+.ta-ws{position:relative;height:540px;width:100%;background:transparent;overflow:visible}
 
-/* float keyframes — ogni card ha un'animazione diversa */
-@keyframes taF0{0%,100%{transform:rotate(-3.5deg) translateY(0)}55%{transform:rotate(-2.5deg) translateY(-5px)}}
-@keyframes taF1{0%,100%{transform:rotate(2.5deg) translateY(0)}45%{transform:rotate(3.5deg) translateY(-4px)}}
-@keyframes taF2{0%,100%{transform:rotate(-1.5deg) translateY(0)}60%{transform:rotate(-.5deg) translateY(-6px)}}
-@keyframes taF3{0%,100%{transform:rotate(4deg) translateY(0)}50%{transform:rotate(5deg) translateY(-3px)}}
-@keyframes taF4{0%,100%{transform:rotate(-2deg) translateY(0)}40%{transform:rotate(-3deg) translateY(-7px)}}
-@keyframes taF5{0%,100%{transform:rotate(3deg) translateY(0)}55%{transform:rotate(2deg) translateY(-4px)}}
+/* float keyframes — ampi, drammatici */
+@keyframes taF0{0%,100%{transform:rotate(-14deg) translate(0,0)}52%{transform:rotate(-11deg) translate(-11px,-15px)}}
+@keyframes taF1{0%,100%{transform:rotate(8deg) translate(0,0)}47%{transform:rotate(11deg) translate(11px,-11px)}}
+@keyframes taF2{0%,100%{transform:rotate(-6deg) translate(0,0)}58%{transform:rotate(-3deg) translate(-9px,13px)}}
+@keyframes taF3{0%,100%{transform:rotate(13deg) translate(0,0)}50%{transform:rotate(10deg) translate(10px,-10px)}}
+@keyframes taF4{0%,100%{transform:rotate(-4deg) translate(0,0)}62%{transform:rotate(-8deg) translate(-8px,12px)}}
+@keyframes taF5{0%,100%{transform:rotate(17deg) translate(0,0)}44%{transform:rotate(13deg) translate(9px,-13px)}}
+@keyframes taF6{0%,100%{transform:rotate(-10deg) translate(0,0)}56%{transform:rotate(-7deg) translate(-10px,9px)}}
 
-/* cards attività — stile SaaS mini-widget */
-.tac{position:absolute;z-index:2;width:132px;background:#fff;border:1px solid rgba(28,28,28,.11);border-radius:12px;padding:11px 12px;box-shadow:0 6px 20px rgba(28,28,28,.11),0 2px 6px rgba(28,28,28,.07)}
-/* posizioni scatter — distribuite liberamente nello spazio */
-#tac0{left:0%;top:2%}
-#tac1{left:52%;top:0%}
-#tac2{left:26%;top:14%}
-#tac3{left:-2%;top:40%}
-#tac4{left:58%;top:32%}
-#tac5{left:28%;top:54%}
-#tac6{left:-1%;top:68%}
-#tac7{left:55%;top:63%}
-/* float animation attive solo in scatter */
-.ta-ws.is-scatter #tac0{animation:taF0 3.2s ease-in-out infinite}
-.ta-ws.is-scatter #tac1{animation:taF1 3.7s ease-in-out infinite}
-.ta-ws.is-scatter #tac2{animation:taF2 4.1s ease-in-out infinite}
-.ta-ws.is-scatter #tac3{animation:taF3 3.5s ease-in-out infinite}
-.ta-ws.is-scatter #tac4{animation:taF4 4.4s ease-in-out infinite}
-.ta-ws.is-scatter #tac5{animation:taF5 3.1s ease-in-out infinite}
-.ta-ws.is-scatter #tac6{animation:taF1 4.7s ease-in-out infinite;animation-delay:-.8s}
-.ta-ws.is-scatter #tac7{animation:taF3 3.9s ease-in-out infinite;animation-delay:-.4s}
-/* resolving: fade + scale verso centro */
-.ta-ws.is-resolving .tac{opacity:0!important;transform:scale(.72)!important;transition:opacity .45s ease,transform .5s ease;animation:none!important}
+/* card base */
+.tac{
+  position:absolute;z-index:2;width:170px;
+  background:#fff;border:1px solid rgba(28,28,28,.1);border-radius:16px;padding:16px 18px;
+  box-shadow:0 10px 36px rgba(28,28,28,.14),0 2px 10px rgba(28,28,28,.08);
+  transition:opacity .52s ease,transform .58s cubic-bezier(.4,0,.6,1),filter .48s ease
+}
+/* hot variant: fuchsia */
+.tac.hot{
+  background:var(--F);border-color:transparent;
+  box-shadow:0 12px 40px rgba(224,24,92,.36),0 2px 10px rgba(224,24,92,.2)
+}
+
+/* posizioni scatter — zigzag bord-a-bord */
+#tac0{left:-2%;top:2%}
+#tac1{left:54%;top:0%}
+#tac2{left:20%;top:19%}
+#tac3{left:55%;top:30%}
+#tac4{left:-3%;top:46%}
+#tac5{left:36%;top:57%}
+#tac6{left:52%;top:72%}
+
+/* float animations — attive solo in scatter */
+.ta-ws.is-scatter #tac0{animation:taF0 3.4s ease-in-out infinite}
+.ta-ws.is-scatter #tac1{animation:taF1 3.9s ease-in-out infinite .3s}
+.ta-ws.is-scatter #tac2{animation:taF2 4.3s ease-in-out infinite .8s}
+.ta-ws.is-scatter #tac3{animation:taF3 3.6s ease-in-out infinite 1.2s}
+.ta-ws.is-scatter #tac4{animation:taF4 4.6s ease-in-out infinite .5s}
+.ta-ws.is-scatter #tac5{animation:taF5 3.3s ease-in-out infinite 1.0s}
+.ta-ws.is-scatter #tac6{animation:taF6 4.1s ease-in-out infinite .2s}
+
+/* resolving: vortex — ogni card si stringe, sfoca e scompare */
+.ta-ws.is-resolving .tac{
+  opacity:0!important;transform:scale(.2)!important;
+  filter:blur(6px)!important;animation:none!important
+}
 .ta-ws.is-done .tac{opacity:0!important;animation:none!important;transition:none}
 
-/* internals card */
-.tac-hd{display:flex;align-items:center;gap:6px;margin-bottom:8px}
-.tac-ico{width:20px;height:20px;border-radius:5px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.tac-ico svg{width:10px;height:10px}
-.tac-name{font-size:10px;font-weight:600;color:rgba(28,28,28,.68);letter-spacing:.2px;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.tac-badge{min-width:16px;height:16px;border-radius:8px;background:var(--F);color:#fff;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;padding:0 4px}
-.tac-val{font-family:var(--fm);font-size:15px;font-weight:500;color:var(--K);line-height:1;margin-bottom:3px}
-.tac-sub{font-size:9px;color:rgba(28,28,28,.38);letter-spacing:.2px;margin-bottom:5px}
-.tac-trend{font-size:9px;font-weight:600;display:inline-flex;align-items:center;padding:2px 6px;border-radius:4px;margin-top:4px}
-.tac-trend.down{background:rgba(224,24,92,.08);color:var(--F)}
-.tac-trend.flat{background:rgba(28,28,28,.06);color:rgba(28,28,28,.45)}
-.tac-trend.warn{background:rgba(224,24,92,.08);color:var(--F)}
-.tac-status{font-size:9px;font-weight:500;display:flex;align-items:center;gap:5px;color:rgba(28,28,28,.5);margin-top:4px}
-.tac-sdot{width:5px;height:5px;border-radius:50%;flex-shrink:0}
-.tac-spark svg{width:100%;height:22px;display:block;margin-top:5px}
-.tac-spark polyline{fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
-/* badge pulsante nello scatter */
-@keyframes taBadge{0%,100%{transform:scale(1)}50%{transform:scale(1.2)}}
-.ta-ws.is-scatter .tac-badge{animation:taBadge 1.8s ease-in-out infinite}
-.ta-ws.is-resolving .tac-badge,.ta-ws.is-done .tac-badge{animation:none;opacity:0}
+/* card internals */
+.tac-ch{font-size:8px;font-weight:700;letter-spacing:3.5px;text-transform:uppercase;color:rgba(28,28,28,.36);margin-bottom:8px;line-height:1}
+.tac.hot .tac-ch{color:rgba(255,255,255,.52)}
+.tac-num{font-family:var(--fm);font-size:27px;font-weight:600;color:var(--K);line-height:1;margin-bottom:5px;letter-spacing:-1px}
+.tac-num sub{font-size:11px;font-weight:400;opacity:.4;letter-spacing:0;vertical-align:baseline}
+.tac.hot .tac-num{color:#fff}
+.tac-sig{font-size:10px;font-weight:600;color:var(--F);display:inline-flex;align-items:center;gap:5px;padding:3px 8px;border-radius:6px;background:rgba(224,24,92,.08);line-height:1}
+.tac.hot .tac-sig{background:rgba(0,0,0,.22);color:rgba(255,255,255,.88)}
+.tac-sig.neutral{background:rgba(28,28,28,.06);color:rgba(28,28,28,.44)}
+.tac-sig.warn{background:rgba(240,168,50,.14);color:#B87200}
 
-/* dashboard unificato */
-.ta-dash{position:absolute;z-index:5;left:50%;top:50%;transform:translate(-50%,-50%) scale(.88);width:240px;background:var(--K);border:1px solid rgba(28,28,28,.14);border-radius:16px;overflow:hidden;opacity:0;box-shadow:0 24px 64px rgba(28,28,28,.22),0 4px 16px rgba(28,28,28,.12);transition:opacity .55s ease,transform .55s cubic-bezier(.34,1.4,.64,1);pointer-events:none}
+/* pulsing dot su card hot */
+@keyframes taPulse{0%,100%{box-shadow:0 0 0 0 rgba(255,255,255,.5)}70%{box-shadow:0 0 0 7px rgba(255,255,255,0)}}
+.tac-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.8);flex-shrink:0}
+.ta-ws.is-scatter .tac.hot .tac-dot{animation:taPulse 1.8s ease infinite}
+
+/* DONE: unified card — premium dark */
+.ta-dash{
+  position:absolute;z-index:5;left:50%;top:50%;
+  transform:translate(-50%,-50%) scale(.84);
+  width:278px;background:var(--K);
+  border:1px solid rgba(255,255,255,.07);border-radius:22px;overflow:hidden;opacity:0;
+  box-shadow:0 36px 88px rgba(28,28,28,.32),0 8px 28px rgba(28,28,28,.16),inset 0 0 0 1px rgba(224,24,92,.06);
+  transition:opacity .62s ease,transform .62s cubic-bezier(.34,1.4,.64,1);pointer-events:none
+}
 .ta-ws.is-done .ta-dash{opacity:1;transform:translate(-50%,-50%) scale(1)}
-.ta-dash-hd{padding:13px 14px 11px;border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:center;gap:8px}
-.ta-dash-logo{width:22px;height:22px;border-radius:6px;background:var(--F);display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-size:10px;color:#fff;letter-spacing:.5px}
-.ta-dash-title{font-size:10.5px;font-weight:600;color:rgba(243,239,224,.65);letter-spacing:.3px}
-.ta-dash-online{width:5px;height:5px;border-radius:50%;background:#4CB450;margin-left:auto}
-.ta-dash-rows{padding:6px 0}
-.ta-dash-row{display:flex;align-items:center;gap:10px;padding:9px 14px;opacity:0;transform:translateX(-8px);transition:opacity .4s ease,transform .4s cubic-bezier(.4,0,.2,1)}
-.ta-ws.is-done .ta-dash-row:nth-child(1){opacity:1;transform:none;transition-delay:.12s}
-.ta-ws.is-done .ta-dash-row:nth-child(2){opacity:1;transform:none;transition-delay:.26s}
-.ta-ws.is-done .ta-dash-row:nth-child(3){opacity:1;transform:none;transition-delay:.40s}
-.ta-dash-ck{width:18px;height:18px;border-radius:5px;background:var(--F);display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.ta-dash-ck svg{width:9px;height:9px;stroke:#fff;stroke-width:2.5;fill:none}
-.ta-dash-rtx{font-size:12px;font-weight:600;color:var(--C);line-height:1}
-.ta-dash-ft{padding:9px 14px 12px;border-top:1px solid rgba(255,255,255,.05);font-size:8.5px;font-family:var(--fm);color:rgba(243,239,224,.22);letter-spacing:1.8px;text-transform:uppercase}
+
+.ta-dash-hd{padding:15px 18px 13px;border-bottom:1px solid rgba(255,255,255,.055);display:flex;align-items:center;gap:11px}
+.ta-dash-logo{width:30px;height:30px;border-radius:9px;background:var(--F);display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-size:13px;color:#fff;letter-spacing:.3px;flex-shrink:0}
+.ta-dash-info{flex:1;min-width:0}
+.ta-dash-title{font-size:11.5px;font-weight:600;color:rgba(243,239,224,.82);letter-spacing:.1px;display:block;line-height:1.2}
+.ta-dash-sub{font-size:8.5px;color:rgba(243,239,224,.26);letter-spacing:1.8px;text-transform:uppercase}
+.ta-dash-pill{background:rgba(76,180,80,.14);border:1px solid rgba(76,180,80,.28);color:#4CB450;font-size:8px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:3px 9px;border-radius:20px;white-space:nowrap}
+
+.ta-dash-rows{padding:4px 0 2px}
+.ta-dash-row{display:flex;align-items:center;gap:12px;padding:12px 18px;opacity:0;transform:translateY(7px);transition:opacity .44s ease,transform .44s cubic-bezier(.4,0,.2,1)}
+.ta-ws.is-done .ta-dash-row:nth-child(1){opacity:1;transform:none;transition-delay:.15s}
+.ta-ws.is-done .ta-dash-row:nth-child(2){opacity:1;transform:none;transition-delay:.30s}
+.ta-ws.is-done .ta-dash-row:nth-child(3){opacity:1;transform:none;transition-delay:.45s}
+
+.ta-dash-ck{width:22px;height:22px;border-radius:7px;background:var(--F);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ta-dash-ck svg{width:10px;height:10px;stroke:#fff;stroke-width:2.4;fill:none}
+.ta-dash-lbl{flex:1;min-width:0}
+.ta-dash-rtx{font-size:13px;font-weight:600;color:var(--C);display:block;line-height:1.2}
+.ta-dash-rx2{font-size:9px;color:rgba(243,239,224,.3);letter-spacing:.2px}
+
+.ta-dash-ft{padding:10px 18px 14px;border-top:1px solid rgba(255,255,255,.045);display:flex;align-items:center;justify-content:space-between}
+.ta-dash-ftx{font-size:8.5px;font-family:var(--fm);color:rgba(243,239,224,.2);letter-spacing:2px;text-transform:uppercase}
+.ta-dash-ftsig{font-size:8.5px;color:rgba(224,24,92,.4);font-family:var(--fm);letter-spacing:.5px}
 
 /* phase label */
-.ta-phase-lbl{position:absolute;bottom:0;left:0;right:0;text-align:center;z-index:6;font-family:var(--fm);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(28,28,28,.32);transition:opacity .4s ease}
+.ta-phase-lbl{position:absolute;bottom:2px;left:0;right:0;text-align:center;z-index:6;font-family:var(--fm);font-size:8.5px;letter-spacing:2.5px;text-transform:uppercase;color:rgba(28,28,28,.28);transition:opacity .4s ease}
 .ta-ws.is-resolving .ta-phase-lbl,.ta-ws.is-done .ta-phase-lbl{opacity:0}
 
-/* responsive — overridden by main mobile block below */
-/* reduced-motion */
-@media(prefers-reduced-motion:reduce){.tac,.ta-dash,.ta-dash-row,.tac-badge{animation:none!important;transition:none!important}}
+@media(prefers-reduced-motion:reduce){.tac,.ta-dash,.ta-dash-row,.tac-dot{animation:none!important;transition:none!important}}
 
 /* ═══ SOLUTION ═══ */
 .sol{background:var(--K);padding:96px 0;position:relative;overflow:hidden}
@@ -998,7 +1023,7 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
   .sp-grid{grid-template-columns:1fr}
   .sol-grid{gap:24px}
   .cr-stage{height:320px}
-  .ta-ws{height:340px}
+  .ta-ws{height:420px}
   .srv-uni-grid{grid-template-columns:repeat(2,1fr)}
 }
 
@@ -1092,7 +1117,9 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
 
   /* ── TARGET ── */
   .target-inner{gap:28px}
-  .ta-ws{height:280px;border-radius:14px}
+  .ta-ws{height:340px}
+  .tac{width:140px;padding:13px 15px}
+  .tac-num{font-size:22px}
   .tac{width:104px}
   .tac-val{font-size:12.5px}
   .tac-sub,.tac-trend,.tac-status{font-size:8.5px}
@@ -1469,120 +1496,96 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
       <div class="rv d1">
         <div class="ta-ws" id="taWs" aria-hidden="true">
 
-          <!-- tac0: Meta Ads -->
-          <div class="tac" id="tac0">
-            <div class="tac-hd">
-              <div class="tac-ico" style="background:rgba(224,24,92,.1)"><svg viewBox="0 0 10 10" fill="none" stroke="#E0185C" stroke-width="1.6"><rect x="1" y="1" width="3.5" height="3.5" rx=".7"/><rect x="5.5" y="1" width="3.5" height="3.5" rx=".7"/><rect x="1" y="5.5" width="3.5" height="3.5" rx=".7"/><rect x="5.5" y="5.5" width="3.5" height="3.5" rx=".7"/></svg></div>
-              <span class="tac-name">Meta Ads</span>
-              <div class="tac-badge">3</div>
-            </div>
-            <div class="tac-val">€ 340<span style="font-size:9px;opacity:.4">/d</span></div>
-            <div class="tac-spark"><svg viewBox="0 0 108 22"><polyline points="0,14 18,17 36,9 54,17 72,7 90,13 108,5" style="stroke:rgba(224,24,92,.5)"/></svg></div>
-            <div class="tac-trend down">↓ 18% vs ieri</div>
+          <!-- tac0: Meta Ads — hot -->
+          <div class="tac hot" id="tac0">
+            <div class="tac-ch">Meta Ads</div>
+            <div class="tac-num">€ 340<sub>/d</sub></div>
+            <span class="tac-sig"><span class="tac-dot"></span>↓ 18% ieri</span>
           </div>
 
           <!-- tac1: Social Media -->
           <div class="tac" id="tac1">
-            <div class="tac-hd">
-              <div class="tac-ico" style="background:rgba(28,28,28,.06)"><svg viewBox="0 0 10 10" fill="none" stroke="#1C1C1C" stroke-width="1.5"><circle cx="2" cy="5" r="1.2"/><circle cx="8" cy="2" r="1.2"/><circle cx="8" cy="8" r="1.2"/><path d="M3.1 4.5l3.8-1.8M3.1 5.5l3.8 1.8"/></svg></div>
-              <span class="tac-name">Social Media</span>
-              <div class="tac-badge">5</div>
-            </div>
-            <div class="tac-val">892<span style="font-size:9px;opacity:.4"> reach</span></div>
-            <div class="tac-spark"><svg viewBox="0 0 108 22"><polyline points="0,10 18,14 36,8 54,16 72,10 90,14 108,12" style="stroke:rgba(28,28,28,.2)"/></svg></div>
-            <div class="tac-trend flat">↔ nessuna tendenza</div>
+            <div class="tac-ch">Social Media</div>
+            <div class="tac-num">892<sub> reach</sub></div>
+            <span class="tac-sig neutral">↔ piatta</span>
           </div>
 
-          <!-- tac2: Website — si sovrappone parzialmente -->
+          <!-- tac2: Website -->
           <div class="tac" id="tac2">
-            <div class="tac-hd">
-              <div class="tac-ico" style="background:rgba(28,28,28,.06)"><svg viewBox="0 0 10 10" fill="none" stroke="#1C1C1C" stroke-width="1.5"><rect x="1" y="2" width="8" height="6" rx="1"/><path d="M1 4h8"/></svg></div>
-              <span class="tac-name">Website</span>
-            </div>
-            <div class="tac-val">1.2K<span style="font-size:9px;opacity:.4"> vis.</span></div>
-            <div class="tac-sub">vs settimana scorsa</div>
-            <div class="tac-trend down">↓ 12%</div>
+            <div class="tac-ch">Website</div>
+            <div class="tac-num">1.2K<sub> vis.</sub></div>
+            <span class="tac-sig">↓ 12%</span>
           </div>
 
-          <!-- tac3: Newsletter -->
-          <div class="tac" id="tac3">
-            <div class="tac-hd">
-              <div class="tac-ico" style="background:rgba(28,28,28,.06)"><svg viewBox="0 0 10 10" fill="none" stroke="#1C1C1C" stroke-width="1.5"><rect x="1" y="2.5" width="8" height="5.5" rx="1"/><path d="M1 4l4 2.5L9 4"/></svg></div>
-              <span class="tac-name">Newsletter</span>
-              <div class="tac-badge">1</div>
-            </div>
-            <div class="tac-val">24%<span style="font-size:9px;opacity:.4"> open</span></div>
-            <div class="tac-status"><div class="tac-sdot" style="background:#F0A832"></div>Bozza in attesa</div>
+          <!-- tac3: SEO — hot -->
+          <div class="tac hot" id="tac3">
+            <div class="tac-ch">SEO</div>
+            <div class="tac-num">#14<sub> pos.</sub></div>
+            <span class="tac-sig"><span class="tac-dot"></span>↓ 3 keyword</span>
           </div>
 
-          <!-- tac4: Freelancer -->
+          <!-- tac4: Newsletter -->
           <div class="tac" id="tac4">
-            <div class="tac-hd">
-              <div class="tac-ico" style="background:rgba(28,28,28,.06)"><svg viewBox="0 0 10 10" fill="none" stroke="#1C1C1C" stroke-width="1.5"><circle cx="5" cy="3.5" r="1.8"/><path d="M2 9.5c0-1.66 1.34-3 3-3s3 1.34 3 3"/></svg></div>
-              <span class="tac-name">Freelancer</span>
-            </div>
-            <div class="tac-sub">Proposta in attesa</div>
-            <div class="tac-status"><div class="tac-sdot" style="background:#F0A832"></div>Da 12 giorni</div>
+            <div class="tac-ch">Newsletter</div>
+            <div class="tac-num">24%<sub> open</sub></div>
+            <span class="tac-sig warn">bozza in attesa</span>
           </div>
 
-          <!-- tac5: SEO -->
-          <div class="tac" id="tac5">
-            <div class="tac-hd">
-              <div class="tac-ico" style="background:rgba(28,28,28,.06)"><svg viewBox="0 0 10 10" fill="none" stroke="#1C1C1C" stroke-width="1.5"><circle cx="4.5" cy="4.5" r="2.8"/><path d="M7.5 7.5 9.5 9.5"/></svg></div>
-              <span class="tac-name">SEO</span>
-              <div class="tac-badge">3</div>
-            </div>
-            <div class="tac-val">#14<span style="font-size:9px;opacity:.4"> pos.</span></div>
-            <div class="tac-trend down">↓ 3 keyword</div>
+          <!-- tac5: Budget — hot -->
+          <div class="tac hot" id="tac5">
+            <div class="tac-ch">Budget</div>
+            <div class="tac-num">€ 2.8K<sub>/m</sub></div>
+            <span class="tac-sig"><span class="tac-dot"></span>3 fornitori</span>
           </div>
 
-          <!-- tac6: Budget -->
+          <!-- tac6: Freelancer -->
           <div class="tac" id="tac6">
-            <div class="tac-hd">
-              <div class="tac-ico" style="background:rgba(224,24,92,.1)"><svg viewBox="0 0 10 10" fill="none" stroke="#E0185C" stroke-width="1.6"><rect x="1" y="2" width="8" height="6" rx="1"/><path d="M3 5h4M5 3.5v3"/></svg></div>
-              <span class="tac-name">Budget</span>
-            </div>
-            <div class="tac-val">€ 2.8K<span style="font-size:9px;opacity:.4">/m</span></div>
-            <div class="tac-sub">3 fornitori separati</div>
-            <div class="tac-trend warn">↑ 22% trim.</div>
-          </div>
-
-          <!-- tac7: Analytics -->
-          <div class="tac" id="tac7">
-            <div class="tac-hd">
-              <div class="tac-ico" style="background:rgba(28,28,28,.06)"><svg viewBox="0 0 10 10" fill="none" stroke="#1C1C1C" stroke-width="1.5"><path d="M1 9V6M3.5 9V3M6 9V5M8.5 9V1" stroke-linecap="round"/></svg></div>
-              <span class="tac-name">Analytics</span>
-            </div>
-            <div class="tac-spark"><svg viewBox="0 0 108 22"><polyline points="0,4 18,18 36,6 54,20 72,4 90,16 108,8" style="stroke:rgba(28,28,28,.18)"/></svg></div>
-            <div class="tac-status"><div class="tac-sdot" style="background:rgba(28,28,28,.25)"></div>Nessuna fonte unificata</div>
+            <div class="tac-ch">Freelancer</div>
+            <div class="tac-num">12<sub> gg</sub></div>
+            <span class="tac-sig warn">proposta pendente</span>
           </div>
 
           <!-- dashboard unificato (stato: is-done) -->
           <div class="ta-dash" id="taDash">
             <div class="ta-dash-hd">
               <div class="ta-dash-logo">E</div>
-              <span class="ta-dash-title">Dashboard · Estro</span>
-              <div class="ta-dash-online"></div>
+              <div class="ta-dash-info">
+                <span class="ta-dash-title">Estro Agency</span>
+                <span class="ta-dash-sub">Dashboard unificata</span>
+              </div>
+              <div class="ta-dash-pill">Attivo</div>
             </div>
             <div class="ta-dash-rows">
               <div class="ta-dash-row">
                 <div class="ta-dash-ck"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2"/></svg></div>
-                <span class="ta-dash-rtx">Attività coordinate</span>
+                <div class="ta-dash-lbl">
+                  <span class="ta-dash-rtx">Attività coordinate</span>
+                  <span class="ta-dash-rx2">strategia · adv · contenuti</span>
+                </div>
               </div>
               <div class="ta-dash-row">
                 <div class="ta-dash-ck"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2"/></svg></div>
-                <span class="ta-dash-rtx">Budget sotto controllo</span>
+                <div class="ta-dash-lbl">
+                  <span class="ta-dash-rtx">Budget sotto controllo</span>
+                  <span class="ta-dash-rx2">un unico contratto</span>
+                </div>
               </div>
               <div class="ta-dash-row">
                 <div class="ta-dash-ck"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2"/></svg></div>
-                <span class="ta-dash-rtx">Report chiari</span>
+                <div class="ta-dash-lbl">
+                  <span class="ta-dash-rtx">Report mensile chiaro</span>
+                  <span class="ta-dash-rx2">kpi · risultati · prossimi step</span>
+                </div>
               </div>
             </div>
-            <div class="ta-dash-ft">Un unico referente</div>
+            <div class="ta-dash-ft">
+              <span class="ta-dash-ftx">Un unico referente</span>
+              <span class="ta-dash-ftsig">estro.agency</span>
+            </div>
           </div>
 
           <!-- label di fase -->
-          <div class="ta-phase-lbl">Situazione attuale</div>
+          <div class="ta-phase-lbl">Il tuo marketing oggi</div>
 
         </div>
       </div>
