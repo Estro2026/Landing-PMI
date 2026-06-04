@@ -521,13 +521,13 @@ h2.srv{font-family:var(--fd);font-size:clamp(36px,4.5vw,60px);line-height:1.01;l
   pointer-events:none;
   padding-top:20px
 }
-/* rotating cat face — crop to leftmost portion of the logo */
+/* rotating cat face — Grafica benefici.png, crop to face (upper centre) */
 .srv-nucleus-core{
   width:90px;height:90px;border-radius:50%;
   overflow:hidden;
-  background:#fff url('Logo-estro.webp') no-repeat;
-  background-size:auto 78px;
-  background-position:2px 6px;
+  background:#fff url('Grafica benefici.png') no-repeat;
+  background-size:155%;
+  background-position:center top;
   box-shadow:0 0 0 4px rgba(224,24,92,.25),0 0 28px rgba(224,24,92,.55),0 0 60px rgba(224,24,92,.18);
   animation:nucleus-spin 10s linear infinite;
   flex-shrink:0
@@ -538,17 +538,15 @@ h2.srv{font-family:var(--fd);font-size:clamp(36px,4.5vw,60px);line-height:1.01;l
 }
 .srv-item{position:relative}
 
-/* ── card base — quasi square ── */
+/* ── card base — height driven by content ── */
 .sc{
   background:var(--K);
   border:1px solid rgba(255,255,255,.07);
   border-radius:18px;
-  padding:20px 20px 18px;
+  padding:18px 18px 16px;
   position:relative;overflow:hidden;
-  display:flex;flex-direction:column;gap:0;
+  display:flex;flex-direction:column;
   cursor:pointer;
-  min-height:clamp(160px,22vw,260px);
-  justify-content:space-between;
   will-change:transform;
   transition:transform .42s cubic-bezier(.22,1,.36,1),border-color .3s,box-shadow .42s,opacity .55s ease;
   opacity:0;transform:translateY(14px)
@@ -623,10 +621,10 @@ h2.srv{font-family:var(--fd);font-size:clamp(36px,4.5vw,60px);line-height:1.01;l
 }
 
 /* ── card top: icon row ── */
-.sc-top{display:flex;align-items:center;padding-bottom:0;position:relative;z-index:2}
+.sc-top{display:flex;align-items:center;padding-bottom:12px;position:relative;z-index:2}
 
 /* ── card bottom cluster ── */
-.sc-bot{position:relative;z-index:2}
+.sc-bot{position:relative;z-index:2;flex:1}
 .sc-tag{font-size:8px;font-weight:700;letter-spacing:3.5px;text-transform:uppercase;color:rgba(224,24,92,.7);display:block;margin-bottom:6px}
 
 .sc-name{font-family:var(--fd);font-size:15px;color:var(--C);letter-spacing:-.4px;line-height:1.2;margin-bottom:0}
@@ -1199,7 +1197,7 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
   .cr-stage{height:320px}
   .ta-ws{height:420px}
   .srv-flow{grid-template-columns:1fr 60px 1fr;gap:12px}
-  .srv-nucleus-core{width:60px;height:60px;background-size:auto 52px;background-position:2px 4px}
+  .srv-nucleus-core{width:60px;height:60px;background-size:155%;background-position:center top}
   .sc-name{font-size:16px}
   .sc-desc{font-size:12px}
 }
@@ -1333,8 +1331,7 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
   .srv-flow{grid-template-columns:1fr;gap:8px}
   .srv-nucleus-hub{display:none}
   #srvNexus{display:none}
-  .sc{min-height:auto;padding:16px 44px 16px 16px}
-  .sc-top{padding-bottom:10px}
+  .sc{padding:14px 40px 14px 14px}
   .sc-name{font-size:14px}
   .sc-ico{width:40px;height:40px;border-radius:10px}
   .sc-ico svg{width:20px;height:20px}
