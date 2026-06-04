@@ -549,8 +549,10 @@ h2.srv{font-family:var(--fd);font-size:clamp(36px,4.5vw,60px);line-height:1.01;l
   padding:14px 44px 14px 14px; /* right pad = room for expand button */
   position:relative;overflow:hidden;
   display:flex;flex-direction:column;
-  width:max-content; /* shrink to content */
-  max-width:100%;    /* never overflow column */
+  width:max-content;    /* shrink to content */
+  min-width:130px;      /* floor for short titles like "SEO" */
+  aspect-ratio:1;       /* square */
+  justify-content:space-between;
   cursor:pointer;
   will-change:transform;
   transition:transform .42s cubic-bezier(.22,1,.36,1),border-color .3s,box-shadow .42s,opacity .55s ease;
