@@ -549,24 +549,6 @@ h2.srv{font-family:var(--fd);font-size:clamp(32px,4vw,54px);line-height:1.02;let
   background-size:26px 26px;pointer-events:none;z-index:0
 }
 
-/* ── variants ── */
-.sc--deep{background:linear-gradient(148deg,#1A0B10 0%,#1C1C1C 100%)}
-
-.sc--warm{
-  background:linear-gradient(145deg,#F0E4C4 0%,#EAD9B5 100%);
-  border-color:rgba(28,28,28,.09)
-}
-.sc--warm::after{background-image:radial-gradient(circle,rgba(28,28,28,.05) 1px,transparent 1px)}
-.sc--warm::before{background:linear-gradient(108deg,transparent 30%,rgba(255,255,255,.09) 50%,transparent 70%)}
-.sc--warm:hover{border-color:rgba(224,24,92,.24);box-shadow:0 22px 50px rgba(28,28,28,.14),inset 0 0 0 1px rgba(224,24,92,.06)}
-
-.sc--f{background:var(--F);border-color:transparent;box-shadow:0 8px 32px rgba(224,24,92,.28)}
-.sc--f::after{background-image:radial-gradient(circle,rgba(255,255,255,.055) 1px,transparent 1px)}
-.sc--f::before{background:linear-gradient(108deg,transparent 30%,rgba(255,255,255,.09) 50%,transparent 70%)}
-.sc--f:hover{border-color:rgba(255,255,255,.18);box-shadow:0 24px 58px rgba(224,24,92,.46),inset 0 0 0 1px rgba(255,255,255,.12)}
-
-.sc--wide{grid-column:span 2;min-height:252px}
-
 /* ── icon container ── */
 .sc-ico{
   width:52px;height:52px;border-radius:14px;
@@ -579,38 +561,17 @@ h2.srv{font-family:var(--fd);font-size:clamp(32px,4vw,54px);line-height:1.02;let
 .sc-ico svg{width:26px;height:26px;color:var(--F);transition:filter .3s}
 .sc:hover .sc-ico svg{filter:drop-shadow(0 2px 9px rgba(224,24,92,.65))}
 
-.sc--warm .sc-ico{background:rgba(28,28,28,.09)}
-.sc--warm:hover .sc-ico{background:rgba(28,28,28,.17);box-shadow:0 12px 30px rgba(28,28,28,.14)}
-.sc--warm .sc-ico svg{color:var(--K)}
-.sc--warm:hover .sc-ico svg{filter:drop-shadow(0 2px 7px rgba(28,28,28,.3))}
-
-@keyframes scRing{0%,100%{box-shadow:0 0 0 0 rgba(255,255,255,.2)}55%{box-shadow:0 0 0 11px rgba(255,255,255,0)}}
-.sc--f .sc-ico{background:rgba(255,255,255,.2);animation:scRing 2.8s ease infinite}
-.sc--f:hover .sc-ico{background:rgba(255,255,255,.32);animation:none;transform:translateY(-6px) scale(1.08);box-shadow:0 12px 28px rgba(0,0,0,.18)}
-.sc--f .sc-ico svg{color:#fff}
-.sc--f:hover .sc-ico svg{filter:none}
-
 /* ── card top row ── */
 .sc-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:auto;padding-bottom:16px;position:relative;z-index:2}
 .sc-num{font-family:var(--fm);font-size:10.5px;font-weight:600;letter-spacing:1px;color:var(--C);opacity:.26}
-.sc--warm .sc-num{color:var(--K);opacity:.3}
-.sc--f .sc-num{color:#fff;opacity:.52}
 
 /* ── card bottom cluster ── */
 .sc-bot{position:relative;z-index:2}
 .sc-tag{font-size:8px;font-weight:700;letter-spacing:3.5px;text-transform:uppercase;color:rgba(224,24,92,.7);display:block;margin-bottom:8px}
-.sc--warm .sc-tag{color:var(--F)}
-.sc--f .sc-tag{color:rgba(255,255,255,.58)}
 
 .sc-name{font-family:var(--fd);font-size:18px;color:var(--C);letter-spacing:-.38px;line-height:1.15;margin-bottom:8px}
-.sc--warm .sc-name{color:var(--K)}
-.sc--f .sc-name{color:#fff}
-.sc--wide .sc-name{font-size:24px;letter-spacing:-.7px;margin-bottom:10px}
 
 .sc-desc{font-size:12.5px;color:rgba(243,239,224,.65);line-height:1.65;margin:0}
-.sc--warm .sc-desc{color:rgba(28,28,28,.65)}
-.sc--f .sc-desc{color:rgba(255,255,255,.78)}
-.sc--wide .sc-desc{font-size:13px;max-width:420px}
 
 @media(prefers-reduced-motion:reduce){
   .sc{opacity:1!important;transform:none!important}
@@ -1098,13 +1059,10 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
   .ta-ws{height:420px}
   .srv-grid{grid-template-columns:1fr 1fr}
   .sc{min-height:180px;padding:22px 20px 24px}
-  .sc--wide{min-height:200px}
   .sc-name{font-size:16px;margin-bottom:8px}
-  .sc--wide .sc-name{font-size:21px}
   .sc-ico{width:44px;height:44px;border-radius:12px}
   .sc-ico svg{width:22px;height:22px}
   .sc-desc{font-size:12px}
-  .sc--wide .sc-desc{font-size:12.5px;max-width:100%}
 }
 
 /* ═══════════════════════════════════════════════════
@@ -1235,13 +1193,10 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
   .srv-tagline{gap:14px;margin-bottom:36px;padding-bottom:36px}
   .srv-grid{grid-template-columns:1fr 1fr;gap:8px}
   .sc{min-height:152px;padding:18px 16px 20px;border-radius:16px}
-  .sc--wide{min-height:168px}
   .sc-name{font-size:15px;margin-bottom:6px}
-  .sc--wide .sc-name{font-size:19px}
   .sc-ico{width:40px;height:40px;border-radius:10px}
   .sc-ico svg{width:20px;height:20px}
   .sc-desc{font-size:11.5px;line-height:1.6}
-  .sc--wide .sc-desc{max-width:100%}
 
   /* ── PROCESSO ── */
   .proc-hdr{margin-bottom:28px}
@@ -1375,9 +1330,7 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
   .hero h1{font-size:24px}
   .hero-form-card{padding:14px 14px 12px}
   .srv-grid{grid-template-columns:1fr 1fr}
-  .sc--wide{grid-column:span 2}
   .sc-name{font-size:13.5px}
-  .sc--wide .sc-name{font-size:17px}
 }
 
 /* ═══════════════════════════════════════════════════
@@ -1785,8 +1738,8 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
 
     <div class="srv-grid rv">
 
-      <!-- 01 Strategia — fuchsia wide -->
-      <div class="sc sc--f sc--wide">
+      <!-- 01 Strategia -->
+      <div class="sc">
         <div class="sc-top">
           <div class="sc-ico">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1" fill="currentColor" stroke="none"/></svg>
@@ -1800,8 +1753,8 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
         </div>
       </div>
 
-      <!-- 02 Advertising — deep -->
-      <div class="sc sc--deep">
+      <!-- 02 Advertising -->
+      <div class="sc">
         <div class="sc-top">
           <div class="sc-ico">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19"/><path d="M11 5v14M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
@@ -1815,8 +1768,8 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
         </div>
       </div>
 
-      <!-- 03 Comunicazione — warm -->
-      <div class="sc sc--warm">
+      <!-- 03 Comunicazione -->
+      <div class="sc">
         <div class="sc-top">
           <div class="sc-ico">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><circle cx="12" cy="20" r="1" fill="currentColor" stroke="none"/></svg>
@@ -1830,8 +1783,8 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
         </div>
       </div>
 
-      <!-- 04 Content — deep -->
-      <div class="sc sc--deep">
+      <!-- 04 Content -->
+      <div class="sc">
         <div class="sc-top">
           <div class="sc-ico">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
@@ -1845,8 +1798,8 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
         </div>
       </div>
 
-      <!-- 05 Branding — fuchsia -->
-      <div class="sc sc--f">
+      <!-- 05 Branding -->
+      <div class="sc">
         <div class="sc-top">
           <div class="sc-ico">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
@@ -1875,8 +1828,8 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
         </div>
       </div>
 
-      <!-- 07 Siti Web — warm wide -->
-      <div class="sc sc--warm sc--wide">
+      <!-- 07 Siti Web -->
+      <div class="sc">
         <div class="sc-top">
           <div class="sc-ico">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="2" y1="7" x2="22" y2="7"/><circle cx="6" cy="5" r=".8" fill="currentColor" stroke="none"/><circle cx="9" cy="5" r=".8" fill="currentColor" stroke="none"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
@@ -1890,8 +1843,8 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
         </div>
       </div>
 
-      <!-- 08 Social — deep -->
-      <div class="sc sc--deep">
+      <!-- 08 Social -->
+      <div class="sc">
         <div class="sc-top">
           <div class="sc-ico">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2.5"/><circle cx="19.5" cy="16" r="2.5"/><circle cx="4.5" cy="16" r="2.5"/><line x1="12" y1="7.5" x2="19.5" y2="13.5"/><line x1="12" y1="7.5" x2="4.5" y2="13.5"/><line x1="4.5" y1="16" x2="19.5" y2="16"/></svg>
@@ -1905,8 +1858,8 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
         </div>
       </div>
 
-      <!-- 09 Automation — warm -->
-      <div class="sc sc--warm">
+      <!-- 09 Automation -->
+      <div class="sc">
         <div class="sc-top">
           <div class="sc-ico">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
