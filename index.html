@@ -512,8 +512,12 @@ h2.srv{font-family:var(--fd);font-size:clamp(36px,4.5vw,60px);line-height:1.01;l
 }
 .srv-col-l,.srv-col-r{
   display:flex;flex-direction:column;gap:12px;
-  position:relative;z-index:1
+  position:relative;z-index:1;
+  min-width:0
 }
+/* cards push toward the nucleus */
+.srv-col-l{align-items:flex-end}
+.srv-col-r{align-items:flex-start}
 .srv-nucleus-hub{
   display:flex;align-items:flex-start;justify-content:center;
   position:sticky;top:140px;
@@ -521,13 +525,12 @@ h2.srv{font-family:var(--fd);font-size:clamp(36px,4.5vw,60px);line-height:1.01;l
   pointer-events:none;
   padding-top:20px
 }
-/* rotating cat face — Grafica benefici.png, crop to face (upper centre) */
+/* rotating cat face — gattino-estro-favicon.png (transparent bg) */
 .srv-nucleus-core{
   width:90px;height:90px;border-radius:50%;
   overflow:hidden;
-  background:#fff url('Grafica benefici.png') no-repeat;
-  background-size:155%;
-  background-position:center top;
+  background:url('gattino-estro-favicon.png') no-repeat center center;
+  background-size:88%;
   box-shadow:0 0 0 4px rgba(224,24,92,.25),0 0 28px rgba(224,24,92,.55),0 0 60px rgba(224,24,92,.18);
   animation:nucleus-spin 10s linear infinite;
   flex-shrink:0
@@ -538,14 +541,16 @@ h2.srv{font-family:var(--fd);font-size:clamp(36px,4.5vw,60px);line-height:1.01;l
 }
 .srv-item{position:relative}
 
-/* ── card base — height driven by content ── */
+/* ── card base — width = title width + padding ── */
 .sc{
   background:var(--K);
   border:1px solid rgba(255,255,255,.07);
-  border-radius:18px;
-  padding:18px 18px 16px;
+  border-radius:16px;
+  padding:14px 44px 14px 14px; /* right pad = room for expand button */
   position:relative;overflow:hidden;
   display:flex;flex-direction:column;
+  width:max-content; /* shrink to content */
+  max-width:100%;    /* never overflow column */
   cursor:pointer;
   will-change:transform;
   transition:transform .42s cubic-bezier(.22,1,.36,1),border-color .3s,box-shadow .42s,opacity .55s ease;
@@ -1197,7 +1202,7 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
   .cr-stage{height:320px}
   .ta-ws{height:420px}
   .srv-flow{grid-template-columns:1fr 60px 1fr;gap:12px}
-  .srv-nucleus-core{width:60px;height:60px;background-size:155%;background-position:center top}
+  .srv-nucleus-core{width:60px;height:60px;background-size:88%}
   .sc-name{font-size:16px}
   .sc-desc{font-size:12px}
 }
@@ -1331,7 +1336,8 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
   .srv-flow{grid-template-columns:1fr;gap:8px}
   .srv-nucleus-hub{display:none}
   #srvNexus{display:none}
-  .sc{padding:14px 40px 14px 14px}
+  .srv-col-l,.srv-col-r{align-items:stretch}
+  .sc{width:auto;padding:14px 40px 14px 14px}
   .sc-name{font-size:14px}
   .sc-ico{width:40px;height:40px;border-radius:10px}
   .sc-ico svg{width:20px;height:20px}
