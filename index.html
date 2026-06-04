@@ -496,24 +496,29 @@ body{font-family:var(--fb);background:var(--K);color:var(--C);overflow-x:hidden;
 h2.srv{font-family:var(--fd);font-size:clamp(36px,4.5vw,60px);line-height:1.01;letter-spacing:-2.5px;color:var(--K)}
 .srv-side{font-size:15.5px;color:rgba(28,28,28,.82);max-width:640px;line-height:1.8;text-align:left;border-left:2px solid rgba(224,24,92,.55);padding-left:18px;margin-top:0}
 
-/* ── griglia editoriale bento ── */
-.srv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;position:relative;z-index:1}
+/* ── griglia editoriale bento — 6 colonne, layout 2-3-2-3 ── */
+.srv-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;position:relative;z-index:1}
+/* card default: span 3 → 2 per riga */
+.sc{grid-column:span 3}
+/* rows 2 e 4: 3 card × span 2 */
+.sc:nth-child(3),.sc:nth-child(4),.sc:nth-child(5),
+.sc:nth-child(8),.sc:nth-child(9),.sc:nth-child(10){grid-column:span 2}
 
 /* ── card base ── */
 .sc{
   background:var(--K);
   border:1px solid rgba(255,255,255,.07);
   border-radius:20px;
-  padding:24px 24px 26px;
+  padding:24px 24px 20px;
   position:relative;overflow:hidden;
   display:flex;flex-direction:column;
-  justify-content:space-between;
-  min-height:234px;
+  cursor:pointer;
+  min-height:auto;
   will-change:transform;
   transition:transform .42s cubic-bezier(.22,1,.36,1),border-color .3s,box-shadow .42s,opacity .55s ease;
   opacity:0;transform:translateY(18px)
 }
-/* staggered entrance via .rv + .vs */
+/* staggered entrance */
 .srv-grid.vs .sc{opacity:1;transform:none}
 .srv-grid.vs .sc:nth-child(1){transition-delay:.02s}
 .srv-grid.vs .sc:nth-child(2){transition-delay:.08s}
@@ -526,21 +531,26 @@ h2.srv{font-family:var(--fd);font-size:clamp(36px,4.5vw,60px);line-height:1.01;l
 .srv-grid.vs .sc:nth-child(9){transition-delay:.57s}
 .srv-grid.vs .sc:nth-child(10){transition-delay:.64s}
 
-/* hover: lift + border glow */
-.sc:hover{
-  transform:translateY(-6px);
-  border-color:rgba(224,24,92,.32);
-  box-shadow:0 24px 52px rgba(0,0,0,.28),inset 0 0 0 1px rgba(224,24,92,.08)
+/* hover: lift + border glow (when not open) */
+.sc:not(.sc-open):hover{
+  transform:translateY(-4px);
+  border-color:rgba(224,24,92,.24);
+  box-shadow:0 18px 42px rgba(0,0,0,.22),inset 0 0 0 1px rgba(224,24,92,.06)
+}
+/* open state */
+.sc.sc-open{
+  border-color:rgba(224,24,92,.35);
+  box-shadow:0 24px 52px rgba(0,0,0,.28),inset 0 0 0 1px rgba(224,24,92,.1)
 }
 
-/* shimmer sweep on hover */
+/* shimmer sweep on open */
 .sc::before{
   content:'';position:absolute;inset:0;
   background:linear-gradient(108deg,transparent 30%,rgba(255,255,255,.055) 50%,transparent 70%);
   transform:translateX(-140%) skewX(-14deg);
   pointer-events:none;z-index:6
 }
-.sc:hover::before{transform:translateX(140%) skewX(-14deg);transition:transform .7s ease}
+.sc.sc-open::before{transform:translateX(140%) skewX(-14deg);transition:transform .7s ease}
 
 /* dot-grid texture */
 .sc::after{
@@ -557,26 +567,50 @@ h2.srv{font-family:var(--fd);font-size:clamp(36px,4.5vw,60px);line-height:1.01;l
   flex-shrink:0;position:relative;z-index:2;
   transition:transform .44s cubic-bezier(.34,1.4,.64,1),background .3s,box-shadow .3s
 }
-.sc:hover .sc-ico{transform:translateY(-6px) scale(1.08);background:rgba(224,24,92,.2);box-shadow:0 12px 30px rgba(224,24,92,.32)}
+.sc.sc-open .sc-ico{background:rgba(224,24,92,.2);box-shadow:0 10px 28px rgba(224,24,92,.28)}
 .sc-ico svg{width:26px;height:26px;color:var(--F);transition:filter .3s}
-.sc:hover .sc-ico svg{filter:drop-shadow(0 2px 9px rgba(224,24,92,.65))}
+.sc.sc-open .sc-ico svg{filter:drop-shadow(0 2px 9px rgba(224,24,92,.55))}
+
+/* ── expand toggle ── */
+.sc-expand{
+  width:26px;height:26px;border-radius:50%;
+  border:1.5px solid rgba(255,255,255,.18);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;position:relative;z-index:2;
+  font-size:16px;line-height:1;color:rgba(255,255,255,.35);
+  transition:transform .4s cubic-bezier(.34,1.4,.64,1),border-color .3s,color .3s,background .3s
+}
+.sc.sc-open .sc-expand{
+  transform:rotate(45deg);
+  border-color:rgba(224,24,92,.6);
+  color:var(--F);
+  background:rgba(224,24,92,.08)
+}
 
 /* ── card top row ── */
-.sc-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:auto;padding-bottom:16px;position:relative;z-index:2}
-.sc-num{font-family:var(--fm);font-size:10.5px;font-weight:600;letter-spacing:1px;color:var(--C);opacity:.26}
+.sc-top{display:flex;align-items:center;justify-content:space-between;padding-bottom:18px;position:relative;z-index:2}
 
 /* ── card bottom cluster ── */
 .sc-bot{position:relative;z-index:2}
 .sc-tag{font-size:8px;font-weight:700;letter-spacing:3.5px;text-transform:uppercase;color:rgba(224,24,92,.7);display:block;margin-bottom:8px}
 
-.sc-name{font-family:var(--fd);font-size:20px;color:var(--C);letter-spacing:-.5px;line-height:1.12;margin-bottom:10px}
+.sc-name{font-family:var(--fd);font-size:20px;color:var(--C);letter-spacing:-.5px;line-height:1.12;margin-bottom:0}
 
-.sc-desc{font-size:13px;color:rgba(243,239,224,.78);line-height:1.7;margin:0}
+/* ── collapsible description ── */
+.sc-desc-wrap{
+  overflow:hidden;
+  max-height:0;
+  opacity:0;
+  transition:max-height .5s cubic-bezier(.4,0,.2,1),opacity .38s ease,margin-top .5s cubic-bezier(.4,0,.2,1)
+}
+.sc.sc-open .sc-desc-wrap{max-height:200px;opacity:1;margin-top:12px}
+.sc-desc{font-size:13px;color:rgba(243,239,224,.78);line-height:1.7;margin:0;padding-bottom:4px}
 
 @media(prefers-reduced-motion:reduce){
   .sc{opacity:1!important;transform:none!important}
   .sc-ico{animation:none!important;transition:none!important}
   .sc::before{display:none}
+  .sc-desc-wrap{max-height:none!important;opacity:1!important;transition:none!important}
 }
 
 /* ═══ PROCESSO ═══ */
@@ -1057,11 +1091,13 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
   .sol-grid{gap:24px}
   .cr-stage{height:320px}
   .ta-ws{height:420px}
-  .srv-grid{grid-template-columns:1fr 1fr}
-  .sc{min-height:180px;padding:22px 20px 24px}
-  .sc-name{font-size:16px;margin-bottom:8px}
+  .srv-grid{grid-template-columns:repeat(4,1fr)}
+  .sc{grid-column:span 2}
+  .sc:nth-child(3),.sc:nth-child(4),.sc:nth-child(5),
+  .sc:nth-child(8),.sc:nth-child(9),.sc:nth-child(10){grid-column:span 2}
   .sc-ico{width:44px;height:44px;border-radius:12px}
   .sc-ico svg{width:22px;height:22px}
+  .sc-name{font-size:16px}
   .sc-desc{font-size:12px}
 }
 
@@ -1192,8 +1228,8 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
   .servizi{padding:48px 0}
   .srv-tagline{gap:14px;margin-bottom:36px;padding-bottom:36px}
   .srv-grid{grid-template-columns:1fr 1fr;gap:8px}
-  .sc{min-height:152px;padding:18px 16px 20px;border-radius:16px}
-  .sc-name{font-size:15px;margin-bottom:6px}
+  .sc{grid-column:span 1!important;padding:18px 16px 18px;border-radius:16px}
+  .sc-name{font-size:15px}
   .sc-ico{width:40px;height:40px;border-radius:10px}
   .sc-ico svg{width:20px;height:20px}
   .sc-desc{font-size:11.5px;line-height:1.6}
@@ -1330,6 +1366,7 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
   .hero h1{font-size:24px}
   .hero-form-card{padding:14px 14px 12px}
   .srv-grid{grid-template-columns:1fr 1fr}
+  .sc{grid-column:span 1!important}
   .sc-name{font-size:13.5px}
 }
 
@@ -1744,12 +1781,12 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
           <div class="sc-ico">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1" fill="currentColor" stroke="none"/></svg>
           </div>
-          <span class="sc-num">01</span>
+          <div class="sc-expand" aria-label="espandi">+</div>
         </div>
         <div class="sc-bot">
           <span class="sc-tag">Core</span>
           <div class="sc-name">Strategia Marketing</div>
-          <p class="sc-desc">Obiettivi, analisi del mercato e roadmap operativa con KPI condivisi.</p>
+          <div class="sc-desc-wrap"><p class="sc-desc">Obiettivi, analisi del mercato e roadmap operativa con KPI condivisi.</p></div>
         </div>
       </div>
 
@@ -1759,12 +1796,12 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
           <div class="sc-ico">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19"/><path d="M11 5v14M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
           </div>
-          <span class="sc-num">02</span>
+          <div class="sc-expand" aria-label="espandi">+</div>
         </div>
         <div class="sc-bot">
           <span class="sc-tag">ADV</span>
           <div class="sc-name">Advertising</div>
-          <p class="sc-desc">Google Ads, Meta, LinkedIn. Campagne misurabili, ottimizzate per massimizzare il ROI.</p>
+          <div class="sc-desc-wrap"><p class="sc-desc">Google Ads, Meta, LinkedIn. Campagne misurabili, ottimizzate per massimizzare il ROI.</p></div>
         </div>
       </div>
 
@@ -1774,12 +1811,12 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
           <div class="sc-ico">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><circle cx="12" cy="20" r="1" fill="currentColor" stroke="none"/></svg>
           </div>
-          <span class="sc-num">03</span>
+          <div class="sc-expand" aria-label="espandi">+</div>
         </div>
         <div class="sc-bot">
           <span class="sc-tag">Digital</span>
           <div class="sc-name">Comunicazione Digitale</div>
-          <p class="sc-desc">Canali digitali gestiti come sistema unico. Presenza coordinata e risultati misurabili.</p>
+          <div class="sc-desc-wrap"><p class="sc-desc">Canali digitali gestiti come sistema unico. Presenza coordinata e risultati misurabili.</p></div>
         </div>
       </div>
 
@@ -1789,12 +1826,12 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
           <div class="sc-ico">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
           </div>
-          <span class="sc-num">04</span>
+          <div class="sc-expand" aria-label="espandi">+</div>
         </div>
         <div class="sc-bot">
           <span class="sc-tag">Creative</span>
           <div class="sc-name">Content Creation</div>
-          <p class="sc-desc">Social, web, newsletter con un'unica voce coerente per il tuo brand.</p>
+          <div class="sc-desc-wrap"><p class="sc-desc">Social, web, newsletter con un'unica voce coerente per il tuo brand.</p></div>
         </div>
       </div>
 
@@ -1804,27 +1841,27 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
           <div class="sc-ico">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
           </div>
-          <span class="sc-num">05</span>
+          <div class="sc-expand" aria-label="espandi">+</div>
         </div>
         <div class="sc-bot">
           <span class="sc-tag">Brand</span>
           <div class="sc-name">Branding</div>
-          <p class="sc-desc">Identità visiva, posizionamento e tono di voce coerenti su ogni canale.</p>
+          <div class="sc-desc-wrap"><p class="sc-desc">Identità visiva, posizionamento e tono di voce coerenti su ogni canale.</p></div>
         </div>
       </div>
 
-      <!-- 06 SEO — base dark -->
+      <!-- 06 SEO -->
       <div class="sc">
         <div class="sc-top">
           <div class="sc-ico">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/><polyline points="8 14 10 11 12 13 15 9"/></svg>
           </div>
-          <span class="sc-num">06</span>
+          <div class="sc-expand" aria-label="espandi">+</div>
         </div>
         <div class="sc-bot">
           <span class="sc-tag">SEO</span>
           <div class="sc-name">SEO</div>
-          <p class="sc-desc">Visibilità organica costruita nel tempo. On-page, contenuti e link building.</p>
+          <div class="sc-desc-wrap"><p class="sc-desc">Visibilità organica costruita nel tempo. On-page, contenuti e link building.</p></div>
         </div>
       </div>
 
@@ -1834,12 +1871,12 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
           <div class="sc-ico">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="2" y1="7" x2="22" y2="7"/><circle cx="6" cy="5" r=".8" fill="currentColor" stroke="none"/><circle cx="9" cy="5" r=".8" fill="currentColor" stroke="none"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
           </div>
-          <span class="sc-num">07</span>
+          <div class="sc-expand" aria-label="espandi">+</div>
         </div>
         <div class="sc-bot">
           <span class="sc-tag">Web</span>
           <div class="sc-name">Siti Web &amp; Landing Page</div>
-          <p class="sc-desc">Design e sviluppo orientati alla conversione. Veloci, accessibili, ottimizzati SEO.</p>
+          <div class="sc-desc-wrap"><p class="sc-desc">Design e sviluppo orientati alla conversione. Veloci, accessibili, ottimizzati SEO.</p></div>
         </div>
       </div>
 
@@ -1849,12 +1886,12 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
           <div class="sc-ico">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2.5"/><circle cx="19.5" cy="16" r="2.5"/><circle cx="4.5" cy="16" r="2.5"/><line x1="12" y1="7.5" x2="19.5" y2="13.5"/><line x1="12" y1="7.5" x2="4.5" y2="13.5"/><line x1="4.5" y1="16" x2="19.5" y2="16"/></svg>
           </div>
-          <span class="sc-num">08</span>
+          <div class="sc-expand" aria-label="espandi">+</div>
         </div>
         <div class="sc-bot">
           <span class="sc-tag">Social</span>
           <div class="sc-name">Social Media Management</div>
-          <p class="sc-desc">Piano editoriale, produzione e community management continuativi.</p>
+          <div class="sc-desc-wrap"><p class="sc-desc">Piano editoriale, produzione e community management continuativi.</p></div>
         </div>
       </div>
 
@@ -1864,27 +1901,27 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
           <div class="sc-ico">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
           </div>
-          <span class="sc-num">09</span>
+          <div class="sc-expand" aria-label="espandi">+</div>
         </div>
         <div class="sc-bot">
           <span class="sc-tag">Auto</span>
           <div class="sc-name">Marketing Automation</div>
-          <p class="sc-desc">Email flow, CRM e automazioni per nutrire i lead senza lavoro manuale.</p>
+          <div class="sc-desc-wrap"><p class="sc-desc">Email flow, CRM e automazioni per nutrire i lead senza lavoro manuale.</p></div>
         </div>
       </div>
 
-      <!-- 10 Analytics — base dark -->
+      <!-- 10 Analytics -->
       <div class="sc">
         <div class="sc-top">
           <div class="sc-ico">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="3" y1="20" x2="21" y2="20"/></svg>
           </div>
-          <span class="sc-num">10</span>
+          <div class="sc-expand" aria-label="espandi">+</div>
         </div>
         <div class="sc-bot">
           <span class="sc-tag">Intelligence</span>
           <div class="sc-name">Analytics &amp; Reporting</div>
-          <p class="sc-desc">Dati chiari e interpretati. Sai sempre cosa funziona e dove investire.</p>
+          <div class="sc-desc-wrap"><p class="sc-desc">Dati chiari e interpretati. Sai sempre cosa funziona e dove investire.</p></div>
         </div>
       </div>
 
@@ -2233,6 +2270,19 @@ window.addEventListener('scroll',()=>hdr.classList.toggle('on',scrollY>40),{pass
 
 const obs=new IntersectionObserver(es=>{
   es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vs')});
+
+// ── Servizi card expand toggle ──────────────────────────────────────────
+(function(){
+  const grid=document.querySelector('.srv-grid');
+  if(!grid)return;
+  grid.addEventListener('click',e=>{
+    const card=e.target.closest('.sc');
+    if(!card)return;
+    const isOpen=card.classList.contains('sc-open');
+    grid.querySelectorAll('.sc.sc-open').forEach(c=>c.classList.remove('sc-open'));
+    if(!isOpen)card.classList.add('sc-open');
+  });
+})();
 // ── Benefici particle canvas ──────────────────────────────────────────────
 (function(){
   const cvs=document.getElementById('bfxCvs');
