@@ -496,24 +496,20 @@ body{font-family:var(--fb);background:var(--K);color:var(--C);overflow-x:hidden;
 h2.srv{font-family:var(--fd);font-size:clamp(36px,4.5vw,60px);line-height:1.01;letter-spacing:-2.5px;color:var(--K)}
 .srv-side{font-size:15.5px;color:rgba(28,28,28,.82);max-width:640px;line-height:1.8;text-align:left;border-left:2px solid rgba(224,24,92,.55);padding-left:18px;margin-top:0}
 
-/* ── Composizione a imbuto: 4 → 3 → 2 → 1 ── */
-/* 12-column base so each row tier divides cleanly */
-.srv-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:14px;position:relative;z-index:1}
+/* ── Griglia 2 colonne ── */
+.srv-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;position:relative;z-index:1}
 
-/* Row 1 — 4 narrow cards (25% each) */
-.sc:nth-child(1){grid-column:1/span 3}
-.sc:nth-child(2){grid-column:4/span 3}
-.sc:nth-child(3){grid-column:7/span 3}
-.sc:nth-child(4){grid-column:10/span 3}
-/* Row 2 — 3 medium cards (33% each) */
-.sc:nth-child(5){grid-column:1/span 4}
-.sc:nth-child(6){grid-column:5/span 4}
-.sc:nth-child(7){grid-column:9/span 4}
-/* Row 3 — 2 wide cards (50% each) */
-.sc:nth-child(8){grid-column:1/span 6}
-.sc:nth-child(9){grid-column:7/span 6}
-/* Row 4 — 1 full-width anchor card */
-.sc:nth-child(10){grid-column:1/-1}
+/* ── Orb animato ── */
+.srv-orb{
+  position:absolute;
+  width:520px;height:520px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(224,24,92,.16) 0%,rgba(224,24,92,.07) 38%,transparent 70%);
+  pointer-events:none;z-index:0;
+  top:0;left:0;
+  will-change:transform;
+  mix-blend-mode:screen
+}
 
 /* ── card base ── */
 .sc{
@@ -542,16 +538,21 @@ h2.srv{font-family:var(--fd);font-size:clamp(36px,4.5vw,60px);line-height:1.01;l
 .srv-grid.vs .sc:nth-child(9){transition-delay:.57s}
 .srv-grid.vs .sc:nth-child(10){transition-delay:.64s}
 
+/* orb proximity glow — driven by JS custom properties */
+.sc{
+  border-color:var(--orb-border,rgba(255,255,255,.07));
+  box-shadow:var(--orb-shadow,none)
+}
 /* hover: lift + border glow (when not open) */
 .sc:not(.sc-open):hover{
   transform:translateY(-4px);
-  border-color:rgba(224,24,92,.24);
+  border-color:rgba(224,24,92,.28);
   box-shadow:0 18px 42px rgba(0,0,0,.22),inset 0 0 0 1px rgba(224,24,92,.06)
 }
 /* open state */
 .sc.sc-open{
-  border-color:rgba(224,24,92,.35);
-  box-shadow:0 24px 52px rgba(0,0,0,.28),inset 0 0 0 1px rgba(224,24,92,.1)
+  border-color:rgba(224,24,92,.4);
+  box-shadow:0 24px 52px rgba(0,0,0,.28),inset 0 0 0 1px rgba(224,24,92,.12)
 }
 
 /* shimmer sweep on open */
@@ -1147,9 +1148,7 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
   .target-inner,.sol-grid{grid-template-columns:1fr;gap:40px}
   .ben-grid{grid-template-columns:1fr;gap:36px}
   .ic-grid{grid-template-columns:repeat(2,1fr)}
-  /* srv: collapse to 2-col at 1100px, reset all explicit placements */
   .srv-grid{grid-template-columns:1fr 1fr}
-  .sc:nth-child(n){grid-column:span 1}
   /* tl horizontal: slightly reduce font at mid breakpoint */
   .tl-h4{font-size:15px}
   .tl-p{font-size:12.5px}
@@ -1177,7 +1176,6 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
   .cr-stage{height:320px}
   .ta-ws{height:420px}
   .srv-grid{grid-template-columns:1fr 1fr}
-  .sc:nth-child(n){grid-column:span 1}
   .sc-ico{width:44px;height:44px;border-radius:12px}
   .sc-ico svg{width:22px;height:22px}
   .sc-name{font-size:16px}
@@ -1844,6 +1842,7 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
     </div>
 
     <div class="srv-grid rv">
+      <div class="srv-orb" aria-hidden="true"></div>
 
       <!-- 01 Strategia -->
       <div class="sc">
@@ -2333,10 +2332,12 @@ window.addEventListener('scroll',()=>hdr.classList.toggle('on',scrollY>40),{pass
 const obs=new IntersectionObserver(es=>{
   es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vs')});
 
-// ── Servizi card expand toggle ──────────────────────────────────────────
+// ── Servizi: card expand + orb interaction ───────────────────────────────
 (function(){
   const grid=document.querySelector('.srv-grid');
   if(!grid)return;
+
+  // expand toggle
   grid.addEventListener('click',e=>{
     const card=e.target.closest('.sc');
     if(!card)return;
@@ -2344,6 +2345,68 @@ const obs=new IntersectionObserver(es=>{
     grid.querySelectorAll('.sc.sc-open').forEach(c=>c.classList.remove('sc-open'));
     if(!isOpen)card.classList.add('sc-open');
   });
+
+  // orb animation
+  const noMotion=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  const orb=grid.querySelector('.srv-orb');
+  if(!orb||noMotion)return;
+
+  const cards=[...grid.querySelectorAll('.sc')];
+  const ORB_R=260; // half orb width
+  let ox=0,oy=0,tx=0,ty=0;
+  let idleT=0,isHover=false,raf=null;
+
+  function lerp(a,b,t){return a+(b-a)*t}
+
+  // idle: slow lissajous across the grid
+  function idleTarget(){
+    const w=grid.offsetWidth, h=grid.offsetHeight;
+    idleT+=0.008;
+    tx=w*(0.15+0.7*(0.5+0.5*Math.sin(idleT)));
+    ty=h*(0.1 +0.8*(0.5+0.5*Math.sin(idleT*0.61+1.2)));
+  }
+
+  function applyToCards(){
+    cards.forEach(card=>{
+      const gr=grid.getBoundingClientRect();
+      const cr=card.getBoundingClientRect();
+      const cx=cr.left-gr.left+cr.width/2;
+      const cy=cr.top -gr.top +cr.height/2;
+      const dist=Math.hypot(cx-ox,cy-oy);
+      const t=Math.max(0,1-dist/(ORB_R*1.6));
+      const g=t*t;
+      if(g>0.015){
+        card.style.setProperty('--orb-border',`rgba(224,24,92,${(0.07+g*0.38).toFixed(3)})`);
+        card.style.setProperty('--orb-shadow',`0 0 ${(g*56).toFixed(0)}px ${(g*-8).toFixed(0)}px rgba(224,24,92,${(g*0.32).toFixed(3)})`);
+      } else {
+        card.style.removeProperty('--orb-border');
+        card.style.removeProperty('--orb-shadow');
+      }
+    });
+  }
+
+  function tick(){
+    if(!isHover)idleTarget();
+    ox=lerp(ox,tx,isHover?0.10:0.04);
+    oy=lerp(oy,ty,isHover?0.10:0.04);
+    orb.style.transform=`translate(${(ox-ORB_R).toFixed(1)}px,${(oy-ORB_R).toFixed(1)}px)`;
+    applyToCards();
+    raf=requestAnimationFrame(tick);
+  }
+
+  grid.addEventListener('mousemove',e=>{
+    isHover=true;
+    const r=grid.getBoundingClientRect();
+    tx=e.clientX-r.left;
+    ty=e.clientY-r.top;
+  },{passive:true});
+
+  grid.addEventListener('mouseleave',()=>{isHover=false;},{passive:true});
+
+  // init orb position
+  ox=tx=grid.offsetWidth/2;
+  oy=ty=grid.offsetHeight/2;
+  raf=requestAnimationFrame(tick);
 })();
 // ── Benefici particle canvas ──────────────────────────────────────────────
 (function(){
