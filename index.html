@@ -496,13 +496,24 @@ body{font-family:var(--fb);background:var(--K);color:var(--C);overflow-x:hidden;
 h2.srv{font-family:var(--fd);font-size:clamp(36px,4.5vw,60px);line-height:1.01;letter-spacing:-2.5px;color:var(--K)}
 .srv-side{font-size:15.5px;color:rgba(28,28,28,.82);max-width:640px;line-height:1.8;text-align:left;border-left:2px solid rgba(224,24,92,.55);padding-left:18px;margin-top:0}
 
-/* ── griglia editoriale bento — 6 colonne, layout 2-3-2-3 ── */
-.srv-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;position:relative;z-index:1}
-/* card default: span 3 → 2 per riga */
-.sc{grid-column:span 3}
-/* rows 2 e 4: 3 card × span 2 */
-.sc:nth-child(3),.sc:nth-child(4),.sc:nth-child(5),
-.sc:nth-child(8),.sc:nth-child(9),.sc:nth-child(10){grid-column:span 2}
+/* ── Composizione a imbuto: 4 → 3 → 2 → 1 ── */
+/* 12-column base so each row tier divides cleanly */
+.srv-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:14px;position:relative;z-index:1}
+
+/* Row 1 — 4 narrow cards (25% each) */
+.sc:nth-child(1){grid-column:1/span 3}
+.sc:nth-child(2){grid-column:4/span 3}
+.sc:nth-child(3){grid-column:7/span 3}
+.sc:nth-child(4){grid-column:10/span 3}
+/* Row 2 — 3 medium cards (33% each) */
+.sc:nth-child(5){grid-column:1/span 4}
+.sc:nth-child(6){grid-column:5/span 4}
+.sc:nth-child(7){grid-column:9/span 4}
+/* Row 3 — 2 wide cards (50% each) */
+.sc:nth-child(8){grid-column:1/span 6}
+.sc:nth-child(9){grid-column:7/span 6}
+/* Row 4 — 1 full-width anchor card */
+.sc:nth-child(10){grid-column:1/-1}
 
 /* ── card base ── */
 .sc{
@@ -1136,7 +1147,9 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
   .target-inner,.sol-grid{grid-template-columns:1fr;gap:40px}
   .ben-grid{grid-template-columns:1fr;gap:36px}
   .ic-grid{grid-template-columns:repeat(2,1fr)}
-  .srv-grid{grid-template-columns:repeat(3,1fr)}
+  /* srv: collapse to 2-col at 1100px, reset all explicit placements */
+  .srv-grid{grid-template-columns:1fr 1fr}
+  .sc:nth-child(n){grid-column:span 1}
   /* tl horizontal: slightly reduce font at mid breakpoint */
   .tl-h4{font-size:15px}
   .tl-p{font-size:12.5px}
@@ -1163,10 +1176,8 @@ footer{background:var(--K3);padding:64px 0 28px;border-top:1px solid rgba(255,25
   .sol-grid{gap:24px}
   .cr-stage{height:320px}
   .ta-ws{height:420px}
-  .srv-grid{grid-template-columns:repeat(4,1fr)}
-  .sc{grid-column:span 2}
-  .sc:nth-child(3),.sc:nth-child(4),.sc:nth-child(5),
-  .sc:nth-child(8),.sc:nth-child(9),.sc:nth-child(10){grid-column:span 2}
+  .srv-grid{grid-template-columns:1fr 1fr}
+  .sc:nth-child(n){grid-column:span 1}
   .sc-ico{width:44px;height:44px;border-radius:12px}
   .sc-ico svg{width:22px;height:22px}
   .sc-name{font-size:16px}
