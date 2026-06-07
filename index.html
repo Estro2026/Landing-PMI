@@ -24,7 +24,8 @@
   --rp:999px;--rl:32px;--rm:20px;--rs:14px;
   --mx:1320px;--px:48px;
 }
-html{scroll-behavior:smooth;overflow-x:clip}
+html,body{scroll-behavior:smooth;overflow-x:hidden;max-width:100%}
+html{overflow-x:clip}
 body{font-family:var(--fb);background:var(--K);color:var(--C);overflow-x:hidden;-webkit-font-smoothing:antialiased;max-width:100%}
 ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--K)}::-webkit-scrollbar-thumb{background:var(--F);border-radius:3px}
 .ctr{max-width:var(--mx);margin:0 auto;padding:0 var(--px)}
@@ -1196,7 +1197,7 @@ h2.srv em{font-style:normal;color:var(--F)}
 .cs-sub{font-size:14px;color:rgba(243,239,224,.42);margin:0;line-height:1.65}
 
 /* ── TAB BAR ── */
-.cs-tabs-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;margin-bottom:24px}
+.cs-tabs-wrap{overflow:visible;margin-bottom:24px}
 .cs-tabs-wrap::-webkit-scrollbar{display:none}
 .cs-tabs{
   display:flex;gap:6px;
@@ -1952,12 +1953,16 @@ footer{background:var(--K3);padding:48px 0 22px;border-top:1px solid rgba(255,25
    ═══════════════════════════════════════════════════ */
 @media(max-width:640px){
 
-  /* ── Global: prevent horizontal overflow on mobile ── */
-  .ctr,.ff-wrap,.ft-in{width:100%;box-sizing:border-box;overflow-x:hidden}
-  .target,.benefici,.trust,.sproof,.icone,.fform,.servizi,.proc{overflow:hidden}
+  /* ── Global: no internal scroll, no horizontal overflow ── */
+  *{max-width:100%;box-sizing:border-box}
+  .ctr,.ff-wrap,.ft-in{width:100%;overflow:hidden}
+  section,.target,.benefici,.trust,.sproof,.icone,.fform,.servizi,.proc,.cta-mid,.hero{overflow:hidden}
   .bfx-stage{overflow:hidden}
-  /* ghost texts: prevent horizontal scroll */
-  .tg-ghost,.sp-ghost,.trust-ghost,.cta-mid-ghost{overflow:hidden;max-width:100vw}
+  /* ghost texts clipped to viewport */
+  .tg-ghost,.sp-ghost,.trust-ghost,.cta-mid-ghost{overflow:hidden;max-width:100vw;white-space:nowrap}
+  /* case study tabs: wrap instead of scroll */
+  .cs-tabs-wrap{overflow:visible;flex-wrap:wrap}
+  .pf-tabs{flex-wrap:wrap}
 
   /* ── Hero copy: tighter rhythm ── */
   .hero-badge{margin-bottom:10px}
