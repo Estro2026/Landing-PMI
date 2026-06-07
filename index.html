@@ -140,8 +140,15 @@ body{font-family:var(--fb);background:var(--K);color:var(--C);overflow-x:hidden;
 .ff-jobs-btn{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:500;color:rgba(243,239,224,.45);border:1px solid rgba(243,239,224,.14);border-radius:40px;padding:10px 22px;text-decoration:none;transition:color .2s,border-color .2s}
 .ff-jobs-btn:hover{color:rgba(243,239,224,.8);border-color:rgba(243,239,224,.32)}
 /* legacy aliases */
-.hform-wrap{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:24px;padding:32px;backdrop-filter:blur(16px)}
+.hform-wrap{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.09);border-radius:var(--rl);padding:32px;backdrop-filter:blur(12px)}
+.hform-title{font-family:var(--fd);font-size:17px;color:var(--C);letter-spacing:-.4px;margin-bottom:4px}
+.hform-sub{font-size:12px;color:var(--S);margin-bottom:20px}
 .hform-note{font-size:10px;color:rgba(243,239,224,.28);text-align:center;margin-top:10px}
+.f-submit-hero{width:100%;background:var(--F);color:#fff;border:none;padding:14px 24px;border-radius:var(--rp);font-family:var(--fb);font-weight:600;font-size:14.5px;cursor:pointer;margin-top:6px;transition:all .25s;display:flex;align-items:center;justify-content:center;gap:9px}
+.f-submit-hero:hover{background:#c91250;transform:translateY(-2px);box-shadow:0 14px 32px rgba(224,24,92,.3)}
+.fg.full{grid-column:1/-1}
+.ff-note{font-size:11px;color:rgba(243,239,224,.28);text-align:center;margin-top:14px}
+.ff-note a{color:rgba(224,24,92,.6);text-decoration:none}
 
 /* ─── STRIP (stile VI/Estro Siti Web_1_06) ─── */
 .strip{background:var(--F);border-top:1px solid rgba(255,255,255,.1);border-bottom:1px solid rgba(255,255,255,.1);padding:18px 0;overflow:hidden}
@@ -1882,25 +1889,23 @@ footer{background:var(--K3);padding:84px 48px 30px;position:relative;overflow:hi
 
   <!-- ── COLONNA DESTRA: form centrato verticalmente ── -->
   <div class="hero-form-col">
-    <div class="hero-form-card">
-      <div class="form-card-title">Richiedi una consulenza gratuita</div>
-      <div class="form-card-sub">Nessun impegno · Risposta entro 24 ore</div>
-      <form id="heroForm" onsubmit="heroSub(event)">
-        <div class="fg-row">
-          <div class="fg"><label>Nome e cognome <span class="req">*</span></label><input type="text" placeholder="Mario Rossi" required></div>
-          <div class="fg"><label>Email <span class="req">*</span></label><input type="email" placeholder="mario@azienda.it" required></div>
-        </div>
-        <div class="fg-row">
-          <div class="fg"><label>Telefono</label><input type="tel" placeholder="+39 02 ..."></div>
+      <div class="hform-wrap">
+        <div class="hform-title">Parliamo del tuo progetto</div>
+        <div class="hform-sub">Nessun impegno · Una conversazione vera</div>
+        <form id="heroForm" onsubmit="heroSub(event)">
+          <div class="fg-row">
+            <div class="fg"><label>Nome e cognome <span class="req">*</span></label><input type="text" placeholder="Mario Rossi" required></div>
+            <div class="fg"><label>Email <span class="req">*</span></label><input type="email" placeholder="mario@azienda.it" required></div>
+          </div>
+          <div class="fg"><label>Numero di telefono <span class="req">*</span></label><input type="tel" placeholder="+39 02 ..." required></div>
           <div class="fg"><label>Azienda <span class="req">*</span></label><input type="text" placeholder="Nome azienda" required></div>
-        </div>
-        <div class="fg"><label>Sito web (facoltativo)</label><input type="url" placeholder="www.acme.it"></div>
-        <div class="fg"><label>Messaggio</label><textarea placeholder="Descrivici la situazione attuale e cosa vorreste risolvere."></textarea></div>
-        <button type="submit" class="f-submit">Invia la richiesta <span class="f-submit-arr">›</span></button>
-      </form>
-      <div id="heroSuccess" style="display:none;background:rgba(76,180,80,.08);border:1px solid rgba(76,180,80,.25);border-radius:12px;padding:16px;text-align:center;color:#4CB450;font-weight:600;margin-top:8px">✓ Ricevuto. Vi contatteremo presto.</div>
-      <div class="form-note">* Campi obbligatori · <a href="#" style="color:rgba(224,24,92,.6);text-decoration:none">Privacy Policy</a></div>
-    </div>
+          <div class="fg"><label>Sito web (facoltativo)</label><input type="url" placeholder="www.acme.it"></div>
+          <div class="fg"><label>Messaggio</label><textarea placeholder="Descrivici la situazione attuale e cosa vorreste risolvere."></textarea></div>
+          <button type="submit" class="f-submit-hero">Invia la richiesta <span class="arr">›</span></button>
+        </form>
+        <div id="heroSuccess" style="display:none;background:rgba(76,180,80,.08);border:1px solid rgba(76,180,80,.25);border-radius:var(--rm);padding:16px;text-align:center;color:#4CB450;font-weight:600;margin-top:8px">✓ Ricevuto. Vi contatteremo presto.</div>
+        <div class="hform-note">* Campi obbligatori · <a href="#" style="color:rgba(224,24,92,.6);text-decoration:none">Privacy Policy</a></div>
+      </div>
   </div>
 
 </section>
@@ -2460,26 +2465,20 @@ footer{background:var(--K3);padding:84px 48px 30px;position:relative;overflow:hi
   <div class="ff-wrap">
     <div class="rv">
       <span class="ff-tag">Parliamo del tuo progetto</span>
-      <h2>La consulenza è gratuita. <em>Il primo passo è il più semplice.</em></h2>
-      <p class="ff-sub">Raccontaci la tua azienda e la sfida che vuoi risolvere. Vi risponderemo entro 24 ore lavorative, senza impegno e senza preventivi al primo contatto.</p>
+      <h2>Pronti a lavorare su una <em>regia che funziona.</em></h2>
+      <p class="ff-sub">Niente preventivi al primo contatto. Una conversazione vera su dove volete arrivare e come arrivarci.</p>
     </div>
-    <div class="form-card rv">
-      <div class="form-card-title">Parliamo del tuo progetto</div>
-      <div class="form-card-sub">Nessun impegno · Una conversazione vera</div>
-      <form id="mainForm" onsubmit="mainSub(event)">
-        <div class="fg-row">
-          <div class="fg"><label>Nome e cognome <span class="req">*</span></label><input type="text" placeholder="Mario Rossi" required></div>
-          <div class="fg"><label>Email <span class="req">*</span></label><input type="email" placeholder="mario@azienda.it" required></div>
-        </div>
-        <div class="fg"><label>Numero di telefono</label><input type="tel" placeholder="+39 02 ..."></div>
-        <div class="fg"><label>Azienda <span class="req">*</span></label><input type="text" placeholder="Nome azienda" required></div>
-        <div class="fg"><label>Sito web (facoltativo)</label><input type="url" placeholder="www.acme.it"></div>
-        <div class="fg"><label>Messaggio</label><textarea placeholder="Descrivici la situazione attuale e cosa vorreste risolvere."></textarea></div>
-        <button type="submit" class="f-submit">Invia la richiesta <span class="f-submit-arr">›</span></button>
-      </form>
-      <div class="fsuccess" id="msuccess">✓ Ricevuto. Vi contatteremo entro 24 ore lavorative.</div>
-      <div class="form-note">* Campi obbligatori · Risposta entro 24 ore lavorative · <a href="#" style="color:rgba(224,24,92,.6);text-decoration:none">Privacy Policy</a></div>
-    </div>
+    <form class="ff-grid rv" id="mainForm" onsubmit="mainSub(event)">
+      <div class="fg"><label>Nome e cognome <span class="req">*</span></label><input type="text" placeholder="Mario Rossi" required></div>
+      <div class="fg"><label>Email <span class="req">*</span></label><input type="email" placeholder="mario@azienda.it" required></div>
+      <div class="fg"><label>Numero di telefono <span class="req">*</span></label><input type="tel" placeholder="+39 02 ..." required></div>
+      <div class="fg"><label>Azienda <span class="req">*</span></label><input type="text" placeholder="Nome azienda" required></div>
+      <div class="fg full"><label>Sito web (facoltativo)</label><input type="url" placeholder="www.acme.it"></div>
+      <div class="fg full"><label>Messaggio</label><textarea placeholder="Descrivici la situazione attuale: quante persone/agenzie gestite, quali canali usate, cosa non funziona come vorreste."></textarea></div>
+      <div class="fg full"><button type="submit" class="f-submit-main">Scriveteci <span class="arr">›</span></button></div>
+    </form>
+    <div class="fsuccess" id="msuccess">✓ Ricevuto. Vi contatteremo presto.</div>
+    <div class="ff-note rv">* Campi obbligatori · <a href="#">Privacy Policy</a></div>
     <div class="ff-jobs-link rv">
       <a href="mailto:jobs@estro.agency" class="ff-jobs-btn">Cerchi invece lavoro o collaborazione? <span class="arr">›</span></a>
     </div>
