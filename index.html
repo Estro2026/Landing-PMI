@@ -1090,9 +1090,9 @@ h2.srv em{font-style:normal;color:var(--F)}
 }
 .trust-dots{position:absolute;right:-120px;left:auto;top:50%;transform:translateY(-50%);width:560px;height:560px;
   background:radial-gradient(circle,rgba(224,24,92,.06),transparent 60%);border-radius:50%;pointer-events:none;z-index:0}
-.trust-ghost{position:absolute;left:50%;bottom:-10px;transform:translateX(-50%);
-  font-family:var(--fd);font-size:clamp(140px,22vw,340px);line-height:.78;
-  color:rgba(243,239,224,.028);letter-spacing:-10px;
+.trust-ghost{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  font-family:var(--fd);font-size:clamp(80px,14vw,200px);line-height:1;
+  color:rgba(243,239,224,.06);letter-spacing:-6px;
   white-space:nowrap;pointer-events:none;z-index:0;user-select:none;text-align:center}
 /* inner content above layers */
 .trust .ctr{position:relative;z-index:1}
@@ -1157,7 +1157,7 @@ h2.srv em{font-style:normal;color:var(--F)}
   letter-spacing:-2px;line-height:1;margin-top:4px}
 .lw-anchor-numlbl{font-size:12px;color:rgba(243,239,224,.4);letter-spacing:.5px;text-transform:uppercase;margin-top:2px}
 
-.lw-streams{overflow:hidden;position:relative;padding:20px 0;
+.lw-streams{overflow:hidden;position:relative;padding:20px 0;z-index:1;
   mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);
   -webkit-mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent)}
 .lw-row{display:flex;padding:10px 0}
@@ -2421,7 +2421,6 @@ footer{background:var(--K3);padding:84px 48px 30px;position:relative;overflow:hi
 <!-- ═══ TRUST ═══ -->
 <section class="trust" id="clienti">
   <div class="trust-dots" aria-hidden="true"></div>
-  <div class="trust-ghost" aria-hidden="true">FIDUCIA</div>
   <div class="ctr">
 
     <!-- ── Trust layer ── -->
@@ -2437,7 +2436,8 @@ footer{background:var(--K3);padding:84px 48px 30px;position:relative;overflow:hi
     </div>
 
     <!-- ── Logo wall — full-width marquee ── -->
-    <div class="lw-editorial rv" style="grid-template-columns:1fr;border:none;background:none;border-radius:0">
+    <div class="lw-editorial rv" style="grid-template-columns:1fr;border:none;background:none;border-radius:0;position:relative;overflow:hidden">
+      <div class="trust-ghost" aria-hidden="true">FIDUCIA</div>
       <!-- full-width marquee rows -->
       <div class="lw-streams" style="mask-image:linear-gradient(90deg,transparent,#000 3%,#000 97%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 3%,#000 97%,transparent)">
         <div class="lw-row">
