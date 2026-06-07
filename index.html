@@ -1060,6 +1060,8 @@ h2.srv em{font-style:normal;color:var(--F)}
   box-shadow:0 0 26px rgba(224,24,92,.9);
   transform:scale(1.5)
 }
+/* ben-chips: mobile only */
+.ben-chips{display:none}
 
 /* benefit list hover */
 .ben-list li{transition:transform .4s cubic-bezier(.22,1,.36,1),color .3s;cursor:default}
@@ -1743,18 +1745,35 @@ footer{background:var(--K3);padding:48px 0 22px;border-top:1px solid rgba(255,25
     padding:16px 24px;box-sizing:border-box
   }
 
-  /* ── SERVIZI ── */
+  /* ── SERVIZI mobile: 2-column compact grid ── */
   .servizi{padding:48px 0}
-  .srv-tagline{gap:14px;margin-bottom:36px;padding-bottom:36px}
-  /* below 640px: stack cards in a simple flow */
-  .srv-flow{min-height:auto;display:flex;flex-direction:column;gap:8px;padding:0}
+  .srv-tagline{gap:10px;margin-bottom:28px;padding-bottom:0}
+  .srv-flow{
+    min-height:auto;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    padding:0
+  }
   .srv-item{position:static;transform:none;width:100%}
-  .srv-nucleus-hub{position:static;transform:none;display:flex;justify-content:center;margin-bottom:12px}
+  .srv-nucleus-hub{display:none}
   #srvNexus{display:none}
-  .sc{width:auto}
-  .sc-ico{width:40px;height:40px;border-radius:10px}
-  .sc-ico svg{width:20px;height:20px}
-  .sc-desc{font-size:11.5px;line-height:1.6}
+  .sc{
+    width:100%;
+    padding:16px 14px;
+    flex-direction:column;
+    gap:10px;
+    opacity:1;
+    transform:none
+  }
+  .sc-top{padding-bottom:0;gap:8px}
+  .sc-expand{display:none}
+  .sc-ico{width:38px;height:38px;border-radius:10px;flex-shrink:0}
+  .sc-ico svg{width:18px;height:18px}
+  .sc-tag{font-size:8px;letter-spacing:1.5px;margin-bottom:2px}
+  .sc-name{font-size:13px;letter-spacing:-.2px;line-height:1.2;margin-bottom:0}
+  .sc-desc-wrap{max-height:none!important;overflow:visible!important}
+  .sc-desc{font-size:11.5px;line-height:1.55;color:rgba(243,239,224,.55);margin-top:4px}
 
   /* ── PROCESSO ── */
   .proc-hdr{margin-bottom:28px}
@@ -1762,9 +1781,8 @@ footer{background:var(--K3);padding:48px 0 22px;border-top:1px solid rgba(255,25
   .proc-closer-t{font-size:13.5px;margin-bottom:4px}
   .proc-closer-d{font-size:13px}
 
-  /* ── BENEFICI: graphic first, list second, keywords as chips ── */
+  /* ── BENEFICI mobile: semplice immagine centrata + chip keyword ── */
   .ben-grid{grid-template-columns:1fr!important;gap:0}
-  /* swap order: visual first, copy second */
   .ben-grid .rv:first-child{order:2;padding-top:20px}
   .ben-grid .rv.d1{order:1}
   .benefici h2{margin-bottom:16px}
@@ -1772,37 +1790,48 @@ footer{background:var(--K3);padding:48px 0 22px;border-top:1px solid rgba(255,25
   .ben-list li{font-size:13.5px;gap:10px;line-height:1.45}
   .ben-check{width:20px;height:20px;flex-shrink:0}
   .ben-check svg{width:9px;height:9px}
-  /* stage: centered, no overflow break */
+  /* Stage: solo immagine centrata, no canvas, no badge flottanti */
   .bfx-stage{
-    margin-right:0;margin-left:0;
-    padding-bottom:48px;
+    margin:0;
+    padding-bottom:0;
     overflow:hidden;
-    min-height:auto
+    min-height:auto;
+    display:flex;
+    align-items:center;
+    justify-content:center
   }
-  .bfx-img{width:clamp(190px,68vw,290px)}
-  .bfx-glow{width:280px;height:280px}
-  /* keywords: static horizontal strip below image */
-  .bkw-sys{
-    position:absolute;left:0;right:0;
-    bottom:4px;height:40px;
-    display:flex;align-items:center;
-    justify-content:center;gap:6px;
-    pointer-events:none
+  .bfx-cvs{display:none}
+  .bfx-glow{display:none}
+  .bkw-sys{display:none}
+  .bfx-img{
+    position:static!important;
+    width:clamp(200px,72vw,300px);
+    margin:0 auto;
+    opacity:1!important;
+    transform:none!important;
+    filter:none!important;
+    border-radius:20px;
+    box-shadow:0 24px 60px rgba(0,0,0,.18)
   }
-  .bkw{
-    position:static;
-    flex-direction:row;
-    opacity:0;
-    transform:translateY(6px)
+  /* Chip keyword strip sotto l'immagine */
+  .ben-chips{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    justify-content:center;
+    margin-top:20px
   }
-  .bkw-0,.bkw-1,.bkw-2,.bkw-3{
-    position:static;
-    flex-direction:row;
-    transform:translateY(6px)
+  .ben-chip{
+    background:var(--Fa);
+    border:1px solid var(--Fb);
+    border-radius:20px;
+    padding:6px 14px;
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:1.2px;
+    text-transform:uppercase;
+    color:var(--F)
   }
-  .bfx-stage.bfx-vis .bkw{opacity:1;transform:none}
-  .bkw-dot{width:6px;height:6px}
-  .bkw-dot::after{display:none}
   .bkw-2,.bkw-3{display:flex}
   .bkw-label{
     font-size:7.5px;padding:4px 8px;
@@ -2468,12 +2497,19 @@ footer{background:var(--K3);padding:48px 0 22px;border-top:1px solid rgba(255,25
           <div class="bfx-glow" aria-hidden="true"></div>
           <canvas class="bfx-cvs" id="bfxCvs" aria-hidden="true"></canvas>
           <img class="bfx-img" src="benefici grafica1.png" alt="" aria-hidden="true">
-          <!-- Emerging keywords -->
+          <!-- Emerging keywords (desktop) -->
           <div class="bkw-sys" aria-hidden="true">
             <div class="bkw bkw-0" data-idx="0"><div class="bkw-dot"></div><span class="bkw-label">TEMPO</span></div>
             <div class="bkw bkw-1" data-idx="1"><div class="bkw-dot"></div><span class="bkw-label">CONTROLLO</span></div>
             <div class="bkw bkw-2" data-idx="2"><div class="bkw-dot"></div><span class="bkw-label">COERENZA</span></div>
             <div class="bkw bkw-3" data-idx="3"><div class="bkw-dot"></div><span class="bkw-label">CRESCITA</span></div>
+          </div>
+          <!-- Chip keywords (mobile only) -->
+          <div class="ben-chips" aria-hidden="true">
+            <span class="ben-chip">Tempo</span>
+            <span class="ben-chip">Controllo</span>
+            <span class="ben-chip">Coerenza</span>
+            <span class="ben-chip">Crescita</span>
           </div>
         </div>
       </div>
