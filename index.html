@@ -1071,13 +1071,14 @@ h2.srv{font-family:var(--fd);font-size:clamp(28px,3vw,42px);line-height:1.07;let
 .lw-section-head{text-align:center;margin-bottom:52px;position:relative;z-index:1}
 .trust h2{font-family:var(--fd);font-size:clamp(28px,3vw,42px);line-height:1.04;letter-spacing:-1.5px;color:var(--C);text-align:center;margin:10px 0 0}
 
-.lw-stats{display:flex;justify-content:center;gap:0;margin-top:40px;flex-wrap:wrap;
-  background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.07);
-  border-radius:16px;overflow:hidden;width:fit-content;margin-left:auto;margin-right:auto}
-.lw-stat{display:flex;flex-direction:column;align-items:center;gap:3px;padding:20px 32px;position:relative}
+.lw-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:52px;
+  border-top:1px solid rgba(255,255,255,.07);border-bottom:1px solid rgba(255,255,255,.07)}
+.lw-stat{display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:10px;padding:36px 24px;position:relative;text-align:center}
 .lw-stat+.lw-stat::before{content:'';position:absolute;left:0;top:20%;height:60%;width:1px;background:rgba(255,255,255,.07)}
-.lw-stat-val{font-family:var(--fm);font-size:24px;font-weight:700;color:var(--C);letter-spacing:-1px;line-height:1}
-.lw-stat-lbl{font-size:9px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(243,239,224,.32)}
+.lw-stat-val{font-family:var(--fd);font-size:clamp(44px,5vw,72px);line-height:.92;
+  letter-spacing:-2.5px;color:var(--F);display:block}
+.lw-stat-lbl{font-size:14px;font-weight:600;color:rgba(243,239,224,.55);letter-spacing:.1px;display:block}
 
 /* marquee container */
 .lw-wrap{
@@ -1480,8 +1481,9 @@ footer{background:var(--K3);padding:84px 48px 30px;position:relative;overflow:hi
   .target,.benefici{overflow:hidden}
   .bfx-img{width:clamp(240px,82%,365px)}
   /* trust/casi studio tablet */
-  .lw-stats{gap:28px}
-  .lw-stat-val{font-size:22px}
+  .lw-stats{grid-template-columns:repeat(2,1fr)}
+  .lw-stat:nth-child(2)::before{display:none}
+  .lw-stat-val{font-size:clamp(36px,6vw,52px)}
   .cs-panel.is-active{grid-template-columns:1fr}
   .cs-panel-img{aspect-ratio:16/9;height:auto}
 }
@@ -1504,9 +1506,8 @@ footer{background:var(--K3);padding:84px 48px 30px;position:relative;overflow:hi
 @media(max-width:640px){
   :root{--px:20px}
   /* trust/casi studio mobile */
-  .lw-stats{gap:0;flex-direction:column;width:100%}
-  .lw-stat+.lw-stat::before{top:0;left:10%;height:1px;width:80%}
-  .lw-stat-val{font-size:20px}
+  .lw-stats{grid-template-columns:repeat(2,1fr)}
+  .lw-stat-val{font-size:clamp(32px,9vw,44px)}
   .cs-block-head{flex-direction:column;align-items:flex-start}
   .cs-tabs{flex-wrap:wrap}
   .cs-tab{flex:none;width:calc(50% - 3px)}
@@ -2928,6 +2929,35 @@ function loadYT(){const f=document.getElementById('ytFacade');const w=document.g
 function quickSub(e){e.preventDefault();e.target.style.display='none';document.getElementById('qsuccess').style.display='block'}
 function heroSub(e){e.preventDefault();document.getElementById('heroForm').style.display='none';document.getElementById('heroSuccess').style.display='block'}
 function mainSub(e){e.preventDefault();document.getElementById('mainForm').style.display='none';document.getElementById('msuccess').style.display='block';return false}
+
+/* ── COUNT-UP: numeri risultato ── */
+(function(){
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(!entry.isIntersecting)return;
+      const el=entry.target;
+      if(el.dataset.counted)return;
+      el.dataset.counted='1';
+      const orig=el.textContent.trim();
+      const m=orig.match(/^([^\d]*)(\d+(?:\.\d+)?)(.*)$/);
+      if(!m)return;
+      const[,pre,numStr,suf]=m;
+      const target=parseFloat(numStr);
+      const dec=numStr.includes('.')?numStr.split('.')[1].length:0;
+      const dur=1600,t0=performance.now();
+      const tick=t=>{
+        const p=Math.min((t-t0)/dur,1);
+        const eased=1-Math.pow(1-p,3);
+        const cur=target*eased;
+        el.textContent=pre+(dec?cur.toFixed(dec):Math.round(cur))+suf;
+        if(p<1)requestAnimationFrame(tick);else el.textContent=orig;
+      };
+      requestAnimationFrame(tick);
+      obs.unobserve(el);
+    });
+  },{threshold:.5});
+  document.querySelectorAll('.lw-stat-val').forEach(el=>obs.observe(el));
+})();
 
 /* ── ANIMAZIONE TARGET: workspace disperso → dashboard Estro ── */
 (function(){
