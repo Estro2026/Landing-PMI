@@ -357,18 +357,21 @@ body{font-family:var(--fb);background:var(--K);color:var(--C);overflow-x:hidden;
 .cr-stage.is-done .cr-badge{opacity:1;transform:translate(-50%,-50%) scale(1)}
 
 /* ── FLIP CARD ── */
-.flip-card{perspective:1200px;cursor:pointer;height:560px}
+.flip-card{perspective:1200px;cursor:pointer;height:400px}
 .flip-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .8s cubic-bezier(.4,0,.2,1)}
 .flip-card.flipped .flip-inner{transform:rotateY(180deg)}
-.flip-front,.flip-back{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:20px;padding:52px 56px;display:flex;flex-direction:column;justify-content:center}
+.flip-front,.flip-back{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:20px;padding:48px 52px;display:flex;flex-direction:column;justify-content:center}
 .flip-front{background:rgba(255,255,255,.72);border:1px solid rgba(28,28,28,.1);backdrop-filter:blur(8px)}
 .flip-back{background:var(--K);border:1px solid rgba(224,24,92,.2);transform:rotateY(180deg)}
-.flip-front h2{font-size:clamp(22px,2.4vw,34px);letter-spacing:-1.2px;margin-bottom:16px}
-.flip-back h2{font-size:clamp(20px,2.2vw,30px)!important;letter-spacing:-1px!important;margin-bottom:14px!important}
-.flip-cta{margin-top:24px;cursor:pointer;width:fit-content}
-.flip-back .btn{width:fit-content}
+.flip-front h2{font-size:clamp(20px,2.2vw,30px);letter-spacing:-1px;margin-bottom:14px}
+.flip-back h2{font-size:clamp(18px,2vw,26px)!important;letter-spacing:-.8px!important;margin-bottom:12px!important}
+.flip-cta{margin-top:20px;cursor:pointer;width:fit-content}
+.flip-back .btn.bf{width:fit-content}
+.flip-back-actions{display:flex;align-items:center;gap:16px;margin-top:20px;flex-wrap:wrap}
+.flip-back-btn{font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:rgba(243,239,224,.45);border:1px solid rgba(243,239,224,.18);border-radius:40px;padding:8px 18px;text-decoration:none;cursor:pointer;transition:color .2s,border-color .2s;background:none;font-family:var(--fb)}
+.flip-back-btn:hover{color:rgba(243,239,224,.8);border-color:rgba(243,239,224,.4)}
 /* yt embed */
-.yt-embed{position:relative;border-radius:20px;overflow:hidden;background:#000;box-shadow:0 24px 64px rgba(0,0,0,.18);width:100%;height:560px}
+.yt-embed{position:relative;border-radius:20px;overflow:hidden;background:#000;box-shadow:0 24px 64px rgba(0,0,0,.18);width:100%;height:400px}
 .yt-embed iframe{position:absolute;inset:0;width:100%;height:100%;border:none}
 
 /* ═══ ICONE ═══ */
@@ -1522,9 +1525,9 @@ footer{background:var(--K3);padding:84px 48px 30px;position:relative;overflow:hi
 
   /* ── TARGET ── */
   .target-inner{gap:28px}
-  .flip-card{height:480px}
-  .yt-embed{height:480px}
-  .flip-front,.flip-back{padding:40px 44px}
+  .flip-card{height:380px}
+  .yt-embed{height:380px}
+  .flip-front,.flip-back{padding:36px 40px}
   .ta-ws{height:340px}
   .tac{width:140px;padding:13px 15px}
   .tac-num{font-size:22px}
@@ -1723,9 +1726,9 @@ footer{background:var(--K3);padding:84px 48px 30px;position:relative;overflow:hi
 
   /* ── Hide <br> in long target body copy — cleaner mobile reading ── */
   .target-body br{display:none}
-  .flip-card{height:460px}
-  .yt-embed{height:460px;aspect-ratio:unset}
-  .flip-front,.flip-back{padding:36px 38px}
+  .flip-card{height:400px}
+  .yt-embed{height:auto;aspect-ratio:16/9}
+  .flip-front,.flip-back{padding:32px 34px}
 
   /* ── Full-width CTAs in key sections ── */
   .sol .btn.bo{
@@ -1900,14 +1903,17 @@ footer{background:var(--K3);padding:84px 48px 30px;position:relative;overflow:hi
             <!-- RETRO: la soluzione -->
             <div class="flip-back">
               <span class="sol-tag">La Soluzione</span>
-              <h2 style="font-family:var(--fd);font-size:clamp(26px,2.8vw,44px);line-height:1.06;letter-spacing:-1.5px;color:var(--C);margin-bottom:16px">Un unico partner per tutta la tua <em style="font-style:normal;color:var(--F)">comunicazione.</em></h2>
-              <ul class="sol-bullets" style="margin-bottom:24px">
+              <h2 style="font-family:var(--fd);font-size:clamp(18px,2vw,26px);line-height:1.08;letter-spacing:-.8px;color:var(--C);margin-bottom:12px">Un unico partner per tutta la tua <em style="font-style:normal;color:var(--F)">comunicazione.</em></h2>
+              <ul class="sol-bullets" style="margin-bottom:0">
                 <li><span class="sb-dot"></span>Strategia costruita sui tuoi obiettivi</li>
                 <li><span class="sb-dot"></span>Gestione continuativa, non a progetto</li>
                 <li><span class="sb-dot"></span>Un unico referente che conosce il tuo brand</li>
                 <li><span class="sb-dot"></span>Report chiari su risultati e prossimi step</li>
               </ul>
-              <a href="#contatti" class="btn bf btn-lg" onclick="event.stopPropagation()">Parliamone insieme <span class="arr">›</span></a>
+              <div class="flip-back-actions">
+                <a href="#contatti" class="btn bf btn-lg" onclick="event.stopPropagation()">Parliamone insieme <span class="arr">›</span></a>
+                <button class="flip-back-btn" onclick="event.stopPropagation();document.getElementById('flipCard').classList.remove('flipped')">← Torna indietro</button>
+              </div>
             </div>
 
           </div>
