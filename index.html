@@ -1589,6 +1589,21 @@ footer{background:var(--K3);padding:48px 0 22px;border-top:1px solid rgba(255,25
   .srv-nucleus-core{width:100px;height:100px;background-size:80%}
   .sc-name{font-size:16px}
   .sc-desc{font-size:12px}
+  /* target grandioso */
+  .tg-stage{grid-template-columns:1fr;gap:28px}
+  .tg-h2{font-size:clamp(30px,5.5vw,46px);letter-spacing:-1.8px}
+  .tg-chip--bl,.tg-chip--tr{display:none}
+  .tg-video-border{display:none}
+  .tg-card-stripe{display:none}
+  .tg-facts{flex-wrap:wrap;gap:12px;margin-top:28px;padding-top:20px}
+  .tg-fact{padding:0 16px;border-right:none}
+  /* servizi */
+  h2.srv{font-size:clamp(30px,5vw,46px);letter-spacing:-1.8px}
+  /* sproof */
+  .sproof h2{font-size:clamp(28px,5vw,40px);letter-spacing:-1.8px}
+  .sp-ghost{display:none}
+  /* trust */
+  .lw-stats{grid-template-columns:repeat(2,1fr)}
 }
 
 /* ═══════════════════════════════════════════════════
@@ -1833,11 +1848,38 @@ footer{background:var(--K3);padding:48px 0 22px;border-top:1px solid rgba(255,25
   .ff-note{font-size:9.5px;margin-top:10px}
   .fsuccess{font-size:14px;padding:20px}
 
+  /* ── TARGET GRANDIOSO ── */
+  .tg-top{text-align:left;margin-bottom:24px}
+  .tg-h2{font-size:clamp(24px,8vw,32px);letter-spacing:-1.2px;white-space:normal}
+  .tg-lead{font-size:13.5px;margin:0;max-width:100%;text-align:left}
+  .tg-stage{gap:20px}
+  .tg-ghost{font-size:clamp(56px,18vw,100px);letter-spacing:-3px}
+  .tg-card-label{font-size:clamp(13px,4vw,16px)}
+  .tg-pain-list li{font-size:13px;gap:8px}
+  .tg-facts{margin-top:20px;padding-top:14px;gap:10px}
+  .tg-fact{padding:0 12px}
+  .tg-fact-txt{font-size:10px;letter-spacing:.8px}
+  .flip-card{height:auto;min-height:380px}
+  .flip-front,.flip-back{padding:28px 28px}
+
+  /* ── CTA MID ── */
+  .cta-mid-sub{white-space:normal;font-size:13.5px;line-height:1.65;margin-bottom:22px}
+
+  /* ── SERVIZI header ── */
+  h2.srv{font-size:clamp(26px,8vw,34px);letter-spacing:-1.2px}
+  .srv-side{font-size:13px;line-height:1.65}
+  .srv-tagline{gap:10px;margin-bottom:28px}
+
+  /* ── SOCIAL PROOF ── */
+  .sp-ghost{display:none}
+  .sp-lead{font-size:13.5px;margin-bottom:28px;max-width:100%;text-align:left}
+  .sproof h2{font-size:clamp(22px,7vw,28px);letter-spacing:-.7px;text-align:left}
+  .sp-tag{text-align:left}
+
   /* ── FOOTER ── */
-  footer{padding:48px 20px 24px}
-  .ft-cols{grid-template-columns:1fr;gap:28px}
-  .ft-social{grid-template-columns:repeat(4,52px);gap:10px}
-  .ft-legal{gap:10px;font-size:11px}
+  footer{padding:40px 0 20px}
+  .ft-cols{grid-template-columns:1fr 1fr;gap:24px}
+  .ft-social{grid-template-columns:repeat(4,38px);gap:10px}
   .ft-ghost{display:none}
 
   /* ── MODAL ── */
@@ -1853,6 +1895,14 @@ footer{background:var(--K3);padding:48px 0 22px;border-top:1px solid rgba(255,25
   }
 }
 
+/* ── Small phones ≤480px ── */
+@media(max-width:480px){
+  .ft-cols{grid-template-columns:1fr;gap:24px}
+  .tg-facts{display:none}
+  .ic-grid{grid-template-columns:1fr}
+  .pf-tabs{grid-template-columns:repeat(2,1fr)}
+}
+
 /* ── Extra-small phones ≤375px ── */
 @media(max-width:375px){
   :root{--px:16px}
@@ -1860,6 +1910,11 @@ footer{background:var(--K3);padding:48px 0 22px;border-top:1px solid rgba(255,25
   .hero-form-card{padding:14px 14px 12px}
   .sc{width:auto}
   .sc-name{font-size:13px}
+  .tg-h2{font-size:22px;letter-spacing:-.8px}
+  .tg-lead{font-size:12.5px}
+  h2.srv{font-size:24px;letter-spacing:-.8px}
+  .sproof h2{font-size:22px;letter-spacing:-.5px}
+  .ft-legal-links{gap:12px;font-size:12px}
 }
 
 /* ═══════════════════════════════════════════════════
@@ -1869,12 +1924,11 @@ footer{background:var(--K3);padding:48px 0 22px;border-top:1px solid rgba(255,25
 @media(max-width:640px){
 
   /* ── Global: prevent horizontal overflow on mobile ── */
-  /* Structural containers: never wider than viewport */
-  .ctr,.ff-wrap,.ft-in{width:100%;box-sizing:border-box}
-  /* Sections: contain all absolute-positioned decorative glows/graphics */
-  .target,.benefici{overflow:hidden}
-  /* bfx canvas inset: clip at stage boundary */
+  .ctr,.ff-wrap,.ft-in{width:100%;box-sizing:border-box;overflow-x:hidden}
+  .target,.benefici,.trust,.sproof,.icone,.fform,.servizi,.proc{overflow:hidden}
   .bfx-stage{overflow:hidden}
+  /* ghost texts: prevent horizontal scroll */
+  .tg-ghost,.sp-ghost,.trust-ghost,.cta-mid-ghost{overflow:hidden;max-width:100vw}
 
   /* ── Hero copy: tighter rhythm ── */
   .hero-badge{margin-bottom:10px}
