@@ -1097,11 +1097,11 @@ h2.srv{font-family:var(--fd);font-size:clamp(28px,3vw,42px);line-height:1.07;let
 .lw-wrap:hover .lw-track{animation-play-state:paused}
 @media(prefers-reduced-motion:reduce){.lw-track{animation:none;flex-wrap:wrap;justify-content:center;gap:20px 32px}}
 
-.lw-logo{display:flex;align-items:center;justify-content:center;height:96px;flex-shrink:0;padding:0 48px;position:relative;transition:transform .4s cubic-bezier(.22,1,.36,1)}
+.lw-logo{display:flex;align-items:center;justify-content:center;height:116px;flex-shrink:0;padding:0 56px;position:relative;transition:transform .4s cubic-bezier(.22,1,.36,1)}
 .lw-logo::after{content:'';position:absolute;inset:6px;border-radius:10px;background:rgba(255,255,255,.0);border:1px solid rgba(255,255,255,.0);transition:background .4s,border-color .4s,box-shadow .4s}
 .lw-logo:hover{transform:translateY(-3px) scale(1.07)}
 .lw-logo:hover::after{background:rgba(255,255,255,.04);border-color:rgba(224,24,92,.2);box-shadow:0 0 18px rgba(224,24,92,.1)}
-.lw-logo img{height:68px;width:auto;max-width:180px;object-fit:contain;filter:brightness(0) invert(1);opacity:.78;transition:opacity .4s,filter .4s;position:relative;z-index:1}
+.lw-logo img{height:84px;width:auto;max-width:200px;object-fit:contain;filter:brightness(0) invert(1);opacity:.78;transition:opacity .4s,filter .4s;position:relative;z-index:1}
 .lw-logo:hover img{opacity:.9;filter:brightness(0) invert(1) drop-shadow(0 0 10px rgba(224,24,92,.55))}
 
 /* ── CASE STUDY TAB SYSTEM ── */
@@ -2344,7 +2344,7 @@ footer{background:var(--K3);padding:84px 48px 30px;position:relative;overflow:hi
     </div>
 
     <!-- ── Portfolio Tabs — Case Study ── -->
-    <div class="pf-tabs rv" role="tablist">
+    <div class="pf-tabs rv" role="tablist" style="margin-top:72px">
       <button class="pf-tab on" data-pf="abctools" role="tab" aria-selected="true">
         <span class="pf-tab-name">ABC Tools</span>
       </button>
