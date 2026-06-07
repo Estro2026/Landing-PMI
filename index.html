@@ -1746,14 +1746,14 @@ footer{background:var(--K3);padding:48px 0 22px;border-top:1px solid rgba(255,25
     padding:16px 24px;box-sizing:border-box
   }
 
-  /* ── SERVIZI mobile: 2-column compact grid ── */
+  /* ── SERVIZI mobile: colonna singola verticale ── */
   .servizi{padding:48px 0}
   .srv-tagline{gap:10px;margin-bottom:28px;padding-bottom:0}
   .srv-flow{
     min-height:auto;
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:10px;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
     padding:0
   }
   .srv-item{position:static;transform:none;width:100%}
@@ -1761,20 +1761,23 @@ footer{background:var(--K3);padding:48px 0 22px;border-top:1px solid rgba(255,25
   #srvNexus{display:none}
   .sc{
     width:100%;
-    padding:16px 14px;
-    flex-direction:column;
-    gap:10px;
+    padding:14px 16px;
+    flex-direction:row;
+    align-items:center;
+    gap:14px;
     opacity:1;
-    transform:none
+    transform:none;
+    border-radius:14px
   }
-  .sc-top{padding-bottom:0;gap:8px}
+  .sc-top{padding-bottom:0;flex-direction:row;align-items:center;gap:0;flex-shrink:0}
   .sc-expand{display:none}
-  .sc-ico{width:38px;height:38px;border-radius:10px;flex-shrink:0}
+  .sc-ico{width:40px;height:40px;border-radius:10px;flex-shrink:0;margin-right:0}
   .sc-ico svg{width:18px;height:18px}
-  .sc-tag{font-size:8px;letter-spacing:1.5px;margin-bottom:2px}
-  .sc-name{font-size:13px;letter-spacing:-.2px;line-height:1.2;margin-bottom:0}
+  .sc-bot{flex:1}
+  .sc-tag{font-size:8px;letter-spacing:1.5px;margin-bottom:1px}
+  .sc-name{font-size:14px;letter-spacing:-.2px;line-height:1.2;margin-bottom:0}
   .sc-desc-wrap{max-height:none!important;overflow:visible!important}
-  .sc-desc{font-size:11.5px;line-height:1.55;color:rgba(243,239,224,.55);margin-top:4px}
+  .sc-desc{font-size:12px;line-height:1.5;color:rgba(243,239,224,.55);margin-top:3px}
 
   /* ── PROCESSO ── */
   .proc-hdr{margin-bottom:28px}
@@ -1791,10 +1794,11 @@ footer{background:var(--K3);padding:48px 0 22px;border-top:1px solid rgba(255,25
   .ben-list li{font-size:13.5px;gap:10px;line-height:1.45}
   .ben-check{width:20px;height:20px;flex-shrink:0}
   .ben-check svg{width:9px;height:9px}
-  /* Stage: solo immagine centrata, no canvas, no badge flottanti */
+  /* Stage: immagine + parole chiave sparse intorno */
   .bfx-stage{
+    position:relative;
     margin:0;
-    padding-bottom:0;
+    padding:48px 16px;
     overflow:hidden;
     min-height:auto;
     display:flex;
@@ -1805,34 +1809,40 @@ footer{background:var(--K3);padding:48px 0 22px;border-top:1px solid rgba(255,25
   .bfx-glow{display:none}
   .bkw-sys{display:none}
   .bfx-img{
-    position:static!important;
-    width:clamp(200px,72vw,300px);
-    margin:0 auto;
+    position:relative;
+    z-index:1;
+    width:clamp(160px,52vw,240px);
     opacity:1!important;
     transform:none!important;
     filter:none!important;
     border-radius:20px;
-    box-shadow:0 24px 60px rgba(0,0,0,.18)
+    box-shadow:0 20px 50px rgba(0,0,0,.2)
   }
-  /* Chip keyword strip sotto l'immagine */
+  /* Parole chiave sparse intorno all'immagine */
   .ben-chips{
-    display:flex;
-    flex-wrap:wrap;
-    gap:8px;
-    justify-content:center;
-    margin-top:20px
+    display:block;
+    position:absolute;
+    inset:0;
+    pointer-events:none
   }
   .ben-chip{
+    position:absolute;
     background:var(--Fa);
     border:1px solid var(--Fb);
     border-radius:20px;
-    padding:6px 14px;
+    padding:6px 13px;
     font-size:10px;
     font-weight:700;
     letter-spacing:1.2px;
     text-transform:uppercase;
-    color:var(--F)
+    color:var(--F);
+    white-space:nowrap
   }
+  /* posizioni: 4 angoli intorno all'immagine */
+  .ben-chip:nth-child(1){top:12%;left:2%}
+  .ben-chip:nth-child(2){top:12%;right:2%}
+  .ben-chip:nth-child(3){bottom:12%;left:2%}
+  .ben-chip:nth-child(4){bottom:12%;right:2%}
   .bkw-2,.bkw-3{display:flex}
   .bkw-label{
     font-size:7.5px;padding:4px 8px;
