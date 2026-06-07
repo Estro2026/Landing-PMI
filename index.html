@@ -34,18 +34,17 @@ body{font-family:var(--fb);background:var(--K);color:var(--C);overflow-x:hidden;
 .spb{position:fixed;top:0;left:0;right:0;z-index:301;height:2px;pointer-events:none}
 .spb-track{height:100%;background:rgba(255,255,255,.07)}
 .spb-fill{height:100%;width:0%;background:var(--F);transition:width .1s linear;will-change:width;box-shadow:0 0 8px rgba(224,24,92,.6)}
-.hdr{position:fixed;top:2px;left:0;right:0;z-index:300;padding:18px 48px;display:flex;align-items:center;justify-content:space-between;transition:all .35s;border-bottom:1px solid transparent}
+.hdr{position:fixed;top:0;left:0;right:0;z-index:300;padding:14px var(--px);display:flex;align-items:center;justify-content:space-between;transition:all .35s;border-bottom:1px solid transparent}
 .hdr.on{background:rgba(28,28,28,.94);backdrop-filter:blur(24px);border-color:rgba(255,255,255,.06)}
 .logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--C)}
-.logo-img{height:34px;width:auto;display:block}
+.logo-img{height:42px;width:auto;display:block}
 .logo-img-sm{height:34px;width:auto;display:block}
 .logo-img-ft{height:46px;width:auto;display:block}
-.hnav{display:flex;gap:36px;align-items:center}
-.hnav a{font-size:14px;color:rgba(243,239,224,.7);text-decoration:none;letter-spacing:.3px;transition:color .2s;font-weight:400}
+.hnav{display:flex;gap:34px;align-items:center}
+.hnav a{font-size:13.5px;color:rgba(243,239,224,.6);text-decoration:none;letter-spacing:.2px;transition:color .2s}
 .hnav a:hover{color:var(--C)}
-.hright{display:flex;gap:14px;align-items:center}
-.hright .btn{padding:11px 18px;font-size:13px}
-.hghost{font-size:14px;color:rgba(243,239,224,.6);background:none;border:none;cursor:pointer;font-family:var(--fb);transition:color .2s;font-weight:400}
+.hright{display:flex;gap:12px;align-items:center}
+.hghost{font-size:13.5px;color:rgba(243,239,224,.5);background:none;border:none;cursor:pointer;font-family:var(--fb);transition:color .2s}
 .hghost:hover{color:var(--C)}
 
 /* ─── BUTTONS ─── */
@@ -1499,7 +1498,7 @@ footer{background:var(--K3);padding:84px 48px 30px;position:relative;overflow:hi
 
   /* ── HEADER ── */
   .hdr{padding:12px var(--px);width:100%;box-sizing:border-box}
-  .logo-img{height:28px}
+  .logo-img{height:32px}
   .ft-watermark{display:none}
 
   /* ── HERO: copy first, then form, image hidden on mobile ── */
@@ -1827,7 +1826,7 @@ footer{background:var(--K3);padding:84px 48px 30px;position:relative;overflow:hi
     <a href="#contatti">Contatti</a>
   </nav>
   <div class="hright">
-    <a href="#contatti" class="btn bf">Consulenza gratuita <span class="arr">›</span></a>
+    <a href="#contatti" class="btn bf">Richiedi consulenza <span class="arr">›</span></a>
   </div>
   <button class="hburger" id="hburger" aria-label="Apri menu" aria-expanded="false">
     <span></span><span></span><span></span>
