@@ -363,11 +363,10 @@ body{font-family:var(--fb);background:var(--K);color:var(--C);overflow-x:hidden;
 .flip-front,.flip-back{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:20px;padding:36px 40px;display:flex;flex-direction:column;justify-content:center}
 .flip-front{background:rgba(255,255,255,.72);border:1px solid rgba(28,28,28,.1);backdrop-filter:blur(8px)}
 .flip-back{background:var(--K);border:1px solid rgba(224,24,92,.2);transform:rotateY(180deg)}
-.flip-hint{font-size:11px;font-weight:600;letter-spacing:1.8px;text-transform:uppercase;margin-top:18px;opacity:.5;pointer-events:none}
-.flip-front .flip-hint{color:var(--K)}
-.flip-back .flip-hint{color:var(--C)}
+.flip-cta{margin-top:20px;cursor:pointer}
 /* yt embed */
-.yt-embed{position:relative;border-radius:20px;overflow:hidden;aspect-ratio:16/9;background:#000;box-shadow:0 24px 64px rgba(0,0,0,.18)}
+.yt-wrap{display:flex;align-items:stretch;height:100%}
+.yt-embed{position:relative;border-radius:20px;overflow:hidden;background:#000;box-shadow:0 24px 64px rgba(0,0,0,.18);width:100%;height:480px}
 .yt-embed iframe{position:absolute;inset:0;width:100%;height:100%;border:none}
 
 /* ═══ ICONE ═══ */
@@ -1378,6 +1377,7 @@ footer{background:var(--K3);padding:84px 48px 30px;position:relative;overflow:hi
   .hero-form-col{order:2;padding:40px var(--px) 56px;justify-content:flex-start}
   /* layouts */
   .target-inner,.sol-grid{grid-template-columns:1fr;gap:40px}
+  .yt-embed{height:auto;aspect-ratio:16/9}
   .ben-grid{grid-template-columns:1fr;gap:36px}
   .ic-grid{grid-template-columns:repeat(2,1fr)}
   .srv-flow{min-height:600px}
@@ -1521,6 +1521,7 @@ footer{background:var(--K3);padding:84px 48px 30px;position:relative;overflow:hi
   /* ── TARGET ── */
   .target-inner{gap:28px}
   .flip-card{height:420px}
+  .yt-embed{height:420px}
   .flip-front,.flip-back{padding:28px 30px}
   .ta-ws{height:340px}
   .tac{width:140px;padding:13px 15px}
@@ -1721,6 +1722,7 @@ footer{background:var(--K3);padding:84px 48px 30px;position:relative;overflow:hi
   /* ── Hide <br> in long target body copy — cleaner mobile reading ── */
   .target-body br{display:none}
   .flip-card{height:420px}
+  .yt-embed{height:420px;aspect-ratio:unset}
   .flip-front,.flip-back{padding:24px 26px}
 
   /* ── Full-width CTAs in key sections ── */
@@ -1890,7 +1892,7 @@ footer{background:var(--K3);padding:84px 48px 30px;position:relative;overflow:hi
               <h2>Probabilmente sei arrivato fin qui <em>facendo da solo.</em></h2>
               <p class="target-body">Hai costruito il tuo business con le tue forze, gestendo anche marketing e comunicazione. Ma per fare un salto di qualità servono strategia, continuità e competenze coordinate.</p>
               <p class="target-italic">Non serve fare di più. Serve farlo meglio.</p>
-              <div class="flip-hint">Scopri la soluzione →</div>
+              <a class="btn bf btn-lg flip-cta" onclick="event.stopPropagation();document.getElementById('flipCard').classList.add('flipped')">Scopri la soluzione <span class="arr">›</span></a>
             </div>
 
             <!-- RETRO: la soluzione -->
@@ -1903,8 +1905,7 @@ footer{background:var(--K3);padding:84px 48px 30px;position:relative;overflow:hi
                 <li><span class="sb-dot"></span>Un unico referente che conosce il tuo brand</li>
                 <li><span class="sb-dot"></span>Report chiari su risultati e prossimi step</li>
               </ul>
-              <a href="#contatti" class="btn bo btn-lg" onclick="event.stopPropagation()">Parliamone insieme <span class="arr">›</span></a>
-              <div class="flip-hint">← Torna indietro</div>
+              <a href="#contatti" class="btn bf btn-lg" onclick="event.stopPropagation()">Parliamone insieme <span class="arr">›</span></a>
             </div>
 
           </div>
