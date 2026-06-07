@@ -1288,8 +1288,8 @@ h2.srv{font-family:var(--fd);font-size:clamp(28px,3vw,42px);line-height:1.07;let
 .pf-panel{display:none;animation:pfFade .45s ease}
 .pf-panel.on{display:block}
 @keyframes pfFade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-.pf-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start}
-.pf-img{position:relative;border-radius:var(--rl);overflow:hidden;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);min-height:320px;aspect-ratio:3/4;display:flex;align-items:center;justify-content:center}
+.pf-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:stretch}
+.pf-img{position:relative;border-radius:var(--rl);overflow:hidden;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);min-height:400px;align-self:stretch;display:flex;align-items:center;justify-content:center}
 .pf-img::after{content:'+ Inserisci immagine';font-size:12px;letter-spacing:1px;text-transform:uppercase;color:rgba(243,239,224,.18);font-family:var(--fb);pointer-events:none}
 .pf-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 .pf-img:has(img[src]:not([src=""]))::after{display:none}
