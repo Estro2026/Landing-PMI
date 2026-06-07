@@ -353,6 +353,20 @@ body{font-family:var(--fb);background:var(--K);color:var(--C);overflow-x:hidden;
 .cr-badge{position:absolute;z-index:10;left:50%;top:50%;transform:translate(-50%,-50%) scale(.85);background:var(--K);color:var(--C);font-family:var(--fb);font-size:10px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;padding:10px 22px;border-radius:40px;white-space:nowrap;opacity:0;border:1px solid rgba(224,24,92,.35);transition:opacity .5s ease .3s,transform .5s cubic-bezier(.34,1.4,.64,1) .3s;pointer-events:none;box-shadow:0 8px 28px rgba(0,0,0,.5),0 0 0 1px rgba(224,24,92,.12) inset}
 .cr-stage.is-done .cr-badge{opacity:1;transform:translate(-50%,-50%) scale(1)}
 
+/* ── FLIP CARD ── */
+.flip-card{perspective:1200px;cursor:pointer;height:480px}
+.flip-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .8s cubic-bezier(.4,0,.2,1)}
+.flip-card.flipped .flip-inner{transform:rotateY(180deg)}
+.flip-front,.flip-back{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:20px;padding:36px 40px;display:flex;flex-direction:column;justify-content:center}
+.flip-front{background:rgba(255,255,255,.72);border:1px solid rgba(28,28,28,.1);backdrop-filter:blur(8px)}
+.flip-back{background:var(--K);border:1px solid rgba(224,24,92,.2);transform:rotateY(180deg)}
+.flip-hint{font-size:11px;font-weight:600;letter-spacing:1.8px;text-transform:uppercase;margin-top:18px;opacity:.5;pointer-events:none}
+.flip-front .flip-hint{color:var(--K)}
+.flip-back .flip-hint{color:var(--C)}
+/* yt embed */
+.yt-embed{position:relative;border-radius:20px;overflow:hidden;aspect-ratio:16/9;background:#000;box-shadow:0 24px 64px rgba(0,0,0,.18)}
+.yt-embed iframe{position:absolute;inset:0;width:100%;height:100%;border:none}
+
 /* ═══ ICONE ═══ */
 .icone{
   background:linear-gradient(160deg,#F0E4C4 0%,var(--C2) 45%,#E8DCC4 100%);
@@ -1503,6 +1517,8 @@ footer{background:var(--K3);padding:84px 48px 30px;position:relative;overflow:hi
 
   /* ── TARGET ── */
   .target-inner{gap:28px}
+  .flip-card{height:420px}
+  .flip-front,.flip-back{padding:28px 30px}
   .ta-ws{height:340px}
   .tac{width:140px;padding:13px 15px}
   .tac-num{font-size:22px}
@@ -1701,6 +1717,8 @@ footer{background:var(--K3);padding:84px 48px 30px;position:relative;overflow:hi
 
   /* ── Hide <br> in long target body copy — cleaner mobile reading ── */
   .target-body br{display:none}
+  .flip-card{height:420px}
+  .flip-front,.flip-back{padding:24px 26px}
 
   /* ── Full-width CTAs in key sections ── */
   .sol .btn.bo{
@@ -1848,7 +1866,7 @@ footer{background:var(--K3);padding:84px 48px 30px;position:relative;overflow:hi
   </div>
 </div>
 
-<!-- ═══ TARGET ═══ -->
+<!-- ═══ TARGET + SOLUZIONE ═══ -->
 <section class="target" id="target">
   <div class="ls-accent" aria-hidden="true"></div>
   <div class="ls-glow" aria-hidden="true"></div>
@@ -1858,146 +1876,43 @@ footer{background:var(--K3);padding:84px 48px 30px;position:relative;overflow:hi
   <div class="ctr">
     <div class="target-inner">
 
-      <!-- colonna sinistra: copy -->
+      <!-- colonna sinistra: flip card problema → soluzione -->
       <div class="rv">
-        <span class="target-tag">Hai una PMI?</span>
-        <h2>Probabilmente sei arrivato fin qui <em>facendo da solo.</em></h2>
-        <p class="target-body">Hai fatto crescere il tuo business con le tue forze, gestendo anche marketing e comunicazione quando serviva.</p>
-        <p class="target-body">Questo approccio ti ha portato fin qui.<br>Ma per fare un salto di qualità servono strategia, continuità e competenze che lavorano insieme.<br>E gestirle internamente diventa complesso e costoso.</p>
-        <p class="target-italic">Non serve fare di più. Serve farlo meglio, con il supporto giusto.</p>
-      </div>
+        <div class="flip-card" id="flipCard" onclick="this.classList.toggle('flipped')" role="button" aria-label="Clicca per scoprire la soluzione">
+          <div class="flip-inner">
 
-      <!-- colonna destra: workspace disperso → dashboard Estro -->
-      <div class="rv d1">
-        <div class="ta-ws" id="taWs" aria-hidden="true">
-
-          <!-- tac0: Meta Ads — hot -->
-          <div class="tac hot" id="tac0">
-            <div class="tac-ch">Meta Ads</div>
-            <div class="tac-num">€ 340<sub>/d</sub></div>
-            <span class="tac-sig"><span class="tac-dot"></span>↓ 18% ieri</span>
-          </div>
-
-          <!-- tac1: Social Media -->
-          <div class="tac" id="tac1">
-            <div class="tac-ch">Social Media</div>
-            <div class="tac-num">892<sub> reach</sub></div>
-            <span class="tac-sig neutral">↔ piatta</span>
-          </div>
-
-          <!-- tac2: Website -->
-          <div class="tac" id="tac2">
-            <div class="tac-ch">Website</div>
-            <div class="tac-num">1.2K<sub> vis.</sub></div>
-            <span class="tac-sig">↓ 12%</span>
-          </div>
-
-          <!-- tac3: SEO — hot -->
-          <div class="tac hot" id="tac3">
-            <div class="tac-ch">SEO</div>
-            <div class="tac-num">#14<sub> pos.</sub></div>
-            <span class="tac-sig"><span class="tac-dot"></span>↓ 3 keyword</span>
-          </div>
-
-          <!-- tac4: Newsletter -->
-          <div class="tac" id="tac4">
-            <div class="tac-ch">Newsletter</div>
-            <div class="tac-num">24%<sub> open</sub></div>
-            <span class="tac-sig warn">bozza in attesa</span>
-          </div>
-
-          <!-- tac5: Budget — hot -->
-          <div class="tac hot" id="tac5">
-            <div class="tac-ch">Budget</div>
-            <div class="tac-num">€ 2.8K<sub>/m</sub></div>
-            <span class="tac-sig"><span class="tac-dot"></span>3 fornitori</span>
-          </div>
-
-          <!-- tac6: Freelancer -->
-          <div class="tac" id="tac6">
-            <div class="tac-ch">Freelancer</div>
-            <div class="tac-num">12<sub> gg</sub></div>
-            <span class="tac-sig warn">proposta pendente</span>
-          </div>
-
-          <!-- dashboard unificato (stato: is-done) -->
-          <div class="ta-dash" id="taDash">
-            <div class="ta-dash-hd">
-              <div class="ta-dash-logo">E</div>
-              <div class="ta-dash-info">
-                <span class="ta-dash-title">Estro Agency</span>
-                <span class="ta-dash-sub">Dashboard unificata</span>
-              </div>
-              <div class="ta-dash-pill">Attivo</div>
+            <!-- FRONTE: il problema -->
+            <div class="flip-front">
+              <span class="target-tag">Hai una PMI?</span>
+              <h2>Probabilmente sei arrivato fin qui <em>facendo da solo.</em></h2>
+              <p class="target-body">Hai costruito il tuo business con le tue forze, gestendo anche marketing e comunicazione. Ma per fare un salto di qualità servono strategia, continuità e competenze coordinate.</p>
+              <p class="target-italic">Non serve fare di più. Serve farlo meglio.</p>
+              <div class="flip-hint">Scopri la soluzione →</div>
             </div>
-            <div class="ta-dash-rows">
-              <div class="ta-dash-row">
-                <div class="ta-dash-ck"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2"/></svg></div>
-                <div class="ta-dash-lbl">
-                  <span class="ta-dash-rtx">Attività coordinate</span>
-                  <span class="ta-dash-rx2">strategia · adv · contenuti</span>
-                </div>
-              </div>
-              <div class="ta-dash-row">
-                <div class="ta-dash-ck"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2"/></svg></div>
-                <div class="ta-dash-lbl">
-                  <span class="ta-dash-rtx">Budget sotto controllo</span>
-                  <span class="ta-dash-rx2">un unico contratto</span>
-                </div>
-              </div>
-              <div class="ta-dash-row">
-                <div class="ta-dash-ck"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2"/></svg></div>
-                <div class="ta-dash-lbl">
-                  <span class="ta-dash-rtx">Report mensile chiaro</span>
-                  <span class="ta-dash-rx2">kpi · risultati · prossimi step</span>
-                </div>
-              </div>
+
+            <!-- RETRO: la soluzione -->
+            <div class="flip-back">
+              <span class="sol-tag">La Soluzione</span>
+              <h2 style="font-family:var(--fd);font-size:clamp(26px,2.8vw,44px);line-height:1.06;letter-spacing:-1.5px;color:var(--C);margin-bottom:16px">Un unico partner per tutta la tua <em style="font-style:normal;color:var(--F)">comunicazione.</em></h2>
+              <ul class="sol-bullets" style="margin-bottom:24px">
+                <li><span class="sb-dot"></span>Strategia costruita sui tuoi obiettivi</li>
+                <li><span class="sb-dot"></span>Gestione continuativa, non a progetto</li>
+                <li><span class="sb-dot"></span>Un unico referente che conosce il tuo brand</li>
+                <li><span class="sb-dot"></span>Report chiari su risultati e prossimi step</li>
+              </ul>
+              <a href="#contatti" class="btn bo btn-lg" onclick="event.stopPropagation()">Sentiamoci <span class="arr">›</span></a>
+              <div class="flip-hint">← Torna indietro</div>
             </div>
-            <div class="ta-dash-ft">
-              <span class="ta-dash-ftx">Un unico referente</span>
-              <span class="ta-dash-ftsig">estro.agency</span>
-            </div>
+
           </div>
-
-          <!-- label di fase -->
-          <div class="ta-phase-lbl">Il tuo marketing oggi</div>
-
         </div>
       </div>
 
-    </div>
-  </div>
-</section>
-
-<!-- ═══ SOLUTION ═══ -->
-<section class="sol" id="soluzione">
-  <div class="sol-glow"></div>
-  <div class="ctr">
-    <div class="sol-grid">
-
-      <!-- colonna sinistra: ecosistema creativo animato -->
+      <!-- colonna destra: video YouTube -->
       <div class="rv d1">
-        <div class="cr-stage" id="crStage" aria-hidden="true">
-          <div class="cr-img" id="cr0"><img src="Creatività/Selvatica-piano-creativo-4_Pagina_09.webp" alt="" loading="lazy"></div>
-          <div class="cr-img" id="cr1"><img src="Creatività/POST_Combo-perfetta.webp" alt="" loading="lazy"></div>
-          <div class="cr-img" id="cr2"><img src="Creatività/fantabody-9.webp" alt="" loading="lazy"></div>
-          <div class="cr-img" id="cr3"><img src="Creatività/DRESSO_1_0434.webp" alt="" loading="lazy"></div>
-          <div class="cr-badge">Un unico partner</div>
+        <div class="yt-embed">
+          <iframe src="https://www.youtube.com/embed/qRKRdFgKyzs" title="Estro Agency" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
         </div>
-      </div>
-
-      <!-- colonna destra: copy -->
-      <div class="rv">
-        <span class="sol-tag">La Soluzione</span>
-        <h2>Un unico partner per gestire tutta la tua <em>comunicazione.</em></h2>
-        <p class="sol-desc">Con Estro hai un team multidisciplinare che lavora come un'estensione della tua azienda. Strategia, contenuti, advertising e supporto operativo coordinati da un unico referente.</p>
-        <ul class="sol-bullets">
-          <li><span class="sb-dot"></span>Strategia costruita intorno ai tuoi obiettivi di business</li>
-          <li><span class="sb-dot"></span>Gestione continuativa, non a progetto isolato</li>
-          <li><span class="sb-dot"></span>Un unico referente che conosce il tuo brand</li>
-          <li><span class="sb-dot"></span>Report chiari su cosa funziona e dove migliorare</li>
-        </ul>
-        <a href="#contatti" class="btn bo btn-lg">Sentiamoci <span class="arr">›</span></a>
       </div>
 
     </div>
