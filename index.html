@@ -577,11 +577,13 @@ body{font-family:var(--fb);background:var(--K);color:var(--C);overflow-x:hidden;
 .servizi::after{content:none}
 .srv-glow-a{position:absolute;bottom:-80px;left:-60px;width:400px;height:400px;background:radial-gradient(circle,rgba(232,180,74,.14),transparent 62%);pointer-events:none;z-index:0}
 .srv-glow-b{display:none}
-.srv-tag{font-size:13px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--F);display:block;margin-bottom:14px}
+.srv-tag{font-size:13px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--F);display:block;margin-bottom:6px}
 .srv-tag::before{content:none}
-.srv-tagline{display:flex;flex-direction:column;align-items:flex-start;gap:12px;margin-bottom:48px;position:relative;z-index:1}
-h2.srv{font-family:var(--fd);font-size:clamp(28px,3vw,42px);line-height:1.07;letter-spacing:-1.2px;color:var(--K)}
-.srv-side{font-size:15px;color:rgba(28,28,28,.65);max-width:520px;line-height:1.72;text-align:left}
+.srv-tagline{display:flex;flex-direction:column;align-items:flex-start;gap:14px;margin-bottom:56px;position:relative;z-index:1}
+.srv-tagline-accent{width:32px;height:3px;background:var(--F);border-radius:2px;margin-bottom:6px}
+h2.srv{font-family:var(--fd);font-size:clamp(38px,4.8vw,68px);line-height:1.02;letter-spacing:-2.5px;color:var(--K)}
+h2.srv em{font-style:normal;color:var(--F)}
+.srv-side{font-size:15px;color:rgba(28,28,28,.62);max-width:520px;line-height:1.72;text-align:left}
 
 /* ── Servizi: scatter layout (stile ta-ws) ── */
 .srv-flow{
@@ -2188,9 +2190,10 @@ footer{background:var(--K3);padding:84px 48px 30px;position:relative;overflow:hi
 
   <div class="ctr" style="position:relative;z-index:1">
     <div class="rv">
-      <span class="srv-tag">Servizi</span>
       <div class="srv-tagline">
-        <h2 class="srv">Cosa facciamo per te.</h2>
+        <div class="srv-tagline-accent" aria-hidden="true"></div>
+        <span class="srv-tag">Servizi</span>
+        <h2 class="srv">Cosa facciamo<br><em>per te.</em></h2>
         <p class="srv-side">Un sistema coordinato di competenze, pensato per le PMI che vogliono crescere senza moltiplicare i fornitori.</p>
       </div>
     </div>
