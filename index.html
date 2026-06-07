@@ -1395,9 +1395,15 @@ h2.srv em{font-style:normal;color:var(--F)}
 .sproof::before{content:'';position:absolute;top:-12%;right:6%;width:340px;height:340px;border-radius:50%;
   background:radial-gradient(circle,rgba(224,24,92,.09),transparent 68%);filter:blur(40px);pointer-events:none;z-index:0}
 .sproof::after{content:none}
-.sp-tag{font-size:13px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:rgba(28,28,28,.45);display:block;margin-bottom:14px;text-align:center}
+.sp-tag{font-size:13px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:rgba(28,28,28,.4);display:block;margin-bottom:10px;text-align:center}
 .sp-tag::before{content:none}
-.sproof h2{font-family:var(--fd);font-size:clamp(30px,3.2vw,44px);line-height:1.06;letter-spacing:-1.5px;color:var(--K);text-align:center;margin-bottom:44px}
+.sproof h2{font-family:var(--fd);font-size:clamp(36px,4.6vw,66px);line-height:1.02;letter-spacing:-2.5px;color:var(--K);text-align:center;margin-bottom:14px}
+.sproof h2 em{font-style:normal;color:var(--F)}
+.sp-lead{font-size:15px;line-height:1.72;color:var(--S);text-align:center;max-width:500px;margin:0 auto 52px}
+.sp-ghost{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  font-family:var(--fd);font-size:clamp(100px,14vw,200px);letter-spacing:-5px;
+  color:transparent;-webkit-text-stroke:1px rgba(28,28,28,.038);
+  white-space:nowrap;pointer-events:none;z-index:0;user-select:none;line-height:1}
 .sp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .sp-card{background:#fff;border:1px solid rgba(28,28,28,.08);border-radius:var(--rl);padding:28px;display:flex;flex-direction:column;gap:16px;transition:all .3s;position:relative;box-shadow:0 4px 24px rgba(28,28,28,.06)}
 .sp-card:hover{border-color:rgba(224,24,92,.3);background:#fff;transform:translateY(-4px);box-shadow:0 16px 40px rgba(28,28,28,.1)}
@@ -2569,10 +2575,12 @@ footer{background:var(--K3);padding:84px 48px 30px;position:relative;overflow:hi
   <div class="ls-accent" aria-hidden="true"></div>
   <div class="ls-glow" aria-hidden="true"></div>
   <div class="ls-glow-sm" aria-hidden="true"></div>
+  <div class="sp-ghost" aria-hidden="true">STORIE</div>
   <div class="ctr">
-    <div class="rv">
+    <div class="rv" style="position:relative;z-index:1">
       <span class="sp-tag">Cosa dicono di noi</span>
-      <h2>La voce di chi si fida di noi.</h2>
+      <h2>La voce di<br><em>chi si fida di noi.</em></h2>
+      <p class="sp-lead">Parole reali, da imprenditori che hanno scelto di smettere di fare tutto da soli.</p>
     </div>
     <div class="sp-grid">
       <div class="sp-card rv">
