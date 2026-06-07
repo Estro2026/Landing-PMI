@@ -1249,7 +1249,7 @@ h2.srv{font-family:var(--fd);font-size:clamp(36px,4.5vw,60px);line-height:1.01;l
 .cs-tags span{font-size:9px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,239,224,.38);background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.07);border-radius:4px;padding:3px 7px;line-height:1}
 
 /* ═══ PORTFOLIO TABS (case study) ═══ */
-.pf-tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:30px}
+.pf-tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:30px}
 .pf-tab{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:var(--rm);padding:18px 14px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;cursor:pointer;transition:all .28s;position:relative;overflow:hidden;font-family:var(--fb)}
 .pf-tab::after{content:'';position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:0;height:2px;background:var(--F);transition:width .3s}
 .pf-tab:hover{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.14)}
@@ -2319,20 +2319,13 @@ footer{background:var(--K3);padding:84px 48px 30px;position:relative;overflow:hi
 
     <!-- ── Portfolio Tabs — Case Study ── -->
     <div class="pf-tabs rv" role="tablist">
-      <button class="pf-tab on" data-pf="elmec" role="tab" aria-selected="true">
-        <span class="pf-tab-logo"><img src="Loghi/ELCO.webp" alt="Elmec"></span>
-        <span class="pf-tab-name">Elmec</span>
-      </button>
-      <button class="pf-tab" data-pf="abctools" role="tab" aria-selected="false">
-        <span class="pf-tab-logo"><img src="Loghi/ABC.webp" alt="ABC Tools"></span>
+      <button class="pf-tab on" data-pf="abctools" role="tab" aria-selected="true">
         <span class="pf-tab-name">ABC Tools</span>
       </button>
       <button class="pf-tab" data-pf="mestel" role="tab" aria-selected="false">
-        <span class="pf-tab-logo"><img src="Loghi/MESTEL.webp" alt="Mestel"></span>
         <span class="pf-tab-name">Mestel</span>
       </button>
       <button class="pf-tab" data-pf="hdl" role="tab" aria-selected="false">
-        <span class="pf-tab-logo"><img src="Loghi/FAMILY.webp" alt="HDL Fashion"></span>
         <span class="pf-tab-name">HDL Fashion</span>
       </button>
     </div>
@@ -2340,31 +2333,8 @@ footer{background:var(--K3);padding:84px 48px 30px;position:relative;overflow:hi
     <!-- PANELS -->
     <div class="pf-panels">
 
-      <!-- ELMEC -->
-      <div class="pf-panel on" data-pf-panel="elmec" role="tabpanel">
-        <div class="pf-grid">
-          <div class="pf-img"></div>
-          <div class="pf-right">
-            <div class="pf-info">
-              <div class="pf-info-logo"><img class="pf-logo-img" src="Loghi/ELCO.webp" alt="Elmec" style="object-fit:contain"></div>
-              <div class="pf-info-sector">IT & Cloud · B2B · Lead generation</div>
-              <div class="pf-info-title">Autorevolezza digitale per il B2B tecnologico</div>
-              <div class="pf-info-text">Strategia di contenuto e ADV per posizionare Elmec come punto di riferimento nel mercato IT e cloud italiano: awareness, lead generation e nurturing coordinati in un ecosistema digitale integrato.</div>
-              <div class="pf-info-tags">
-                <span>B2B</span><span>Content strategy</span><span>Lead gen</span><span>LinkedIn</span>
-              </div>
-            </div>
-            <div class="pf-stats">
-              <div class="pf-stat"><div class="pf-stat-val">+180%</div><div class="pf-stat-lbl">Lead qualificati generati</div></div>
-              <div class="pf-stat"><div class="pf-stat-val">3×</div><div class="pf-stat-lbl">Crescita traffico organico</div></div>
-              <div class="pf-stat"><div class="pf-stat-val">12+</div><div class="pf-stat-lbl">Mesi di collaborazione continuativa</div></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <!-- ABC TOOLS -->
-      <div class="pf-panel" data-pf-panel="abctools" role="tabpanel">
+      <div class="pf-panel on" data-pf-panel="abctools" role="tabpanel">
         <div class="pf-grid">
           <div class="pf-img"></div>
           <div class="pf-right">
