@@ -1746,9 +1746,9 @@ footer{background:var(--K3);padding:48px 0 22px;border-top:1px solid rgba(255,25
     padding:16px 24px;box-sizing:border-box
   }
 
-  /* ── SERVIZI mobile: colonna singola verticale ── */
+  /* ── SERVIZI mobile: lista verticale statica ── */
   .servizi{padding:48px 0}
-  .srv-tagline{gap:10px;margin-bottom:28px;padding-bottom:0}
+  .srv-tagline{gap:10px;margin-bottom:24px;padding-bottom:0}
   .srv-flow{
     min-height:auto;
     display:flex;
@@ -1763,21 +1763,27 @@ footer{background:var(--K3);padding:48px 0 22px;border-top:1px solid rgba(255,25
     width:100%;
     padding:14px 16px;
     flex-direction:row;
-    align-items:center;
+    align-items:flex-start;
     gap:14px;
     opacity:1;
     transform:none;
     border-radius:14px
   }
-  .sc-top{padding-bottom:0;flex-direction:row;align-items:center;gap:0;flex-shrink:0}
+  .sc-top{
+    padding-bottom:0;
+    flex-direction:column;
+    align-items:flex-start;
+    flex-shrink:0;
+    gap:0
+  }
   .sc-expand{display:none}
-  .sc-ico{width:40px;height:40px;border-radius:10px;flex-shrink:0;margin-right:0}
+  .sc-ico{width:40px;height:40px;border-radius:10px;flex-shrink:0}
   .sc-ico svg{width:18px;height:18px}
-  .sc-bot{flex:1}
-  .sc-tag{font-size:8px;letter-spacing:1.5px;margin-bottom:1px}
-  .sc-name{font-size:14px;letter-spacing:-.2px;line-height:1.2;margin-bottom:0}
-  .sc-desc-wrap{max-height:none!important;overflow:visible!important}
-  .sc-desc{font-size:12px;line-height:1.5;color:rgba(243,239,224,.55);margin-top:3px}
+  .sc-bot{flex:1;min-width:0}
+  .sc-tag{font-size:8px;letter-spacing:1.5px;margin-bottom:2px;display:block}
+  .sc-name{font-size:14px;letter-spacing:-.2px;line-height:1.25;margin-bottom:0}
+  .sc-desc-wrap{max-height:none!important;overflow:visible!important;opacity:1!important}
+  .sc-desc{font-size:12px;line-height:1.5;color:rgba(243,239,224,.55);margin-top:4px}
 
   /* ── PROCESSO ── */
   .proc-hdr{margin-bottom:28px}
@@ -1794,20 +1800,21 @@ footer{background:var(--K3);padding:48px 0 22px;border-top:1px solid rgba(255,25
   .ben-list li{font-size:13.5px;gap:10px;line-height:1.45}
   .ben-check{width:20px;height:20px;flex-shrink:0}
   .ben-check svg{width:9px;height:9px}
-  /* Stage: immagine + parole chiave sparse intorno */
+  /* Stage: immagine + parole chiave sparse intorno — nessun background */
   .bfx-stage{
     position:relative;
     margin:0;
-    padding:48px 16px;
+    padding:56px 16px;
     overflow:hidden;
     min-height:auto;
+    background:none!important;
     display:flex;
     align-items:center;
     justify-content:center
   }
-  .bfx-cvs{display:none}
-  .bfx-glow{display:none}
-  .bkw-sys{display:none}
+  .bfx-cvs{display:none!important;visibility:hidden}
+  .bfx-glow{display:none!important}
+  .bkw-sys{display:none!important}
   .bfx-img{
     position:relative;
     z-index:1;
@@ -2952,6 +2959,7 @@ document.querySelectorAll('.pf-tab').forEach(t=>{
   const cvs=document.getElementById('bfxCvs');
   const stage=document.getElementById('bfxStage');
   if(!cvs||!stage)return;
+  if(window.innerWidth<=640)return;
   const ctx=cvs.getContext('2d');
   const noMotion=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
 
