@@ -1236,6 +1236,49 @@ h2.srv{font-family:var(--fd);font-size:clamp(36px,4.5vw,60px);line-height:1.01;l
 .cs-foot{display:flex;flex-wrap:wrap;gap:5px;padding-top:4px;margin-top:auto}
 .cs-tags span{font-size:9px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,239,224,.38);background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.07);border-radius:4px;padding:3px 7px;line-height:1}
 
+/* ═══ PORTFOLIO TABS (case study) ═══ */
+.pf-tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:30px}
+.pf-tab{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:var(--rm);padding:18px 14px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;cursor:pointer;transition:all .28s;position:relative;overflow:hidden;font-family:var(--fb)}
+.pf-tab::after{content:'';position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:0;height:2px;background:var(--F);transition:width .3s}
+.pf-tab:hover{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.14)}
+.pf-tab:hover::after{width:40%}
+.pf-tab.on{background:rgba(224,24,92,.07);border-color:var(--Fb)}
+.pf-tab.on::after{width:70%}
+.pf-tab-logo{display:none;height:32px;align-items:center;justify-content:center;opacity:.55;transition:opacity .25s}
+.pf-tab-logo:has(img){display:flex}
+.pf-tab.on .pf-tab-logo,.pf-tab:hover .pf-tab-logo{opacity:1}
+.pf-tab-logo img{max-height:100%;max-width:140px;object-fit:contain;display:block;filter:brightness(0) invert(1) opacity(.8);transition:filter .25s}
+.pf-tab.on .pf-tab-logo img{filter:none}
+.pf-tab-name{font-family:var(--fd);font-size:11px;color:rgba(243,239,224,.4);letter-spacing:.2px;transition:color .25s}
+.pf-tab.on .pf-tab-name,.pf-tab:hover .pf-tab-name{color:var(--C)}
+.pf-tab:not(:has(img)) .pf-tab-name{font-size:14px;letter-spacing:-.2px}
+.pf-panels{position:relative}
+.pf-panel{display:none;animation:pfFade .45s ease}
+.pf-panel.on{display:block}
+@keyframes pfFade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.pf-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:stretch}
+.pf-img{position:relative;border-radius:var(--rl);overflow:hidden;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);height:530px;align-self:stretch;display:flex;align-items:center;justify-content:center}
+.pf-img::after{content:'+ Inserisci immagine';font-size:11px;letter-spacing:1.2px;text-transform:uppercase;color:rgba(243,239,224,.18);font-family:var(--fb);pointer-events:none}
+.pf-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.pf-img:has(img[src]:not([src=""]))::after{display:none}
+.pf-right{display:flex;flex-direction:column;gap:14px}
+.pf-info{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:var(--rl);padding:28px;display:flex;flex-direction:column;gap:12px;flex:1}
+.pf-info-logo{display:none;height:44px;align-items:center;margin-bottom:2px}
+.pf-info-logo:has(img){display:flex}
+.pf-info-logo img{max-height:100%;max-width:170px;object-fit:contain;display:block}
+.pf-info-sector{font-family:var(--fm);font-size:10px;letter-spacing:1.8px;text-transform:uppercase;color:var(--F)}
+.pf-info-title{font-family:var(--fd);font-size:18px;color:var(--C);letter-spacing:-.4px;line-height:1.25}
+.pf-info-text{font-size:13px;color:rgba(243,239,224,.62);line-height:1.7}
+.pf-info-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px}
+.pf-info-tags span{font-size:10px;padding:4px 9px;border-radius:var(--rp);background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);color:rgba(243,239,224,.5)}
+.pf-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.pf-stat{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:var(--rm);padding:18px 14px;transition:all .25s;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.pf-stat:hover{border-color:rgba(224,24,92,.35);background:rgba(224,24,92,.05);transform:translateY(-2px)}
+.pf-stat-val{font-family:var(--fd);font-size:24px;letter-spacing:-.6px;line-height:1;margin-bottom:6px;color:var(--F)}
+.pf-stat-lbl{font-size:10px;color:var(--S);line-height:1.45;letter-spacing:.1px}
+@media(max-width:1100px){.pf-grid{grid-template-columns:1fr}.pf-tabs{gap:6px}.pf-tab{padding:12px 8px}.pf-tab-logo{height:26px}}
+@media(max-width:640px){.pf-tabs{grid-template-columns:repeat(2,1fr)}.pf-stats{grid-template-columns:1fr}}
+
 /* ═══ SOCIAL PROOF ═══ */
 .sproof{
   background:linear-gradient(155deg,#F0E4C4 0%,#E8DDB8 48%,#F2E9D4 100%);
@@ -2250,160 +2293,122 @@ footer{background:var(--K3);padding:84px 48px 30px;position:relative;overflow:hi
       </div>
     </div>
 
-    <!-- ── Casi Studio — Tab system ── -->
-    <div class="cs-block rv">
+    <!-- ── Portfolio Tabs — Case Study ── -->
+    <div class="pf-tabs rv" role="tablist">
+      <button class="pf-tab on" data-pf="ariston" role="tab" aria-selected="true">
+        <span class="pf-tab-logo"><img src="Loghi/Ariston-logo.webp" alt="Ariston"></span>
+        <span class="pf-tab-name">Ariston</span>
+      </button>
+      <button class="pf-tab" data-pf="fanuc" role="tab" aria-selected="false">
+        <span class="pf-tab-logo"><img src="Loghi/fanuc_logo.webp" alt="FANUC"></span>
+        <span class="pf-tab-name">FANUC</span>
+      </button>
+      <button class="pf-tab" data-pf="coswell" role="tab" aria-selected="false">
+        <span class="pf-tab-logo"><img src="Loghi/coswell-logo.webp" alt="Coswell"></span>
+        <span class="pf-tab-name">Coswell</span>
+      </button>
+      <button class="pf-tab" data-pf="mestel" role="tab" aria-selected="false">
+        <span class="pf-tab-logo"><img src="Loghi/mestel-logo.webp" alt="Mestel"></span>
+        <span class="pf-tab-name">Mestel</span>
+      </button>
+    </div>
 
-      <div class="cs-block-head">
-        <div class="cs-block-copy">
-          <span class="cs-label">Casi Studio</span>
-          <h3 class="cs-title">Risultati concreti,<br>non promesse.</h3>
-          <p class="cs-sub">Quattro progetti. Numeri misurabili.</p>
+    <!-- PANELS -->
+    <div class="pf-panels">
+
+      <!-- ARISTON -->
+      <div class="pf-panel on" data-pf-panel="ariston" role="tabpanel">
+        <div class="pf-grid">
+          <div class="pf-img"><img src="Loghi/ariston_cover.webp" alt="Ariston — The home of sustainable comfort"></div>
+          <div class="pf-right">
+            <div class="pf-info">
+              <div class="pf-info-logo"><img class="pf-logo-img" src="Loghi/Ariston-logo.webp" alt="Ariston" style="object-fit:contain"></div>
+              <div class="pf-info-sector">Strategia globale · Adattamento locale · Content system</div>
+              <div class="pf-info-title">Una strategia globale, pronta per i mercati locali</div>
+              <div class="pf-info-text">Un sistema di contenuti che tiene insieme visione internazionale e adattabilità locale: un linguaggio comune, abbastanza flessibile da funzionare su mercati, target e priorità diverse.</div>
+              <div class="pf-info-tags">
+                <span>Global strategy</span><span>Local adaptation</span><span>Content system</span>
+              </div>
+            </div>
+            <div class="pf-stats">
+              <div class="pf-stat"><div class="pf-stat-val">40+</div><div class="pf-stat-lbl">Contenuti multicanale progettati</div></div>
+              <div class="pf-stat"><div class="pf-stat-val">1</div><div class="pf-stat-lbl">Content system globale per Ariston Marketing Global</div></div>
+              <div class="pf-stat"><div class="pf-stat-val">170+</div><div class="pf-stat-lbl">Paesi di distribuzione del gruppo</div></div>
+            </div>
+          </div>
         </div>
       </div>
 
-      <!-- Tab bar -->
-      <div class="cs-tabs-wrap" role="tablist" aria-label="Casi studio">
-        <div class="cs-tabs">
-          <button class="cs-tab is-active" data-tab="0" data-accent="pine" role="tab" aria-selected="true" aria-controls="cs-panel-0">
-            <span class="cs-tab-num">01</span>
-            <span class="cs-tab-info"><span class="cs-tab-sector">E-commerce</span><span class="cs-tab-name">Fashion DTC</span></span>
-          </button>
-          <button class="cs-tab" data-tab="1" data-accent="tera" role="tab" aria-selected="false" aria-controls="cs-panel-1">
-            <span class="cs-tab-num">02</span>
-            <span class="cs-tab-info"><span class="cs-tab-sector">B2B</span><span class="cs-tab-name">Lead Generation</span></span>
-          </button>
-          <button class="cs-tab" data-tab="2" data-accent="mua" role="tab" aria-selected="false" aria-controls="cs-panel-2">
-            <span class="cs-tab-num">03</span>
-            <span class="cs-tab-info"><span class="cs-tab-sector">Retail · Food</span><span class="cs-tab-name">Lancio Prodotto</span></span>
-          </button>
-          <button class="cs-tab" data-tab="3" data-accent="quiete" role="tab" aria-selected="false" aria-controls="cs-panel-3">
-            <span class="cs-tab-num">04</span>
-            <span class="cs-tab-info"><span class="cs-tab-sector">Consulenza</span><span class="cs-tab-name">Autorità Digitale</span></span>
-          </button>
+      <!-- FANUC -->
+      <div class="pf-panel" data-pf-panel="fanuc" role="tabpanel">
+        <div class="pf-grid">
+          <div class="pf-img"><img src="Loghi/fanuc_cover.webp" alt="Do you FANUC?"></div>
+          <div class="pf-right">
+            <div class="pf-info">
+              <div class="pf-info-logo"><img class="pf-logo-img" src="Loghi/fanuc_logo.webp" alt="FANUC" style="object-fit:contain"></div>
+              <div class="pf-info-sector">B2B industriale · Omnichannel · Performance</div>
+              <div class="pf-info-title">FANUC — Performance e creatività per il B2B industriale</div>
+              <div class="pf-info-text">Da una gara nazionale a un ecosistema omnichannel: roadshow, landing, advertising e contenuti social coordinati per rendere l'automazione più distintiva e più vicina alle persone.</div>
+              <div class="pf-info-tags">
+                <span>Industrial B2B</span><span>Omnichannel</span><span>Roadshow</span><span>Performance</span>
+              </div>
+            </div>
+            <div class="pf-stats">
+              <div class="pf-stat"><div class="pf-stat-val">130.000+</div><div class="pf-stat-lbl">Clic Google Ads</div></div>
+              <div class="pf-stat"><div class="pf-stat-val">€0,05</div><div class="pf-stat-lbl">CPC medio</div></div>
+              <div class="pf-stat"><div class="pf-stat-val">164.000+</div><div class="pf-stat-lbl">Impression LinkedIn</div></div>
+            </div>
+          </div>
         </div>
       </div>
 
-      <!-- Panels -->
-      <div class="cs-panels">
-
-        <!-- Panel 01 — E-commerce Fashion -->
-        <div class="cs-panel is-active" id="cs-panel-0" data-accent="pine" role="tabpanel" aria-labelledby="">
-          <div class="cs-panel-img">
-            <div class="cs-panel-ph">
-              <svg class="cs-panel-ph-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-              <span class="cs-panel-ph-lbl">Project Preview</span>
+      <!-- COSWELL -->
+      <div class="pf-panel" data-pf-panel="coswell" role="tabpanel">
+        <div class="pf-grid">
+          <div class="pf-img"><img src="Loghi/coswell_cover-6fe0b65d.webp" alt="Coswell"></div>
+          <div class="pf-right">
+            <div class="pf-info">
+              <div class="pf-info-logo"><img class="pf-logo-img" src="Loghi/coswell-logo.webp" alt="Coswell" style="object-fit:contain"></div>
+              <div class="pf-info-sector">Consumer goods · Brand strategy · Content</div>
+              <div class="pf-info-title">Un ecosistema di brand coordinato su tutti i canali</div>
+              <div class="pf-info-text">Strategia editoriale e ADV integrata per un gruppo multi-brand del personal care: contenuti, campagne e posizionamento coordinati per massimizzare la riconoscibilità e le conversioni.</div>
+              <div class="pf-info-tags">
+                <span>Brand strategy</span><span>Multi-brand</span><span>ADV</span><span>Content</span>
+              </div>
             </div>
-            <div class="cs-panel-img-overlay"></div>
-          </div>
-          <div class="cs-panel-body">
-            <span class="cs-badge"><span class="cs-badge-dot"></span>E-commerce · Fashion</span>
-            <div>
-              <h4 class="cs-panel-title">Da 0 a 1.2M€<br>in 14 mesi</h4>
+            <div class="pf-stats">
+              <div class="pf-stat"><div class="pf-stat-val">5+</div><div class="pf-stat-lbl">Brand gestiti in parallelo</div></div>
+              <div class="pf-stat"><div class="pf-stat-val">×2.4</div><div class="pf-stat-lbl">ROAS medio campagne Meta</div></div>
+              <div class="pf-stat"><div class="pf-stat-val">12</div><div class="pf-stat-lbl">Mesi di collaborazione continuativa</div></div>
             </div>
-            <p class="cs-panel-desc">Brand fashion direct-to-consumer partito da zero. Strategia integrata SEO, Meta Ads e content system strutturato. Da startup a punto di riferimento nella nicchia in poco più di un anno.</p>
-            <div class="cs-kpi-strip">
-              <div class="cs-kpi"><span class="cs-kpi-val">+340%</span><span class="cs-kpi-lbl">Revenue organico</span></div>
-              <div class="cs-kpi"><span class="cs-kpi-val">×2.8</span><span class="cs-kpi-lbl">ROAS medio</span></div>
-              <div class="cs-kpi"><span class="cs-kpi-val">14 m</span><span class="cs-kpi-lbl">Time to scale</span></div>
-            </div>
-            <ul class="cs-results">
-              <li class="cs-result"><span class="cs-result-dot"></span>Lancio da zero — nessuna brand awareness iniziale</li>
-              <li class="cs-result"><span class="cs-result-dot"></span>Content system editoriale scalabile e autonomo</li>
-              <li class="cs-result"><span class="cs-result-dot"></span>Leader organico nella categoria di prodotto</li>
-            </ul>
-            <div class="cs-foot"><div class="cs-tags"><span>Strategia</span><span>Meta Ads</span><span>SEO</span><span>Content</span></div></div>
           </div>
         </div>
+      </div>
 
-        <!-- Panel 02 — B2B Industriale -->
-        <div class="cs-panel" id="cs-panel-1" data-accent="tera" role="tabpanel">
-          <div class="cs-panel-img">
-            <div class="cs-panel-ph">
-              <svg class="cs-panel-ph-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-              <span class="cs-panel-ph-lbl">Project Preview</span>
+      <!-- MESTEL -->
+      <div class="pf-panel" data-pf-panel="mestel" role="tabpanel">
+        <div class="pf-grid">
+          <div class="pf-img"><img src="Loghi/mestel_cover.webp" alt="Mestel Safety"></div>
+          <div class="pf-right">
+            <div class="pf-info">
+              <div class="pf-info-logo"><img class="pf-logo-img" src="Loghi/mestel-logo.webp" alt="Mestel" style="object-fit:contain"></div>
+              <div class="pf-info-sector">B2B · Safety · Digital presence</div>
+              <div class="pf-info-title">Da prodotto tecnico a brand riconoscibile nel settore</div>
+              <div class="pf-info-text">Costruzione della presenza digitale per un'azienda leader nella sicurezza professionale: identità visiva, sito, LinkedIn e campagne per generare autorevolezza e lead qualificati nel B2B.</div>
+              <div class="pf-info-tags">
+                <span>B2B</span><span>LinkedIn</span><span>Web</span><span>Brand identity</span>
+              </div>
             </div>
-            <div class="cs-panel-img-overlay"></div>
-          </div>
-          <div class="cs-panel-body">
-            <span class="cs-badge"><span class="cs-badge-dot"></span>B2B · Manifatturiero</span>
-            <div>
-              <h4 class="cs-panel-title">Lead generation<br>per settore industriale</h4>
+            <div class="pf-stats">
+              <div class="pf-stat"><div class="pf-stat-val">+210%</div><div class="pf-stat-lbl">Traffico organico in 6 mesi</div></div>
+              <div class="pf-stat"><div class="pf-stat-val">60+</div><div class="pf-stat-lbl">Lead B2B qualificati/mese</div></div>
+              <div class="pf-stat"><div class="pf-stat-val">1</div><div class="pf-stat-lbl">Ecosistema digital coordinato</div></div>
             </div>
-            <p class="cs-panel-desc">Azienda manifatturiera senza presenza digitale strutturata. Funnel LinkedIn Ads + sito ottimizzato per la conversione B2B. Pipeline commerciale costruita da zero in otto mesi.</p>
-            <div class="cs-kpi-strip">
-              <div class="cs-kpi"><span class="cs-kpi-val">+180%</span><span class="cs-kpi-lbl">Lead qualificati</span></div>
-              <div class="cs-kpi"><span class="cs-kpi-val">40+</span><span class="cs-kpi-lbl">Prospect/mese</span></div>
-              <div class="cs-kpi"><span class="cs-kpi-val">–52%</span><span class="cs-kpi-lbl">Costo per lead</span></div>
-            </div>
-            <ul class="cs-results">
-              <li class="cs-result"><span class="cs-result-dot"></span>Pipeline da zero a 40+ prospect mensili qualificati</li>
-              <li class="cs-result"><span class="cs-result-dot"></span>Sito web rifatto con architettura conversion-first</li>
-              <li class="cs-result"><span class="cs-result-dot"></span>Automazione CRM per nurturing dei lead</li>
-            </ul>
-            <div class="cs-foot"><div class="cs-tags"><span>LinkedIn Ads</span><span>Web</span><span>Automation</span><span>CRM</span></div></div>
           </div>
         </div>
+      </div>
 
-        <!-- Panel 03 — Retail Food -->
-        <div class="cs-panel" id="cs-panel-2" data-accent="mua" role="tabpanel">
-          <div class="cs-panel-img">
-            <div class="cs-panel-ph">
-              <svg class="cs-panel-ph-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-              <span class="cs-panel-ph-lbl">Project Preview</span>
-            </div>
-            <div class="cs-panel-img-overlay"></div>
-          </div>
-          <div class="cs-panel-body">
-            <span class="cs-badge"><span class="cs-badge-dot"></span>Retail · Food &amp; Beverage</span>
-            <div>
-              <h4 class="cs-panel-title">Rebranding e lancio<br>prodotto al retail</h4>
-            </div>
-            <p class="cs-panel-desc">Brand food con identità visiva datata e bassa riconoscibilità a scaffale. Rebranding completo, nuova comunicazione e campagna Meta per il lancio nel canale retail.</p>
-            <div class="cs-kpi-strip">
-              <div class="cs-kpi"><span class="cs-kpi-val">+92%</span><span class="cs-kpi-lbl">Fatturato PDV</span></div>
-              <div class="cs-kpi"><span class="cs-kpi-val">3 sett.</span><span class="cs-kpi-lbl">Sell-out totale</span></div>
-              <div class="cs-kpi"><span class="cs-kpi-val">×3.4</span><span class="cs-kpi-lbl">Ricerca brand</span></div>
-            </div>
-            <ul class="cs-results">
-              <li class="cs-result"><span class="cs-result-dot"></span>Nuova identità visiva e packaging completo</li>
-              <li class="cs-result"><span class="cs-result-dot"></span>Sell-out completo esaurito in tre settimane</li>
-              <li class="cs-result"><span class="cs-result-dot"></span>Riconoscibilità brand triplicata nella categoria</li>
-            </ul>
-            <div class="cs-foot"><div class="cs-tags"><span>Branding</span><span>Meta Ads</span><span>Content</span><span>Packaging</span></div></div>
-          </div>
-        </div>
-
-        <!-- Panel 04 — Consulenza -->
-        <div class="cs-panel" id="cs-panel-3" data-accent="quiete" role="tabpanel">
-          <div class="cs-panel-img">
-            <div class="cs-panel-ph">
-              <svg class="cs-panel-ph-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-              <span class="cs-panel-ph-lbl">Project Preview</span>
-            </div>
-            <div class="cs-panel-img-overlay"></div>
-          </div>
-          <div class="cs-panel-body">
-            <span class="cs-badge"><span class="cs-badge-dot"></span>Professional Services</span>
-            <div>
-              <h4 class="cs-panel-title">Autorità digitale per<br>studio di consulenza</h4>
-            </div>
-            <p class="cs-panel-desc">Studio di consulenza fiscale con zero presenza online. Trasformato in media company di settore in 14 mesi attraverso SEO tecnico, content strategy e newsletter cresciuta a oltre 8.000 iscritti.</p>
-            <div class="cs-kpi-strip">
-              <div class="cs-kpi"><span class="cs-kpi-val">+610%</span><span class="cs-kpi-lbl">Traffico organico</span></div>
-              <div class="cs-kpi"><span class="cs-kpi-val">8.4K</span><span class="cs-kpi-lbl">Iscritti newsletter</span></div>
-              <div class="cs-kpi"><span class="cs-kpi-val">–64%</span><span class="cs-kpi-lbl">Costo acquisizione</span></div>
-            </div>
-            <ul class="cs-results">
-              <li class="cs-result"><span class="cs-result-dot"></span>Da zero a 8.400 iscritti newsletter attivi</li>
-              <li class="cs-result"><span class="cs-result-dot"></span>Primo su Google per 120+ keyword di settore</li>
-              <li class="cs-result"><span class="cs-result-dot"></span>Costo acquisizione cliente ridotto del 64%</li>
-            </ul>
-            <div class="cs-foot"><div class="cs-tags"><span>SEO</span><span>Content</span><span>Newsletter</span><span>Strategia</span></div></div>
-          </div>
-        </div>
-
-      </div><!-- /cs-panels -->
-    </div><!-- /cs-block -->
+    </div><!-- /pf-panels -->
 
   </div>
 </section>
@@ -2681,32 +2686,14 @@ const obs=new IntersectionObserver(es=>{
 
   new ResizeObserver(()=>{ctx.resetTransform();resize();}).observe(flow);
 })();
-// ── Case Study Tabs ───────────────────────────────────────────────────────
-(function(){
-  const tabs=[...document.querySelectorAll('.cs-tab')];
-  const panels=[...document.querySelectorAll('.cs-panel')];
-  if(!tabs.length)return;
-  function activate(idx){
-    tabs.forEach((t,i)=>{
-      const on=i===idx;
-      t.classList.toggle('is-active',on);
-      t.setAttribute('aria-selected',on);
-    });
-    panels.forEach((p,i)=>{
-      p.classList.toggle('is-active',i===idx);
-    });
-  }
-  tabs.forEach((tab,i)=>{
-    tab.addEventListener('click',()=>activate(i));
-    tab.addEventListener('keydown',e=>{
-      if(e.key==='ArrowRight'||e.key==='ArrowLeft'){
-        e.preventDefault();
-        const next=(i+(e.key==='ArrowRight'?1:-1)+tabs.length)%tabs.length;
-        tabs[next].focus();activate(next);
-      }
-    });
+// ── Portfolio Tabs ────────────────────────────────────────────────────────
+document.querySelectorAll('.pf-tab').forEach(t=>{
+  t.addEventListener('click',()=>{
+    const k=t.dataset.pf;
+    document.querySelectorAll('.pf-tab').forEach(x=>{x.classList.toggle('on',x===t);x.setAttribute('aria-selected',x===t)});
+    document.querySelectorAll('.pf-panel').forEach(p=>{p.classList.toggle('on',p.dataset.pfPanel===k)});
   });
-})();
+});
 // ── Benefici particle canvas ──────────────────────────────────────────────
 (function(){
   const cvs=document.getElementById('bfxCvs');
