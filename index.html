@@ -1288,26 +1288,26 @@ h2.srv{font-family:var(--fd);font-size:clamp(28px,3vw,42px);line-height:1.07;let
 .pf-panel{display:none;animation:pfFade .45s ease}
 .pf-panel.on{display:block}
 @keyframes pfFade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-.pf-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:stretch}
-.pf-img{position:relative;border-radius:var(--rl);overflow:hidden;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);height:530px;align-self:stretch;display:flex;align-items:center;justify-content:center}
-.pf-img::after{content:'+ Inserisci immagine';font-size:11px;letter-spacing:1.2px;text-transform:uppercase;color:rgba(243,239,224,.18);font-family:var(--fb);pointer-events:none}
+.pf-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start}
+.pf-img{position:relative;border-radius:var(--rl);overflow:hidden;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);min-height:320px;aspect-ratio:3/4;display:flex;align-items:center;justify-content:center}
+.pf-img::after{content:'+ Inserisci immagine';font-size:12px;letter-spacing:1px;text-transform:uppercase;color:rgba(243,239,224,.18);font-family:var(--fb);pointer-events:none}
 .pf-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 .pf-img:has(img[src]:not([src=""]))::after{display:none}
 .pf-right{display:flex;flex-direction:column;gap:14px}
-.pf-info{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:var(--rl);padding:28px;display:flex;flex-direction:column;gap:12px;flex:1}
+.pf-info{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:var(--rl);padding:28px;display:flex;flex-direction:column;gap:8px}
 .pf-info-logo{display:none;height:44px;align-items:center;margin-bottom:2px}
 .pf-info-logo:has(img){display:flex}
 .pf-info-logo img{max-height:100%;max-width:170px;object-fit:contain;display:block}
-.pf-info-sector{font-family:var(--fm);font-size:10px;letter-spacing:1.8px;text-transform:uppercase;color:var(--F)}
-.pf-info-title{font-family:var(--fd);font-size:18px;color:var(--C);letter-spacing:-.4px;line-height:1.25}
-.pf-info-text{font-size:13px;color:rgba(243,239,224,.62);line-height:1.7}
+.pf-info-sector{font-family:var(--fb);font-size:14px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:var(--F)}
+.pf-info-title{font-family:var(--fb);font-size:18px;font-weight:700;color:var(--C);line-height:1.3}
+.pf-info-text{font-family:var(--fb);font-size:14px;color:rgba(243,239,224,.65);line-height:1.75}
 .pf-info-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px}
-.pf-info-tags span{font-size:10px;padding:4px 9px;border-radius:var(--rp);background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);color:rgba(243,239,224,.5)}
+.pf-info-tags span{font-family:var(--fb);font-size:14px;padding:5px 12px;border-radius:var(--rp);background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);color:rgba(243,239,224,.55)}
 .pf-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.pf-stat{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:var(--rm);padding:18px 14px;transition:all .25s;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.pf-stat{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:var(--rm);padding:18px 14px;transition:all .25s;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px}
 .pf-stat:hover{border-color:rgba(224,24,92,.35);background:rgba(224,24,92,.05);transform:translateY(-2px)}
-.pf-stat-val{font-family:var(--fd);font-size:24px;letter-spacing:-.6px;line-height:1;margin-bottom:6px;color:var(--F)}
-.pf-stat-lbl{font-size:10px;color:var(--S);line-height:1.45;letter-spacing:.1px}
+.pf-stat-val{font-family:var(--fd);font-size:24px;letter-spacing:-.6px;line-height:1;color:var(--F)}
+.pf-stat-lbl{font-family:var(--fb);font-size:14px;color:rgba(243,239,224,.55);line-height:1.4}
 @media(max-width:1100px){.pf-grid{grid-template-columns:1fr}.pf-tabs{gap:6px}.pf-tab{padding:12px 8px}.pf-tab-logo{height:26px}}
 @media(max-width:640px){.pf-tabs{grid-template-columns:repeat(2,1fr)}.pf-stats{grid-template-columns:1fr}}
 
