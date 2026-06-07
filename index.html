@@ -85,6 +85,10 @@ body{font-family:var(--fb);background:var(--K);color:var(--C);overflow-x:hidden;
 /* image placeholder below the copy text */
 .hero-copy-img{flex:1;position:relative;overflow:hidden;border-radius:16px;min-height:200px;margin-top:auto;padding-top:28px}
 .hero-copy-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%;display:block;border-radius:16px}
+.hero-copy-placeholder{background:rgba(255,255,255,.04);border:1.5px dashed rgba(243,239,224,.15);display:flex;align-items:center;justify-content:center}
+.hero-placeholder-inner{display:flex;flex-direction:column;align-items:center;gap:10px;color:rgba(243,239,224,.25);user-select:none}
+.hero-placeholder-inner svg{width:40px;height:40px;opacity:.5}
+.hero-placeholder-inner span{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase}
 
 /* ── COLONNA DESTRA: form centrato verticalmente ── */
 .hero-form-col{display:flex;flex-direction:column;justify-content:center;padding:120px var(--px) 80px;position:relative;z-index:1}
@@ -1157,10 +1161,10 @@ h2.srv em{font-style:normal;color:var(--F)}
   letter-spacing:-2px;line-height:1;margin-top:4px}
 .lw-anchor-numlbl{font-size:12px;color:rgba(243,239,224,.4);letter-spacing:.5px;text-transform:uppercase;margin-top:2px}
 
-.lw-streams{overflow:hidden;position:relative;padding:20px 0;z-index:1;
+.lw-streams{overflow:hidden;position:relative;padding:8px 0;z-index:1;
   mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);
   -webkit-mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent)}
-.lw-row{display:flex;padding:10px 0}
+.lw-row{display:flex;padding:4px 0}
 .lw-track{display:flex;align-items:center;will-change:transform}
 @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 @keyframes marquee-rev{from{transform:translateX(-50%)}to{transform:translateX(0)}}
@@ -1169,9 +1173,9 @@ h2.srv em{font-style:normal;color:var(--F)}
 .lw-streams:hover .lw-track{animation-play-state:paused}
 @media(prefers-reduced-motion:reduce){.lw-track{animation:none;flex-wrap:wrap;justify-content:center;gap:16px 28px}}
 
-.lw-logo{display:flex;align-items:center;justify-content:center;height:72px;flex-shrink:0;padding:0 40px;position:relative;transition:transform .35s cubic-bezier(.22,1,.36,1)}
+.lw-logo{display:flex;align-items:center;justify-content:center;height:88px;flex-shrink:0;padding:0 44px;position:relative;transition:transform .35s cubic-bezier(.22,1,.36,1)}
 .lw-logo:hover{transform:scale(1.08)}
-.lw-logo img{height:56px;width:auto;max-width:160px;object-fit:contain;
+.lw-logo img{height:70px;width:auto;max-width:200px;object-fit:contain;
   filter:brightness(0) invert(1);opacity:.65;
   transition:opacity .35s,filter .35s;position:relative;z-index:1}
 .lw-logo:hover img{opacity:1;filter:brightness(0) invert(1) drop-shadow(0 0 16px rgba(224,24,92,.55))}
@@ -1985,8 +1989,11 @@ footer{background:var(--K3);padding:80px 0 32px;position:relative;overflow:hidde
     <div class="hero-badge"><span class="hero-badge-dot"></span>Agenzia di comunicazione per PMI · Milano</div>
     <h1>Un team completo<em>a costi sostenibili.</em></h1>
     <p class="hero-sub">Un unico partner per strategia, digital, contenuti e ADV — senza il costo di un team interno.</p>
-    <div class="hero-copy-img">
-      <img src="Hero section1.webp" alt="Team Estro — strategia e marketing per PMI" loading="eager" fetchpriority="high">
+    <div class="hero-copy-img hero-copy-placeholder">
+      <div class="hero-placeholder-inner">
+        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="6" y="10" width="36" height="28" rx="3"/><path d="M6 32l9-9 7 7 6-8 8 10"/><circle cx="17" cy="20" r="3"/></svg>
+        <span>Immagine</span>
+      </div>
     </div>
   </div>
 
