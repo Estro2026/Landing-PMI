@@ -366,13 +366,25 @@ body{font-family:var(--fb);background:var(--K);color:var(--C);overflow-x:hidden;
 .flip-front h2{font-size:clamp(20px,2.2vw,30px);letter-spacing:-1px;margin-bottom:14px}
 .flip-back h2{font-size:clamp(18px,2vw,26px)!important;letter-spacing:-.8px!important;margin-bottom:12px!important}
 .flip-cta{margin-top:20px;cursor:pointer;width:fit-content}
-.flip-back .btn.bf{width:fit-content}
-.flip-back-actions{display:flex;align-items:center;gap:16px;margin-top:20px;flex-wrap:wrap}
-.flip-back-btn{font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:rgba(243,239,224,.45);border:1px solid rgba(243,239,224,.18);border-radius:40px;padding:8px 18px;text-decoration:none;cursor:pointer;transition:color .2s,border-color .2s;background:none;font-family:var(--fb)}
-.flip-back-btn:hover{color:rgba(243,239,224,.8);border-color:rgba(243,239,224,.4)}
-/* yt embed */
-.yt-embed{position:relative;border-radius:20px;overflow:hidden;background:#000;box-shadow:0 24px 64px rgba(0,0,0,.18);width:100%;height:400px}
-.yt-embed iframe{position:absolute;inset:0;width:100%;height:100%;border:none}
+.flip-back-txt{background:none;border:none;padding:0;margin-top:10px;font-size:12px;font-weight:500;color:rgba(243,239,224,.35);cursor:pointer;font-family:var(--fb);letter-spacing:.3px;transition:color .2s;display:block}
+.flip-back-txt:hover{color:rgba(243,239,224,.65)}
+/* yt creative */
+.yt-creative{position:relative;height:400px}
+.yt-glow{position:absolute;inset:-40px;background:radial-gradient(ellipse 70% 60% at 50% 50%,rgba(224,24,92,.13),transparent 70%);pointer-events:none;z-index:0}
+.yt-badge{position:absolute;top:-14px;left:50%;transform:translateX(-50%);z-index:4;background:var(--F);color:#fff;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:6px 18px;border-radius:40px;white-space:nowrap;box-shadow:0 4px 20px rgba(224,24,92,.35)}
+.yt-facade{position:relative;width:100%;height:100%;border-radius:20px;overflow:hidden;cursor:pointer;z-index:1;box-shadow:0 20px 60px rgba(0,0,0,.22),0 0 0 1px rgba(224,24,92,.15)}
+.yt-thumb{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease}
+.yt-facade:hover .yt-thumb{transform:scale(1.03)}
+.yt-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(28,28,28,.55) 0%,rgba(224,24,92,.18) 100%)}
+.yt-play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:2}
+.yt-play svg{width:80px;height:80px;filter:drop-shadow(0 8px 24px rgba(0,0,0,.4));transition:transform .3s ease}
+.yt-facade:hover .yt-play svg{transform:scale(1.1)}
+.yt-duration{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);z-index:2;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.7);white-space:nowrap}
+.yt-iframe-wrap{position:absolute;inset:0;border-radius:20px;overflow:hidden;z-index:3}
+.yt-iframe-wrap iframe{width:100%;height:100%;border:none;display:block}
+.yt-deco-dot{position:absolute;border-radius:50%;pointer-events:none}
+.yt-deco-dot--1{width:10px;height:10px;background:var(--F);bottom:-4px;right:28px;z-index:2;opacity:.7}
+.yt-deco-dot--2{width:6px;height:6px;background:var(--F);top:20px;left:-3px;z-index:2;opacity:.45}
 
 /* ═══ ICONE ═══ */
 .icone{
@@ -1569,7 +1581,7 @@ footer{background:var(--K3);padding:84px 48px 30px;position:relative;overflow:hi
   /* ── TARGET ── */
   .target-inner{gap:28px}
   .flip-card{height:380px}
-  .yt-embed{height:380px}
+  .yt-creative{height:380px}
   .flip-front,.flip-back{padding:36px 40px}
   .ta-ws{height:340px}
   .tac{width:140px;padding:13px 15px}
@@ -1770,7 +1782,7 @@ footer{background:var(--K3);padding:84px 48px 30px;position:relative;overflow:hi
   /* ── Hide <br> in long target body copy — cleaner mobile reading ── */
   .target-body br{display:none}
   .flip-card{height:400px}
-  .yt-embed{height:auto;aspect-ratio:16/9}
+  .yt-creative{aspect-ratio:16/9;height:auto}
   .flip-front,.flip-back{padding:32px 34px}
 
   /* ── Full-width CTAs in key sections ── */
@@ -1953,20 +1965,32 @@ footer{background:var(--K3);padding:84px 48px 30px;position:relative;overflow:hi
                 <li><span class="sb-dot"></span>Un unico referente che conosce il tuo brand</li>
                 <li><span class="sb-dot"></span>Report chiari su risultati e prossimi step</li>
               </ul>
-              <div class="flip-back-actions">
-                <a href="#contatti" class="btn bf btn-lg" onclick="event.stopPropagation()">Parliamone insieme <span class="arr">›</span></a>
-                <button class="flip-back-btn" onclick="event.stopPropagation();document.getElementById('flipCard').classList.remove('flipped')">← Torna indietro</button>
-              </div>
+              <a href="#contatti" class="btn bf btn-lg" style="margin-top:20px;width:fit-content" onclick="event.stopPropagation()">Parliamone insieme <span class="arr">›</span></a>
+              <button class="flip-back-txt" onclick="event.stopPropagation();document.getElementById('flipCard').classList.remove('flipped')">← Torna indietro</button>
             </div>
 
           </div>
         </div>
       </div>
 
-      <!-- colonna destra: video YouTube -->
+      <!-- colonna destra: video YouTube creativo -->
       <div class="rv d1">
-        <div class="yt-embed">
-          <iframe src="https://www.youtube.com/embed/qRKRdFgKyzs" title="Estro Agency" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+        <div class="yt-creative">
+          <div class="yt-glow" aria-hidden="true"></div>
+          <div class="yt-badge">▶ Guarda il video</div>
+          <div class="yt-facade" id="ytFacade" onclick="loadYT()" role="button" tabindex="0" aria-label="Riproduci il video di Estro Agency">
+            <img class="yt-thumb" src="https://img.youtube.com/vi/qRKRdFgKyzs/maxresdefault.jpg" alt="Estro Agency — video" loading="lazy">
+            <div class="yt-overlay"></div>
+            <div class="yt-play">
+              <svg viewBox="0 0 80 80" fill="none"><circle cx="40" cy="40" r="38" stroke="rgba(255,255,255,.18)" stroke-width="1.5"/><circle cx="40" cy="40" r="30" fill="rgba(224,24,92,.92)"/><polygon points="34,28 58,40 34,52" fill="#fff"/></svg>
+            </div>
+            <div class="yt-duration">Scopri come lavoriamo</div>
+          </div>
+          <div class="yt-iframe-wrap" id="ytWrap" style="display:none">
+            <iframe id="ytIframe" src="" title="Estro Agency" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <div class="yt-deco-dot yt-deco-dot--1" aria-hidden="true"></div>
+          <div class="yt-deco-dot yt-deco-dot--2" aria-hidden="true"></div>
         </div>
       </div>
 
@@ -2911,6 +2935,7 @@ function openModal(){document.getElementById('mbg').classList.add('open')}
 function closeModal(){document.getElementById('mbg').classList.remove('open')}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
 
+function loadYT(){const f=document.getElementById('ytFacade');const w=document.getElementById('ytWrap');const i=document.getElementById('ytIframe');if(!f||!w||!i)return;i.src='https://www.youtube.com/embed/qRKRdFgKyzs?autoplay=1&rel=0';w.style.display='block';f.style.display='none';}
 function quickSub(e){e.preventDefault();e.target.style.display='none';document.getElementById('qsuccess').style.display='block'}
 function heroSub(e){e.preventDefault();document.getElementById('heroForm').style.display='none';document.getElementById('heroSuccess').style.display='block'}
 function mainSub(e){e.preventDefault();document.getElementById('mainForm').style.display='none';document.getElementById('msuccess').style.display='block';return false}
