@@ -1450,27 +1450,29 @@ h2.srv em{font-style:normal;color:var(--F)}
 .fsuccess{display:none;background:rgba(76,180,80,.08);border:1px solid rgba(76,180,80,.25);border-radius:var(--rm);padding:26px;text-align:center;color:#4CB450;font-size:16px;font-weight:600;margin-top:12px}
 
 /* ─── FOOTER ─── */
-footer{background:var(--K3);padding:84px 48px 30px;position:relative;overflow:hidden}
-.ft-watermark{position:absolute;left:50%;bottom:-10px;transform:translateX(-50%);font-family:var(--fd);font-size:clamp(140px,26vw,380px);line-height:.78;color:rgba(243,239,224,.028);letter-spacing:-10px;text-align:center;pointer-events:none;user-select:none;white-space:nowrap;z-index:1}
-.ft-in{max-width:1320px;margin:0 auto;position:relative;z-index:2}
-.ft-top{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:48px;margin-bottom:64px}
-.ft-tag{font-size:13px;color:var(--S);max-width:240px;line-height:1.6;margin-top:16px}
-.fcol h4{font-size:10px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--F);margin-bottom:20px}
-.fcol a{display:block;font-size:13px;color:rgba(243,239,224,.4);text-decoration:none;margin-bottom:9px;transition:color .2s}
+footer{background:var(--K3);padding:80px 0 32px;position:relative;overflow:hidden}
+.ft-ghost{position:absolute;left:50%;bottom:-12%;transform:translateX(-50%);font-family:var(--fd);font-size:clamp(180px,30vw,460px);line-height:.85;color:rgba(243,239,224,.035);letter-spacing:-10px;pointer-events:none;user-select:none;white-space:nowrap;z-index:0;text-align:center}
+.ft-in{max-width:var(--mx);margin:0 auto;padding:0 var(--px);position:relative;z-index:1}
+.ft-cols{display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:44px;margin-bottom:40px;align-items:start}
+.fcol h4{font-size:11px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;color:var(--S);margin-bottom:14px}
+.fcol a{display:block;font-size:13px;color:rgba(243,239,224,.35);text-decoration:none;margin-bottom:8px;transition:color .2s}
 .fcol a:hover{color:var(--C)}
-.ft-block{margin-bottom:20px}
-.ft-block-h{font-size:12px;color:rgba(243,239,224,.85);font-weight:600;margin-bottom:5px;letter-spacing:.2px}
-.ft-block-l{font-size:13px;color:rgba(243,239,224,.42);line-height:1.65}
-.ft-social{display:grid;grid-template-columns:repeat(2,52px);gap:14px}
-.ft-soc{width:52px;height:52px;border-radius:15px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);display:flex;align-items:center;justify-content:center;padding:0;line-height:1;color:rgba(243,239,224,.55);transition:all .25s;text-decoration:none}
-.ft-soc:hover{background:var(--F);border-color:var(--F);color:#fff;transform:translateY(-3px);box-shadow:0 10px 24px rgba(224,24,92,.3)}
-.ft-soc svg{width:19px;height:19px;display:block;flex:none}
-.ft-bot{padding-top:24px;border-top:1px solid rgba(255,255,255,.06);display:flex;justify-content:space-between;align-items:center;font-size:12px;color:rgba(243,239,224,.3);gap:20px;flex-wrap:wrap}
-.ft-bot-links{display:flex;gap:24px}
-.ft-bot-links a{color:rgba(243,239,224,.42);text-decoration:none;transition:color .2s}
-.ft-bot-links a:hover{color:var(--C)}
-@media(max-width:980px){.ft-top{grid-template-columns:1fr 1fr;gap:36px}}
-@media(max-width:560px){.ft-top{grid-template-columns:1fr;gap:30px}}
+.fc-block{margin-bottom:16px}
+.fc-strong{font-size:14px;font-weight:700;color:var(--C);margin-bottom:4px}
+.fc-line{font-size:14px;color:rgba(243,239,224,.55);line-height:1.55}
+.fc-label{font-size:14px;font-weight:700;color:var(--C);margin-bottom:4px}
+.ft-social{display:grid;grid-template-columns:repeat(2,38px);gap:12px;width:fit-content}
+.ft-social a{width:38px;height:38px;border-radius:10px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);display:flex;align-items:center;justify-content:center;color:var(--C);transition:all .25s;text-decoration:none}
+.ft-social a:hover{background:var(--F);border-color:var(--F);transform:translateY(-2px)}
+.ft-social svg{width:18px;height:18px}
+.ft-legal{padding-top:30px;border-top:1px solid rgba(255,255,255,.06);display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center}
+.ft-legal-links{display:flex;align-items:center;gap:18px;font-size:13px}
+.ft-legal-links a{color:rgba(243,239,224,.55);text-decoration:none;font-style:italic;transition:color .2s}
+.ft-legal-links a:hover{color:var(--C)}
+.ft-legal-sep{width:1px;height:14px;background:rgba(243,239,224,.2)}
+.ft-copy{font-size:13px;color:var(--F)}
+@media(max-width:980px){.ft-cols{grid-template-columns:1fr 1fr;gap:36px}}
+@media(max-width:560px){.ft-cols{grid-template-columns:1fr;gap:32px}}
 
 /* ─── MODAL ─── */
 .mbg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.78);z-index:500;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(12px)}
@@ -1550,7 +1552,7 @@ footer{background:var(--K3);padding:84px 48px 30px;position:relative;overflow:hi
   /* tl horizontal: slightly reduce font at mid breakpoint */
   .tl-h4{font-size:15px}
   .tl-p{font-size:12.5px}
-  .ft-top{grid-template-columns:1fr 1fr;gap:28px}
+  .ft-cols{grid-template-columns:1fr 1fr;gap:28px}
   .lw-logo{height:76px;padding:0 36px}
   .sp-grid{grid-template-columns:repeat(2,1fr)}
   /* nav */
@@ -1606,7 +1608,7 @@ footer{background:var(--K3);padding:84px 48px 30px;position:relative;overflow:hi
   /* ── HEADER ── */
   .hdr{padding:12px var(--px);width:100%;box-sizing:border-box}
   .logo-img{height:32px}
-  .ft-watermark{display:none}
+  .ft-ghost{display:none}
 
   /* ── HERO: copy first, then form, image hidden on mobile ── */
   .hero{display:flex;flex-direction:column;min-height:auto}
@@ -1829,10 +1831,10 @@ footer{background:var(--K3);padding:84px 48px 30px;position:relative;overflow:hi
 
   /* ── FOOTER ── */
   footer{padding:48px 20px 24px}
-  .ft-top{grid-template-columns:1fr;gap:28px}
+  .ft-cols{grid-template-columns:1fr;gap:28px}
   .ft-social{grid-template-columns:repeat(4,52px);gap:10px}
-  .ft-bot{flex-direction:column;align-items:flex-start;gap:12px;font-size:11px}
-  .ft-watermark{display:none}
+  .ft-legal{gap:10px;font-size:11px}
+  .ft-ghost{display:none}
 
   /* ── MODAL ── */
   .modal{padding:22px 18px;border-radius:18px}
@@ -2638,61 +2640,56 @@ footer{background:var(--K3);padding:84px 48px 30px;position:relative;overflow:hi
 
 <!-- ─── FOOTER ─── -->
 <footer>
-  <div class="ft-watermark" aria-hidden="true">ESTRO</div>
+  <div class="ft-ghost" aria-hidden="true">ESTRO</div>
   <div class="ft-in">
-    <div class="ft-top">
-      <div>
+    <div class="ft-cols">
+      <div class="fcol ft-brandcol">
         <a href="#top" class="logo">
-          <img src="Logo-estro.webp" alt="Estro Agency" class="logo-img logo-img-ft">
+          <img src="Logo-estro.webp" alt="Estro — powered by Yuba" class="logo-img-sm">
         </a>
-        <p class="ft-tag">Ecosistemi digitali per aziende che vogliono crescere, non solo apparire.</p>
       </div>
       <div class="fcol">
         <h4>Contatti</h4>
-        <div class="ft-block">
-          <div class="ft-block-h">Yuba S.r.l.</div>
-          <div class="ft-block-l">C.F./P.IVA: 09955650966</div>
+        <div class="fc-block">
+          <div class="fc-strong">YUBA S.r.l.</div>
+          <div class="fc-line">C.F./P. IVA 09955650966</div>
         </div>
-        <div class="ft-block">
-          <div class="ft-block-h">Sede legale</div>
-          <div class="ft-block-l">Via Vigevano n.27<br>20144 Milano (MI)</div>
+        <div class="fc-block">
+          <div class="fc-label">Sede legale</div>
+          <div class="fc-line">Via Vigevano n. 27</div>
+          <div class="fc-line">20144, Milano (MI)</div>
         </div>
       </div>
       <div class="fcol">
         <h4>Vieni a trovarci</h4>
-        <div class="ft-block">
-          <div class="ft-block-h">Sede di Milano</div>
-          <div class="ft-block-l">Via Vigevano n.27<br>20144 Milano (MI)</div>
+        <div class="fc-block">
+          <div class="fc-label">Sede di Milano</div>
+          <div class="fc-line">Via Vigevano n.27</div>
+          <div class="fc-line">20144, Milano (MI)</div>
         </div>
-        <div class="ft-block">
-          <div class="ft-block-h">Sede di Varese</div>
-          <div class="ft-block-l">Via Mazzini n.1<br>21013 Gallarate (VA)</div>
+        <div class="fc-block">
+          <div class="fc-label">Sede di Varese</div>
+          <div class="fc-line">Via Mazzini n.1</div>
+          <div class="fc-line">21013, Gallarate (VA)</div>
         </div>
       </div>
       <div class="fcol">
         <h4>Seguici</h4>
         <div class="ft-social">
-          <a href="#" class="ft-soc" aria-label="Instagram">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"></circle></svg>
-          </a>
-          <a href="#" class="ft-soc" aria-label="LinkedIn">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V23h-4V8zm7 0h3.8v2.05h.05c.53-1 1.83-2.05 3.76-2.05 4.02 0 4.76 2.65 4.76 6.1V23h-4v-6.3c0-1.5-.03-3.43-2.09-3.43-2.09 0-2.41 1.63-2.41 3.32V23h-4V8z"></path></svg>
-          </a>
-          <a href="#" class="ft-soc" aria-label="Facebook">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 13.5h2.5l1-4H14V7c0-1.03 0-2 2-2h1.5V1.64C17.18 1.6 15.9 1.5 14.6 1.5 11.7 1.5 10 3.16 10 6.2v3.3H7v4h3V23h4v-9.5z"></path></svg>
-          </a>
-          <a href="#" class="ft-soc" aria-label="YouTube">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 7.5c-.26-1.96-1.06-2.76-3.02-3.02C17.9 4.2 12 4.2 12 4.2s-5.9 0-7.98.28C2.06 4.74 1.26 5.54 1 7.5.72 9.58.72 12 .72 12s0 2.42.28 4.5c.26 1.96 1.06 2.76 3.02 3.02C6.1 19.8 12 19.8 12 19.8s5.9 0 7.98-.28c1.96-.26 2.76-1.06 3.02-3.02.28-2.08.28-4.5.28-4.5s0-2.42-.28-4.5zM9.75 15.5v-7l6 3.5-6 3.5z"></path></svg>
-          </a>
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5.5"></rect><circle cx="12" cy="12" r="4.2"></circle><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"></circle></svg></a>
+          <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.66H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"></path></svg></a>
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.69.24 2.69.24v2.97h-1.52c-1.49 0-1.96.93-1.96 1.89v2.25h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z"></path></svg></a>
+          <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.5a3 3 0 0 0-2.12-2.12C19.5 3.87 12 3.87 12 3.87s-7.5 0-9.38.51A3 3 0 0 0 .5 6.5C0 8.38 0 12 0 12s0 3.62.5 5.5a3 3 0 0 0 2.12 2.12c1.88.51 9.38.51 9.38.51s7.5 0 9.38-.51A3 3 0 0 0 23.5 17.5C24 15.62 24 12 24 12s0-3.62-.5-5.5zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"></path></svg></a>
         </div>
       </div>
     </div>
-    <div class="ft-bot">
-      <span>Copyright © 2026 Yuba S.r.l. · Tutti i diritti riservati</span>
-      <div class="ft-bot-links">
+    <div class="ft-legal">
+      <div class="ft-legal-links">
         <a href="#">Privacy Policy</a>
+        <span class="ft-legal-sep"></span>
         <a href="#">Cookie Policy</a>
       </div>
+      <div class="ft-copy">Copyright @2026 Yuba S.r.l.</div>
     </div>
   </div>
 </footer>
