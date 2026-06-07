@@ -1090,10 +1090,10 @@ h2.srv em{font-style:normal;color:var(--F)}
 }
 .trust-dots{position:absolute;right:-120px;left:auto;top:50%;transform:translateY(-50%);width:560px;height:560px;
   background:radial-gradient(circle,rgba(224,24,92,.06),transparent 60%);border-radius:50%;pointer-events:none;z-index:0}
-.trust-ghost{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-  font-family:var(--fd);font-size:clamp(120px,16vw,220px);letter-spacing:-6px;
-  color:transparent;-webkit-text-stroke:1px rgba(243,239,224,.055);
-  white-space:nowrap;pointer-events:none;z-index:0;user-select:none;line-height:1}
+.trust-ghost{position:absolute;left:50%;bottom:-10px;transform:translateX(-50%);
+  font-family:var(--fd);font-size:clamp(140px,22vw,340px);line-height:.78;
+  color:rgba(243,239,224,.028);letter-spacing:-10px;
+  white-space:nowrap;pointer-events:none;z-index:0;user-select:none;text-align:center}
 /* inner content above layers */
 .trust .ctr{position:relative;z-index:1}
 .trust-tag{font-size:13px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:rgba(243,239,224,.35);display:block;margin-bottom:14px;text-align:center}
@@ -2436,18 +2436,10 @@ footer{background:var(--K3);padding:84px 48px 30px;position:relative;overflow:hi
       </div>
     </div>
 
-    <!-- ── Logo wall — editorial split ── -->
-    <div class="lw-editorial rv">
-      <!-- left anchor -->
-      <div class="lw-anchor">
-        <div class="lw-anchor-line"></div>
-        <div class="lw-anchor-title">Aziende che si fidano di noi</div>
-        <div class="lw-anchor-sub">PMI e aziende strutturate in tutta Italia</div>
-        <div class="lw-anchor-num">80+</div>
-        <div class="lw-anchor-numlbl">Ci hanno scelto</div>
-      </div>
-      <!-- right: two marquee rows -->
-      <div class="lw-streams">
+    <!-- ── Logo wall — full-width marquee ── -->
+    <div class="lw-editorial rv" style="grid-template-columns:1fr;border:none;background:none;border-radius:0">
+      <!-- full-width marquee rows -->
+      <div class="lw-streams" style="mask-image:linear-gradient(90deg,transparent,#000 3%,#000 97%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 3%,#000 97%,transparent)">
         <div class="lw-row">
           <div class="lw-track lw-track--fwd">
             <div class="lw-logo"><img src="Loghi/ABC.webp" alt="ABC" loading="lazy"></div>
