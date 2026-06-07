@@ -1090,6 +1090,10 @@ h2.srv em{font-style:normal;color:var(--F)}
 }
 .trust-dots{position:absolute;right:-120px;left:auto;top:50%;transform:translateY(-50%);width:560px;height:560px;
   background:radial-gradient(circle,rgba(224,24,92,.06),transparent 60%);border-radius:50%;pointer-events:none;z-index:0}
+.trust-ghost{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  font-family:var(--fd);font-size:clamp(120px,16vw,220px);letter-spacing:-6px;
+  color:transparent;-webkit-text-stroke:1px rgba(243,239,224,.055);
+  white-space:nowrap;pointer-events:none;z-index:0;user-select:none;line-height:1}
 /* inner content above layers */
 .trust .ctr{position:relative;z-index:1}
 .trust-tag{font-size:13px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:rgba(243,239,224,.35);display:block;margin-bottom:14px;text-align:center}
@@ -2412,6 +2416,7 @@ footer{background:var(--K3);padding:84px 48px 30px;position:relative;overflow:hi
 <!-- ═══ TRUST ═══ -->
 <section class="trust" id="clienti">
   <div class="trust-dots" aria-hidden="true"></div>
+  <div class="trust-ghost" aria-hidden="true">FIDUCIA</div>
   <div class="ctr">
 
     <!-- ── Trust layer ── -->
