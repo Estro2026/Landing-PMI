@@ -142,43 +142,42 @@ body{font-family:var(--fb);background:var(--K);color:var(--C);overflow-x:hidden;
   border-color:rgba(224,24,92,.1);
   animation:haRotCcw 38s linear infinite
 }
-/* Fluid background shape */
-.ha-fluid-bg{
-  position:absolute;
-  width:52%;max-width:240px;
-  top:50%;right:-4%;
-  transform:translateY(-50%) rotate(-15deg);
-  filter:invert(1) brightness(.04);
-  opacity:.12;
-  pointer-events:none;user-select:none;
-  animation:haFl1 8s ease-in-out infinite
-}
-/* Cat mascot nucleus */
-.ha-nuc{
+/* ── Cat illustration (inline SVG) ── */
+.ha-cat-wrap{
   position:absolute;top:50%;left:50%;
   transform:translate(-50%,-50%);
-  z-index:4
+  z-index:4;
+  animation:haFl0 6.5s ease-in-out infinite
 }
-@keyframes haNucGlow{
-  0%,100%{box-shadow:0 0 0 10px rgba(224,24,92,.08),0 0 24px rgba(224,24,92,.32)}
-  50%{box-shadow:0 0 0 22px rgba(224,24,92,.03),0 0 52px rgba(224,24,92,.6)}
+.ha-cat-svg{
+  width:clamp(150px,32vw,190px);
+  height:auto;
+  overflow:visible
 }
-.ha-cat-circle{
-  width:106px;height:106px;border-radius:50%;
-  background:var(--F);
-  display:flex;align-items:center;justify-content:center;
-  overflow:hidden;
-  position:relative;z-index:1;
-  animation:haNucGlow 3.2s ease-in-out infinite;
-  will-change:box-shadow
+/* soft glow behind cat */
+.ha-cat-glow{
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  width:280px;height:220px;
+  background:radial-gradient(ellipse,rgba(224,24,92,.12) 0%,transparent 65%);
+  pointer-events:none;z-index:3;
+  animation:haGlowB 4s ease-in-out infinite
 }
-/* mix-blend-mode:multiply on fuchsia bg: white→fuchsia, black→black = clean cat logo */
-.ha-cat-circle img{
-  width:78%;height:78%;
-  object-fit:contain;
-  mix-blend-mode:multiply;
-  display:block
-}
+/* eye circles breathe */
+@keyframes haEyeBreath{0%,100%{transform:scale(1)}50%{transform:scale(.965)}}
+.ha-eye{transform-box:fill-box;transform-origin:center;animation:haEyeBreath 4.2s ease-in-out infinite}
+.ha-eye-r{animation-delay:.7s}
+/* pupils shift left-right (look around) */
+@keyframes haPupilShift{0%,35%,100%{transform:translateX(0)}55%,85%{transform:translateX(-5px)}}
+.ha-pupil{animation:haPupilShift 8s ease-in-out infinite}
+.ha-pupil-r{animation-delay:.25s}
+/* star rotates */
+@keyframes haStarR{0%,100%{transform:rotate(0deg)}50%{transform:rotate(60deg)}}
+.ha-star-g{transform-box:fill-box;transform-origin:center;animation:haStarR 9s ease-in-out infinite}
+/* dots pulse */
+@keyframes haDotPulse{0%,100%{opacity:.6;transform:scale(1)}50%{opacity:1;transform:scale(1.3)}}
+.ha-dot{transform-box:fill-box;transform-origin:center;animation:haDotPulse 3s ease-in-out infinite}
+.ha-dot-r{animation-delay:.9s}
 /* chip position wrappers */
 .ha-cw{position:absolute;z-index:5}
 .ha-cw-l{left:2%;top:50%;transform:translateY(-50%)}
@@ -211,8 +210,9 @@ body{font-family:var(--fb);background:var(--K);color:var(--C);overflow-x:hidden;
 /* reduced motion */
 @media(prefers-reduced-motion:reduce){
   .ha-glow,.ha-l1,.ha-l2,.ha-l3,.ha-md,.ha-md1,.ha-md2,
-  .ha-p,.ha-ro,.ha-ri,.ha-nuc-core,.ha-geo,
-  .ha-fl0,.ha-fl1,.ha-fl2{animation:none!important}
+  .ha-p,.ha-ro,.ha-ri,.ha-geo,
+  .ha-fl0,.ha-fl1,.ha-fl2,
+  .ha-cat-wrap,.ha-eye,.ha-pupil,.ha-star-g,.ha-dot,.ha-cat-glow{animation:none!important}
 }
 
 /* ── COLONNA DESTRA: form centrato verticalmente ── */
@@ -2247,14 +2247,10 @@ footer{background:var(--K3);padding:48px 0 22px;border-top:1px solid rgba(255,25
         <!-- Background glows -->
         <ellipse cx="210" cy="115" rx="158" ry="100" fill="url(#haGg)" class="ha-glow"/>
         <ellipse cx="340" cy="55" rx="80" ry="60" fill="url(#haGg2)" class="ha-glow" style="animation-delay:.8s"/>
-        <!-- Connecting lines (dashed, march) — start just outside photo frame (~45px radius) -->
-        <line x1="166" y1="115" x2="138" y2="115" stroke="rgba(243,239,224,.15)" stroke-width="1" stroke-dasharray="4 5" class="ha-l1"/>
-        <line x1="241" y1="82"  x2="282" y2="46"  stroke="rgba(232,180,74,.2)"  stroke-width="1" stroke-dasharray="4 5" class="ha-l2"/>
-        <line x1="241" y1="148" x2="282" y2="184" stroke="rgba(243,239,224,.13)" stroke-width="1" stroke-dasharray="4 5" class="ha-l3"/>
-        <!-- Mid-line pulse nodes -->
-        <circle cx="174" cy="115" r="2.5" fill="rgba(243,239,224,.35)" class="ha-md"/>
-        <circle cx="246" cy="80"  r="2.5" fill="rgba(232,180,74,.5)"   class="ha-md ha-md1"/>
-        <circle cx="246" cy="150" r="2.5" fill="rgba(224,24,92,.4)"    class="ha-md ha-md2"/>
+        <!-- Scattered pulse nodes -->
+        <circle cx="155" cy="115" r="2.5" fill="rgba(243,239,224,.3)"  class="ha-md"/>
+        <circle cx="256" cy="72"  r="2.5" fill="rgba(232,180,74,.45)"  class="ha-md ha-md1"/>
+        <circle cx="256" cy="158" r="2.5" fill="rgba(224,24,92,.35)"   class="ha-md ha-md2"/>
         <!-- Floating particles -->
         <circle cx="42"  cy="192" r="2"   fill="rgba(224,24,92,.28)"   class="ha-p ha-p0"/>
         <circle cx="388" cy="162" r="1.5" fill="rgba(232,180,74,.38)"  class="ha-p ha-p1"/>
@@ -2267,18 +2263,48 @@ footer{background:var(--K3);padding:48px 0 22px;border-top:1px solid rgba(255,25
         <circle cx="70" cy="200" r="8" fill="none" stroke="rgba(224,24,92,.07)" stroke-width="1" class="ha-geo" style="animation-delay:1.2s"/>
       </svg>
 
-      <!-- Fluid organic brand shape — decorative bg -->
-      <img class="ha-fluid-bg" src="elemento-visivo-1.webp" alt="" aria-hidden="true">
-
       <!-- Orbit rings -->
       <div class="ha-ring ha-ro" aria-hidden="true"></div>
       <div class="ha-ring ha-ri" aria-hidden="true"></div>
 
-      <!-- Central: Estro cat mascot in fuchsia circle -->
-      <div class="ha-nuc" aria-hidden="true">
-        <div class="ha-cat-circle">
-          <img src="gattino-estro-favicon.png" alt="">
-        </div>
+      <!-- Glow behind cat -->
+      <div class="ha-cat-glow" aria-hidden="true"></div>
+
+      <!-- Estro cat mascot — inline SVG, faithful to outline version, fully animated -->
+      <div class="ha-cat-wrap" aria-hidden="true">
+        <svg class="ha-cat-svg" viewBox="0 0 240 195" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+
+          <!-- Left eye circle -->
+          <circle class="ha-eye ha-eye-l" cx="76" cy="108" r="52" stroke="#F3EFE0" stroke-width="5.5"/>
+          <!-- Left pupil (curved slit) -->
+          <g class="ha-pupil ha-pupil-l">
+            <path d="M69,84 C60,96 60,120 69,132" stroke="#E0185C" stroke-width="8.5" stroke-linecap="round"/>
+          </g>
+
+          <!-- Right eye circle -->
+          <circle class="ha-eye ha-eye-r" cx="164" cy="108" r="52" stroke="#F3EFE0" stroke-width="5.5"/>
+          <!-- Right pupil -->
+          <g class="ha-pupil ha-pupil-r">
+            <path d="M157,84 C148,96 148,120 157,132" stroke="#E0185C" stroke-width="8.5" stroke-linecap="round"/>
+          </g>
+
+          <!-- Two brow dots -->
+          <circle class="ha-dot ha-dot-l" cx="95"  cy="46" r="5.5" fill="#F3EFE0"/>
+          <circle class="ha-dot ha-dot-r" cx="145" cy="46" r="5.5" fill="#F3EFE0"/>
+
+          <!-- Asterisk / star brand mark -->
+          <g class="ha-star-g" transform="translate(120,55)">
+            <line x1="0" y1="-13" x2="0" y2="13" stroke="#F3EFE0" stroke-width="8" stroke-linecap="round"/>
+            <line x1="0" y1="-13" x2="0" y2="13" stroke="#F3EFE0" stroke-width="8" stroke-linecap="round" transform="rotate(60)"/>
+            <line x1="0" y1="-13" x2="0" y2="13" stroke="#F3EFE0" stroke-width="8" stroke-linecap="round" transform="rotate(120)"/>
+          </g>
+
+          <!-- Nose / mouth -->
+          <rect x="108" y="136" width="24" height="11" rx="5.5" stroke="#F3EFE0" stroke-width="4.5" fill="none"/>
+          <path d="M109,147 Q104,158 97,162" stroke="#F3EFE0" stroke-width="4.5" stroke-linecap="round"/>
+          <path d="M131,147 Q136,158 143,162" stroke="#F3EFE0" stroke-width="4.5" stroke-linecap="round"/>
+
+        </svg>
       </div>
 
       <!-- Chip: Strategia (left, vertically centred) -->
