@@ -142,38 +142,49 @@ body{font-family:var(--fb);background:var(--K);color:var(--C);overflow-x:hidden;
   border-color:rgba(224,24,92,.1);
   animation:haRotCcw 38s linear infinite
 }
-/* ── Cat illustration (image) ── */
-.ha-cat-wrap{
-  position:absolute;top:50%;left:50%;
-  transform:translate(-50%,-50%);
-  z-index:4
+/* ── Bust illustration ── */
+.ha-bust-wrap{
+  position:absolute;
+  right:-2%;top:0;bottom:0;
+  width:66%;
+  z-index:3;
+  overflow:hidden;
+  /* gradient mask: fades all edges into the dark background */
+  -webkit-mask-image:
+    linear-gradient(to right, transparent 0%, black 22%, black 78%, transparent 100%),
+    linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%);
+  -webkit-mask-composite:destination-in;
+  mask-image:
+    linear-gradient(to right, transparent 0%, black 22%, black 78%, transparent 100%),
+    linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%);
+  mask-composite:intersect
 }
-/* invert: black lines → white; screen: white bg (now black after invert) → transparent on dark hero */
-@keyframes haCatFloat{
+@keyframes haBustFloat{
   0%,100%{transform:translateY(0) scale(1)}
-  50%{transform:translateY(-9px) scale(1.025)}
+  50%{transform:translateY(-10px) scale(1.018)}
 }
-.ha-cat-img{
-  width:clamp(160px,36vw,220px);
-  height:auto;
+.ha-bust-img{
+  width:100%;height:100%;
+  object-fit:contain;
+  object-position:center 40%;
   display:block;
-  filter:invert(1);
-  animation:haCatFloat 6.5s ease-in-out infinite
+  filter:brightness(.78) contrast(1.2) saturate(1.55);
+  animation:haBustFloat 7s ease-in-out infinite
 }
-/* soft glow behind cat */
-.ha-cat-glow{
-  position:absolute;top:50%;left:50%;
-  transform:translate(-50%,-50%);
-  width:300px;height:240px;
-  background:radial-gradient(ellipse,rgba(224,24,92,.13) 0%,transparent 65%);
-  pointer-events:none;z-index:3;
-  animation:haGlowB 4s ease-in-out infinite
+/* fuchsia pulse glow behind bust */
+.ha-bust-glow{
+  position:absolute;
+  right:5%;top:50%;transform:translateY(-50%);
+  width:55%;height:80%;
+  background:radial-gradient(ellipse,rgba(224,24,92,.14) 0%,rgba(232,180,74,.05) 45%,transparent 72%);
+  pointer-events:none;z-index:2;
+  animation:haGlowB 5s ease-in-out infinite
 }
-/* chip position wrappers */
+/* chip position wrappers — left column stacked vertically */
 .ha-cw{position:absolute;z-index:5}
 .ha-cw-l{left:2%;top:50%;transform:translateY(-50%)}
-.ha-cw-tr{right:2%;top:9%}
-.ha-cw-br{right:2%;bottom:9%}
+.ha-cw-tr{left:2%;top:9%}
+.ha-cw-br{left:2%;bottom:9%}
 /* chips */
 .ha-chip{
   display:flex;align-items:center;gap:9px;
@@ -201,9 +212,9 @@ body{font-family:var(--fb);background:var(--K);color:var(--C);overflow-x:hidden;
 /* reduced motion */
 @media(prefers-reduced-motion:reduce){
   .ha-glow,.ha-l1,.ha-l2,.ha-l3,.ha-md,.ha-md1,.ha-md2,
-  .ha-p,.ha-ro,.ha-ri,.ha-geo,
+  .ha-p,.ha-geo,
   .ha-fl0,.ha-fl1,.ha-fl2,
-  .ha-cat-img,.ha-cat-glow{animation:none!important}
+  .ha-bust-img,.ha-bust-glow{animation:none!important}
 }
 
 /* ── COLONNA DESTRA: form centrato verticalmente ── */
@@ -2254,16 +2265,12 @@ footer{background:var(--K3);padding:48px 0 22px;border-top:1px solid rgba(255,25
         <circle cx="70" cy="200" r="8" fill="none" stroke="rgba(224,24,92,.07)" stroke-width="1" class="ha-geo" style="animation-delay:1.2s"/>
       </svg>
 
-      <!-- Orbit rings -->
-      <div class="ha-ring ha-ro" aria-hidden="true"></div>
-      <div class="ha-ring ha-ri" aria-hidden="true"></div>
+      <!-- Fuchsia glow behind bust -->
+      <div class="ha-bust-glow" aria-hidden="true"></div>
 
-      <!-- Glow behind cat -->
-      <div class="ha-cat-glow" aria-hidden="true"></div>
-
-      <!-- Estro cat mascot graphic -->
-      <div class="ha-cat-wrap" aria-hidden="true">
-        <img class="ha-cat-img" src="grafica%20header.png" alt="">
+      <!-- Hero section bust — blended via CSS mask gradients -->
+      <div class="ha-bust-wrap" aria-hidden="true">
+        <img class="ha-bust-img" src="Hero section1.webp" alt="">
       </div>
 
       <!-- Chip: Strategia (left, vertically centred) -->
