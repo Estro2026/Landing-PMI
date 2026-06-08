@@ -869,19 +869,18 @@ h2.srv em{font-style:normal;color:var(--F)}
 .sc-top{display:flex;align-items:flex-start;padding-bottom:0;position:relative;z-index:2;flex-shrink:0}
 .sc-bot{position:relative;z-index:2;flex:1;min-width:0}
 .sc-tag{display:block;margin-bottom:4px}
-.sc-tag{font-size:8px;font-weight:700;letter-spacing:3.5px;text-transform:uppercase;color:rgba(224,24,92,.7);display:block;margin-bottom:6px}
+.sc-tag{font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:rgba(224,24,92,.85);display:block;margin-bottom:5px}
 
-.sc-name{font-family:var(--fd);font-size:13px;color:var(--C);letter-spacing:-.3px;line-height:1.2;margin-bottom:0}
+.sc-name{font-family:var(--fd);font-size:14.5px;color:var(--C);letter-spacing:-.2px;line-height:1.25;margin-bottom:0;word-break:break-word}
 
-/* ── collapsible description ── */
+/* ── description always visible ── */
 .sc-desc-wrap{
-  overflow:hidden;
-  max-height:0;
-  opacity:0;
-  transition:max-height .5s cubic-bezier(.4,0,.2,1),opacity .38s ease,margin-top .5s cubic-bezier(.4,0,.2,1)
+  overflow:visible;
+  max-height:none;
+  opacity:1;
+  margin-top:6px
 }
-.sc.sc-open .sc-desc-wrap{max-height:200px;opacity:1;margin-top:8px}
-.sc-desc{font-size:12.5px;color:rgba(243,239,224,.78);line-height:1.65;margin:0;padding-bottom:2px}
+.sc-desc{font-size:12px;color:rgba(243,239,224,.72);line-height:1.6;margin:0;padding-bottom:2px}
 
 @media(prefers-reduced-motion:reduce){
   .sc{opacity:1!important;transform:none!important}
