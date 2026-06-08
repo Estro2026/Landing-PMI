@@ -93,8 +93,8 @@ body{font-family:var(--fb);background:var(--K);color:var(--C);overflow-x:hidden;
 
 /* ── Hero micro-animation ──────────────────────────────────────────────── */
 .hero-anim{
-  background:rgba(255,255,255,.025);
-  border:1px solid rgba(255,255,255,.07)
+  background:var(--K3);
+  border:1px solid rgba(255,255,255,.06)
 }
 /* decorative SVG layer */
 .ha-svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;display:block}
@@ -158,9 +158,7 @@ body{font-family:var(--fb);background:var(--K);color:var(--C);overflow-x:hidden;
   height:auto;
   display:block;
   filter:invert(1);
-  mix-blend-mode:screen;
-  animation:haCatFloat 6.5s ease-in-out infinite;
-  will-change:transform
+  animation:haCatFloat 6.5s ease-in-out infinite
 }
 /* soft glow behind cat */
 .ha-cat-glow{
@@ -2265,7 +2263,7 @@ footer{background:var(--K3);padding:48px 0 22px;border-top:1px solid rgba(255,25
 
       <!-- Estro cat mascot graphic -->
       <div class="ha-cat-wrap" aria-hidden="true">
-        <img class="ha-cat-img" src="grafica header.png" alt="">
+        <img class="ha-cat-img" src="grafica%20header.png" alt="">
       </div>
 
       <!-- Chip: Strategia (left, vertically centred) -->
