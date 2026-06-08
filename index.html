@@ -145,8 +145,9 @@ body{font-family:var(--fb);background:var(--K);color:var(--C);overflow-x:hidden;
 /* ── Bust illustration ── */
 .ha-bust-wrap{
   position:absolute;
-  right:-2%;top:0;bottom:0;
-  width:66%;
+  left:50%;top:0;bottom:0;
+  transform:translateX(-50%);
+  width:58%;
   z-index:3;
   overflow:hidden;
   /* gradient mask: fades all edges into the dark background */
@@ -174,17 +175,24 @@ body{font-family:var(--fb);background:var(--K);color:var(--C);overflow-x:hidden;
 /* fuchsia pulse glow behind bust */
 .ha-bust-glow{
   position:absolute;
-  right:5%;top:50%;transform:translateY(-50%);
-  width:55%;height:80%;
+  left:50%;top:50%;transform:translate(-50%,-50%);
+  width:60%;height:80%;
   background:radial-gradient(ellipse,rgba(224,24,92,.14) 0%,rgba(232,180,74,.05) 45%,transparent 72%);
   pointer-events:none;z-index:2;
   animation:haGlowB 5s ease-in-out infinite
 }
-/* chip position wrappers — left column stacked vertically */
+/* chip position wrappers — 4 corners */
 .ha-cw{position:absolute;z-index:5}
-.ha-cw-l{left:2%;top:50%;transform:translateY(-50%)}
-.ha-cw-tr{left:2%;top:9%}
-.ha-cw-br{left:2%;bottom:9%}
+.ha-cw-tl{left:3%;top:8%}
+.ha-cw-bl{left:3%;bottom:8%}
+.ha-cw-tr{right:3%;top:8%}
+.ha-cw-br{right:3%;bottom:8%}
+/* animated connector lines */
+.ha-line{stroke-dasharray:5 4;stroke-dashoffset:0;animation:haDash 2.8s linear infinite}
+.ha-line-y{stroke:rgba(232,180,74,.35)}
+.ha-line-f{stroke:rgba(224,24,92,.35)}
+.ha-line-c{stroke:rgba(243,239,224,.2)}
+.ha-dot-pulse{animation:haMdP 2.2s ease-in-out infinite}
 /* chips */
 .ha-chip{
   display:flex;align-items:center;gap:9px;
@@ -209,6 +217,7 @@ body{font-family:var(--fb);background:var(--K);color:var(--C);overflow-x:hidden;
 .ha-fl0{animation:haFl0 5.6s ease-in-out infinite}
 .ha-fl1{animation:haFl1 6.4s ease-in-out infinite .8s}
 .ha-fl2{animation:haFl2 5.2s ease-in-out infinite 1.6s}
+.ha-fl0[style*="2.4s"]{animation-delay:2.4s}
 /* reduced motion */
 @media(prefers-reduced-motion:reduce){
   .ha-glow,.ha-l1,.ha-l2,.ha-l3,.ha-md,.ha-md1,.ha-md2,
@@ -1475,7 +1484,7 @@ h2.srv em{font-style:normal;color:var(--F)}
 .cs-tags span{font-size:9px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:rgba(243,239,224,.38);background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.07);border-radius:4px;padding:3px 7px;line-height:1}
 
 /* ═══ PORTFOLIO TABS (case study) ═══ */
-.pf-tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:30px}
+.pf-tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:30px}
 .pf-tab{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:var(--rm);padding:18px 14px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;cursor:pointer;transition:all .28s;position:relative;overflow:hidden;font-family:var(--fb)}
 .pf-tab::after{content:'';position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:0;height:2px;background:var(--F);transition:width .3s}
 .pf-tab:hover{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.14)}
@@ -2273,24 +2282,25 @@ footer{background:var(--K3);padding:48px 0 22px;border-top:1px solid rgba(255,25
         <img class="ha-bust-img" src="Hero section1.webp" alt="">
       </div>
 
-      <!-- Chip: Strategia (left, vertically centred) -->
-      <div class="ha-cw ha-cw-l">
-        <div class="ha-chip ha-fl0">
-          <div class="ha-ico ha-ico-f">
-            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" width="15" height="15" aria-hidden="true">
-              <polyline points="2,15 6.5,10 9.5,12.5 13.5,7.5 18,10"/>
-              <line x1="2" y1="17.5" x2="18" y2="17.5"/>
-            </svg>
-          </div>
-          <div>
-            <div class="ha-chip-n">Strategia</div>
-            <div class="ha-chip-d">ROI misurabile</div>
-          </div>
-        </div>
-      </div>
+      <!-- Connector lines: chip anchors → bust center -->
+      <svg class="ha-svg" style="z-index:4;pointer-events:none" viewBox="0 0 420 230" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+        <!-- TL chip (Creatività) → bust center ~210,115 -->
+        <line x1="90" y1="32" x2="190" y2="105" stroke-width="1" fill="none" class="ha-line ha-line-y" style="animation-delay:0s"/>
+        <!-- BL chip (Comunicazione) → bust center -->
+        <line x1="90" y1="198" x2="190" y2="125" stroke-width="1" fill="none" class="ha-line ha-line-c" style="animation-delay:.7s"/>
+        <!-- TR chip (Strategia) → bust center -->
+        <line x1="330" y1="32" x2="230" y2="105" stroke-width="1" fill="none" class="ha-line ha-line-f" style="animation-delay:.35s"/>
+        <!-- BR chip (ADV) → bust center -->
+        <line x1="330" y1="198" x2="230" y2="125" stroke-width="1" fill="none" class="ha-line ha-line-y" style="animation-delay:1.1s"/>
+        <!-- Pulsing dots at bust edge connection points -->
+        <circle cx="190" cy="105" r="3" fill="rgba(232,180,74,.6)" class="ha-dot-pulse" style="animation-delay:0s"/>
+        <circle cx="190" cy="125" r="3" fill="rgba(243,239,224,.45)" class="ha-dot-pulse" style="animation-delay:.7s"/>
+        <circle cx="230" cy="105" r="3" fill="rgba(224,24,92,.65)" class="ha-dot-pulse" style="animation-delay:.35s"/>
+        <circle cx="230" cy="125" r="3" fill="rgba(232,180,74,.5)" class="ha-dot-pulse" style="animation-delay:1.1s"/>
+      </svg>
 
-      <!-- Chip: Creatività (top-right) -->
-      <div class="ha-cw ha-cw-tr">
+      <!-- Chip: Creatività (top-left) -->
+      <div class="ha-cw ha-cw-tl">
         <div class="ha-chip ha-fl1">
           <div class="ha-ico ha-ico-y">
             <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" width="15" height="15" aria-hidden="true">
@@ -2305,8 +2315,8 @@ footer{background:var(--K3);padding:48px 0 22px;border-top:1px solid rgba(255,25
         </div>
       </div>
 
-      <!-- Chip: Comunicazione (bottom-right) -->
-      <div class="ha-cw ha-cw-br">
+      <!-- Chip: Comunicazione (bottom-left) -->
+      <div class="ha-cw ha-cw-bl">
         <div class="ha-chip ha-fl2">
           <div class="ha-ico ha-ico-c">
             <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" width="15" height="15" aria-hidden="true">
@@ -2316,6 +2326,38 @@ footer{background:var(--K3);padding:48px 0 22px;border-top:1px solid rgba(255,25
           <div>
             <div class="ha-chip-n">Comunicazione</div>
             <div class="ha-chip-d">Voce del brand</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chip: Strategia (top-right) -->
+      <div class="ha-cw ha-cw-tr">
+        <div class="ha-chip ha-fl0">
+          <div class="ha-ico ha-ico-f">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" width="15" height="15" aria-hidden="true">
+              <polyline points="2,15 6.5,10 9.5,12.5 13.5,7.5 18,10"/>
+              <line x1="2" y1="17.5" x2="18" y2="17.5"/>
+            </svg>
+          </div>
+          <div>
+            <div class="ha-chip-n">Strategia</div>
+            <div class="ha-chip-d">ROI misurabile</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chip: ADV (bottom-right) -->
+      <div class="ha-cw ha-cw-br">
+        <div class="ha-chip ha-fl0" style="animation-delay:2.4s">
+          <div class="ha-ico ha-ico-y">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" width="15" height="15" aria-hidden="true">
+              <rect x="2" y="5" width="16" height="11" rx="2"/>
+              <path d="M6 9h8M6 12h5"/>
+            </svg>
+          </div>
+          <div>
+            <div class="ha-chip-n">ADV</div>
+            <div class="ha-chip-d">Campagne misurate</div>
           </div>
         </div>
       </div>
@@ -2815,84 +2857,110 @@ footer{background:var(--K3);padding:48px 0 22px;border-top:1px solid rgba(255,25
 
     <!-- ── Portfolio Tabs — Case Study ── -->
     <div class="pf-tabs rv" role="tablist" style="margin-top:72px">
-      <button class="pf-tab on" data-pf="abctools" role="tab" aria-selected="true">
-        <span class="pf-tab-name">ABC Tools</span>
+      <button class="pf-tab on" data-pf="hdlmilano" role="tab" aria-selected="true">
+        <span class="pf-tab-name">HDL Milano</span>
       </button>
-      <button class="pf-tab" data-pf="mestel" role="tab" aria-selected="false">
-        <span class="pf-tab-name">Mestel</span>
+      <button class="pf-tab" data-pf="fragi" role="tab" aria-selected="false">
+        <span class="pf-tab-name">Fragi</span>
       </button>
-      <button class="pf-tab" data-pf="hdl" role="tab" aria-selected="false">
-        <span class="pf-tab-name">HDL Fashion</span>
+      <button class="pf-tab" data-pf="thefamily" role="tab" aria-selected="false">
+        <span class="pf-tab-name">The Family</span>
+      </button>
+      <button class="pf-tab" data-pf="abstools" role="tab" aria-selected="false">
+        <span class="pf-tab-name">ABStools</span>
       </button>
     </div>
 
     <!-- PANELS -->
     <div class="pf-panels">
 
-      <!-- ABC TOOLS -->
-      <div class="pf-panel on" data-pf-panel="abctools" role="tabpanel">
+      <!-- HDL MILANO -->
+      <div class="pf-panel on" data-pf-panel="hdlmilano" role="tabpanel">
         <div class="pf-grid">
-          <div class="pf-img"></div>
+          <div class="pf-img"><img src="foto case/hdl.webp" alt="HDL Milano"></div>
           <div class="pf-right">
             <div class="pf-info">
-              <div class="pf-info-logo"><img class="pf-logo-img" src="Loghi/ABC.webp" alt="ABC Tools" style="object-fit:contain"></div>
-              <div class="pf-info-sector">B2B · E-commerce · Performance media</div>
-              <div class="pf-info-title">Il B2B che diventa performance digitale</div>
-              <div class="pf-info-text">Una strategia per trasformare un catalogo tecnico in un motore di crescita online: campagne media, contenuti e retargeting coordinati per portare traffico qualificato e misurare il ritorno sull'investimento.</div>
+              <div class="pf-info-logo" style="font-family:var(--fd);font-size:18px;letter-spacing:2px;color:var(--C)">HDL MILANO</div>
+              <div class="pf-info-sector">Fashion · Luxury · Brand building</div>
+              <div class="pf-info-title">Un brand fashion milanese che si racconta con eleganza</div>
+              <div class="pf-info-text">Identità editoriale e strategia di contenuto per un marchio fashion di fascia alta: shooting coordinati, campagne Meta e presenza organica costruita per parlare al cliente giusto con il tono giusto.</div>
               <div class="pf-info-tags">
-                <span>Media buying</span><span>E-commerce</span><span>Retargeting</span><span>ROI</span>
+                <span>Fashion</span><span>Brand identity</span><span>Meta Ads</span><span>Editorial</span>
+              </div>
+            </div>
+            <div class="pf-stats">
+              <div class="pf-stat"><div class="pf-stat-val">+280%</div><div class="pf-stat-lbl">Reach organica in 8 mesi</div></div>
+              <div class="pf-stat"><div class="pf-stat-val">×3.1</div><div class="pf-stat-lbl">ROAS medio campagne</div></div>
+              <div class="pf-stat"><div class="pf-stat-val">Full</div><div class="pf-stat-lbl">Brand + performance coordinati</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FRAGI -->
+      <div class="pf-panel" data-pf-panel="fragi" role="tabpanel">
+        <div class="pf-grid">
+          <div class="pf-img"><img src="foto case/fragi.webp" alt="Fragi"></div>
+          <div class="pf-right">
+            <div class="pf-info">
+              <div class="pf-info-logo"><img class="pf-logo-img" src="Loghi/FRAGI.webp" alt="Fragi" style="object-fit:contain"></div>
+              <div class="pf-info-sector">Fashion · Menswear · E-commerce</div>
+              <div class="pf-info-title">Stile maschile che diventa desiderio digitale</div>
+              <div class="pf-info-text">Strategia creativa e ADV per un brand menswear: shooting editoriali, content piano mensile e campagne Meta ottimizzate per acquisizione e fidelizzazione di una clientela maschile esigente.</div>
+              <div class="pf-info-tags">
+                <span>Menswear</span><span>Content</span><span>Meta Ads</span><span>E-commerce</span>
+              </div>
+            </div>
+            <div class="pf-stats">
+              <div class="pf-stat"><div class="pf-stat-val">+190%</div><div class="pf-stat-lbl">Vendite online anno su anno</div></div>
+              <div class="pf-stat"><div class="pf-stat-val">×2.5</div><div class="pf-stat-lbl">ROAS campagne Meta</div></div>
+              <div class="pf-stat"><div class="pf-stat-val">12 mesi</div><div class="pf-stat-lbl">Crescita continuativa</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- THE FAMILY -->
+      <div class="pf-panel" data-pf-panel="thefamily" role="tabpanel">
+        <div class="pf-grid">
+          <div class="pf-img"><img src="foto case/thefamily.png" alt="The Family"></div>
+          <div class="pf-right">
+            <div class="pf-info">
+              <div class="pf-info-logo"><img class="pf-logo-img" src="Loghi/FAMILY.webp" alt="The Family" style="object-fit:contain"></div>
+              <div class="pf-info-sector">Hospitality · Ristorazione · Local marketing</div>
+              <div class="pf-info-title">Un'istituzione locale che torna a fare rumore</div>
+              <div class="pf-info-text">Rilancio digital per un locale storico: nuova voce social, campagne di prossimità, eventi promossi online e una community costruita attorno all'identità unica del posto. Dal 1900, con un sito.</div>
+              <div class="pf-info-tags">
+                <span>Ristorazione</span><span>Social media</span><span>Local ADV</span><span>Community</span>
+              </div>
+            </div>
+            <div class="pf-stats">
+              <div class="pf-stat"><div class="pf-stat-val">+420%</div><div class="pf-stat-lbl">Copertura social in 6 mesi</div></div>
+              <div class="pf-stat"><div class="pf-stat-val">+35%</div><div class="pf-stat-lbl">Prenotazioni da canali digitali</div></div>
+              <div class="pf-stat"><div class="pf-stat-val">Est. 1900</div><div class="pf-stat-lbl">Storytelling che valorizza la storia</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ABSTOOLS -->
+      <div class="pf-panel" data-pf-panel="abstools" role="tabpanel">
+        <div class="pf-grid">
+          <div class="pf-img"><img src="foto case/abctools.png" alt="ABStools"></div>
+          <div class="pf-right">
+            <div class="pf-info">
+              <div class="pf-info-logo"><img class="pf-logo-img" src="Loghi/ABC.webp" alt="ABStools" style="object-fit:contain"></div>
+              <div class="pf-info-sector">B2B · Utensili · Performance media</div>
+              <div class="pf-info-title">Il catalogo tecnico che diventa motore di vendita</div>
+              <div class="pf-info-text">Campagne performance e presenza digitale per un distributore B2B di utensili: dalla strategia al media buying, ogni euro investito tracciato e ottimizzato per massimizzare il ritorno sull'investimento.</div>
+              <div class="pf-info-tags">
+                <span>B2B</span><span>Media buying</span><span>Retargeting</span><span>ROI</span>
               </div>
             </div>
             <div class="pf-stats">
               <div class="pf-stat"><div class="pf-stat-val">125€</div><div class="pf-stat-lbl">Di ritorno per ogni € investito su Meta</div></div>
               <div class="pf-stat"><div class="pf-stat-val">6 mesi</div><div class="pf-stat-lbl">Durata della campagna</div></div>
               <div class="pf-stat"><div class="pf-stat-val">Full-funnel</div><div class="pf-stat-lbl">Copertura, traffico, retargeting e carrello</div></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- MESTEL -->
-      <div class="pf-panel" data-pf-panel="mestel" role="tabpanel">
-        <div class="pf-grid">
-          <div class="pf-img"><img src="Loghi/mestel_cover.webp" alt="Mestel Safety"></div>
-          <div class="pf-right">
-            <div class="pf-info">
-              <div class="pf-info-logo"><img class="pf-logo-img" src="Loghi/MESTEL.webp" alt="Mestel" style="object-fit:contain"></div>
-              <div class="pf-info-sector">B2B · Safety · Digital presence</div>
-              <div class="pf-info-title">Da prodotto tecnico a brand riconoscibile nel settore</div>
-              <div class="pf-info-text">Costruzione della presenza digitale per un'azienda leader nella sicurezza professionale: identità visiva, sito, LinkedIn e campagne per generare autorevolezza e lead qualificati nel B2B.</div>
-              <div class="pf-info-tags">
-                <span>B2B</span><span>LinkedIn</span><span>Web</span><span>Brand identity</span>
-              </div>
-            </div>
-            <div class="pf-stats">
-              <div class="pf-stat"><div class="pf-stat-val">+210%</div><div class="pf-stat-lbl">Traffico organico in 6 mesi</div></div>
-              <div class="pf-stat"><div class="pf-stat-val">60+</div><div class="pf-stat-lbl">Lead B2B qualificati/mese</div></div>
-              <div class="pf-stat"><div class="pf-stat-val">1</div><div class="pf-stat-lbl">Ecosistema digital coordinato</div></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- HDL FASHION -->
-      <div class="pf-panel" data-pf-panel="hdl" role="tabpanel">
-        <div class="pf-grid">
-          <div class="pf-img"></div>
-          <div class="pf-right">
-            <div class="pf-info">
-              <div class="pf-info-logo"><img class="pf-logo-img" src="Loghi/FAMILY.webp" alt="HDL Fashion" style="object-fit:contain"></div>
-              <div class="pf-info-sector">Fashion · E-commerce · Brand building</div>
-              <div class="pf-info-title">Un brand fashion che cresce con contenuti e ADV coordinati</div>
-              <div class="pf-info-text">Strategia integrata per un brand fashion DTC: contenuti editoriali, campagne Meta e Google, community management e report mensili per misurare ogni euro investito e scalare con continuità.</div>
-              <div class="pf-info-tags">
-                <span>Fashion</span><span>Meta Ads</span><span>Content</span><span>Community</span>
-              </div>
-            </div>
-            <div class="pf-stats">
-              <div class="pf-stat"><div class="pf-stat-val">+340%</div><div class="pf-stat-lbl">Revenue da canali digitali</div></div>
-              <div class="pf-stat"><div class="pf-stat-val">×2.8</div><div class="pf-stat-lbl">ROAS medio campagne</div></div>
-              <div class="pf-stat"><div class="pf-stat-val">14 mesi</div><div class="pf-stat-lbl">Time to scale</div></div>
             </div>
           </div>
         </div>
