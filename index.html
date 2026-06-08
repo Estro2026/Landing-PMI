@@ -869,18 +869,13 @@ h2.srv em{font-style:normal;color:var(--F)}
 .sc-top{display:flex;align-items:flex-start;padding-bottom:0;position:relative;z-index:2;flex-shrink:0}
 .sc-bot{position:relative;z-index:2;flex:1;min-width:0}
 .sc-tag{display:block;margin-bottom:4px}
-.sc-tag{font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:rgba(224,24,92,.85);display:block;margin-bottom:5px}
+.sc-tag{font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--F);display:block;margin-bottom:6px}
 
-.sc-name{font-family:var(--fd);font-size:14.5px;color:var(--C);letter-spacing:-.2px;line-height:1.25;margin-bottom:0;word-break:break-word}
+.sc-name{font-family:var(--fd);font-size:15px;color:#fff;letter-spacing:-.2px;line-height:1.25;margin-bottom:0;word-break:break-word}
 
-/* ── description always visible ── */
-.sc-desc-wrap{
-  overflow:visible;
-  max-height:none;
-  opacity:1;
-  margin-top:6px
-}
-.sc-desc{font-size:12px;color:rgba(243,239,224,.72);line-height:1.6;margin:0;padding-bottom:2px}
+/* ── description hidden ── */
+.sc-desc-wrap{display:none}
+.sc-desc{display:none}
 
 @media(prefers-reduced-motion:reduce){
   .sc{opacity:1!important;transform:none!important}
