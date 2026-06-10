@@ -3142,8 +3142,8 @@ const obs=new IntersectionObserver(es=>{
 
   // Minimum container width for orbit to stay fully within bounds.
   // Derived from: cx + rx + cardHalfWidth <= containerWidth
-  // where cx=0.5*W, rx=0.38*W, cardHalfWidth≈100px → W >= 100/0.12 ≈ 834px
-  const MIN_ORBIT_W=840;
+  // Switch to mobile grid below 1200px container width
+  const MIN_ORBIT_W=1200;
 
   const EDGES=[
     [-1,0],[-1,1],[-1,2],[-1,3],[-1,4],
