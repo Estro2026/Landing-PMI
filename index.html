@@ -1880,8 +1880,8 @@ footer{background:var(--K3);padding:48px 0 22px;border-top:1px solid rgba(255,25
   .srv-tagline{gap:10px;margin-bottom:24px;padding-bottom:0}
   .srv-flow{
     min-height:auto;
-    display:flex;
-    flex-direction:column;
+    display:grid!important;
+    grid-template-columns:1fr 1fr;
     gap:8px;
     padding:0
   }
@@ -1899,10 +1899,11 @@ footer{background:var(--K3);padding:48px 0 22px;border-top:1px solid rgba(255,25
   .srv-spacer{display:none!important}
   .sc,.srv-flow .sc,.srv-flow.vs .sc{
     width:100%;
-    padding:14px 16px;
-    flex-direction:row;
+    box-sizing:border-box;
+    padding:14px 12px;
+    flex-direction:column;
     align-items:flex-start;
-    gap:14px;
+    gap:10px;
     opacity:1!important;
     transform:none!important;
     transition:none!important;
@@ -2086,13 +2087,13 @@ footer{background:var(--K3);padding:48px 0 22px;border-top:1px solid rgba(255,25
 
 /* ── Servizi orbit: class-based mobile fallback (applied dynamically by JS
    when the container is too narrow to contain the orbit without overflow) ── */
-.srv-flow.srv-mobile{min-height:auto!important;display:flex!important;flex-direction:column!important;gap:8px!important;padding:0!important}
+.srv-flow.srv-mobile{min-height:auto!important;display:grid!important;grid-template-columns:1fr 1fr!important;flex-direction:unset!important;gap:8px!important;padding:0!important}
 .srv-flow.srv-mobile .srv-item{position:static!important;transform:none!important;animation:none!important;left:auto!important;top:auto!important;width:100%!important}
 .srv-flow.srv-mobile .srv-item:nth-child(n){animation:none!important}
 .srv-flow.srv-mobile .srv-nucleus-hub{display:none!important}
 .srv-flow.srv-mobile #srvNexus{display:none!important}
 .srv-flow.srv-mobile .srv-spacer{display:none!important}
-.srv-flow.srv-mobile .sc,.srv-flow.srv-mobile.vs .sc{width:100%!important;padding:14px 16px!important;flex-direction:row!important;align-items:flex-start!important;gap:14px!important;opacity:1!important;transform:none!important;transition:none!important;border-radius:14px!important}
+.srv-flow.srv-mobile .sc,.srv-flow.srv-mobile.vs .sc{width:100%!important;box-sizing:border-box!important;padding:14px 12px!important;flex-direction:column!important;align-items:flex-start!important;gap:10px!important;opacity:1!important;transform:none!important;transition:none!important;border-radius:14px!important}
 
 /* ── Small phones ≤480px ── */
 @media(max-width:480px){
