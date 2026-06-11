@@ -2179,6 +2179,46 @@ footer{background:var(--K3);padding:48px 0 22px;border-top:1px solid rgba(255,25
   .lw-track{animation-duration:28s}
 }
 
+/* ═══ CLIENTI SHOWCASE ═══ */
+.clienti{background:var(--K2);padding:80px 0 96px;position:relative;overflow:hidden}
+.clienti::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(243,239,224,.022) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0}
+.cl-hdr{text-align:center;margin-bottom:48px;position:relative;z-index:1}
+.cl-eyebrow{font-size:11px;font-weight:700;letter-spacing:3.5px;text-transform:uppercase;color:var(--F);display:block;margin-bottom:14px}
+.cl-title{font-family:var(--fd);font-size:clamp(26px,3vw,42px);color:var(--C);letter-spacing:-1.4px;line-height:1.06;margin:0}
+.cl-title em{font-style:normal;color:var(--F)}
+.cl-sub{font-size:15px;color:rgba(243,239,224,.48);margin-top:12px;max-width:460px;margin-left:auto;margin-right:auto;line-height:1.65}
+/* filter bar */
+.cl-filters{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:44px;position:relative;z-index:1}
+.cl-fbtn{padding:8px 20px;border-radius:100px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);color:rgba(243,239,224,.48);font-family:var(--fb);font-size:12.5px;font-weight:600;cursor:pointer;transition:all .24s cubic-bezier(.22,1,.36,1);letter-spacing:.2px;white-space:nowrap;outline:none}
+.cl-fbtn:hover{border-color:rgba(224,24,92,.38);color:var(--C);background:rgba(224,24,92,.08)}
+.cl-fbtn.on{background:var(--F);border-color:var(--F);color:#fff;box-shadow:0 4px 20px rgba(224,24,92,.42)}
+/* grid */
+.cl-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;position:relative;z-index:1}
+/* card */
+.cl-card{background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.07);border-radius:18px;padding:30px 20px 22px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;position:relative;overflow:hidden;cursor:default;transition:transform .38s cubic-bezier(.22,1,.36,1),border-color .3s,box-shadow .38s,background .3s,opacity .3s;opacity:0;transform:translateY(14px)}
+.cl-card.cl-vis{opacity:1;transform:translateY(0)}
+.cl-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(224,24,92,.07),transparent 55%);opacity:0;transition:opacity .35s;pointer-events:none}
+.cl-card:hover{transform:translateY(-5px);border-color:rgba(224,24,92,.32);box-shadow:0 22px 52px rgba(0,0,0,.3),inset 0 0 0 1px rgba(224,24,92,.09);background:rgba(255,255,255,.065)}
+.cl-card:hover::before{opacity:1}
+.cl-card.cl-out{opacity:0;transform:scale(.9) translateY(6px);pointer-events:none}
+/* logo */
+.cl-logo-wrap{width:100%;max-width:150px;height:56px;display:flex;align-items:center;justify-content:center}
+.cl-logo-wrap img{max-width:100%;max-height:100%;object-fit:contain;filter:brightness(0) invert(1) opacity(.65);transition:filter .3s}
+.cl-card:hover .cl-logo-wrap img{filter:brightness(0) invert(1) opacity(1)}
+/* name */
+.cl-name{font-family:var(--fb);font-size:11.5px;font-weight:600;color:rgba(243,239,224,.36);letter-spacing:.4px;text-align:center;transition:color .3s}
+.cl-card:hover .cl-name{color:rgba(243,239,224,.72)}
+/* category badge */
+.cl-cat{position:absolute;top:11px;right:11px;font-size:8px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;padding:3px 9px;border-radius:100px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.09);color:rgba(243,239,224,.28);transition:all .3s;white-space:nowrap}
+.cl-card:hover .cl-cat{background:rgba(224,24,92,.12);border-color:rgba(224,24,92,.28);color:rgba(224,24,92,.82)}
+/* footer count */
+.cl-count{font-size:13px;color:rgba(243,239,224,.32);text-align:center;margin-top:32px;position:relative;z-index:1}
+.cl-count strong{color:rgba(243,239,224,.72);font-weight:700}
+/* responsive */
+@media(max-width:1100px){.cl-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:768px){.cl-grid{grid-template-columns:repeat(2,1fr);gap:12px}.cl-filters{gap:6px;justify-content:flex-start;overflow-x:auto;flex-wrap:nowrap;padding-bottom:4px;-ms-overflow-style:none;scrollbar-width:none}.cl-filters::-webkit-scrollbar{display:none}.cl-fbtn{font-size:11.5px;padding:7px 15px;flex-shrink:0}.cl-logo-wrap{height:46px}.cl-card{padding:24px 14px 18px}}
+@media(max-width:480px){.cl-grid{gap:10px}.cl-card{padding:20px 12px 16px;border-radius:14px}}
+
 
 </style>
 </head>
@@ -2419,6 +2459,88 @@ footer{background:var(--K3);padding:48px 0 22px;border-top:1px solid rgba(255,25
     </div>
   </div>
 </div>
+
+<!-- ═══ CLIENTI SHOWCASE ═══ -->
+<section class="clienti">
+  <div class="ctr">
+
+    <div class="cl-hdr rv">
+      <span class="cl-eyebrow">I nostri clienti</span>
+      <h2 class="cl-title">Brand che hanno scelto<br><em>di crescere con noi</em></h2>
+      <p class="cl-sub">PMI di settori diversi, un denominatore comune: la voglia di fare marketing serio</p>
+    </div>
+
+    <div class="cl-filters" role="group" aria-label="Filtra per settore">
+      <button class="cl-fbtn on" data-cat="all">Tutti</button>
+      <button class="cl-fbtn" data-cat="fashion">Fashion</button>
+      <button class="cl-fbtn" data-cat="retail">Retail</button>
+      <button class="cl-fbtn" data-cat="food">Food & Beverage</button>
+      <button class="cl-fbtn" data-cat="manufacturing">Manufacturing</button>
+      <button class="cl-fbtn" data-cat="technology">Technology</button>
+    </div>
+
+    <div class="cl-grid" id="clGrid">
+      <div class="cl-card" data-cat="fashion">
+        <span class="cl-cat">Fashion</span>
+        <div class="cl-logo-wrap"><img src="Loghi/hdllogo.webp" alt="HDL Milano" loading="lazy"></div>
+        <div class="cl-name">HDL Milano</div>
+      </div>
+      <div class="cl-card" data-cat="fashion">
+        <span class="cl-cat">Fashion</span>
+        <div class="cl-logo-wrap"><img src="Loghi/FRAGI.webp" alt="Fragi" loading="lazy"></div>
+        <div class="cl-name">Fragi</div>
+      </div>
+      <div class="cl-card" data-cat="fashion">
+        <span class="cl-cat">Fashion</span>
+        <div class="cl-logo-wrap"><img src="Loghi/KATE.webp" alt="Kate" loading="lazy"></div>
+        <div class="cl-name">Kate</div>
+      </div>
+      <div class="cl-card" data-cat="retail">
+        <span class="cl-cat">Retail</span>
+        <div class="cl-logo-wrap"><img src="Loghi/LOVESUN.webp" alt="Lovesun" loading="lazy"></div>
+        <div class="cl-name">Lovesun</div>
+      </div>
+      <div class="cl-card" data-cat="retail">
+        <span class="cl-cat">Retail</span>
+        <div class="cl-logo-wrap"><img src="Loghi/NOIKASA.webp" alt="Noikasa" loading="lazy"></div>
+        <div class="cl-name">Noikasa</div>
+      </div>
+      <div class="cl-card" data-cat="food">
+        <span class="cl-cat">Food &amp; Bev</span>
+        <div class="cl-logo-wrap"><img src="Loghi/FAMILY.webp" alt="The Family" loading="lazy"></div>
+        <div class="cl-name">The Family</div>
+      </div>
+      <div class="cl-card" data-cat="manufacturing">
+        <span class="cl-cat">Manufacturing</span>
+        <div class="cl-logo-wrap"><img src="Loghi/ABC.webp" alt="ABCtools" loading="lazy"></div>
+        <div class="cl-name">ABCtools</div>
+      </div>
+      <div class="cl-card" data-cat="manufacturing">
+        <span class="cl-cat">Manufacturing</span>
+        <div class="cl-logo-wrap"><img src="Loghi/MESTEL.webp" alt="Mestel" loading="lazy"></div>
+        <div class="cl-name">Mestel</div>
+      </div>
+      <div class="cl-card" data-cat="manufacturing">
+        <span class="cl-cat">Manufacturing</span>
+        <div class="cl-logo-wrap"><img src="Loghi/FINESTRATEK.webp" alt="Finestratek" loading="lazy"></div>
+        <div class="cl-name">Finestratek</div>
+      </div>
+      <div class="cl-card" data-cat="technology">
+        <span class="cl-cat">Technology</span>
+        <div class="cl-logo-wrap"><img src="Loghi/ELCO.webp" alt="Elco" loading="lazy"></div>
+        <div class="cl-name">Elco</div>
+      </div>
+      <div class="cl-card" data-cat="technology">
+        <span class="cl-cat">Technology</span>
+        <div class="cl-logo-wrap"><img src="Loghi/PROXIMA.webp" alt="Proxima" loading="lazy"></div>
+        <div class="cl-name">Proxima</div>
+      </div>
+    </div>
+
+    <p class="cl-count rv"><strong>80+</strong> aziende hanno scelto Estro per la loro crescita digitale</p>
+
+  </div>
+</section>
 
 <!-- ═══ TARGET + SOLUZIONE ═══ -->
 <section class="target" id="target">
@@ -3248,6 +3370,42 @@ const obs=new IntersectionObserver(es=>{
 
   new ResizeObserver(checkLayout).observe(flow);
 })();
+// ── Clienti showcase: filter + entrance ──────────────────────────────────
+(function(){
+  const grid=document.getElementById('clGrid');
+  if(!grid)return;
+  const cards=[...grid.querySelectorAll('.cl-card')];
+  const btns=[...document.querySelectorAll('.cl-fbtn')];
+
+  // staggered entrance on scroll
+  const io=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        const i=cards.indexOf(e.target);
+        setTimeout(()=>e.target.classList.add('cl-vis'),i*55);
+        io.unobserve(e.target);
+      }
+    });
+  },{threshold:0.08});
+  cards.forEach(c=>io.observe(c));
+
+  function applyFilter(cat){
+    btns.forEach(b=>b.classList.toggle('on',b.dataset.cat===cat));
+    cards.forEach(card=>{
+      const match=cat==='all'||card.dataset.cat===cat;
+      if(match){
+        card.style.display='';
+        requestAnimationFrame(()=>{card.classList.remove('cl-out');card.classList.add('cl-vis');});
+      } else {
+        card.classList.add('cl-out');
+        setTimeout(()=>{if(card.classList.contains('cl-out'))card.style.display='none';},260);
+      }
+    });
+  }
+
+  btns.forEach(btn=>btn.addEventListener('click',()=>applyFilter(btn.dataset.cat)));
+})();
+
 // ── Portfolio Tabs ────────────────────────────────────────────────────────
 document.querySelectorAll('.pf-tab').forEach(t=>{
   t.addEventListener('click',()=>{
