@@ -70,7 +70,7 @@ body{font-family:var(--fb);background:var(--K);color:var(--C);overflow-x:hidden;
    Sinistra: H1 → copy → form (above the fold su desktop)
    Destra: immagine dominante full-height
    ═══════════════════════════════════════════════════════ */
-.hero{position:relative;min-height:100vh;display:grid;grid-template-columns:1.45fr 1fr;background:var(--K);overflow:hidden}
+.hero{position:relative;min-height:calc(100vh - 80px);display:grid;grid-template-columns:1.45fr 1fr;background:var(--K);overflow:hidden}
 /* dot grid texture */
 .hero::before{content:'';position:absolute;inset:0;z-index:0;pointer-events:none;
   background-image:radial-gradient(circle,rgba(243,239,224,.03) 1px,transparent 1px);
